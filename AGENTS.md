@@ -1,6 +1,6 @@
 # AGENTS.md — E-Dukan Dashboard
 
-Admin dashboard for the E-Dukan store (single shop). React 19 · Vite 8 · TypeScript ~6 · Tailwind CSS v4 · React Router 8 · Base UI · react-i18next · React Hook Form + Zod. Talks to the REST API in `../e-commerce-backend` (see that folder's `AGENTS.md`).
+Admin dashboard for the E-Dukan store (single shop). React 19 · Vite 8 · TypeScript ~6 · Tailwind CSS v4 · React Router 8 · TanStack Query v5 · Base UI · react-i18next · React Hook Form + Zod. Talks to the REST API in `../e-commerce-backend` (see that folder's `AGENTS.md`).
 
 Read **`DESIGN.md`** before any UI work. It defines the macOS-inspired design system (tokens, components, page recipes, do/don't).
 
@@ -26,6 +26,7 @@ src/
 ├── index.css               # Tailwind v4 config + design tokens + utilities (see DESIGN.md)
 ├── api/                    # Backend calls — one file per resource
 │   ├── client.ts           # fetch wrapper: envelope unwrapping, ApiError, token refresh, FormData
+│   ├── query-client.ts     # TanStack Query client + queryKeys
 │   ├── auth.ts users.ts profile.ts categories.ts products.ts
 │   └── types.ts            # AuthUser, AuthSession, ApiEnvelope
 ├── contexts/               # AuthProvider/useAuth, ThemeProvider/useTheme
@@ -72,8 +73,28 @@ Guards live in `components/shared/route-guards.tsx`: `ProtectedRoute` (signed in
 - Add calls to the matching `src/api/<resource>.ts` using `apiRequest<T>(path, { method, body, signal })`. It returns `data` from the `{ success, message, data, errors }` envelope and throws `ApiError` (`status`, `fieldErrors`, `isNetworkError`).
 - `auth: false` only for public auth endpoints. Everything else sends the access token and transparently refreshes once on 401.
 - Uploads: pass a `FormData` body (see `productsApi.uploadImages`).
-- Lists: a `useXList(params, reloadKey)` hook with `AbortController`, keeping previous data while loading (see `pages/main/products/use-products.ts`). Bump `reloadKey` after mutations.
 - Show errors with `getApiErrorMessage(error, { network, unexpected })` and map backend field errors onto forms with `applyFieldErrors(error, setError, fieldMap)` (`@/utils/form-errors`).
+
+### Server state: TanStack Query v5
+
+All server data goes through **TanStack Query**. Don't fetch in `useEffect` or keep API data in `useState`.
+
+- The client and every query key live in `src/api/query-client.ts` (`queryClient`, `queryKeys`). Add new keys there; never inline key arrays in components.
+- Wrap each query in a feature hook next to the page (`use-products.ts`, `use-users.ts`, `catalog/shared/use-categories.ts`):
+
+  ```ts
+  useQuery({
+    queryKey: queryKeys.products.list(params),
+    queryFn: ({ signal }) => productsApi.list(params, signal), // pass signal for cancellation
+    placeholderData: keepPreviousData, // lists: keep the old page visible while the next loads
+  });
+  ```
+
+- After a mutation, **invalidate the resource** (`queryClient.invalidateQueries({ queryKey: queryKeys.products.all })`) or write the returned entity with `setQueryData`. Use the existing helpers (`useProductCache`, `useInvalidateCatalog`, `useInvalidateUsers`). Category changes also invalidate products (they show category names), and product changes invalidate categories (product counts).
+- Defaults (`staleTime` 30s, refetch on focus, no retry on 4xx) are set once in `query-client.ts`.
+- The cache is cleared on sign-out (`AuthProvider`), so a new account never sees the previous account's data.
+- Auth/session state is **not** in Query; it stays in `AuthProvider` (see below).
+- React Query Devtools appear in dev only (bottom-left button).
 
 ### Auth rules (do not break)
 

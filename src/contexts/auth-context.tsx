@@ -1,5 +1,6 @@
 import { authApi, type LoginInput, type RegisterInput } from "@/api/auth";
 import { profileApi } from "@/api/profile";
+import { queryClient } from "@/api/query-client";
 import {
   clearSession,
   onSessionChange,
@@ -41,13 +42,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   });
 
   useEffect(() => {
-    const unsubscribe = onSessionChange((user) =>
+    const unsubscribe = onSessionChange((user) => {
+      // Never show one account's cached data to the next.
+      if (!user) queryClient.clear();
       setState(
         user
           ? { status: "authenticated", user }
           : { status: "unauthenticated", user: null },
-      ),
-    );
+      );
+    });
 
     // Restore the session from the httpOnly refresh cookie on first load.
     refreshSession().catch(() => clearSession());

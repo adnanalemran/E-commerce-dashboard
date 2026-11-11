@@ -1,6 +1,7 @@
 import { categoriesApi } from "@/api/categories";
-import { productsApi, type AdminListProductsParams } from "@/api/products";
-import { useEffect, useState } from "react";
+import { productsApi, type AdminListProductsParams, type Product } from "@/api/products";
+import { queryKeys } from "@/api/query-client";
+import { keepPreviousData, useQuery, useQueryClient } from "@tanstack/react-query";
 
 /** Bangladeshi Taka, e.g. "৳1,890" or "৳950.50". */
 export function formatPrice(amount: number, locale: string): string {
@@ -14,61 +15,64 @@ export interface CategoryOption {
 
 /** Categories and subcategories as "Honey › Sundarban Honey" options. */
 export function useCategoryOptions() {
-  const [options, setOptions] = useState<CategoryOption[] | null>(null);
+  const query = useQuery({
+    queryKey: queryKeys.categories.tree,
+    queryFn: ({ signal }) => categoriesApi.tree(signal),
+    select: (tree): CategoryOption[] =>
+      tree.flatMap((root) => [
+        { value: root.id, label: root.name },
+        ...root.subcategories.map((sub) => ({
+          value: sub.id,
+          label: `${root.name} › ${sub.name}`,
+        })),
+      ]),
+  });
 
-  useEffect(() => {
-    const controller = new AbortController();
-    categoriesApi
-      .tree(controller.signal)
-      .then((tree) =>
-        setOptions(
-          tree.flatMap((root) => [
-            { value: root.id, label: root.name },
-            ...root.subcategories.map((sub) => ({
-              value: sub.id,
-              label: `${root.name} › ${sub.name}`,
-            })),
-          ]),
-        ),
-      )
-      .catch(() => {
-        if (!controller.signal.aborted) setOptions([]);
-      });
-    return () => controller.abort();
-  }, []);
-
-  return { options: options ?? [], isLoading: options === null };
+  return { options: query.data ?? [], isLoading: query.isPending };
 }
 
-interface ListResult {
-  key: string;
-  data?: Awaited<ReturnType<typeof productsApi.list>>;
-  error?: unknown;
-}
+/**
+ * A page of products (+ status/stock counts). Previous results stay visible
+ * while the next page or filter loads.
+ */
+export function useProductList(params: AdminListProductsParams) {
+  const query = useQuery({
+    queryKey: queryKeys.products.list(params),
+    queryFn: ({ signal }) => productsApi.list(params, signal),
+    placeholderData: keepPreviousData,
+  });
 
-/** Fetches a page of products; previous results stay visible while loading. */
-export function useProductList(
-  { status, categoryId, stock, search, sort, page, limit }: AdminListProductsParams,
-  reloadKey: number,
-) {
-  const key = JSON.stringify([status, categoryId, stock, search, sort, page, limit, reloadKey]);
-  const [result, setResult] = useState<ListResult | null>(null);
-
-  useEffect(() => {
-    const controller = new AbortController();
-    productsApi
-      .list({ status, categoryId, stock, search, sort, page, limit }, controller.signal)
-      .then((data) => setResult({ key, data }))
-      .catch((error: unknown) => {
-        if (!controller.signal.aborted) setResult({ key, error });
-      });
-    return () => controller.abort();
-  }, [key, status, categoryId, stock, search, sort, page, limit]);
-
-  const isCurrent = result?.key === key;
   return {
-    data: result?.data,
-    error: isCurrent ? result.error : undefined,
-    isLoading: !isCurrent,
+    data: query.data,
+    error: query.isPlaceholderData ? undefined : (query.error ?? undefined),
+    isLoading: query.isPending || query.isPlaceholderData,
+  };
+}
+
+/** One product for the editor. */
+export function useProduct(id: string | undefined) {
+  return useQuery({
+    queryKey: queryKeys.products.detail(id ?? ""),
+    queryFn: ({ signal }) => productsApi.get(id!, signal),
+    enabled: Boolean(id),
+  });
+}
+
+/**
+ * After a product changes: store the fresh copy for the editor and refetch
+ * lists (prices, stock and counts may all have changed).
+ */
+export function useProductCache() {
+  const queryClient = useQueryClient();
+  return {
+    store: (product: Product) => {
+      queryClient.setQueryData(queryKeys.products.detail(product.id), product);
+      void queryClient.invalidateQueries({ queryKey: ["products", "list"] });
+    },
+    invalidateAll: () => {
+      void queryClient.invalidateQueries({ queryKey: queryKeys.products.all });
+      // Category product counts change with products.
+      void queryClient.invalidateQueries({ queryKey: queryKeys.categories.all });
+    },
   };
 }

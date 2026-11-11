@@ -23,7 +23,7 @@ import { getApiErrorMessage } from "@/utils/form-errors";
 import type { RoleName } from "@/utils/roles";
 import { useState } from "react";
 import DeleteUserDialog from "./delete-user-dialog";
-import { useUserList } from "./use-users";
+import { useInvalidateUsers, useUserList } from "./use-users";
 import UserFormDialog from "./user-form-dialog";
 import UserTable from "./user-table";
 
@@ -48,7 +48,6 @@ export default function UserManager() {
   const [roleFilter, setRoleFilter] = useState<RoleName | typeof ALL>(ALL);
   const [statusFilter, setStatusFilter] = useState<UserStatus | typeof ALL>(ALL);
   const [page, setPage] = useState(1);
-  const [reloadKey, setReloadKey] = useState(0);
 
   const { data, error, isLoading } = useUserList(
     {
@@ -58,8 +57,8 @@ export default function UserManager() {
       page,
       limit: PAGE_SIZE,
     },
-    reloadKey,
   );
+  const reload = useInvalidateUsers();
 
   const [formState, setFormState] = useState<{
     open: boolean;
@@ -79,7 +78,6 @@ export default function UserManager() {
   const canManage = (user: AuthUser) =>
     isSuperAdmin || !user.roles.includes("SUPER_ADMIN");
 
-  const reload = () => setReloadKey((key) => key + 1);
   const resetPage = () => setPage(1);
 
   const handleSaved = (close: boolean) => {

@@ -1,43 +1,27 @@
-import type { Paginated } from "@/api/categories";
-import type { AuthUser } from "@/api/types";
+import { queryKeys } from "@/api/query-client";
 import { usersApi, type ListUsersParams } from "@/api/users";
-import { useEffect, useState } from "react";
-
-interface ListResult {
-  key: string;
-  data?: Paginated<AuthUser>;
-  error?: unknown;
-}
+import { keepPreviousData, useQuery, useQueryClient } from "@tanstack/react-query";
 
 /**
- * Fetches a page of users. Previous results stay visible while the next
- * request is in flight; bump `reloadKey` to refetch the same page.
+ * A page of users. Previous results stay visible while the next page or
+ * filter loads (`isLoading` is true until the current params have data).
  */
-export function useUserList(
-  { role, status, search, page, limit }: ListUsersParams,
-  reloadKey: number,
-) {
-  const key = JSON.stringify([role, status, search, page, limit, reloadKey]);
-  const [result, setResult] = useState<ListResult | null>(null);
-
-  useEffect(() => {
-    const controller = new AbortController();
-
-    usersApi
-      .list({ role, status, search, page, limit }, controller.signal)
-      .then((data) => setResult({ key, data }))
-      .catch((error: unknown) => {
-        if (!controller.signal.aborted) setResult({ key, error });
-      });
-
-    return () => controller.abort();
-  }, [key, role, status, search, page, limit]);
-
-  const isCurrent = result?.key === key;
+export function useUserList(params: ListUsersParams) {
+  const query = useQuery({
+    queryKey: queryKeys.users.list(params),
+    queryFn: ({ signal }) => usersApi.list(params, signal),
+    placeholderData: keepPreviousData,
+  });
 
   return {
-    data: result?.data,
-    error: isCurrent ? result.error : undefined,
-    isLoading: !isCurrent,
+    data: query.data,
+    error: query.isPlaceholderData ? undefined : (query.error ?? undefined),
+    isLoading: query.isPending || query.isPlaceholderData,
   };
+}
+
+/** Refetch every cached user list. */
+export function useInvalidateUsers() {
+  const queryClient = useQueryClient();
+  return () => void queryClient.invalidateQueries({ queryKey: queryKeys.users.all });
 }

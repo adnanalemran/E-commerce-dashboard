@@ -4,84 +4,61 @@ import {
   type ListCategoriesParams,
   type Paginated,
 } from "@/api/categories";
-import { useEffect, useState } from "react";
-
-interface ListResult {
-  key: string;
-  data?: Paginated<Category>;
-  error?: unknown;
-}
+import { queryKeys } from "@/api/query-client";
+import { keepPreviousData, useQuery, useQueryClient } from "@tanstack/react-query";
 
 /**
- * Fetches a page of categories. Previous results stay visible while the next
- * request is in flight; bump `reloadKey` to refetch the same page.
+ * A page of categories. Previous results stay visible while the next page or
+ * filter loads (`isLoading` is true until the current params have data).
  */
-export function useCategoryList(
-  { type, parentId, search, page, limit }: ListCategoriesParams,
-  reloadKey: number,
-) {
-  const key = JSON.stringify([type, parentId, search, page, limit, reloadKey]);
-  const [result, setResult] = useState<ListResult | null>(null);
+export function useCategoryList(params: ListCategoriesParams) {
+  const queryClient = useQueryClient();
+  const queryKey = queryKeys.categories.list(params);
 
-  useEffect(() => {
-    const controller = new AbortController();
-
-    categoriesApi
-      .list({ type, parentId, search, page, limit }, controller.signal)
-      .then((data) => setResult({ key, data }))
-      .catch((error: unknown) => {
-        if (!controller.signal.aborted) setResult({ key, error });
-      });
-
-    return () => controller.abort();
-  }, [key, type, parentId, search, page, limit]);
-
-  const isCurrent = result?.key === key;
+  const query = useQuery({
+    queryKey,
+    queryFn: ({ signal }) => categoriesApi.list(params, signal),
+    placeholderData: keepPreviousData,
+  });
 
   /** Swap one row for its updated version without refetching. */
   const replaceItem = (updated: Category) =>
-    setResult((prev) =>
-      prev?.data
+    queryClient.setQueryData<Paginated<Category>>(queryKey, (current) =>
+      current
         ? {
-            ...prev,
-            data: {
-              ...prev.data,
-              items: prev.data.items.map((item) =>
-                item.id === updated.id ? updated : item,
-              ),
-            },
+            ...current,
+            items: current.items.map((item) => (item.id === updated.id ? updated : item)),
           }
-        : prev,
+        : current,
     );
 
   return {
-    data: result?.data,
-    error: isCurrent ? result.error : undefined,
-    isLoading: !isCurrent,
+    data: query.data,
+    error: query.isPlaceholderData ? undefined : (query.error ?? undefined),
+    isLoading: query.isPending || query.isPlaceholderData,
     replaceItem,
   };
 }
 
 /** All top-level categories (max 100), for parent pickers and filters. */
-export function useRootCategories(enabled: boolean, reloadKey: number) {
-  const [state, setState] = useState<{ key: number; items: Category[] }>({
-    key: -1,
-    items: [],
+export function useRootCategories(enabled: boolean) {
+  const query = useQuery({
+    queryKey: queryKeys.categories.roots,
+    queryFn: ({ signal }) => categoriesApi.list({ type: "root", limit: 100 }, signal),
+    enabled,
   });
 
-  useEffect(() => {
-    if (!enabled) return;
-    const controller = new AbortController();
+  return {
+    items: query.data?.items ?? [],
+    isLoading: enabled && query.isPending,
+  };
+}
 
-    categoriesApi
-      .list({ type: "root", limit: 100 }, controller.signal)
-      .then((data) => setState({ key: reloadKey, items: data.items }))
-      .catch(() => {
-        if (!controller.signal.aborted) setState({ key: reloadKey, items: [] });
-      });
-
-    return () => controller.abort();
-  }, [enabled, reloadKey]);
-
-  return { items: state.items, isLoading: enabled && state.key !== reloadKey };
+/** Refetch everything that shows categories (lists, pickers, product rows). */
+export function useInvalidateCatalog() {
+  const queryClient = useQueryClient();
+  return () => {
+    void queryClient.invalidateQueries({ queryKey: queryKeys.categories.all });
+    void queryClient.invalidateQueries({ queryKey: queryKeys.products.all });
+  };
 }

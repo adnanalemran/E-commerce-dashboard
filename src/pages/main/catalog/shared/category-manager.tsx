@@ -25,7 +25,11 @@ import CategoryTable from "./category-table";
 import DeleteCategoryDialog from "./delete-category-dialog";
 import TablePagination from "@/components/shared/table-pagination";
 import { PAGE_SIZE, type CategoryLevel } from "./types";
-import { useCategoryList, useRootCategories } from "./use-categories";
+import {
+  useCategoryList,
+  useInvalidateCatalog,
+  useRootCategories,
+} from "./use-categories";
 
 const ALL_PARENTS = "all";
 
@@ -39,7 +43,6 @@ export default function CategoryManager({ level }: { level: CategoryLevel }) {
   const debouncedSearch = useDebouncedValue(search.trim(), 300);
   const [parentFilter, setParentFilter] = useState(ALL_PARENTS);
   const [page, setPage] = useState(1);
-  const [reloadKey, setReloadKey] = useState(0);
 
   const { data, error, isLoading, replaceItem } = useCategoryList(
     {
@@ -49,9 +52,9 @@ export default function CategoryManager({ level }: { level: CategoryLevel }) {
       page,
       limit: PAGE_SIZE,
     },
-    reloadKey,
   );
-  const roots = useRootCategories(isSub, 0);
+  const roots = useRootCategories(isSub);
+  const reload = useInvalidateCatalog();
 
   const [formState, setFormState] = useState<{
     open: boolean;
@@ -77,7 +80,6 @@ export default function CategoryManager({ level }: { level: CategoryLevel }) {
   const isFiltered = Boolean(debouncedSearch) || parentFilter !== ALL_PARENTS;
   const needsParent = isSub && !roots.isLoading && roots.items.length === 0;
 
-  const reload = () => setReloadKey((key) => key + 1);
 
   const handleSearchChange = (value: string) => {
     setSearch(value);
@@ -113,6 +115,7 @@ export default function CategoryManager({ level }: { level: CategoryLevel }) {
     try {
       const updated = await categoriesApi.update(category.id, { isFeatured });
       replaceItem(updated);
+      reload();
     } catch (err) {
       setActionError(getApiErrorMessage(err, errorMessages));
     } finally {

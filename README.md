@@ -2,7 +2,7 @@
 
 Admin dashboard for the E-Dukan store: products (with weight/size variants, stock and photos), categories and subcategories, users and roles, and account settings.
 
-Built with React 19, Vite, TypeScript, Tailwind CSS v4, React Router and react-i18next (English, Arabic, Spanish, German).
+Built with React 19, Vite, TypeScript, Tailwind CSS v4, React Router, TanStack Query and react-i18next (English, Arabic, Spanish, German).
 
 ## Getting started
 

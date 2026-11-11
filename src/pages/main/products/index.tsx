@@ -24,7 +24,7 @@ import { useState } from "react";
 import { Link } from "react-router";
 import DeleteProductDialog from "./delete-product-dialog";
 import ProductTable from "./product-table";
-import { useCategoryOptions, useProductList } from "./use-products";
+import { useCategoryOptions, useProductCache, useProductList } from "./use-products";
 
 const PAGE_SIZE = 10;
 const ALL = "all";
@@ -45,7 +45,6 @@ export default function ProductsPage() {
   const [categoryId, setCategoryId] = useState<string>(ALL);
   const [sort, setSort] = useState<SortOption>("newest");
   const [page, setPage] = useState(1);
-  const [reloadKey, setReloadKey] = useState(0);
   const [deleteTarget, setDeleteTarget] = useState<Product | null>(null);
 
   const categories = useCategoryOptions();
@@ -59,8 +58,8 @@ export default function ProductsPage() {
       page,
       limit: PAGE_SIZE,
     },
-    reloadKey,
   );
+  const productCache = useProductCache();
 
   const items = data?.items ?? [];
   const counts = data?.counts;
@@ -94,7 +93,7 @@ export default function ProductsPage() {
   const handleDeleted = () => {
     setDeleteTarget(null);
     if (items.length === 1 && page > 1) setPage(page - 1);
-    else setReloadKey((key) => key + 1);
+    else productCache.invalidateAll();
   };
 
   const emptyState = (
@@ -234,7 +233,7 @@ export default function ProductsPage() {
                 unexpected: t("errors.unexpected"),
               })}
             </p>
-            <Button variant="outline" size="sm" onClick={() => setReloadKey((key) => key + 1)}>
+            <Button variant="outline" size="sm" onClick={productCache.invalidateAll}>
               {t("errors.retry")}
             </Button>
           </div>

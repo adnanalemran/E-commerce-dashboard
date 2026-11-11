@@ -19,11 +19,11 @@ import { useTranslations } from "@/i18n";
 import { CheckCircleIcon, OctagonAlertIcon, TrashBinIcon } from "@/icons";
 import { applyFieldErrors, getApiErrorMessage } from "@/utils/form-errors";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { Controller, useForm, type Path } from "react-hook-form";
 import { Link, useLocation, useNavigate, useParams } from "react-router";
 import DeleteProductDialog from "../delete-product-dialog";
-import { useCategoryOptions } from "../use-products";
+import { useCategoryOptions, useProduct, useProductCache } from "../use-products";
 import ImagesManager, { type QueuedImage } from "./images-manager";
 import {
   createProductFormSchema,
@@ -43,25 +43,11 @@ interface EditorState {
 export default function ProductEditorPage() {
   const t = useTranslations("products");
   const { id } = useParams();
-  const [loaded, setLoaded] = useState<{ id: string; product?: Product; error?: unknown } | null>(
-    null,
-  );
-
-  useEffect(() => {
-    if (!id) return;
-    const controller = new AbortController();
-    productsApi
-      .get(id, controller.signal)
-      .then((product) => setLoaded({ id, product }))
-      .catch((error: unknown) => {
-        if (!controller.signal.aborted) setLoaded({ id, error });
-      });
-    return () => controller.abort();
-  }, [id]);
+  const query = useProduct(id);
 
   if (!id) return <ProductForm product={null} />;
 
-  if (loaded?.id !== id) {
+  if (query.isPending) {
     return (
       <div className="flex min-h-[40vh] items-center justify-center">
         <Spinner className="size-8 text-brand-500" />
@@ -69,12 +55,12 @@ export default function ProductEditorPage() {
     );
   }
 
-  if (!loaded.product) {
+  if (!query.data) {
     return (
       <div className="flex min-h-[40vh] flex-col items-center justify-center gap-3 text-center">
         <p className="font-medium text-gray-800 dark:text-white/90">{t("editor.notFound")}</p>
         <p className="text-sm text-gray-500 dark:text-gray-400">
-          {getApiErrorMessage(loaded.error, {
+          {getApiErrorMessage(query.error, {
             network: t("errors.network"),
             unexpected: t("errors.unexpected"),
           })}
@@ -87,7 +73,7 @@ export default function ProductEditorPage() {
   }
 
   // Keyed so switching products starts from fresh form state.
-  return <ProductForm key={loaded.product.id} product={loaded.product} />;
+  return <ProductForm key={query.data.id} product={query.data} />;
 }
 
 function ProductForm({ product: initialProduct }: { product: Product | null }) {
@@ -96,7 +82,12 @@ function ProductForm({ product: initialProduct }: { product: Product | null }) {
   const location = useLocation();
   const categories = useCategoryOptions();
 
-  const [product, setProduct] = useState(initialProduct);
+  const [product, setProductState] = useState(initialProduct);
+  const productCache = useProductCache();
+  const setProduct = (next: Product) => {
+    setProductState(next);
+    productCache.store(next);
+  };
   const [queued, setQueued] = useState<QueuedImage[]>([]);
   const [formError, setFormError] = useState<string | null>(null);
   const [justSaved, setJustSaved] = useState(false);
@@ -126,6 +117,7 @@ function ProductForm({ product: initialProduct }: { product: Product | null }) {
     try {
       if (isNew) {
         const created = await productsApi.create(input);
+        productCache.invalidateAll();
         let imageUploadFailed = false;
         if (queued.length > 0) {
           try {
@@ -396,7 +388,10 @@ function ProductForm({ product: initialProduct }: { product: Product | null }) {
         <DeleteProductDialog
           product={isDeleteOpen ? product : null}
           onOpenChange={setIsDeleteOpen}
-          onDeleted={() => void navigate("/products", { replace: true })}
+          onDeleted={() => {
+            productCache.invalidateAll();
+            void navigate("/products", { replace: true });
+          }}
         />
       )}
     </>
