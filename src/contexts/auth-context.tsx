@@ -1,4 +1,5 @@
 import { authApi, type LoginInput, type RegisterInput } from "@/api/auth";
+import { profileApi } from "@/api/profile";
 import {
   clearSession,
   onSessionChange,
@@ -53,6 +54,29 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     return unsubscribe;
   }, []);
+
+  // Re-read the account when the tab regains focus so role or status changes
+  // made by an admin apply without a full reload (at most once a minute).
+  const isAuthenticated = state.status === "authenticated";
+  useEffect(() => {
+    if (!isAuthenticated) return;
+    let lastSync = Date.now();
+
+    const handleVisibility = () => {
+      if (document.visibilityState !== "visible") return;
+      if (Date.now() - lastSync < 60_000) return;
+      lastSync = Date.now();
+      profileApi
+        .get()
+        .then(updateSessionUser)
+        .catch(() => {
+          // A failed refresh is handled by the API client (sign-out on 401).
+        });
+    };
+
+    document.addEventListener("visibilitychange", handleVisibility);
+    return () => document.removeEventListener("visibilitychange", handleVisibility);
+  }, [isAuthenticated]);
 
   const login = async (input: LoginInput) => {
     const session = await authApi.login(input);

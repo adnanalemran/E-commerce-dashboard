@@ -371,7 +371,7 @@ function ProductForm({ product: initialProduct }: { product: Product | null }) {
           </div>
         </div>
 
-        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-gray-200 bg-white/95 px-4 py-3 backdrop-blur-sm lg:ps-(--sidebar-width) dark:border-gray-800 dark:bg-gray-900/95">
+        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-gray-200 bg-white/95 px-4 py-3 backdrop-blur-sm xl:ps-[var(--sidebar-width,18.125rem)] dark:border-gray-800 dark:bg-gray-900/95">
           <div className="mx-auto flex max-w-(--breakpoint-2xl) items-center justify-end gap-3 md:px-2">
             {!isNew && isDirty && (
               <span className="me-auto text-sm text-gray-500 dark:text-gray-400">

@@ -37,7 +37,11 @@ export default function SidebarMenuItem({
           pathname.startsWith("/products/")),
     ),
   );
-  const isDirectActive = Boolean(nav.path && nav.path === pathname);
+  const isDirectActive = Boolean(
+    nav.path &&
+      (nav.path === pathname ||
+        (nav.path !== "/" && pathname.startsWith(`${nav.path}/`))),
+  );
   const isItemActive = hasSubItems ? isOpen || hasActiveChild : isDirectActive;
   const isPanelOpen = showContent && isOpen;
 

@@ -1,4 +1,4 @@
-# AGENTS.md — TailAdmin React
+# AGENTS.md — E-Dukan Dashboard
 
 React 19 admin dashboard template: Vite 8 · TypeScript ~6 · Tailwind CSS v4 · React Router 8 · Base UI · react-i18next. Client-only SPA with no backend, auth, or global store.
 

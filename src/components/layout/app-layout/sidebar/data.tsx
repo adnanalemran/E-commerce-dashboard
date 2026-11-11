@@ -1,4 +1,10 @@
-import { LayoutGridIcon, TagIcon, UserCircleIcon, UsersIcon } from "@/icons";
+import {
+  BoxIcon,
+  LayoutGridIcon,
+  TagIcon,
+  UserCircleIcon,
+  UsersIcon,
+} from "@/icons";
 import { ADMIN_ROLES, STAFF_ROLES } from "@/utils/roles";
 import type { NavItem } from "./types";
 
@@ -9,11 +15,16 @@ export const navItems: NavItem[] = [
     subItems: [{ key: "ecommerceHome", path: "/" }],
   },
   {
+    icon: <BoxIcon className="size-6" />,
+    key: "products",
+    path: "/products",
+    roles: STAFF_ROLES,
+  },
+  {
     icon: <TagIcon className="size-6" />,
     key: "catalog",
     roles: STAFF_ROLES,
     subItems: [
-      { key: "products", path: "/products" },
       { key: "categories", path: "/categories" },
       { key: "subcategories", path: "/subcategories" },
     ],
