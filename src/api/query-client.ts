@@ -3,6 +3,7 @@ import { ApiError } from "./client";
 import type { AdminListProductsParams } from "./products";
 import type { ListCategoriesParams } from "./categories";
 import type { ListUsersParams } from "./users";
+import type { ListOrdersParams } from "./orders";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -37,6 +38,12 @@ export const queryKeys = {
     all: ["products"] as const,
     list: (params: AdminListProductsParams) => ["products", "list", params] as const,
     detail: (id: string) => ["products", "detail", id] as const,
+  },
+  orders: {
+    all: ["orders"] as const,
+    list: (params: ListOrdersParams) => ["orders", "list", params] as const,
+    detail: (id: string) => ["orders", "detail", id] as const,
+    stats: ["orders", "stats"] as const,
   },
   users: {
     all: ["users"] as const,

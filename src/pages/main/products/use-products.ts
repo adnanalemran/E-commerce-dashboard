@@ -3,10 +3,7 @@ import { productsApi, type AdminListProductsParams, type Product } from "@/api/p
 import { queryKeys } from "@/api/query-client";
 import { keepPreviousData, useQuery, useQueryClient } from "@tanstack/react-query";
 
-/** Bangladeshi Taka, e.g. "৳1,890" or "৳950.50". */
-export function formatPrice(amount: number, locale: string): string {
-  return `৳${new Intl.NumberFormat(locale, { maximumFractionDigits: 2 }).format(amount)}`;
-}
+export { formatTaka as formatPrice } from "@/utils/currency";
 
 export interface CategoryOption {
   value: string;

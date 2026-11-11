@@ -140,7 +140,8 @@
       "catalog": "Catalog",
       "categories": "Categories",
       "subcategories": "Subcategories",
-      "users": "Users"
+      "users": "Users",
+      "orders": "Orders"
     }
   },
   "header": {
@@ -1622,6 +1623,116 @@
       "compareAtPrice": "Must be higher than the price",
       "variantNameUnique": "Each variant needs a different name",
       "skuUnique": "Each SKU must be unique"
+    }
+  },
+  "orders": {
+    "title": "Orders",
+    "metaTitle": "Orders | E-Dukan",
+    "listTitle": "All orders",
+    "description": "Orders placed on the storefront. Confirm, ship and deliver them here.",
+    "searchPlaceholder": "Order no., phone or name...",
+    "empty": "No orders yet",
+    "emptyDescription": "Orders from the website appear here automatically.",
+    "noResults": "No matching orders",
+    "noResultsHint": "Try a different search or filter.",
+    "stats": {
+      "today": "Orders today",
+      "month": "Revenue this month",
+      "orderCount": "{count, plural, one {# order} other {# orders}}",
+      "pending": "Waiting for confirmation",
+      "pendingHint": "Click to see pending orders"
+    },
+    "filters": {
+      "all": "All",
+      "status": "Filter by status",
+      "payment": "Filter by payment",
+      "allPayments": "All payments"
+    },
+    "statuses": {
+      "PENDING": "Pending",
+      "CONFIRMED": "Confirmed",
+      "PROCESSING": "Processing",
+      "SHIPPED": "Shipped",
+      "DELIVERED": "Delivered",
+      "CANCELLED": "Cancelled",
+      "RETURNED": "Returned"
+    },
+    "paymentStatuses": {
+      "UNPAID": "Unpaid",
+      "PAID": "Paid",
+      "REFUNDED": "Refunded"
+    },
+    "paymentMethods": {
+      "COD": "Cash on delivery",
+      "BKASH": "bKash",
+      "NAGAD": "Nagad"
+    },
+    "paymentActions": {
+      "UNPAID": "Mark as unpaid",
+      "PAID": "Mark as paid",
+      "REFUNDED": "Mark as refunded"
+    },
+    "columns": {
+      "order": "Order",
+      "customer": "Customer",
+      "items": "Items",
+      "total": "Total",
+      "payment": "Payment",
+      "status": "Status"
+    },
+    "transitions": {
+      "PENDING": "Move to pending",
+      "CONFIRMED": "Confirm order",
+      "PROCESSING": "Start packing",
+      "SHIPPED": "Mark as shipped",
+      "DELIVERED": "Mark as delivered",
+      "CANCELLED": "Cancel order",
+      "RETURNED": "Mark as returned"
+    },
+    "zones": {
+      "INSIDE_DHAKA": "Inside Dhaka",
+      "OUTSIDE_DHAKA": "Outside Dhaka"
+    },
+    "dialog": {
+      "cancelTitle": "Cancel this order?",
+      "returnTitle": "Mark this order as returned?",
+      "restockNotice": "All items go back into stock. The customer sees the reason when tracking the order.",
+      "reason": "Reason",
+      "reasonPlaceholder": "e.g. Customer asked to cancel"
+    },
+    "actions": {
+      "close": "Close",
+      "saving": "Saving..."
+    },
+    "detail": {
+      "notFound": "Order not found",
+      "back": "All orders",
+      "title": "Order",
+      "cancelReason": "Reason",
+      "items": "{count, plural, one {# item} other {# items}}",
+      "subtotal": "Subtotal",
+      "delivery": "Delivery",
+      "free": "Free",
+      "discount": "Discount",
+      "total": "Total",
+      "timeline": "Timeline",
+      "by": "by {name}",
+      "byCustomer": "Placed by the customer",
+      "customer": "Customer & delivery",
+      "name": "Name",
+      "phone": "Phone",
+      "email": "Email",
+      "address": "Address",
+      "zone": "Delivery area",
+      "note": "Customer note",
+      "payment": "Payment",
+      "codHint": "Cash-on-delivery orders are marked paid automatically when delivered."
+    },
+    "errors": {
+      "loadFailed": "Couldn't load orders",
+      "retry": "Try again",
+      "network": "Unable to reach the server. Check your connection and try again.",
+      "unexpected": "Something went wrong. Please try again."
     }
   }
 }

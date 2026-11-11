@@ -6,6 +6,8 @@ import {
 } from "@/components/shared/route-guards";
 import CategoriesPage from "@/pages/main/catalog/categories";
 import SubcategoriesPage from "@/pages/main/catalog/subcategories";
+import OrdersPage from "@/pages/main/orders";
+import OrderDetailPage from "@/pages/main/orders/detail";
 import ProductsPage from "@/pages/main/products";
 import ProductEditorPage from "@/pages/main/products/editor";
 import EcommercePage from "@/pages/main/dashboard/ecommerce";
@@ -31,8 +33,10 @@ export default function App() {
         <Route element={<AppLayout />}>
           <Route index element={<EcommercePage />} />
 
-          {/* Catalog (admins & managers) */}
+          {/* Orders & catalog (admins & managers) */}
           <Route element={<RoleRoute roles={STAFF_ROLES} />}>
+            <Route path="/orders" element={<OrdersPage />} />
+            <Route path="/orders/:id" element={<OrderDetailPage />} />
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/products/new" element={<ProductEditorPage />} />
             <Route path="/products/:id/edit" element={<ProductEditorPage />} />

@@ -140,7 +140,8 @@
       "catalog": "Catálogo",
       "categories": "Categorías",
       "subcategories": "Subcategorías",
-      "users": "Usuarios"
+      "users": "Usuarios",
+      "orders": "Pedidos"
     }
   },
   "header": {
@@ -1622,6 +1623,116 @@
       "compareAtPrice": "Debe ser mayor que el precio",
       "variantNameUnique": "Cada variante necesita un nombre distinto",
       "skuUnique": "Cada SKU debe ser único"
+    }
+  },
+  "orders": {
+    "title": "Pedidos",
+    "metaTitle": "Pedidos | E-Dukan",
+    "listTitle": "Todos los pedidos",
+    "description": "Pedidos realizados en la tienda. Confírmalos, envíalos y entrégalos desde aquí.",
+    "searchPlaceholder": "N.º de pedido, teléfono o nombre...",
+    "empty": "Aún no hay pedidos",
+    "emptyDescription": "Los pedidos de la web aparecen aquí automáticamente.",
+    "noResults": "No hay pedidos que coincidan",
+    "noResultsHint": "Prueba con otra búsqueda o filtro.",
+    "stats": {
+      "today": "Pedidos de hoy",
+      "month": "Ingresos del mes",
+      "orderCount": "{count, plural, one {# pedido} other {# pedidos}}",
+      "pending": "Pendientes de confirmar",
+      "pendingHint": "Haz clic para ver los pendientes"
+    },
+    "filters": {
+      "all": "Todos",
+      "status": "Filtrar por estado",
+      "payment": "Filtrar por pago",
+      "allPayments": "Todos los pagos"
+    },
+    "statuses": {
+      "PENDING": "Pendiente",
+      "CONFIRMED": "Confirmado",
+      "PROCESSING": "En preparación",
+      "SHIPPED": "Enviado",
+      "DELIVERED": "Entregado",
+      "CANCELLED": "Cancelado",
+      "RETURNED": "Devuelto"
+    },
+    "paymentStatuses": {
+      "UNPAID": "Sin pagar",
+      "PAID": "Pagado",
+      "REFUNDED": "Reembolsado"
+    },
+    "paymentMethods": {
+      "COD": "Contra reembolso",
+      "BKASH": "bKash",
+      "NAGAD": "Nagad"
+    },
+    "paymentActions": {
+      "UNPAID": "Marcar sin pagar",
+      "PAID": "Marcar como pagado",
+      "REFUNDED": "Marcar como reembolsado"
+    },
+    "columns": {
+      "order": "Pedido",
+      "customer": "Cliente",
+      "items": "Artículos",
+      "total": "Total",
+      "payment": "Pago",
+      "status": "Estado"
+    },
+    "transitions": {
+      "PENDING": "Volver a pendiente",
+      "CONFIRMED": "Confirmar pedido",
+      "PROCESSING": "Empezar a preparar",
+      "SHIPPED": "Marcar como enviado",
+      "DELIVERED": "Marcar como entregado",
+      "CANCELLED": "Cancelar pedido",
+      "RETURNED": "Marcar como devuelto"
+    },
+    "zones": {
+      "INSIDE_DHAKA": "Dentro de Dhaka",
+      "OUTSIDE_DHAKA": "Fuera de Dhaka"
+    },
+    "dialog": {
+      "cancelTitle": "¿Cancelar este pedido?",
+      "returnTitle": "¿Marcar este pedido como devuelto?",
+      "restockNotice": "Todos los artículos vuelven al stock. El cliente verá el motivo al seguir el pedido.",
+      "reason": "Motivo",
+      "reasonPlaceholder": "p. ej. El cliente pidió cancelar"
+    },
+    "actions": {
+      "close": "Cerrar",
+      "saving": "Guardando..."
+    },
+    "detail": {
+      "notFound": "Pedido no encontrado",
+      "back": "Todos los pedidos",
+      "title": "Pedido",
+      "cancelReason": "Motivo",
+      "items": "{count, plural, one {# artículo} other {# artículos}}",
+      "subtotal": "Subtotal",
+      "delivery": "Envío",
+      "free": "Gratis",
+      "discount": "Descuento",
+      "total": "Total",
+      "timeline": "Historial",
+      "by": "por {name}",
+      "byCustomer": "Realizado por el cliente",
+      "customer": "Cliente y entrega",
+      "name": "Nombre",
+      "phone": "Teléfono",
+      "email": "Correo",
+      "address": "Dirección",
+      "zone": "Zona de entrega",
+      "note": "Nota del cliente",
+      "payment": "Pago",
+      "codHint": "Los pedidos contra reembolso se marcan como pagados al entregarse."
+    },
+    "errors": {
+      "loadFailed": "No se pudieron cargar los pedidos",
+      "retry": "Reintentar",
+      "network": "No se puede conectar con el servidor. Comprueba tu conexión e inténtalo de nuevo.",
+      "unexpected": "Algo salió mal. Inténtalo de nuevo."
     }
   }
 }

@@ -1,5 +1,6 @@
 import {
   BoxIcon,
+  CartIcon,
   LayoutGridIcon,
   TagIcon,
   UserCircleIcon,
@@ -13,6 +14,12 @@ export const navItems: NavItem[] = [
     icon: <LayoutGridIcon className="size-6" />,
     key: "dashboard",
     subItems: [{ key: "ecommerceHome", path: "/" }],
+  },
+  {
+    icon: <CartIcon className="size-6" />,
+    key: "orders",
+    path: "/orders",
+    roles: STAFF_ROLES,
   },
   {
     icon: <BoxIcon className="size-6" />,

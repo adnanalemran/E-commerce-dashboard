@@ -140,7 +140,8 @@
       "catalog": "الكتالوج",
       "categories": "الفئات",
       "subcategories": "الفئات الفرعية",
-      "users": "المستخدمون"
+      "users": "المستخدمون",
+      "orders": "الطلبات"
     }
   },
   "header": {
@@ -1622,6 +1623,116 @@
       "compareAtPrice": "يجب أن يكون أعلى من السعر",
       "variantNameUnique": "يجب أن يكون لكل خيار اسم مختلف",
       "skuUnique": "يجب أن يكون كل رمز منتج فريدًا"
+    }
+  },
+  "orders": {
+    "title": "الطلبات",
+    "metaTitle": "الطلبات | E-Dukan",
+    "listTitle": "جميع الطلبات",
+    "description": "الطلبات المقدمة عبر المتجر. أكّدها واشحنها وسلّمها من هنا.",
+    "searchPlaceholder": "رقم الطلب أو الهاتف أو الاسم...",
+    "empty": "لا توجد طلبات بعد",
+    "emptyDescription": "تظهر طلبات الموقع هنا تلقائيًا.",
+    "noResults": "لا توجد طلبات مطابقة",
+    "noResultsHint": "جرّب بحثًا أو تصفية مختلفة.",
+    "stats": {
+      "today": "طلبات اليوم",
+      "month": "إيرادات هذا الشهر",
+      "orderCount": "{count, plural, zero {لا طلبات} one {طلب واحد} two {طلبان} few {# طلبات} many {# طلبًا} other {# طلب}}",
+      "pending": "بانتظار التأكيد",
+      "pendingHint": "انقر لعرض الطلبات المعلقة"
+    },
+    "filters": {
+      "all": "الكل",
+      "status": "التصفية حسب الحالة",
+      "payment": "التصفية حسب الدفع",
+      "allPayments": "كل حالات الدفع"
+    },
+    "statuses": {
+      "PENDING": "قيد الانتظار",
+      "CONFIRMED": "مؤكد",
+      "PROCESSING": "قيد التجهيز",
+      "SHIPPED": "تم الشحن",
+      "DELIVERED": "تم التسليم",
+      "CANCELLED": "ملغي",
+      "RETURNED": "مُرتجع"
+    },
+    "paymentStatuses": {
+      "UNPAID": "غير مدفوع",
+      "PAID": "مدفوع",
+      "REFUNDED": "مسترد"
+    },
+    "paymentMethods": {
+      "COD": "الدفع عند الاستلام",
+      "BKASH": "bKash",
+      "NAGAD": "Nagad"
+    },
+    "paymentActions": {
+      "UNPAID": "تعيين كغير مدفوع",
+      "PAID": "تعيين كمدفوع",
+      "REFUNDED": "تعيين كمسترد"
+    },
+    "columns": {
+      "order": "الطلب",
+      "customer": "العميل",
+      "items": "المنتجات",
+      "total": "الإجمالي",
+      "payment": "الدفع",
+      "status": "الحالة"
+    },
+    "transitions": {
+      "PENDING": "إرجاع إلى الانتظار",
+      "CONFIRMED": "تأكيد الطلب",
+      "PROCESSING": "بدء التجهيز",
+      "SHIPPED": "تعيين كمشحون",
+      "DELIVERED": "تعيين كمُسلَّم",
+      "CANCELLED": "إلغاء الطلب",
+      "RETURNED": "تعيين كمُرتجع"
+    },
+    "zones": {
+      "INSIDE_DHAKA": "داخل دكا",
+      "OUTSIDE_DHAKA": "خارج دكا"
+    },
+    "dialog": {
+      "cancelTitle": "إلغاء هذا الطلب؟",
+      "returnTitle": "تعيين هذا الطلب كمُرتجع؟",
+      "restockNotice": "تعود جميع المنتجات إلى المخزون. يرى العميل السبب عند تتبع الطلب.",
+      "reason": "السبب",
+      "reasonPlaceholder": "مثال: طلب العميل الإلغاء"
+    },
+    "actions": {
+      "close": "إغلاق",
+      "saving": "جارٍ الحفظ..."
+    },
+    "detail": {
+      "notFound": "الطلب غير موجود",
+      "back": "جميع الطلبات",
+      "title": "الطلب",
+      "cancelReason": "السبب",
+      "items": "{count, plural, zero {لا منتجات} one {منتج واحد} two {منتجان} few {# منتجات} many {# منتجًا} other {# منتج}}",
+      "subtotal": "المجموع الفرعي",
+      "delivery": "التوصيل",
+      "free": "مجاني",
+      "discount": "الخصم",
+      "total": "الإجمالي",
+      "timeline": "السجل",
+      "by": "بواسطة {name}",
+      "byCustomer": "قدّمه العميل",
+      "customer": "العميل والتوصيل",
+      "name": "الاسم",
+      "phone": "الهاتف",
+      "email": "البريد الإلكتروني",
+      "address": "العنوان",
+      "zone": "منطقة التوصيل",
+      "note": "ملاحظة العميل",
+      "payment": "الدفع",
+      "codHint": "تُعيَّن طلبات الدفع عند الاستلام كمدفوعة تلقائيًا عند التسليم."
+    },
+    "errors": {
+      "loadFailed": "تعذر تحميل الطلبات",
+      "retry": "حاول مرة أخرى",
+      "network": "تعذر الاتصال بالخادم. تحقق من اتصالك وحاول مرة أخرى.",
+      "unexpected": "حدث خطأ ما. يرجى المحاولة مرة أخرى."
     }
   }
 }

@@ -140,7 +140,8 @@
       "catalog": "Katalog",
       "categories": "Kategorien",
       "subcategories": "Unterkategorien",
-      "users": "Benutzer"
+      "users": "Benutzer",
+      "orders": "Bestellungen"
     }
   },
   "header": {
@@ -1622,6 +1623,116 @@
       "compareAtPrice": "Muss höher als der Preis sein",
       "variantNameUnique": "Jede Variante braucht einen eigenen Namen",
       "skuUnique": "Jede SKU muss eindeutig sein"
+    }
+  },
+  "orders": {
+    "title": "Bestellungen",
+    "metaTitle": "Bestellungen | E-Dukan",
+    "listTitle": "Alle Bestellungen",
+    "description": "Bestellungen aus dem Shop. Hier bestätigen, versenden und zustellen.",
+    "searchPlaceholder": "Bestellnr., Telefon oder Name...",
+    "empty": "Noch keine Bestellungen",
+    "emptyDescription": "Bestellungen aus dem Shop erscheinen hier automatisch.",
+    "noResults": "Keine passenden Bestellungen",
+    "noResultsHint": "Versuche eine andere Suche oder einen anderen Filter.",
+    "stats": {
+      "today": "Bestellungen heute",
+      "month": "Umsatz diesen Monat",
+      "orderCount": "{count, plural, one {# Bestellung} other {# Bestellungen}}",
+      "pending": "Warten auf Bestätigung",
+      "pendingHint": "Klicken, um offene Bestellungen zu sehen"
+    },
+    "filters": {
+      "all": "Alle",
+      "status": "Nach Status filtern",
+      "payment": "Nach Zahlung filtern",
+      "allPayments": "Alle Zahlungen"
+    },
+    "statuses": {
+      "PENDING": "Offen",
+      "CONFIRMED": "Bestätigt",
+      "PROCESSING": "In Bearbeitung",
+      "SHIPPED": "Versendet",
+      "DELIVERED": "Zugestellt",
+      "CANCELLED": "Storniert",
+      "RETURNED": "Retourniert"
+    },
+    "paymentStatuses": {
+      "UNPAID": "Unbezahlt",
+      "PAID": "Bezahlt",
+      "REFUNDED": "Erstattet"
+    },
+    "paymentMethods": {
+      "COD": "Nachnahme",
+      "BKASH": "bKash",
+      "NAGAD": "Nagad"
+    },
+    "paymentActions": {
+      "UNPAID": "Als unbezahlt markieren",
+      "PAID": "Als bezahlt markieren",
+      "REFUNDED": "Als erstattet markieren"
+    },
+    "columns": {
+      "order": "Bestellung",
+      "customer": "Kunde",
+      "items": "Artikel",
+      "total": "Summe",
+      "payment": "Zahlung",
+      "status": "Status"
+    },
+    "transitions": {
+      "PENDING": "Zurück auf offen",
+      "CONFIRMED": "Bestellung bestätigen",
+      "PROCESSING": "Verpacken starten",
+      "SHIPPED": "Als versendet markieren",
+      "DELIVERED": "Als zugestellt markieren",
+      "CANCELLED": "Bestellung stornieren",
+      "RETURNED": "Als retourniert markieren"
+    },
+    "zones": {
+      "INSIDE_DHAKA": "Innerhalb Dhakas",
+      "OUTSIDE_DHAKA": "Außerhalb Dhakas"
+    },
+    "dialog": {
+      "cancelTitle": "Diese Bestellung stornieren?",
+      "returnTitle": "Diese Bestellung als retourniert markieren?",
+      "restockNotice": "Alle Artikel gehen zurück in den Bestand. Der Kunde sieht den Grund bei der Sendungsverfolgung.",
+      "reason": "Grund",
+      "reasonPlaceholder": "z. B. Kunde hat storniert"
+    },
+    "actions": {
+      "close": "Schließen",
+      "saving": "Wird gespeichert..."
+    },
+    "detail": {
+      "notFound": "Bestellung nicht gefunden",
+      "back": "Alle Bestellungen",
+      "title": "Bestellung",
+      "cancelReason": "Grund",
+      "items": "{count, plural, one {# Artikel} other {# Artikel}}",
+      "subtotal": "Zwischensumme",
+      "delivery": "Lieferung",
+      "free": "Kostenlos",
+      "discount": "Rabatt",
+      "total": "Summe",
+      "timeline": "Verlauf",
+      "by": "von {name}",
+      "byCustomer": "Vom Kunden aufgegeben",
+      "customer": "Kunde & Lieferung",
+      "name": "Name",
+      "phone": "Telefon",
+      "email": "E-Mail",
+      "address": "Adresse",
+      "zone": "Liefergebiet",
+      "note": "Kundennotiz",
+      "payment": "Zahlung",
+      "codHint": "Nachnahme-Bestellungen werden bei Zustellung automatisch als bezahlt markiert."
+    },
+    "errors": {
+      "loadFailed": "Bestellungen konnten nicht geladen werden",
+      "retry": "Erneut versuchen",
+      "network": "Der Server ist nicht erreichbar. Prüfe deine Verbindung und versuche es erneut.",
+      "unexpected": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
     }
   }
 }
