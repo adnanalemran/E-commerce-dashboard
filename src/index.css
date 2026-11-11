@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap")
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap")
 layer(base);
 
 @import "tailwindcss";
@@ -9,7 +9,13 @@ layer(base);
 
 @theme {
   --font-*: initial;
-  --font-outfit: Outfit, sans-serif;
+  /* System UI stack: San Francisco on Apple devices, Inter elsewhere. */
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", Inter,
+    "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+  /* Legacy alias: older components use `font-outfit`. */
+  --font-outfit: var(--font-sans);
 
   --breakpoint-*: initial;
   --breakpoint-2xsm: 375px;
@@ -42,40 +48,60 @@ layer(base);
   --color-current: currentColor;
   --color-transparent: transparent;
   --color-white: #ffffff;
-  --color-black: #101828;
+  --color-black: #1d1d1f;
 
-  --color-brand-50: rgba(236, 243, 255, 1);
-  --color-brand-100: rgba(221, 233, 255, 1);
-  --color-brand-200: rgba(194, 214, 255, 1);
-  --color-brand-300: rgba(156, 185, 255, 1);
-  --color-brand-400: rgba(117, 146, 255, 1);
-  --color-brand-500: rgba(70, 95, 255, 1);
-  --color-brand-600: rgba(54, 65, 245, 1);
-  --color-brand-700: rgba(42, 49, 216, 1);
-  --color-brand-800: rgba(37, 45, 174, 1);
-  --color-brand-900: rgba(38, 46, 137, 1);
-  --color-brand-950: rgba(22, 25, 80, 1);
+  /* Accent — macOS system blue (500 = #007AFF light accent, 400 ≈ dark-mode accent). */
+  --color-brand-50: #ebf5ff;
+  --color-brand-100: #d6eaff;
+  --color-brand-200: #add5ff;
+  --color-brand-300: #7abdff;
+  --color-brand-400: #3d9bff;
+  --color-brand-500: #007aff;
+  --color-brand-600: #0066d6;
+  --color-brand-700: #0052ad;
+  --color-brand-800: #003f85;
+  --color-brand-900: #002d5e;
+  --color-brand-950: #001a38;
 
-  --shadow-theme-md:
-    0px 4px 8px -2px rgba(16, 24, 40, 0.1),
-    0px 2px 4px -2px rgba(16, 24, 40, 0.06);
-  --shadow-theme-lg:
-    0px 12px 16px -4px rgba(16, 24, 40, 0.08),
-    0px 4px 6px -2px rgba(16, 24, 40, 0.03);
-  --shadow-theme-sm:
-    0px 1px 3px 0px rgba(16, 24, 40, 0.1),
-    0px 1px 2px 0px rgba(16, 24, 40, 0.06);
-  --shadow-theme-xs: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
-  --shadow-theme-xl:
-    0px 20px 24px -4px rgba(16, 24, 40, 0.08),
-    0px 8px 8px -4px rgba(16, 24, 40, 0.03);
+  /* Neutral greys modelled on macOS system greys.
+     Text contrast on white: 500 = 5.0:1, 600 = 7.6:1, 800 = 14:1 (WCAG AA ≥ 4.5). */
+  --color-gray-25: #fbfbfd;
+  --color-gray-50: #f5f5f7;
+  --color-gray-100: #efeff2;
+  --color-gray-200: #e5e5ea;
+  --color-gray-300: #d1d1d6;
+  --color-gray-400: #98989d;
+  --color-gray-500: #6e6e73;
+  --color-gray-600: #545458;
+  --color-gray-700: #3a3a3c;
+  --color-gray-800: #2c2c2e;
+  --color-gray-900: #1c1c1e;
+  --color-gray-950: #141416;
+
+  --shadow-theme-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-theme-sm: 0 1px 3px 0 rgb(0 0 0 / 0.07), 0 1px 2px -1px rgb(0 0 0 / 0.05);
+  --shadow-theme-md: 0 4px 10px -2px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --shadow-theme-lg: 0 12px 24px -6px rgb(0 0 0 / 0.1), 0 4px 8px -4px rgb(0 0 0 / 0.05);
+  --shadow-theme-xl: 0 24px 48px -12px rgb(0 0 0 / 0.18), 0 8px 16px -8px rgb(0 0 0 / 0.08);
+  /* Cards: hairline + soft lift. Windows/dialogs: deep, diffuse macOS window shadow. */
+  --shadow-card: 0 0 0 0.5px rgb(0 0 0 / 0.04), 0 1px 3px 0 rgb(0 0 0 / 0.05);
+  --shadow-window:
+    0 0 0 0.5px rgb(0 0 0 / 0.08), 0 10px 30px -8px rgb(0 0 0 / 0.2),
+    0 30px 60px -20px rgb(0 0 0 / 0.25);
   --shadow-datepicker: -5px 0 0 #262d3c, 5px 0 0 #262d3c;
-  --shadow-focus-ring: 0px 0px 0px 4px rgba(70, 95, 255, 0.12);
+  --shadow-focus-ring: 0 0 0 4px rgb(0 122 255 / 0.25);
   --shadow-slider-navigation:
-    0px 1px 2px 0px rgba(16, 24, 40, 0.1), 0px 1px 3px 0px rgba(16, 24, 40, 0.1);
+    0px 1px 2px 0px rgb(0 0 0 / 0.1), 0px 1px 3px 0px rgb(0 0 0 / 0.1);
   --shadow-tooltip:
-    0px 4px 6px -2px rgba(16, 24, 40, 0.05),
-    -8px 0px 20px 8px rgba(16, 24, 40, 0.05);
+    0px 4px 6px -2px rgb(0 0 0 / 0.05), -8px 0px 20px 8px rgb(0 0 0 / 0.05);
+
+  /* Radii: controls 10px, cards 16px, windows/dialogs 22px. */
+  --radius-control: 10px;
+  --radius-card: 16px;
+  --radius-window: 22px;
+
+  /* Motion: macOS-like spring-ish easing. */
+  --ease-mac: cubic-bezier(0.32, 0.72, 0, 1);
 
   --drop-shadow-4xl:
     0 35px 35px rgba(0, 0, 0, 0.25), 0 45px 65px rgba(0, 0, 0, 0.15);
@@ -103,6 +129,98 @@ layer(base);
   }
 }
 
+
+/* ==========================================================================
+   E-Dukan design system — semantic tokens (see DESIGN.md).
+   Prefer these in new code: they switch automatically in dark mode.
+   ========================================================================== */
+:root {
+  --ds-canvas: #f5f5f7; /* app background */
+  --ds-surface: #ffffff; /* cards, tables */
+  --ds-surface-raised: #ffffff; /* popovers, dialogs */
+  --ds-material: rgb(250 250 252 / 0.72); /* translucent chrome (sidebar, toolbar) */
+  --ds-material-thick: rgb(255 255 255 / 0.86);
+  --ds-separator: rgb(0 0 0 / 0.08);
+  --ds-label: #1d1d1f;
+  --ds-label-secondary: #6e6e73;
+  --ds-label-tertiary: #8e8e93;
+  --ds-fill: rgb(120 120 128 / 0.12); /* hover / control fill */
+  --ds-fill-strong: rgb(120 120 128 / 0.2);
+  --ds-accent: #007aff;
+  --ds-accent-soft: rgb(0 122 255 / 0.1);
+  --ds-success: #248a3d;
+  --ds-warning: #c93400;
+  --ds-danger: #d70015;
+  color-scheme: light;
+}
+
+.dark {
+  --ds-canvas: #161618;
+  --ds-surface: #1e1e20;
+  --ds-surface-raised: #2a2a2d;
+  --ds-material: rgb(30 30 32 / 0.7);
+  --ds-material-thick: rgb(36 36 38 / 0.86);
+  --ds-separator: rgb(255 255 255 / 0.09);
+  --ds-label: #f5f5f7;
+  --ds-label-secondary: #a1a1a6;
+  --ds-label-tertiary: #7c7c80;
+  --ds-fill: rgb(120 120 128 / 0.24);
+  --ds-fill-strong: rgb(120 120 128 / 0.36);
+  --ds-accent: #0a84ff;
+  --ds-accent-soft: rgb(10 132 255 / 0.18);
+  --ds-success: #30d158;
+  --ds-warning: #ff9f0a;
+  --ds-danger: #ff453a;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-canvas: var(--ds-canvas);
+  --color-surface: var(--ds-surface);
+  --color-surface-raised: var(--ds-surface-raised);
+  --color-separator: var(--ds-separator);
+  --color-label: var(--ds-label);
+  --color-label-secondary: var(--ds-label-secondary);
+  --color-label-tertiary: var(--ds-label-tertiary);
+  --color-fill: var(--ds-fill);
+  --color-fill-strong: var(--ds-fill-strong);
+  --color-accent: var(--ds-accent);
+  --color-accent-soft: var(--ds-accent-soft);
+  --color-success: var(--ds-success);
+  --color-warning: var(--ds-warning);
+  --color-danger: var(--ds-danger);
+}
+
+/* Translucent "glass" chrome — sidebar, toolbars, sticky bars. */
+@utility material {
+  background-color: var(--ds-material);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  backdrop-filter: blur(28px) saturate(180%);
+}
+
+@utility material-thick {
+  background-color: var(--ds-material-thick);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  backdrop-filter: blur(32px) saturate(180%);
+}
+
+/* Standard content container: cards, table panels, form sections. */
+@utility surface-card {
+  border-radius: var(--radius-card);
+  border: 1px solid var(--ds-separator);
+  background-color: var(--ds-surface);
+  box-shadow: var(--shadow-card);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .material,
+  .material-thick {
+    background-color: var(--ds-surface);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
@@ -117,7 +235,7 @@ layer(base);
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
+    border-color: var(--ds-separator, currentColor);
   }
 
   button:not(:disabled),
@@ -126,20 +244,22 @@ layer(base);
   }
 
   body {
-    @apply relative z-1 bg-gray-50 font-outfit font-normal;
+    @apply relative z-1 bg-canvas font-sans font-normal text-label antialiased;
+    font-feature-settings: "cv11", "ss01";
+    text-rendering: optimizeLegibility;
   }
 }
 
 @utility menu-item {
-  @apply relative flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium;
+  @apply relative flex w-full items-center gap-3 rounded-[9px] px-2.5 py-1.5 text-sm font-medium transition-colors duration-150;
 }
 
 @utility menu-item-active {
-  @apply bg-brand-50 text-brand-500 dark:bg-brand-500/12 dark:text-brand-400;
+  @apply bg-accent-soft text-accent;
 }
 
 @utility menu-item-inactive {
-  @apply text-gray-700 group-hover:text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/5 dark:hover:text-gray-300;
+  @apply text-label hover:bg-fill;
 }
 
 @utility menu-item-icon {
@@ -147,7 +267,7 @@ layer(base);
 }
 
 @utility menu-item-icon-active {
-  @apply text-brand-500 dark:text-brand-400;
+  @apply text-accent;
 }
 
 @utility menu-item-icon-inactive {
@@ -171,11 +291,11 @@ layer(base);
 }
 
 @utility menu-dropdown-item-active {
-  @apply bg-brand-50 text-brand-500 dark:bg-brand-500/12 dark:text-brand-400;
+  @apply bg-accent-soft text-accent;
 }
 
 @utility menu-dropdown-item-inactive {
-  @apply text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/5;
+  @apply text-label-secondary hover:bg-fill hover:text-label;
 }
 
 @utility menu-dropdown-badge {
@@ -581,14 +701,14 @@ span.flatpickr-weekday,
 .flatpickr-day.selected.nextMonthDay,
 .flatpickr-day.startRange.nextMonthDay,
 .flatpickr-day.endRange.nextMonthDay {
-  background: #465fff;
+  background: #007aff;
   @apply border-brand-500! bg-brand-500! hover:border-brand-500! hover:bg-brand-500!;
 }
 
 .flatpickr-day.selected.startRange + .endRange:not(:nth-child(7n + 1)),
 .flatpickr-day.startRange.startRange + .endRange:not(:nth-child(7n + 1)),
 .flatpickr-day.endRange.startRange + .endRange:not(:nth-child(7n + 1)) {
-  box-shadow: -10px 0 0 #465fff;
+  box-shadow: -10px 0 0 #007aff;
 }
 
 [dir="rtl"]
@@ -600,7 +720,7 @@ span.flatpickr-weekday,
 [dir="rtl"]
   .flatpickr-day.endRange.startRange
   + .endRange:not(:nth-child(7n + 1)) {
-  box-shadow: 10px 0 0 #465fff;
+  box-shadow: 10px 0 0 #007aff;
 }
 
 .flatpickr-months .flatpickr-prev-month svg,
@@ -752,10 +872,10 @@ pre[class*="language-"].line-numbers {
   fill: #9cb9ff !important;
 }
 #mapTwo .jvectormap-region[data-code="US"] {
-  fill: #465fff !important;
+  fill: #007aff !important;
 }
 #mapTwo .jvectormap-marker.jvectormap-element {
-  fill: #465fff !important;
+  fill: #007aff !important;
   stroke: #ffffff !important;
   stroke-width: 1.5 !important;
   fill-opacity: 1 !important;
@@ -764,7 +884,7 @@ pre[class*="language-"].line-numbers {
 #mapTwo .jvectormap-marker.jvectormap-element:first-of-type {
   stroke: #ffffff !important;
   stroke-width: 2 !important;
-  filter: drop-shadow(0 0 3px rgba(70, 95, 255, 0.4))
+  filter: drop-shadow(0 0 3px rgba(0, 122, 255, 0.4))
     drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
 }
 
@@ -784,7 +904,7 @@ pre[class*="language-"].line-numbers {
 }
 #mapCustomerPinPoint .jvm-region[data-code="US-CA"],
 #mapCustomerPinPoint .jvectormap-region[data-code="US-CA"] {
-  fill: #465fff !important;
+  fill: #007aff !important;
 }
 #mapCustomerPinPoint .jvm-region[data-code="US-NY"],
 #mapCustomerPinPoint .jvm-region[data-code="US-FL"],
@@ -820,7 +940,7 @@ pre[class*="language-"].line-numbers {
 }
 #mapCustomerPinPoint .jvm-region.jvm-element:hover,
 #mapCustomerPinPoint .jvectormap-region.jvectormap-element:hover {
-  fill: #465fff !important;
+  fill: #007aff !important;
 }
 .dark #mapCustomerPinPoint .jvm-region.jvm-element,
 .dark #mapCustomerPinPoint .jvectormap-region.jvm-element,
@@ -832,7 +952,7 @@ pre[class*="language-"].line-numbers {
 /* Customer map markers: solid filled circles with white ring */
 #mapCustomerPinPoint .jvm-marker.jvm-element,
 #mapCustomerPinPoint .jvectormap-marker.jvectormap-element {
-  fill: #465fff !important;
+  fill: #007aff !important;
   stroke: white !important;
   stroke-width: 2 !important;
   fill-opacity: 1 !important;

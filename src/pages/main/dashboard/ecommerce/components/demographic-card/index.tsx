@@ -8,14 +8,14 @@ export default function DemographicCard() {
     latLng: country.latLng,
     name: country.name,
     style: {
-      fill: "#465FFF",
+      fill: "#007AFF",
       borderWidth: 1,
       borderColor: "white",
     },
   }));
 
   return (
-    <div className="h-full rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 dark:border-gray-800 dark:bg-white/3">
+    <div className="h-full surface-card p-5 sm:p-6">
       <CardHeader />
 
       <div className="my-6 overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 px-4 py-6 sm:px-6 dark:border-gray-800 dark:bg-gray-900">

@@ -10,9 +10,9 @@ export default function MonthlySalesChart() {
   const { theme } = useTheme();
   const t = useTranslations("ecommerce");
   const options: ApexOptions = {
-    colors: ["#465FFF"],
+    colors: ["#007AFF"],
     chart: {
-      fontFamily: "Outfit, sans-serif",
+      fontFamily: "inherit",
       type: "bar",
       height: 200,
       toolbar: {
@@ -36,7 +36,7 @@ export default function MonthlySalesChart() {
       offsetY: -20,
       style: {
         fontSize: "12px",
-        fontFamily: "Outfit, sans-serif",
+        fontFamily: "inherit",
         fontWeight: 400,
         colors: [theme === "dark" ? "#94A3B8" : "#364153"],
       },
@@ -58,7 +58,7 @@ export default function MonthlySalesChart() {
       labels: {
         style: {
           colors: theme === "dark" ? "#94A3B8" : "#364153",
-          fontFamily: "Outfit, sans-serif",
+          fontFamily: "inherit",
         },
       },
     },
@@ -107,7 +107,7 @@ export default function MonthlySalesChart() {
           },
           {
             offset: 100,
-            color: "#465FFF",
+            color: "#007AFF",
             opacity: 1,
           },
         ],
@@ -130,7 +130,7 @@ export default function MonthlySalesChart() {
   ];
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white px-5 pt-5 pb-5 sm:px-6 sm:pt-6 sm:pb-5 dark:border-gray-800 dark:bg-white/3">
+    <div className="overflow-hidden surface-card px-5 pt-5 pb-5 sm:px-6 sm:pt-6 sm:pb-5">
       <CardHeader />
 
       <ScrollArea className="max-w-full">

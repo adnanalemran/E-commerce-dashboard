@@ -1,0 +1,72 @@
+{
+  "$description": "E-Dukan design tokens (W3C design-tokens format). Source of truth: src/index.css. Human guide: DESIGN.md.",
+  "color": {
+    "semantic": {
+      "$description": "CSS variables --ds-* that switch under .dark. Tailwind: bg-<name>, text-<name>, border-<name>.",
+      "canvas": { "$type": "color", "$value": "#F5F5F7", "$extensions": { "dark": "#161618", "tailwind": "bg-canvas", "usage": "App background" } },
+      "surface": { "$type": "color", "$value": "#FFFFFF", "$extensions": { "dark": "#1E1E20", "tailwind": "bg-surface", "usage": "Cards, tables, form sections" } },
+      "surface-raised": { "$type": "color", "$value": "#FFFFFF", "$extensions": { "dark": "#2A2A2D", "tailwind": "bg-surface-raised", "usage": "Dialogs, popovers" } },
+      "separator": { "$type": "color", "$value": "rgba(0, 0, 0, 0.08)", "$extensions": { "dark": "rgba(255, 255, 255, 0.09)", "tailwind": "border-separator", "usage": "Borders, dividers" } },
+      "label": { "$type": "color", "$value": "#1D1D1F", "$extensions": { "dark": "#F5F5F7", "tailwind": "text-label", "usage": "Primary text" } },
+      "label-secondary": { "$type": "color", "$value": "#6E6E73", "$extensions": { "dark": "#A1A1A6", "tailwind": "text-label-secondary", "usage": "Descriptions, metadata" } },
+      "label-tertiary": { "$type": "color", "$value": "#8E8E93", "$extensions": { "dark": "#7C7C80", "tailwind": "text-label-tertiary", "usage": "Placeholders, disabled" } },
+      "fill": { "$type": "color", "$value": "rgba(120, 120, 128, 0.12)", "$extensions": { "dark": "rgba(120, 120, 128, 0.24)", "tailwind": "bg-fill", "usage": "Hover and control fills" } },
+      "fill-strong": { "$type": "color", "$value": "rgba(120, 120, 128, 0.2)", "$extensions": { "dark": "rgba(120, 120, 128, 0.36)", "tailwind": "bg-fill-strong", "usage": "Pressed fills" } },
+      "accent": { "$type": "color", "$value": "#007AFF", "$extensions": { "dark": "#0A84FF", "tailwind": "bg-accent / text-accent", "usage": "Primary action, links, selection" } },
+      "accent-soft": { "$type": "color", "$value": "rgba(0, 122, 255, 0.1)", "$extensions": { "dark": "rgba(10, 132, 255, 0.18)", "tailwind": "bg-accent-soft", "usage": "Active nav item, selected row" } },
+      "success": { "$type": "color", "$value": "#248A3D", "$extensions": { "dark": "#30D158", "tailwind": "text-success" } },
+      "warning": { "$type": "color", "$value": "#C93400", "$extensions": { "dark": "#FF9F0A", "tailwind": "text-warning" } },
+      "danger": { "$type": "color", "$value": "#D70015", "$extensions": { "dark": "#FF453A", "tailwind": "text-danger" } }
+    },
+    "brand": {
+      "$description": "System-blue accent scale. Tailwind: brand-*.",
+      "50": { "$type": "color", "$value": "#EBF5FF" },
+      "100": { "$type": "color", "$value": "#D6EAFF" },
+      "200": { "$type": "color", "$value": "#ADD5FF" },
+      "300": { "$type": "color", "$value": "#7ABDFF" },
+      "400": { "$type": "color", "$value": "#3D9BFF" },
+      "500": { "$type": "color", "$value": "#007AFF" },
+      "600": { "$type": "color", "$value": "#0066D6" },
+      "700": { "$type": "color", "$value": "#0052AD" },
+      "800": { "$type": "color", "$value": "#003F85" },
+      "900": { "$type": "color", "$value": "#002D5E" },
+      "950": { "$type": "color", "$value": "#001A38" }
+    },
+    "gray": {
+      "$description": "Neutral macOS-style greys. Tailwind: gray-*. Text contrast on white: 500 = 5.0:1, 600 = 7.6:1.",
+      "25": { "$type": "color", "$value": "#FBFBFD" },
+      "50": { "$type": "color", "$value": "#F5F5F7" },
+      "100": { "$type": "color", "$value": "#EFEFF2" },
+      "200": { "$type": "color", "$value": "#E5E5EA" },
+      "300": { "$type": "color", "$value": "#D1D1D6" },
+      "400": { "$type": "color", "$value": "#98989D" },
+      "500": { "$type": "color", "$value": "#6E6E73" },
+      "600": { "$type": "color", "$value": "#545458" },
+      "700": { "$type": "color", "$value": "#3A3A3C" },
+      "800": { "$type": "color", "$value": "#2C2C2E" },
+      "900": { "$type": "color", "$value": "#1C1C1E" },
+      "950": { "$type": "color", "$value": "#141416" }
+    }
+  },
+  "font": {
+    "sans": { "$type": "fontFamily", "$value": ["-apple-system", "BlinkMacSystemFont", "SF Pro Text", "SF Pro Display", "Inter", "Segoe UI Variable Text", "Segoe UI", "system-ui", "sans-serif"] },
+    "mono": { "$type": "fontFamily", "$value": ["SF Mono", "ui-monospace", "Menlo", "Consolas", "monospace"] }
+  },
+  "radius": {
+    "control": { "$type": "dimension", "$value": "10px", "$extensions": { "usage": "Buttons, inputs" } },
+    "card": { "$type": "dimension", "$value": "16px", "$extensions": { "usage": "Cards, floating sidebar" } },
+    "window": { "$type": "dimension", "$value": "22px", "$extensions": { "usage": "Dialogs" } }
+  },
+  "shadow": {
+    "card": { "$type": "shadow", "$value": "0 0 0 0.5px rgb(0 0 0 / 0.04), 0 1px 3px 0 rgb(0 0 0 / 0.05)" },
+    "window": { "$type": "shadow", "$value": "0 0 0 0.5px rgb(0 0 0 / 0.08), 0 10px 30px -8px rgb(0 0 0 / 0.2), 0 30px 60px -20px rgb(0 0 0 / 0.25)" }
+  },
+  "material": {
+    "$description": "Translucent chrome. Utilities: material, material-thick. Opaque fallback under prefers-reduced-transparency.",
+    "regular": { "$value": { "background": "rgb(250 250 252 / 0.72)", "backgroundDark": "rgb(30 30 32 / 0.7)", "backdropFilter": "blur(28px) saturate(180%)" } },
+    "thick": { "$value": { "background": "rgb(255 255 255 / 0.86)", "backgroundDark": "rgb(36 36 38 / 0.86)", "backdropFilter": "blur(32px) saturate(180%)" } }
+  },
+  "motion": {
+    "ease-mac": { "$type": "cubicBezier", "$value": [0.32, 0.72, 0, 1] }
+  }
+}

@@ -31,6 +31,8 @@ const customTwMerge = extendTailwindMerge<AdditionalClassGroupIds>({
         "shadow-theme-md",
         "shadow-theme-lg",
         "shadow-theme-xl",
+        "shadow-card",
+        "shadow-window",
         "shadow-datepicker",
         "shadow-focus-ring",
         "shadow-slider-navigation",

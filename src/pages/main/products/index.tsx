@@ -148,7 +148,7 @@ export default function ProductsPage() {
         </div>
       )}
 
-      <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/3">
+      <div className="overflow-hidden surface-card">
         <div className="flex flex-col gap-4 px-5 py-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between">
           <div className="min-w-0">
             <h3 className="text-lg font-semibold text-gray-800 dark:text-white/90">

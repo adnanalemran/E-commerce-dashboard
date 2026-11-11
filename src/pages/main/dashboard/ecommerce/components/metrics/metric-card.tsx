@@ -27,7 +27,7 @@ export default function MetricCard({
   return (
     <div
       className={cn(
-        "rounded-2xl border border-gray-200 bg-white p-5 md:p-6 dark:border-gray-800 dark:bg-white/3",
+        "surface-card p-5 md:p-6",
         className,
       )}
     >

@@ -96,7 +96,7 @@ export default function AppSidebar() {
   );
 
   return (
-    <Sidebar side="left" collapsible="icon">
+    <Sidebar side="left" variant="floating" collapsible="icon">
       <AppSidebarHeader showContent={showContent} />
 
       <SidebarContent className="overflow-y-auto px-5 duration-300 ease-linear">

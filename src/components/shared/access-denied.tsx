@@ -8,7 +8,7 @@ export function AccessDenied() {
   const t = useTranslations("accessDenied");
 
   return (
-    <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4 rounded-2xl border border-gray-200 bg-white px-6 py-16 text-center dark:border-gray-800 dark:bg-white/3">
+    <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4 surface-card px-6 py-16 text-center">
       <span className="flex size-14 items-center justify-center rounded-full bg-gray-100 text-gray-500 dark:bg-white/5 dark:text-gray-400">
         <LockIcon className="size-6" />
       </span>

@@ -10,7 +10,7 @@ export default function AuthLayout() {
     <div className="relative z-1 bg-white p-6 sm:p-0 dark:bg-gray-900">
       <div className="relative flex h-screen w-full flex-col justify-center sm:p-0 lg:flex-row dark:bg-gray-900">
         <Outlet />
-        <div className="relative hidden h-full w-full items-center justify-center bg-brand-950 lg:grid lg:w-1/2 dark:bg-white/5">
+        <div className="relative hidden h-full w-full items-center justify-center overflow-hidden bg-[radial-gradient(120%_90%_at_10%_10%,#3d9bff_0%,transparent_55%),radial-gradient(90%_80%_at_90%_90%,#8e5cf7_0%,transparent_55%),linear-gradient(135deg,#0a3d91_0%,#0052ad_45%,#3a1f8f_100%)] lg:grid lg:w-1/2">
           <div className="z-1 flex h-full items-center justify-center">
             <GridShape />
 
@@ -23,7 +23,7 @@ export default function AuthLayout() {
                   alt="E-Dukan"
                 />
               </Link>
-              <p className="text-center text-gray-400 dark:text-white/60">
+              <p className="text-center text-white/80">
                 {t("brandTagline")}
               </p>
             </div>
