@@ -34,12 +34,12 @@ export default function StatisticsChart() {
   const colors = useMemo(() => {
     switch (selectedTab) {
       case "sales":
-        return ["#465FFF"];
+        return ["#007AFF"];
       case "revenue":
         return ["#9CB9FF"];
       case "overview":
       default:
-        return ["#465FFF", "#9CB9FF"];
+        return ["#007AFF", "#9CB9FF"];
     }
   }, [selectedTab]);
 
@@ -49,7 +49,7 @@ export default function StatisticsChart() {
     },
     colors,
     chart: {
-      fontFamily: "Outfit, sans-serif",
+      fontFamily: "inherit",
       height: 310,
       type: "area",
       toolbar: {
@@ -105,14 +105,14 @@ export default function StatisticsChart() {
           w.globals?.categoryLabels?.[dataPointIndex] ??
           w.config.xaxis?.categories?.[dataPointIndex] ??
           "";
-        const colors = w.config.colors ?? ["#465FFF"];
+        const colors = w.config.colors ?? ["#007AFF"];
         const seriesList =
           (w.config.series as unknown as TooltipSeriesItem[]) ?? [];
 
         const rows = seriesList
           .map((s, idx) => {
             const val = chartSeries[idx]?.[dataPointIndex];
-            const color = colors[idx] ?? "#465FFF";
+            const color = colors[idx] ?? "#007AFF";
             const formattedVal =
               typeof val === "number" ? val.toLocaleString() : (val ?? "");
             return `
@@ -174,7 +174,7 @@ export default function StatisticsChart() {
       labels: {
         style: {
           fontSize: "12px",
-          fontFamily: "Outfit, sans-serif",
+          fontFamily: "inherit",
           colors: theme === "dark" ? "#94A3B8" : "#6B7280",
         },
       },
@@ -183,7 +183,7 @@ export default function StatisticsChart() {
       labels: {
         style: {
           fontSize: "12px",
-          fontFamily: "Outfit, sans-serif",
+          fontFamily: "inherit",
           colors: theme === "dark" ? "#94A3B8" : "#6B7280",
         },
       },
@@ -197,7 +197,7 @@ export default function StatisticsChart() {
   };
 
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white px-5 pt-5 pb-5 sm:px-6 sm:pt-6 dark:border-gray-800 dark:bg-white/3">
+    <div className="surface-card px-5 pt-5 pb-5 sm:px-6 sm:pt-6">
       <CardHeader
         selectedTab={selectedTab}
         onTabChange={setSelectedTab}

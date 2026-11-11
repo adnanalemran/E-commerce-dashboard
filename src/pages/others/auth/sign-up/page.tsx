@@ -1,13 +1,13 @@
 import { PageMeta } from "@/components/shared/page-meta";
+import { useTranslations } from "@/i18n";
 import SignUp from "./index";
 
 export default function SignUpPage() {
+  const t = useTranslations("auth.signUp");
+
   return (
     <>
-      <PageMeta
-        title="React.js SignUp Dashboard | TailAdmin - React.js Admin Dashboard Template"
-        description="This is React.js SignUp Tables Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template"
-      />
+      <PageMeta title={t("metaTitle")} description={t("description")} />
       <SignUp />
     </>
   );

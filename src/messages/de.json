@@ -9,7 +9,14 @@
     "filter": "Filter",
     "seeAll": "Alle anzeigen",
     "confirm": "Bestätigen",
-    "cancel": "Abbrechen"
+    "cancel": "Abbrechen",
+    "pagination": {
+      "label": "Seitennavigation",
+      "summary": "{from}–{to} von {total}",
+      "previous": "Vorherige Seite",
+      "next": "Nächste Seite",
+      "page": "Seite {page}"
+    }
   },
   "sidebar": {
     "groups": {
@@ -129,12 +136,12 @@
       "variants02": "Varianten 02",
       "variants03": "Varianten 03",
       "variants04": "Varianten 04",
-      "variants05": "Varianten 05"
-    },
-    "widget": {
-      "title": "#1 Tailwind CSS Dashboard",
-      "description": "Führendes Tailwind CSS Admin-Template mit über 500 UI-Komponenten und Seiten.",
-      "purchasePlan": "Plan kaufen"
+      "variants05": "Varianten 05",
+      "catalog": "Katalog",
+      "categories": "Kategorien",
+      "subcategories": "Unterkategorien",
+      "users": "Benutzer",
+      "orders": "Bestellungen"
     }
   },
   "header": {
@@ -1058,6 +1065,674 @@
         "accountExecutive": "Account Executive"
       },
       "noEmployees": "Keine Mitarbeiter gefunden, die den gewählten Kriterien entsprechen."
+    }
+  },
+  "auth": {
+    "or": "Oder",
+    "backToDashboard": "Zurück zum Dashboard",
+    "backToSignIn": "Zurück zur Anmeldung",
+    "goToSignIn": "Zur Anmeldung",
+    "fields": {
+      "identifier": "E-Mail oder Telefon",
+      "identifierPlaceholder": "info@gmail.com oder +1234567890",
+      "email": "E-Mail",
+      "emailPlaceholder": "E-Mail-Adresse eingeben",
+      "password": "Passwort",
+      "passwordPlaceholder": "Passwort eingeben",
+      "passwordHint": "Mindestens 8 Zeichen mit einem Groß- und einem Kleinbuchstaben, einer Zahl und einem Sonderzeichen.",
+      "newPassword": "Neues Passwort",
+      "newPasswordPlaceholder": "Neues Passwort eingeben",
+      "confirmPassword": "Passwort bestätigen",
+      "confirmPasswordPlaceholder": "Passwort erneut eingeben",
+      "firstName": "Vorname",
+      "firstNamePlaceholder": "Vorname eingeben",
+      "lastName": "Nachname",
+      "lastNamePlaceholder": "Nachname eingeben",
+      "showPassword": "Passwort anzeigen",
+      "hidePassword": "Passwort verbergen"
+    },
+    "validation": {
+      "identifierRequired": "E-Mail oder Telefonnummer ist erforderlich",
+      "identifierInvalid": "Gib eine gültige E-Mail oder eine Telefonnummer im internationalen Format ein (z. B. +1234567890)",
+      "emailRequired": "E-Mail ist erforderlich",
+      "emailInvalid": "Bitte gib eine gültige E-Mail-Adresse ein",
+      "passwordRequired": "Passwort ist erforderlich",
+      "passwordMin": "Das Passwort muss mindestens 8 Zeichen lang sein",
+      "passwordUppercase": "Das Passwort muss mindestens einen Großbuchstaben enthalten",
+      "passwordLowercase": "Das Passwort muss mindestens einen Kleinbuchstaben enthalten",
+      "passwordNumber": "Das Passwort muss mindestens eine Zahl enthalten",
+      "passwordSpecial": "Das Passwort muss mindestens ein Sonderzeichen enthalten",
+      "confirmPasswordRequired": "Bitte bestätige dein Passwort",
+      "passwordsMismatch": "Die Passwörter stimmen nicht überein",
+      "firstNameRequired": "Vorname ist erforderlich",
+      "lastNameRequired": "Nachname ist erforderlich",
+      "nameMin": "Der Name muss mindestens 2 Zeichen lang sein",
+      "termsRequired": "Du musst den Nutzungsbedingungen zustimmen"
+    },
+    "errors": {
+      "network": "Der Server ist nicht erreichbar. Prüfe deine Verbindung und versuche es erneut.",
+      "unexpected": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
+    },
+    "google": {
+      "unavailable": "Die Anmeldung mit Google ist derzeit nicht verfügbar."
+    },
+    "signIn": {
+      "metaTitle": "Anmelden | E-Dukan",
+      "title": "Anmelden",
+      "description": "Gib deine E-Mail oder Telefonnummer und dein Passwort ein, um dich anzumelden!",
+      "keepLoggedIn": "Angemeldet bleiben",
+      "forgotPassword": "Passwort vergessen?",
+      "submit": "Anmelden",
+      "submitting": "Anmeldung läuft...",
+      "noAccount": "Noch kein Konto?",
+      "signUpLink": "Registrieren"
+    },
+    "signUp": {
+      "metaTitle": "Registrieren | E-Dukan",
+      "title": "Registrieren",
+      "description": "Gib deine Daten ein, um ein Konto zu erstellen!",
+      "termsPrefix": "Mit der Erstellung eines Kontos akzeptierst du die",
+      "terms": "Nutzungsbedingungen,",
+      "and": "und unsere",
+      "privacy": "Datenschutzerklärung",
+      "submit": "Registrieren",
+      "submitting": "Konto wird erstellt...",
+      "haveAccount": "Bereits ein Konto?",
+      "signInLink": "Anmelden"
+    },
+    "forgotPassword": {
+      "metaTitle": "Passwort vergessen | E-Dukan",
+      "title": "Passwort vergessen?",
+      "description": "Gib die E-Mail-Adresse deines Kontos ein und wir senden dir einen Link zum Zurücksetzen deines Passworts.",
+      "submit": "Link senden",
+      "submitting": "Wird gesendet...",
+      "successTitle": "Prüfe dein Postfach",
+      "successDescription": "Falls ein Konto für {email} existiert, ist ein Link zum Zurücksetzen unterwegs. Der Link läuft nach 15 Minuten ab.",
+      "rememberPassword": "Passwort wieder eingefallen?"
+    },
+    "resetPassword": {
+      "metaTitle": "Passwort zurücksetzen | E-Dukan",
+      "title": "Neues Passwort festlegen",
+      "description": "Wähle ein starkes Passwort, das du noch nicht verwendet hast.",
+      "submit": "Passwort zurücksetzen",
+      "submitting": "Wird zurückgesetzt...",
+      "successTitle": "Passwort aktualisiert",
+      "successDescription": "Dein Passwort wurde zurückgesetzt und alle Sitzungen wurden abgemeldet. Melde dich mit deinem neuen Passwort an.",
+      "missingTokenTitle": "Ungültiger Link",
+      "missingTokenDescription": "Dieser Link zum Zurücksetzen des Passworts fehlt oder ist unvollständig. Fordere einen neuen an, um fortzufahren.",
+      "requestNewLink": "Neuen Link anfordern"
+    },
+    "verifyEmail": {
+      "metaTitle": "E-Mail bestätigen | E-Dukan",
+      "title": "E-Mail-Bestätigung",
+      "verifying": "Deine E-Mail-Adresse wird bestätigt...",
+      "successTitle": "E-Mail bestätigt",
+      "successDescription": "Danke! Deine E-Mail-Adresse wurde bestätigt.",
+      "continue": "Weiter zum Dashboard",
+      "errorTitle": "Deine E-Mail konnte nicht bestätigt werden",
+      "missingToken": "Dieser Bestätigungslink fehlt oder ist unvollständig.",
+      "resendDescription": "Bestätigungslinks laufen nach 24 Stunden ab. Gib deine E-Mail ein, um einen neuen zu erhalten.",
+      "resendSubmit": "Bestätigungs-E-Mail erneut senden",
+      "resendSubmitting": "Wird gesendet...",
+      "resendSuccess": "Falls die Adresse zu einem unbestätigten Konto gehört, wurde eine neue Bestätigungs-E-Mail gesendet."
+    },
+    "emailBanner": {
+      "title": "Bestätige deine E-Mail-Adresse",
+      "description": "Wir haben einen Bestätigungslink an {email} gesendet. Prüfe dein Postfach, um dein Konto zu bestätigen.",
+      "resend": "Erneut senden",
+      "resending": "Wird gesendet...",
+      "sent": "Ein neuer Bestätigungslink wurde an {email} gesendet.",
+      "error": "Die Bestätigungs-E-Mail konnte nicht erneut gesendet werden. Bitte versuche es später."
+    },
+    "brandTagline": "Führe deinen Shop an einem Ort: Produkte, Kategorien, Kunden und Team."
+  },
+  "catalog": {
+    "categories": {
+      "title": "Kategorien",
+      "metaTitle": "Kategorien | E-Dukan",
+      "listTitle": "Alle Kategorien",
+      "description": "Hauptgruppen, die deine Produkte ordnen.",
+      "add": "Kategorie hinzufügen",
+      "searchPlaceholder": "Kategorien durchsuchen...",
+      "empty": "Noch keine Kategorien",
+      "emptyDescription": "Erstelle deine erste Kategorie, um Produkte zu ordnen.",
+      "createTitle": "Kategorie hinzufügen",
+      "editTitle": "Kategorie bearbeiten",
+      "formDescription": "Hauptkategorien erscheinen in der Hauptnavigation des Shops."
+    },
+    "subcategories": {
+      "title": "Unterkategorien",
+      "metaTitle": "Unterkategorien | E-Dukan",
+      "listTitle": "Alle Unterkategorien",
+      "description": "Feinere Gruppen innerhalb einer Kategorie.",
+      "add": "Unterkategorie hinzufügen",
+      "searchPlaceholder": "Unterkategorien durchsuchen...",
+      "filterLabel": "Nach Kategorie filtern",
+      "allParents": "Alle Kategorien",
+      "empty": "Noch keine Unterkategorien",
+      "emptyDescription": "Füge eine Unterkategorie hinzu, um eine Kategorie weiter zu unterteilen.",
+      "createTitle": "Unterkategorie hinzufügen",
+      "editTitle": "Unterkategorie bearbeiten",
+      "formDescription": "Jede Unterkategorie gehört zu genau einer Hauptkategorie.",
+      "noParentsTitle": "Erstelle zuerst eine Kategorie, bevor du Unterkategorien hinzufügst.",
+      "noParentsAction": "Zu den Kategorien"
+    },
+    "columns": {
+      "name": "Name",
+      "parent": "Kategorie",
+      "subcategories": "Unterkategorien",
+      "orderNo": "Reihenfolge",
+      "featured": "Hervorgehoben",
+      "actions": "Aktionen"
+    },
+    "subcategoryCount": "{count, plural, =0 {Keine} one {# Unterkategorie} other {# Unterkategorien}}",
+    "noResults": "Keine Treffer gefunden",
+    "noResultsHint": "Versuche eine andere Suche oder einen anderen Filter.",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "z. B. Elektronik",
+      "subNamePlaceholder": "z. B. Smartphones",
+      "parent": "Übergeordnete Kategorie",
+      "parentPlaceholder": "Kategorie auswählen",
+      "image": "Bild",
+      "imagePreview": "Bildvorschau",
+      "uploadImage": "Bild hochladen",
+      "changeImage": "Ändern",
+      "removeImage": "Entfernen",
+      "imageHint": "JPG, PNG, WebP, GIF oder AVIF. Max. 5 MB.",
+      "imageType": "Wähle ein JPG-, PNG-, WebP-, GIF- oder AVIF-Bild.",
+      "imageSize": "Das Bild darf höchstens 5 MB groß sein.",
+      "orderNo": "Reihenfolgenummer",
+      "orderNoPlaceholder": "Automatisch (ans Ende)",
+      "orderNoHint": "Kleinere Zahlen erscheinen zuerst.",
+      "featured": "Hervorgehoben",
+      "featuredHint": "Im Shop hervorheben",
+      "cancel": "Abbrechen",
+      "create": "Erstellen",
+      "save": "Änderungen speichern",
+      "saving": "Wird gespeichert..."
+    },
+    "validation": {
+      "nameMin": "Der Name muss mindestens 2 Zeichen lang sein",
+      "nameMax": "Der Name darf höchstens 100 Zeichen lang sein",
+      "parentRequired": "Wähle eine übergeordnete Kategorie",
+      "orderNoInvalid": "Gib eine ganze Zahl ab 0 ein"
+    },
+    "delete": {
+      "title": "„{name}“ löschen?",
+      "description": "Dadurch wird sie samt Bild endgültig entfernt. Dies kann nicht rückgängig gemacht werden.",
+      "blocked": "Sie enthält noch {count, plural, one {# Unterkategorie} other {# Unterkategorien}}. Lösche oder verschiebe diese zuerst.",
+      "confirm": "Löschen",
+      "deleting": "Wird gelöscht..."
+    },
+    "actions": {
+      "edit": "{name} bearbeiten",
+      "delete": "{name} löschen",
+      "featured": "Hervorgehoben: {name}"
+    },
+    "errors": {
+      "loadFailed": "Die Liste konnte nicht geladen werden",
+      "retry": "Erneut versuchen",
+      "network": "Der Server ist nicht erreichbar. Prüfe deine Verbindung und versuche es erneut.",
+      "unexpected": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
+    }
+  },
+  "accessDenied": {
+    "title": "Kein Zugriff",
+    "description": "Deine Rolle erlaubt das Anzeigen dieser Seite nicht. Wende dich an einen Admin, wenn du Zugriff brauchst.",
+    "backHome": "Zurück zum Dashboard"
+  },
+  "users": {
+    "title": "Benutzer",
+    "metaTitle": "Benutzer | E-Dukan",
+    "listTitle": "Alle Benutzer",
+    "description": "Verwalte Admins, Manager und Kunden sowie deren Zugriffsrechte.",
+    "add": "Benutzer hinzufügen",
+    "searchPlaceholder": "Name, E-Mail oder Telefon suchen...",
+    "you": "Du",
+    "empty": "Noch keine Benutzer",
+    "emptyDescription": "Benutzer erscheinen hier, sobald sie sich registrieren oder du sie hinzufügst.",
+    "noResults": "Keine Treffer gefunden",
+    "noResultsHint": "Versuche eine andere Suche oder einen anderen Filter.",
+    "filters": {
+      "role": "Nach Rolle filtern",
+      "allRoles": "Alle",
+      "status": "Nach Status filtern",
+      "allStatuses": "Alle Status"
+    },
+    "tabs": {
+      "ADMIN": "Admins",
+      "MANAGER": "Manager",
+      "CUSTOMER": "Kunden"
+    },
+    "roles": {
+      "SUPER_ADMIN": "Super-Admin",
+      "ADMIN": "Admin",
+      "MANAGER": "Manager",
+      "CUSTOMER": "Kunde"
+    },
+    "statuses": {
+      "ACTIVE": "Aktiv",
+      "INACTIVE": "Inaktiv",
+      "SUSPENDED": "Gesperrt",
+      "DELETED": "Gelöscht"
+    },
+    "columns": {
+      "user": "Benutzer",
+      "role": "Rolle",
+      "status": "Status",
+      "joined": "Beigetreten",
+      "actions": "Aktionen"
+    },
+    "actions": {
+      "edit": "{name} bearbeiten",
+      "delete": "{name} löschen"
+    },
+    "form": {
+      "createTitle": "Benutzer hinzufügen",
+      "createDescription": "Erstelle ein Konto und lege fest, was die Person darf.",
+      "editTitle": "Benutzer bearbeiten",
+      "editDescription": "Daten, Rolle oder Kontostatus aktualisieren.",
+      "name": "Vollständiger Name",
+      "namePlaceholder": "z. B. Anna Schmidt",
+      "email": "E-Mail",
+      "emailPlaceholder": "name@beispiel.de",
+      "phone": "Telefon",
+      "password": "Passwort",
+      "passwordPlaceholder": "Startpasswort festlegen",
+      "passwordHint": "Mindestens 8 Zeichen mit einem Groß- und einem Kleinbuchstaben, einer Zahl und einem Sonderzeichen.",
+      "role": "Rolle",
+      "status": "Status",
+      "roleHint": "Admins verwalten alles einschließlich Benutzern. Manager betreuen den Shop-Katalog. Kunden können nur einkaufen.",
+      "selfHint": "Du kannst deine eigene Rolle und deinen Status nicht ändern.",
+      "cancel": "Abbrechen",
+      "create": "Benutzer erstellen",
+      "save": "Änderungen speichern",
+      "saving": "Wird gespeichert..."
+    },
+    "validation": {
+      "nameMin": "Der Name muss mindestens 2 Zeichen lang sein",
+      "nameMax": "Der Name darf höchstens 100 Zeichen lang sein",
+      "emailInvalid": "Gib eine gültige E-Mail-Adresse ein",
+      "phoneInvalid": "Internationales Format verwenden, z. B. +1234567890",
+      "contactRequired": "Gib eine E-Mail-Adresse oder Telefonnummer ein",
+      "passwordMin": "Das Passwort muss mindestens 8 Zeichen lang sein",
+      "passwordUppercase": "Das Passwort muss mindestens einen Großbuchstaben enthalten",
+      "passwordLowercase": "Das Passwort muss mindestens einen Kleinbuchstaben enthalten",
+      "passwordNumber": "Das Passwort muss mindestens eine Zahl enthalten",
+      "passwordSpecial": "Das Passwort muss mindestens ein Sonderzeichen enthalten",
+      "roleRequired": "Wähle eine Rolle"
+    },
+    "delete": {
+      "title": "{name} löschen?",
+      "description": "Das Konto wird deaktiviert und überall abgemeldet. Es erscheint nicht mehr in dieser Liste.",
+      "confirm": "Benutzer löschen",
+      "deleting": "Wird gelöscht..."
+    },
+    "errors": {
+      "loadFailed": "Benutzer konnten nicht geladen werden",
+      "retry": "Erneut versuchen",
+      "network": "Der Server ist nicht erreichbar. Prüfe deine Verbindung und versuche es erneut.",
+      "unexpected": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
+    }
+  },
+  "profile": {
+    "title": "Profil",
+    "metaTitle": "Profil | E-Dukan",
+    "description": "Deine Kontodaten, dein Passwort und deine Sitzungen.",
+    "verified": "Bestätigt",
+    "unverified": "Nicht bestätigt",
+    "fields": {
+      "name": "Vollständiger Name",
+      "email": "E-Mail-Adresse",
+      "phone": "Telefon",
+      "memberSince": "Mitglied seit"
+    },
+    "personal": {
+      "title": "Persönliche Informationen",
+      "edit": "Bearbeiten"
+    },
+    "avatar": {
+      "change": "Profilbild ändern",
+      "type": "Wähle ein JPG-, PNG-, WebP-, GIF- oder AVIF-Bild.",
+      "size": "Das Bild darf höchstens 5 MB groß sein."
+    },
+    "edit": {
+      "title": "Profil bearbeiten",
+      "description": "Lege fest, wie dein Name und deine E-Mail angezeigt werden.",
+      "emailHint": "Beim Ändern der E-Mail wird ein Bestätigungslink an die neue Adresse gesendet.",
+      "phoneHint": "Bitte einen Admin, deine Telefonnummer zu ändern."
+    },
+    "emailChange": {
+      "pendingTitle": "Neue E-Mail bestätigen",
+      "pendingDescription": "Wir haben einen Link an {email} gesendet. Deine E-Mail ändert sich, sobald du ihn öffnest."
+    },
+    "security": {
+      "title": "Sicherheit",
+      "passwordTitle": "Passwort",
+      "passwordDescription": "Ändere das Passwort, mit dem du dich anmeldest.",
+      "passwordAction": "Passwort ändern",
+      "signOutAllTitle": "Auf allen Geräten abmelden",
+      "signOutAllDescription": "Beendet alle aktiven Sitzungen, auch diese.",
+      "signOutAllAction": "Überall abmelden",
+      "signOutAllConfirmTitle": "Auf allen Geräten abmelden?",
+      "signOutAllConfirmDescription": "Du wirst hier und auf allen anderen Geräten abgemeldet."
+    },
+    "password": {
+      "title": "Passwort ändern",
+      "description": "Verwende ein starkes Passwort, das du sonst nirgends nutzt.",
+      "current": "Aktuelles Passwort",
+      "new": "Neues Passwort",
+      "confirm": "Neues Passwort bestätigen",
+      "submit": "Passwort ändern",
+      "signOutNotice": "Zu deiner Sicherheit werden nach der Änderung alle Sitzungen beendet.",
+      "successTitle": "Passwort geändert",
+      "successDescription": "Melde dich mit deinem neuen Passwort erneut an.",
+      "signInAgain": "Erneut anmelden"
+    },
+    "danger": {
+      "title": "Gefahrenbereich",
+      "deactivateTitle": "Konto deaktivieren",
+      "deactivateDescription": "Deaktiviere dein Konto und melde dich überall ab. Ein Admin kann es reaktivieren.",
+      "deactivateAction": "Deaktivieren",
+      "confirmTitle": "Konto deaktivieren?",
+      "confirmDescription": "Du wirst abgemeldet und kannst dich erst wieder anmelden, wenn ein Admin das Konto reaktiviert."
+    },
+    "actions": {
+      "cancel": "Abbrechen",
+      "save": "Änderungen speichern",
+      "saving": "Wird gespeichert...",
+      "working": "Bitte warten..."
+    },
+    "validation": {
+      "nameMin": "Der Name muss mindestens 2 Zeichen lang sein",
+      "nameMax": "Der Name darf höchstens 100 Zeichen lang sein",
+      "emailInvalid": "Gib eine gültige E-Mail-Adresse ein",
+      "currentPasswordRequired": "Gib dein aktuelles Passwort ein",
+      "confirmPasswordRequired": "Bestätige dein neues Passwort",
+      "passwordsMismatch": "Die Passwörter stimmen nicht überein",
+      "passwordSame": "Das neue Passwort muss sich vom aktuellen unterscheiden"
+    },
+    "errors": {
+      "network": "Der Server ist nicht erreichbar. Prüfe deine Verbindung und versuche es erneut.",
+      "unexpected": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
+    }
+  },
+  "products": {
+    "title": "Produkte",
+    "metaTitle": "Produkte | E-Dukan",
+    "listTitle": "Alle Produkte",
+    "description": "Verwalte dein Sortiment: Preise nach Gewicht oder Größe, Bestand, Fotos und Shop-Badges.",
+    "add": "Produkt hinzufügen",
+    "searchPlaceholder": "Name oder SKU suchen...",
+    "empty": "Noch keine Produkte",
+    "emptyDescription": "Füge dein erstes Produkt hinzu, z. B. Honig in 500 g und 1 kg.",
+    "noResults": "Keine Treffer gefunden",
+    "noResultsHint": "Versuche eine andere Suche oder einen anderen Filter.",
+    "uncategorized": "Keine Kategorie",
+    "variantCount": "{count, plural, one {# Variante} other {# Varianten}}",
+    "save": "Spare {percent} %",
+    "statuses": {
+      "ACTIVE": "Aktiv",
+      "DRAFT": "Entwurf",
+      "ARCHIVED": "Archiviert"
+    },
+    "stock": {
+      "out": "Ausverkauft",
+      "low": "Geringer Bestand"
+    },
+    "flags": {
+      "bestSelling": "Bestseller",
+      "newArrival": "Neu",
+      "featured": "Empfohlen"
+    },
+    "columns": {
+      "product": "Produkt",
+      "category": "Kategorie",
+      "price": "Preis",
+      "stock": "Bestand",
+      "status": "Status",
+      "actions": "Aktionen"
+    },
+    "actions": {
+      "edit": "{name} bearbeiten",
+      "delete": "{name} löschen",
+      "cancel": "Abbrechen",
+      "save": "Änderungen speichern",
+      "saving": "Wird gespeichert...",
+      "create": "Produkt erstellen"
+    },
+    "filters": {
+      "all": "Alle",
+      "status": "Nach Status filtern",
+      "category": "Nach Kategorie filtern",
+      "allCategories": "Alle Kategorien",
+      "stockLabel": "Nach Bestand filtern",
+      "stock": {
+        "all": "Beliebiger Bestand",
+        "in": "Auf Lager",
+        "low": "Geringer Bestand",
+        "out": "Ausverkauft"
+      }
+    },
+    "sort": {
+      "label": "Sortieren",
+      "newest": "Neueste zuerst",
+      "updated": "Zuletzt aktualisiert",
+      "name": "Name (A–Z)",
+      "price_asc": "Preis: aufsteigend",
+      "price_desc": "Preis: absteigend",
+      "stock_asc": "Bestand: niedrigster zuerst"
+    },
+    "delete": {
+      "title": "{name} löschen?",
+      "description": "Das Produkt, seine Varianten und Fotos werden endgültig entfernt. Dies kann nicht rückgängig gemacht werden.",
+      "confirm": "Produkt löschen",
+      "deleting": "Wird gelöscht..."
+    },
+    "errors": {
+      "loadFailed": "Produkte konnten nicht geladen werden",
+      "retry": "Erneut versuchen",
+      "network": "Der Server ist nicht erreichbar. Prüfe deine Verbindung und versuche es erneut.",
+      "unexpected": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
+    },
+    "variants": {
+      "label": "Variante {number}",
+      "primary": "Wird auf Produktkarten angezeigt",
+      "save": "Spare {percent} %",
+      "remove": "Variante {number} entfernen",
+      "add": "Variante hinzufügen",
+      "fields": {
+        "name": "Größe / Gewicht",
+        "sku": "SKU",
+        "price": "Preis (৳)",
+        "compareAtPrice": "Vergleichspreis (৳)",
+        "stock": "Bestand"
+      },
+      "placeholders": {
+        "name": "500 g",
+        "sku": "GHEE-500",
+        "price": "950",
+        "compareAtPrice": "1000",
+        "stock": "0"
+      }
+    },
+    "images": {
+      "cover": "Titelbild",
+      "moveEarlier": "Nach vorne",
+      "moveLater": "Nach hinten",
+      "remove": "Bild entfernen",
+      "add": "Bilder hinzufügen",
+      "hint": "Bis zu {max} Bilder. Das erste ist das Titelbild. JPG, PNG, WebP, GIF oder AVIF, je max. 5 MB.",
+      "queuedHint": "Sie werden beim Erstellen des Produkts hochgeladen.",
+      "type": "Wähle JPG-, PNG-, WebP-, GIF- oder AVIF-Bilder.",
+      "size": "Jedes Bild darf höchstens 5 MB groß sein.",
+      "limit": "Ein Produkt kann höchstens {max} Bilder haben."
+    },
+    "editor": {
+      "notFound": "Produkt nicht gefunden",
+      "backToList": "Zurück zu den Produkten",
+      "createTitle": "Produkt hinzufügen",
+      "created": "Produkt erstellt.",
+      "createdImagesFailed": "Produkt erstellt, aber die Bilder konnten nicht hochgeladen werden. Füge sie unten erneut hinzu.",
+      "saved": "Änderungen gespeichert.",
+      "general": "Allgemein",
+      "images": "Fotos",
+      "variants": "Preise & Bestand",
+      "variantsHint": "Lege pro Größe oder Gewicht eine Variante an (z. B. 500 g, 1 kg). Mit einem Vergleichspreis wird ein Rabatt angezeigt.",
+      "statusHint": "Nur aktive Produkte sind im Shop sichtbar.",
+      "organization": "Organisation",
+      "noCategory": "Keine Kategorie",
+      "tagsHint": "Tags mit Kommas trennen. Werden für die Suche verwendet.",
+      "badges": "Shop-Badges",
+      "badgesHint": "Hebe dieses Produkt in Bereichen der Startseite hervor.",
+      "dangerZone": "Gefahrenbereich",
+      "unsaved": "Du hast ungespeicherte Änderungen"
+    },
+    "fields": {
+      "name": "Produktname",
+      "shortDescription": "Kurzbeschreibung",
+      "description": "Beschreibung",
+      "status": "Status",
+      "category": "Kategorie",
+      "tags": "Tags",
+      "orderNo": "Reihenfolgenummer",
+      "isBestSelling": "Bestseller",
+      "isNewArrival": "Neuheit",
+      "isFeatured": "Empfohlen"
+    },
+    "placeholders": {
+      "name": "z. B. Sundarban-Honig",
+      "shortDescription": "Ein bis zwei Zeilen neben dem Preis",
+      "description": "Details, Zutaten, Vorteile, Anwendung...",
+      "tags": "honig, bio, sundarban",
+      "orderNo": "Automatisch (ans Ende)"
+    },
+    "validation": {
+      "nameMin": "Der Name muss mindestens 2 Zeichen lang sein",
+      "nameMax": "Der Name darf höchstens 200 Zeichen lang sein",
+      "shortDescriptionMax": "Bitte unter 500 Zeichen bleiben",
+      "descriptionMax": "Die Beschreibung ist zu lang",
+      "orderNo": "Gib eine ganze Zahl ab 0 ein",
+      "variantsRequired": "Füge mindestens eine Variante hinzu",
+      "variantName": "Gib eine Größe oder ein Gewicht ein",
+      "variantNameMax": "Höchstens 50 Zeichen",
+      "skuMax": "Höchstens 64 Zeichen",
+      "price": "Gib einen Betrag wie 950 oder 950.50 ein",
+      "stock": "Gib eine ganze Zahl ab 0 ein",
+      "compareAtPrice": "Muss höher als der Preis sein",
+      "variantNameUnique": "Jede Variante braucht einen eigenen Namen",
+      "skuUnique": "Jede SKU muss eindeutig sein"
+    }
+  },
+  "orders": {
+    "title": "Bestellungen",
+    "metaTitle": "Bestellungen | E-Dukan",
+    "listTitle": "Alle Bestellungen",
+    "description": "Bestellungen aus dem Shop. Hier bestätigen, versenden und zustellen.",
+    "searchPlaceholder": "Bestellnr., Telefon oder Name...",
+    "empty": "Noch keine Bestellungen",
+    "emptyDescription": "Bestellungen aus dem Shop erscheinen hier automatisch.",
+    "noResults": "Keine passenden Bestellungen",
+    "noResultsHint": "Versuche eine andere Suche oder einen anderen Filter.",
+    "stats": {
+      "today": "Bestellungen heute",
+      "month": "Umsatz diesen Monat",
+      "orderCount": "{count, plural, one {# Bestellung} other {# Bestellungen}}",
+      "pending": "Warten auf Bestätigung",
+      "pendingHint": "Klicken, um offene Bestellungen zu sehen"
+    },
+    "filters": {
+      "all": "Alle",
+      "status": "Nach Status filtern",
+      "payment": "Nach Zahlung filtern",
+      "allPayments": "Alle Zahlungen"
+    },
+    "statuses": {
+      "PENDING": "Offen",
+      "CONFIRMED": "Bestätigt",
+      "PROCESSING": "In Bearbeitung",
+      "SHIPPED": "Versendet",
+      "DELIVERED": "Zugestellt",
+      "CANCELLED": "Storniert",
+      "RETURNED": "Retourniert"
+    },
+    "paymentStatuses": {
+      "UNPAID": "Unbezahlt",
+      "PAID": "Bezahlt",
+      "REFUNDED": "Erstattet"
+    },
+    "paymentMethods": {
+      "COD": "Nachnahme",
+      "BKASH": "bKash",
+      "NAGAD": "Nagad"
+    },
+    "paymentActions": {
+      "UNPAID": "Als unbezahlt markieren",
+      "PAID": "Als bezahlt markieren",
+      "REFUNDED": "Als erstattet markieren"
+    },
+    "columns": {
+      "order": "Bestellung",
+      "customer": "Kunde",
+      "items": "Artikel",
+      "total": "Summe",
+      "payment": "Zahlung",
+      "status": "Status"
+    },
+    "transitions": {
+      "PENDING": "Zurück auf offen",
+      "CONFIRMED": "Bestellung bestätigen",
+      "PROCESSING": "Verpacken starten",
+      "SHIPPED": "Als versendet markieren",
+      "DELIVERED": "Als zugestellt markieren",
+      "CANCELLED": "Bestellung stornieren",
+      "RETURNED": "Als retourniert markieren"
+    },
+    "zones": {
+      "INSIDE_DHAKA": "Innerhalb Dhakas",
+      "OUTSIDE_DHAKA": "Außerhalb Dhakas"
+    },
+    "dialog": {
+      "cancelTitle": "Diese Bestellung stornieren?",
+      "returnTitle": "Diese Bestellung als retourniert markieren?",
+      "restockNotice": "Alle Artikel gehen zurück in den Bestand. Der Kunde sieht den Grund bei der Sendungsverfolgung.",
+      "reason": "Grund",
+      "reasonPlaceholder": "z. B. Kunde hat storniert"
+    },
+    "actions": {
+      "close": "Schließen",
+      "saving": "Wird gespeichert..."
+    },
+    "detail": {
+      "notFound": "Bestellung nicht gefunden",
+      "back": "Alle Bestellungen",
+      "title": "Bestellung",
+      "cancelReason": "Grund",
+      "items": "{count, plural, one {# Artikel} other {# Artikel}}",
+      "subtotal": "Zwischensumme",
+      "delivery": "Lieferung",
+      "free": "Kostenlos",
+      "discount": "Rabatt",
+      "total": "Summe",
+      "timeline": "Verlauf",
+      "by": "von {name}",
+      "byCustomer": "Vom Kunden aufgegeben",
+      "customer": "Kunde & Lieferung",
+      "name": "Name",
+      "phone": "Telefon",
+      "email": "E-Mail",
+      "address": "Adresse",
+      "zone": "Liefergebiet",
+      "note": "Kundennotiz",
+      "payment": "Zahlung",
+      "codHint": "Nachnahme-Bestellungen werden bei Zustellung automatisch als bezahlt markiert."
+    },
+    "errors": {
+      "loadFailed": "Bestellungen konnten nicht geladen werden",
+      "retry": "Erneut versuchen",
+      "network": "Der Server ist nicht erreichbar. Prüfe deine Verbindung und versuche es erneut.",
+      "unexpected": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
     }
   }
 }

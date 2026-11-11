@@ -1,106 +1,146 @@
-# AGENTS.md — TailAdmin React
+# AGENTS.md — E-Dukan Dashboard
 
-React 19 admin dashboard template: Vite 8 · TypeScript ~6 · Tailwind CSS v4 · React Router 8 · Base UI · react-i18next. Client-only SPA with no backend, auth, or global store.
+Admin dashboard for the E-Dukan store (single shop). React 19 · Vite 8 · TypeScript ~6 · Tailwind CSS v4 · React Router 8 · TanStack Query v5 · Base UI · react-i18next · React Hook Form + Zod. Talks to the REST API in `../e-commerce-backend` (see that folder's `AGENTS.md`).
+
+Read **`DESIGN.md`** before any UI work. It defines the macOS-inspired design system (tokens, components, page recipes, do/don't).
 
 ## Commands
 
-| Command            | Purpose                                |
-| ------------------ | -------------------------------------- |
-| `npm run dev`      | Vite dev server                        |
-| `npm run build`    | `tsc -b` + Vite production build       |
-| `npm run lint`     | Oxlint + ESLint (`lint:fast` = Oxlint) |
-| `npm run lint:fix` | Oxlint fixes, then ESLint fixes        |
-| `npm run format`   | Prettier across the repo               |
+| Command            | Purpose                                         |
+| ------------------ | ----------------------------------------------- |
+| `npm run dev`      | Vite dev server on **http://localhost:3005**    |
+| `npm run build`    | `tsc -b` + Vite production build                |
+| `npm run lint`     | Oxlint + ESLint (`lint:fast` = Oxlint only)     |
+| `npm run format`   | Prettier                                        |
 
-There is no test suite. **Run `npm run build` and `npm run lint` after every change.**
+There is no frontend test suite. **Run `npm run build` and `npm run lint` after every change.** Lint must not add new warnings in files you touch.
 
-## Where Things Live
+Environment (`.env`, git-ignored; see `.env.example`): `VITE_API_BASE_URL` (default `http://localhost:5000/api/v1`), `VITE_GOOGLE_CLIENT_ID` (Google button hidden when empty). Vite reloads `.env` automatically.
+
+## Where things live
 
 ```text
 src/
-├── App.tsx              # THE route registry (static imports, no lazy loading)
-├── main.tsx             # StrictMode → BrowserRouter → ThemeProvider → HelmetProvider
-│                        #   → I18nProvider → TooltipProvider → App
-├── index.css            # All Tailwind v4 config: @theme tokens, @utility classes,
-│                        #   dark variant, third-party CSS overrides
+├── App.tsx                 # THE route registry (static imports)
+├── main.tsx                # BrowserRouter → ThemeProvider → Helmet → I18n → AuthProvider → Tooltip → App
+├── index.css               # Tailwind v4 config + design tokens + utilities (see DESIGN.md)
+├── api/                    # Backend calls — one file per resource
+│   ├── client.ts           # fetch wrapper: envelope unwrapping, ApiError, token refresh, FormData
+│   ├── query-client.ts     # TanStack Query client + queryKeys
+│   ├── auth.ts users.ts profile.ts categories.ts products.ts
+│   └── types.ts            # AuthUser, AuthSession, ApiEnvelope
+├── contexts/               # AuthProvider/useAuth, ThemeProvider/useTheme
 ├── components/
-│   ├── layout/app-layout/   # Dashboard shell (sidebar, header, Outlet)
-│   │   └── sidebar/data.tsx # Sidebar nav items (separate from routes)
-│   ├── layout/layout-*/     # Shells for the six /layout-* example pages
-│   ├── shared/              # Cross-route widgets: page-meta, page-breadcrumb,
-│   │                        #   component-card, header controls, …
-│   └── ui/                  # Flat Base UI primitives (button.tsx, dialog.tsx, …); no barrel
-├── pages/{main,others,support}/<feature>/   # Route features (categories only, see below)
-├── contexts/            # ThemeProvider / useTheme only
-├── hooks/<hook-name>.ts # Custom hooks
-├── i18n/                # i18next setup, hooks, locales (routing.ts), language metadata
-├── messages/{en,ar,es,de}.json
-├── icons/               # Shared SVG components + barrel; flag-*.svg via `?react`
-└── utils/               # cn(), get-initials
+│   ├── layout/app-layout/  # Shell: floating glass sidebar (sidebar/data.tsx = nav), header, Outlet
+│   ├── shared/             # route-guards, page-meta, page-breadcrumb, table-pagination, access-denied, header widgets
+│   └── ui/                 # Base UI primitives (button, input, select, dialog, badge, alert…), no barrel
+├── pages/
+│   ├── main/               # Signed-in pages: dashboard/ecommerce, products, catalog, users, profile, pages/error-404
+│   └── others/auth/        # Sign-in, sign-up, forgot/reset password, verify email, Google button
+├── hooks/                  # use-debounced-value, use-mobile
+├── i18n/ + messages/{en,ar,es,de}.json
+├── icons/                  # SVG components; import from "@/icons"
+└── utils/                  # cn, roles (ROLE_NAMES, hasAnyRole), form-errors, password-schema, get-initials
 ```
 
-Path alias: `@/*` → `src/*`.
+Path alias: `@/*` → `src/*`. Import router APIs from `react-router` (never `react-router-dom`).
 
-## Routing
+## Routes and access
 
-- `src/App.tsx` is the **only** source of routes. Folder structure does not generate URLs, and `pages/main`, `pages/others`, `pages/support` are organizational categories, **not** layout boundaries. Read `App.tsx` to see which layout wraps a page.
-- Layout groups in `App.tsx`:
-  - **`AppLayout`** (pathless): nearly all pages, including charts, maps, UI elements, and support. Nested layouts under it: `/ai-chat/*`, `/ai-settings/*` (index routes redirect to `text` / `account`), and the email `inbox-layout.tsx` (`/inbox`, `/inbox-details`). `AppLayout` applies full-height handling for `/ai-chat` and `/ai-settings`.
-  - **`AuthLayout`** (`pages/others/auth/layout.tsx`): `/signin`, `/signup`, `/reset-password`, `/two-step-verification`. Demo forms only; no guards or sessions.
-  - **No layout**: error/status pages (`/error-404`, `/error-500`, `/error-503`, `/coming-soon`, `/maintenance`, `/success`), `/layout-one`…`/layout-six` (own `SidebarProvider`), and the `/*` 404 fallback.
-- No dynamic params, locale-prefixed URLs, loaders, or actions. Import `Link`/hooks from `react-router`, never `react-router-dom`.
+`src/App.tsx` is the only source of routes.
+
+| Path | Page | Access |
+| --- | --- | --- |
+| `/` | Dashboard home (template sample charts) | signed in |
+| `/orders`, `/orders/:id` | Order list (stats, status tabs) and detail (status workflow, payment, timeline) | `STAFF_ROLES` (SUPER_ADMIN, ADMIN, MANAGER) |
+| `/products`, `/products/new`, `/products/:id/edit` | Product list and editor | `STAFF_ROLES` |
+| `/categories`, `/subcategories` | Catalog | `STAFF_ROLES` |
+| `/users` | User and role management | `ADMIN_ROLES` (SUPER_ADMIN, ADMIN) |
+| `/profile` | Own account | signed in |
+| `/signin`, `/signup`, `/forgot-password` | Auth | signed out only (`GuestRoute`) |
+| `/auth/reset-password`, `/auth/verify-email` | Email links from the backend | anyone |
+
+Guards live in `components/shared/route-guards.tsx`: `ProtectedRoute` (signed in), `RoleRoute roles={…}` (shows `AccessDenied`), `GuestRoute`. Sidebar items take a `roles` array, so hide what a role can't open. **The backend enforces roles too; UI guards are convenience only.**
 
 ### Adding a page
 
-1. Create a kebab-case folder under the fitting `pages/` category. Entry is a default export from `index.tsx` (or `page.tsx` when wrapping reusable content with metadata). Some groups export through barrels (`pages/main/pages`, `pages/others/auth`, `pages/main/empty-state`, AI settings, email, support-tickets); follow the neighbor.
-2. Colocate page-only components, `data.ts`, `types.ts`, `schema.ts` in that folder. Do not create `src/components/<feature>/`.
-3. Add `PageMeta` (`@/components/shared/page-meta`); inner pages usually add `PageBreadcrumb` too.
-4. Register the route in `App.tsx` under the right layout.
-5. For navigation, add an entry to `components/layout/app-layout/sidebar/data.tsx` **and** its label key `sidebar.items.<key>` to all four message files. Active matching is exact-path, except a prefix match for `/ai-settings`.
+1. Create a kebab-case folder under `pages/main/<feature>/`; default-export the page from `index.tsx`. Colocate `schema.ts`, hooks and sub-components.
+2. Start with `<PageMeta>` + `<PageBreadcrumb>`; follow a recipe in `DESIGN.md` §4.
+3. Register the route in `App.tsx` inside the right guard.
+4. Add a sidebar entry in `components/layout/app-layout/sidebar/data.tsx` (with `roles` if restricted) **and** `sidebar.items.<key>` in all four message files. Active matching is exact, plus a prefix match for `/products/*`.
 
-## Components and State
+## Data and API
 
-- Files/folders lower-kebab-case; components PascalCase. Pages default-export; primitives/utilities named-export.
-- Import primitives directly: `import { Button } from "@/components/ui/button";`.
-- Extend primitives with Base UI composition, `cva` variants, `data-slot` attributes, and `cn()`. Don't introduce another component library pattern.
-- Dialogs: controlled `open`/`onOpenChange` with `@/components/ui/dialog`. There is no `Modal` or `useModal`.
-- Theme: `useTheme` from `@/contexts` (`light` | `dark` | `auto`). Sidebar: `useSidebar` from `@/components/ui/sidebar`.
-- Forms: React Hook Form + Zod resolver + colocated schema + `Field`/`FieldLabel`/`FieldError` from `@/components/ui/field`.
-- Tables: TanStack Table **v9**. Copy patterns from `pages/main/tables/{basic-tables,data-tables}`, not from older-version docs.
-- UI demo sections use `ComponentCard`.
-- Tasks: local React state + React DnD (`HTML5Backend`); shared task UI in `pages/main/task/`, list/kanban specifics in their subfolders.
-- ApexCharts/FullCalendar are used directly; no SSR guards or lazy wrappers.
+- Add calls to the matching `src/api/<resource>.ts` using `apiRequest<T>(path, { method, body, signal })`. It returns `data` from the `{ success, message, data, errors }` envelope and throws `ApiError` (`status`, `fieldErrors`, `isNetworkError`).
+- `auth: false` only for public auth endpoints. Everything else sends the access token and transparently refreshes once on 401.
+- Uploads: pass a `FormData` body (see `productsApi.uploadImages`).
+- Show errors with `getApiErrorMessage(error, { network, unexpected })` and map backend field errors onto forms with `applyFieldErrors(error, setError, fieldMap)` (`@/utils/form-errors`).
+
+### Server state: TanStack Query v5
+
+All server data goes through **TanStack Query**. Don't fetch in `useEffect` or keep API data in `useState`.
+
+- The client and every query key live in `src/api/query-client.ts` (`queryClient`, `queryKeys`). Add new keys there; never inline key arrays in components.
+- Wrap each query in a feature hook next to the page (`use-products.ts`, `use-users.ts`, `catalog/shared/use-categories.ts`):
+
+  ```ts
+  useQuery({
+    queryKey: queryKeys.products.list(params),
+    queryFn: ({ signal }) => productsApi.list(params, signal), // pass signal for cancellation
+    placeholderData: keepPreviousData, // lists: keep the old page visible while the next loads
+  });
+  ```
+
+- After a mutation, **invalidate the resource** (`queryClient.invalidateQueries({ queryKey: queryKeys.products.all })`) or write the returned entity with `setQueryData`. Use the existing helpers (`useProductCache`, `useInvalidateCatalog`, `useInvalidateUsers`). Category changes also invalidate products (they show category names), and product changes invalidate categories (product counts).
+- Defaults (`staleTime` 30s, refetch on focus, no retry on 4xx) are set once in `query-client.ts`.
+- The cache is cleared on sign-out (`AuthProvider`), so a new account never sees the previous account's data.
+- Auth/session state is **not** in Query; it stays in `AuthProvider` (see below).
+- React Query Devtools appear in dev only (bottom-left button).
+
+### Auth rules (do not break)
+
+- The access token lives **in memory only** (`api/client.ts`). The refresh token is an httpOnly cookie, so never store tokens in `localStorage`.
+- Refreshes must never run in parallel: the backend rotates refresh tokens and treats reuse as theft (revokes every session). Always go through `refreshSession()`; it de-duplicates in-tab and across tabs (Web Locks).
+- After changing the signed-in user (profile, avatar), call `updateUser(user)` from `useAuth()`.
+- Roles: `@/utils/roles`. Use `hasAnyRole(user.roles, ADMIN_ROLES)`, not string comparisons scattered in components.
+
+## Forms
+
+React Hook Form + `zodResolver` + a colocated `schema.ts` exporting `createXSchema(t)` (messages are translated, so schemas are built with `t`). Use `Field` / `FieldLabel` / `FieldError` from `@/components/ui/field`. Numeric inputs are kept as strings in the form and converted in a `toXInput()` mapper (see `products/editor/schema.ts`). Password rules must match the backend: `@/utils/password-schema`.
+
+## Components and state
+
+- Files and folders lower-kebab-case; components PascalCase. Pages default-export; primitives and utilities named-export.
+- Import primitives directly: `import { Button } from "@/components/ui/button";`. Extend with `cva` variants, `data-slot`, and `cn()`.
+- Dialogs: controlled `open` / `onOpenChange`; render the form *inside* `DialogContent` so it remounts (fresh state) on each open.
+- `Select` from Base UI: pass `items` so the trigger shows labels, not values.
+- Theme: `useTheme()` (`light` | `dark` | `auto`, default `auto` = follow the OS).
 
 ## i18n
 
-- Never reinitialize i18next (`src/i18n/config.ts`; provider mounted once in `main.tsx`).
-- Locales `en` (fallback), `ar` (RTL), `es`, `de`. **Every new user-facing string goes into all four `src/messages/*.json` files.** ICU syntax for interpolation/plurals.
-- Use wrappers from `@/i18n`:
-
-  ```tsx
-  const t = useTranslations("feature.namespace");
-  ```
-
-  `getTranslations` outside components, `useLocale` / `useChangeLocale` for locale. There is no `useLanguage`.
-
-- Some legacy demo text is hardcoded. Don't copy that; translate new or touched UI.
+- Locales `en` (fallback), `ar` (RTL), `es`, `de`. **Every user-facing string goes into all four `src/messages/*.json` files**, with the same keys. ICU syntax for interpolation and plurals (`{count, plural, one {…} other {…}}`).
+- `const t = useTranslations("namespace")` from `@/i18n`; `getTranslations` outside components.
+- Page titles end with ` | E-Dukan`.
+- The dashboard home (`pages/main/dashboard/ecommerce`) still has template sample data and hard-coded text; don't copy that pattern.
 
 ## Styling
 
-- Tailwind v4 config lives only in `src/index.css`. Never add `tailwind.config.*`, CSS Modules, or CSS-in-JS.
-- Prefer `@theme` tokens (`brand-*`, `font-outfit`, `text-heading-*`, `text-title-*`, `shadow-theme-*`, custom breakpoints, z-index tokens) and existing `@utility` classes (`menu-item-*`, `menu-dropdown-*`, `nav-icon-item-*`, `custom-scrollbar`, `no-scrollbar`, …) before adding new ones. New utilities need matching groups in `src/utils/cn.ts`.
-- Always add `dark:` styles for new surfaces, text, borders, and states.
-- RTL: use logical utilities (`ms/me`, `ps/pe`, `inset-s/e`, `border-s/e`, `text-start/end`, logical radius) and `rtl:` variants to flip directional icons/transforms.
-- Third-party CSS overrides go in the matching section of `index.css`.
+See `DESIGN.md`. In short:
 
-## Icons and Assets
+- Tailwind v4 config lives only in `src/index.css`. No `tailwind.config.*`, CSS Modules or CSS-in-JS.
+- New code uses **semantic tokens** (`bg-canvas`, `bg-surface`, `text-label`, `text-label-secondary`, `border-separator`, `bg-fill`, `accent`) and the utilities `surface-card`, `material`, `material-thick`. These switch with dark mode automatically.
+- Existing code uses `gray-*` / `brand-*` with `dark:` pairs; that is fine to keep, but don't add new `bg-white dark:bg-gray-900`-style pairs.
+- RTL: logical utilities only (`ms/me`, `ps/pe`, `inset-s/e`, `border-s/e`, `text-start/end`); flip directional icons with `rtl:rotate-180`.
+- New `@utility` classes need a matching tailwind-merge group in `src/utils/cn.ts`.
 
-- Shared icons: kebab-case `.tsx` component taking `IconProps`, exported from `src/icons/index.tsx`; import from `@/icons`. Feature-only icons may live in a colocated `icons.tsx`. Don't inline SVG markup in pages or primitives.
-- Flags are SVGR default imports: `import Flag from "./flag-x.svg?react"`.
-- `public/` assets use root-relative URLs (`/images/...`).
+## Icons and assets
+
+- Shared icons: kebab-case `.tsx` taking `IconProps`, exported from `src/icons/index.tsx`. Don't inline SVG in pages.
+- Brand assets: `public/images/logo/{logo,logo-dark,logo-icon,auth-logo}.svg`, `public/favicon.svg`.
 
 ## Boundaries
 
 - Ask before installing packages.
-- Don't add route-level code splitting, auth guards, new providers, or a second routing/navigation source of truth without an explicit requirement.
-- Promote code to `components/shared` or `components/ui` only when it is genuinely reused across routes.
+- Keep `App.tsx` and `sidebar/data.tsx` as the only routing and navigation sources.
+- Promote code to `components/shared` or `components/ui` only when it is reused across routes.
+- Don't commit `.env`. Don't remove `LICENSE.md` (MIT attribution for the original template).

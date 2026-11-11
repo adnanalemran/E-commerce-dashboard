@@ -33,11 +33,15 @@ export default function SidebarMenuItem({
     nav.subItems?.some(
       (subItem) =>
         subItem.path === pathname ||
-        (subItem.path === "/ai-settings" &&
-          pathname.startsWith("/ai-settings")),
+        (subItem.path === "/products" &&
+          pathname.startsWith("/products/")),
     ),
   );
-  const isDirectActive = Boolean(nav.path && nav.path === pathname);
+  const isDirectActive = Boolean(
+    nav.path &&
+      (nav.path === pathname ||
+        (nav.path !== "/" && pathname.startsWith(`${nav.path}/`))),
+  );
   const isItemActive = hasSubItems ? isOpen || hasActiveChild : isDirectActive;
   const isPanelOpen = showContent && isOpen;
 
@@ -93,8 +97,8 @@ export default function SidebarMenuItem({
                   subItem={subItem}
                   isActive={
                     subItem.path === pathname ||
-                    (subItem.path === "/ai-settings" &&
-                      pathname.startsWith("/ai-settings"))
+                    (subItem.path === "/products" &&
+                      pathname.startsWith("/products/"))
                   }
                 />
               ))}

@@ -1,57 +1,71 @@
 import AppLayout from "@/components/layout/app-layout";
-import CalendarPage from "@/pages/main/calendar";
+import {
+  GuestRoute,
+  ProtectedRoute,
+  RoleRoute,
+} from "@/components/shared/route-guards";
+import CategoriesPage from "@/pages/main/catalog/categories";
+import SubcategoriesPage from "@/pages/main/catalog/subcategories";
+import OrdersPage from "@/pages/main/orders";
+import OrderDetailPage from "@/pages/main/orders/detail";
+import ProductsPage from "@/pages/main/products";
+import ProductEditorPage from "@/pages/main/products/editor";
 import EcommercePage from "@/pages/main/dashboard/ecommerce";
-import FormElementsPage from "@/pages/main/forms/form-elements";
-import { BlankPage, Error404Page } from "@/pages/main/pages";
+import { Error404Page } from "@/pages/main/pages";
 import ProfilePage from "@/pages/main/profile";
-import BasicTablesPage from "@/pages/main/tables/basic-tables";
-import { AuthLayout, SignInPage, SignUpPage } from "@/pages/others/auth";
-import BarChartPage from "@/pages/others/charts/bar-chart";
-import LineChartPage from "@/pages/others/charts/line-chart";
-import Alerts from "@/pages/others/ui-elements/alerts";
-import Avatars from "@/pages/others/ui-elements/avatars";
-import Badges from "@/pages/others/ui-elements/badges";
-import Buttons from "@/pages/others/ui-elements/buttons";
-import Images from "@/pages/others/ui-elements/images";
-import Videos from "@/pages/others/ui-elements/videos";
-import "flatpickr/dist/flatpickr.css";
+import UsersPage from "@/pages/main/users";
+import {
+  AuthLayout,
+  ForgotPasswordPage,
+  ResetPasswordPage,
+  SignInPage,
+  SignUpPage,
+  VerifyEmailPage,
+} from "@/pages/others/auth";
+import { ADMIN_ROLES, STAFF_ROLES } from "@/utils/roles";
 import { Route, Routes } from "react-router";
 
 export default function App() {
   return (
     <Routes>
-      {/* Dashboard Layout */}
-      <Route element={<AppLayout />}>
-        <Route index element={<EcommercePage />} />
+      {/* Dashboard Layout (signed-in users only) */}
+      <Route element={<ProtectedRoute />}>
+        <Route element={<AppLayout />}>
+          <Route index element={<EcommercePage />} />
 
-        {/* Others Page */}
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/calendar" element={<CalendarPage />} />
-        <Route path="/blank" element={<BlankPage />} />
+          {/* Orders & catalog (admins & managers) */}
+          <Route element={<RoleRoute roles={STAFF_ROLES} />}>
+            <Route path="/orders" element={<OrdersPage />} />
+            <Route path="/orders/:id" element={<OrderDetailPage />} />
+            <Route path="/products" element={<ProductsPage />} />
+            <Route path="/products/new" element={<ProductEditorPage />} />
+            <Route path="/products/:id/edit" element={<ProductEditorPage />} />
+            <Route path="/categories" element={<CategoriesPage />} />
+            <Route path="/subcategories" element={<SubcategoriesPage />} />
+          </Route>
 
-        {/* Forms */}
-        <Route path="/form-elements" element={<FormElementsPage />} />
+          {/* User management (admins) */}
+          <Route element={<RoleRoute roles={ADMIN_ROLES} />}>
+            <Route path="/users" element={<UsersPage />} />
+          </Route>
 
-        {/* Tables */}
-        <Route path="/basic-tables" element={<BasicTablesPage />} />
-
-        {/* Ui Elements */}
-        <Route path="/alerts" element={<Alerts />} />
-        <Route path="/avatars" element={<Avatars />} />
-        <Route path="/badge" element={<Badges />} />
-        <Route path="/buttons" element={<Buttons />} />
-        <Route path="/images" element={<Images />} />
-        <Route path="/videos" element={<Videos />} />
-
-        {/* Charts */}
-        <Route path="/line-chart" element={<LineChartPage />} />
-        <Route path="/bar-chart" element={<BarChartPage />} />
+          {/* Account */}
+          <Route path="/profile" element={<ProfilePage />} />
+        </Route>
       </Route>
 
       {/* Auth Layout */}
       <Route element={<AuthLayout />}>
-        <Route path="/signin" element={<SignInPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
+        {/* Signed-out users only */}
+        <Route element={<GuestRoute />}>
+          <Route path="/signin" element={<SignInPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        </Route>
+
+        {/* Email links from the backend: `${CORS_ORIGIN}/auth/...?token=` */}
+        <Route path="/auth/reset-password" element={<ResetPasswordPage />} />
+        <Route path="/auth/verify-email" element={<VerifyEmailPage />} />
       </Route>
 
       {/* Full-width / Error / Status Pages */}

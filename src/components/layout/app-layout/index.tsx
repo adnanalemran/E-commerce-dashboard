@@ -3,6 +3,7 @@ import AppSidebar from "@/components/layout/app-layout/sidebar";
 import { ScrollToTop } from "@/components/shared/scroll-to-top";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { cn } from "@/utils";
+import EmailVerificationBanner from "./email-verification-banner";
 import React from "react";
 import { Outlet, useLocation } from "react-router";
 
@@ -31,7 +32,10 @@ export default function AppLayout({
       <SidebarInset className={cn(isAiRoute && "h-svh overflow-hidden")}>
         <AppHeader />
 
-        <div className={getRouteSpecificStyles()}>{children ?? <Outlet />}</div>
+        <div className={getRouteSpecificStyles()}>
+          {!isAiRoute && <EmailVerificationBanner />}
+          {children ?? <Outlet />}
+        </div>
       </SidebarInset>
       <ScrollToTop />
     </SidebarProvider>

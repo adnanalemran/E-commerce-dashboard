@@ -199,7 +199,7 @@ function Sidebar({
       <div
         data-slot="sidebar"
         className={cn(
-          "flex h-full w-(--sidebar-width) flex-col border-e border-gray-200 bg-white text-gray-900 dark:border-gray-800 dark:bg-gray-900",
+          "flex h-full w-(--sidebar-width) flex-col border-e border-separator bg-surface text-label",
           className,
         )}
         {...props}
@@ -217,7 +217,7 @@ function Sidebar({
           data-sidebar="sidebar"
           data-slot="sidebar"
           data-mobile="true"
-          className="w-(--sidebar-width) border-e border-gray-200 bg-white p-0 text-gray-900 dark:border-gray-800 dark:bg-gray-900 [&>button]:hidden"
+          className="w-(--sidebar-width) border-e border-separator material-thick p-0 text-label [&>button]:hidden"
           style={
             {
               "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
@@ -265,7 +265,7 @@ function Sidebar({
           // Adjust the padding for floating and inset variants.
           variant === "floating" || variant === "inset"
             ? "p-2 group-data-[collapsible=icon]/sidebar:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
-            : "border-gray-200 group-data-[collapsible=icon]/sidebar:w-(--sidebar-width-icon) group-data-[side=left]/sidebar:border-e group-data-[side=right]/sidebar:border-s dark:border-gray-800",
+            : "border-separator group-data-[collapsible=icon]/sidebar:w-(--sidebar-width-icon) group-data-[side=left]/sidebar:border-e group-data-[side=right]/sidebar:border-s",
           className,
         )}
         onMouseEnter={() => {
@@ -277,7 +277,7 @@ function Sidebar({
         <div
           data-sidebar="sidebar"
           data-slot="sidebar-inner"
-          className="flex size-full flex-col bg-white text-gray-900 group-data-[variant=floating]/sidebar:rounded-lg group-data-[variant=floating]/sidebar:shadow-sm group-data-[variant=floating]/sidebar:ring-1 group-data-[variant=floating]/sidebar:ring-gray-200 dark:bg-gray-900 dark:group-data-[variant=floating]/sidebar:ring-gray-800"
+          className="flex size-full flex-col overflow-hidden text-label group-data-[variant=floating]/sidebar:material group-data-[variant=floating]/sidebar:rounded-[var(--radius-card)] group-data-[variant=floating]/sidebar:shadow-theme-lg group-data-[variant=floating]/sidebar:ring-1 group-data-[variant=floating]/sidebar:ring-separator group-data-[variant=sidebar]/sidebar:bg-surface group-data-[variant=inset]/sidebar:bg-surface"
         >
           {children}
         </div>

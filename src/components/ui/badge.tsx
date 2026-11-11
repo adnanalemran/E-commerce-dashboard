@@ -41,13 +41,13 @@ const badgeVariants = cva(
         variant: "light",
         color: "primary",
         className:
-          "bg-brand-50 text-brand-500 [text-shadow:0_4px_4px_var(--color-brand-200)] dark:bg-brand-500/15 dark:text-brand-400 dark:[text-shadow:0_4px_4px_rgba(70,95,255,0.20)]",
+          "bg-brand-50 text-brand-500 [text-shadow:0_4px_4px_var(--color-brand-200)] dark:bg-brand-500/15 dark:text-brand-400 dark:[text-shadow:0_4px_4px_rgba(0,122,255,0.20)]",
       },
       {
         variant: "solid",
         color: "primary",
         className:
-          "bg-brand-500 text-white shadow-[0_4px_8px_0_var(--color-brand-200)] dark:shadow-[0_4px_8px_0_rgba(70,95,255,0.20)]",
+          "bg-brand-500 text-white shadow-[0_4px_8px_0_var(--color-brand-200)] dark:shadow-[0_4px_8px_0_rgba(0,122,255,0.20)]",
       },
       {
         variant: "ghost",

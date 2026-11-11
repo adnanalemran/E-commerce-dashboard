@@ -9,7 +9,14 @@
     "filter": "Filter",
     "seeAll": "See all",
     "confirm": "Confirm",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "pagination": {
+      "label": "Pagination",
+      "summary": "Showing {from}–{to} of {total}",
+      "previous": "Previous page",
+      "next": "Next page",
+      "page": "Page {page}"
+    }
   },
   "sidebar": {
     "groups": {
@@ -129,12 +136,12 @@
       "variants02": "Variants 02",
       "variants03": "Variants 03",
       "variants04": "Variants 04",
-      "variants05": "Variants 05"
-    },
-    "widget": {
-      "title": "#1 Tailwind CSS Dashboard",
-      "description": "Leading Tailwind CSS Admin Template with 500+ UI Component and Pages.",
-      "purchasePlan": "Purchase Plan"
+      "variants05": "Variants 05",
+      "catalog": "Catalog",
+      "categories": "Categories",
+      "subcategories": "Subcategories",
+      "users": "Users",
+      "orders": "Orders"
     }
   },
   "header": {
@@ -1058,6 +1065,674 @@
         "accountExecutive": "Account Executive"
       },
       "noEmployees": "No employees found matching the selected criteria."
+    }
+  },
+  "auth": {
+    "or": "Or",
+    "backToDashboard": "Back to dashboard",
+    "backToSignIn": "Back to sign in",
+    "goToSignIn": "Go to sign in",
+    "fields": {
+      "identifier": "Email or phone",
+      "identifierPlaceholder": "info@gmail.com or +1234567890",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "passwordHint": "At least 8 characters with an uppercase letter, a lowercase letter, a number and a special character.",
+      "newPassword": "New password",
+      "newPasswordPlaceholder": "Enter a new password",
+      "confirmPassword": "Confirm password",
+      "confirmPasswordPlaceholder": "Re-enter your password",
+      "firstName": "First name",
+      "firstNamePlaceholder": "Enter your first name",
+      "lastName": "Last name",
+      "lastNamePlaceholder": "Enter your last name",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password"
+    },
+    "validation": {
+      "identifierRequired": "Email or phone number is required",
+      "identifierInvalid": "Enter a valid email or a phone number in international format (e.g. +1234567890)",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email address",
+      "passwordRequired": "Password is required",
+      "passwordMin": "Password must be at least 8 characters",
+      "passwordUppercase": "Password must contain at least one uppercase letter",
+      "passwordLowercase": "Password must contain at least one lowercase letter",
+      "passwordNumber": "Password must contain at least one number",
+      "passwordSpecial": "Password must contain at least one special character",
+      "confirmPasswordRequired": "Please confirm your password",
+      "passwordsMismatch": "Passwords do not match",
+      "firstNameRequired": "First name is required",
+      "lastNameRequired": "Last name is required",
+      "nameMin": "Name must be at least 2 characters",
+      "termsRequired": "You must agree to the Terms and Conditions"
+    },
+    "errors": {
+      "network": "Unable to reach the server. Check your connection and try again.",
+      "unexpected": "Something went wrong. Please try again."
+    },
+    "google": {
+      "unavailable": "Google sign-in is unavailable right now."
+    },
+    "signIn": {
+      "metaTitle": "Sign In | E-Dukan",
+      "title": "Sign In",
+      "description": "Enter your email or phone and password to sign in!",
+      "keepLoggedIn": "Keep me logged in",
+      "forgotPassword": "Forgot password?",
+      "submit": "Sign In",
+      "submitting": "Signing in...",
+      "noAccount": "Don't have an account?",
+      "signUpLink": "Sign Up"
+    },
+    "signUp": {
+      "metaTitle": "Sign Up | E-Dukan",
+      "title": "Sign Up",
+      "description": "Enter your details to create an account!",
+      "termsPrefix": "By creating an account you agree to the",
+      "terms": "Terms and Conditions,",
+      "and": "and our",
+      "privacy": "Privacy Policy",
+      "submit": "Sign Up",
+      "submitting": "Creating account...",
+      "haveAccount": "Already have an account?",
+      "signInLink": "Sign In"
+    },
+    "forgotPassword": {
+      "metaTitle": "Forgot Password | E-Dukan",
+      "title": "Forgot your password?",
+      "description": "Enter the email linked to your account and we'll send you a link to reset your password.",
+      "submit": "Send reset link",
+      "submitting": "Sending...",
+      "successTitle": "Check your inbox",
+      "successDescription": "If an account exists for {email}, a password reset link is on its way. The link expires in 15 minutes.",
+      "rememberPassword": "Remembered your password?"
+    },
+    "resetPassword": {
+      "metaTitle": "Reset Password | E-Dukan",
+      "title": "Set a new password",
+      "description": "Choose a strong password you haven't used before.",
+      "submit": "Reset password",
+      "submitting": "Resetting...",
+      "successTitle": "Password updated",
+      "successDescription": "Your password has been reset and all sessions were signed out. Sign in with your new password.",
+      "missingTokenTitle": "Invalid reset link",
+      "missingTokenDescription": "This password reset link is missing or incomplete. Request a new one to continue.",
+      "requestNewLink": "Request a new reset link"
+    },
+    "verifyEmail": {
+      "metaTitle": "Verify Email | E-Dukan",
+      "title": "Email verification",
+      "verifying": "Verifying your email address...",
+      "successTitle": "Email verified",
+      "successDescription": "Thanks! Your email address has been verified.",
+      "continue": "Continue to dashboard",
+      "errorTitle": "We couldn't verify your email",
+      "missingToken": "This verification link is missing or incomplete.",
+      "resendDescription": "Verification links expire after 24 hours. Enter your email to get a new one.",
+      "resendSubmit": "Resend verification email",
+      "resendSubmitting": "Sending...",
+      "resendSuccess": "If the address belongs to an unverified account, a new verification email has been sent."
+    },
+    "emailBanner": {
+      "title": "Verify your email address",
+      "description": "We sent a verification link to {email}. Check your inbox to confirm your account.",
+      "resend": "Resend email",
+      "resending": "Sending...",
+      "sent": "A new verification link has been sent to {email}.",
+      "error": "We couldn't resend the verification email. Please try again later."
+    },
+    "brandTagline": "Run your store in one place: products, categories, customers and team."
+  },
+  "catalog": {
+    "categories": {
+      "title": "Categories",
+      "metaTitle": "Categories | E-Dukan",
+      "listTitle": "All categories",
+      "description": "Top-level groups that organize your products.",
+      "add": "Add category",
+      "searchPlaceholder": "Search categories...",
+      "empty": "No categories yet",
+      "emptyDescription": "Create your first category to start organizing products.",
+      "createTitle": "Add category",
+      "editTitle": "Edit category",
+      "formDescription": "Top-level categories appear in the main store navigation."
+    },
+    "subcategories": {
+      "title": "Subcategories",
+      "metaTitle": "Subcategories | E-Dukan",
+      "listTitle": "All subcategories",
+      "description": "Narrower groups that live inside a category.",
+      "add": "Add subcategory",
+      "searchPlaceholder": "Search subcategories...",
+      "filterLabel": "Filter by category",
+      "allParents": "All categories",
+      "empty": "No subcategories yet",
+      "emptyDescription": "Add a subcategory to break a category down further.",
+      "createTitle": "Add subcategory",
+      "editTitle": "Edit subcategory",
+      "formDescription": "Subcategories belong to exactly one top-level category.",
+      "noParentsTitle": "Create a category before adding subcategories.",
+      "noParentsAction": "Go to categories"
+    },
+    "columns": {
+      "name": "Name",
+      "parent": "Category",
+      "subcategories": "Subcategories",
+      "orderNo": "Order",
+      "featured": "Featured",
+      "actions": "Actions"
+    },
+    "subcategoryCount": "{count, plural, =0 {None} one {# subcategory} other {# subcategories}}",
+    "noResults": "No matches found",
+    "noResultsHint": "Try a different search or filter.",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "e.g. Electronics",
+      "subNamePlaceholder": "e.g. Smartphones",
+      "parent": "Parent category",
+      "parentPlaceholder": "Select a category",
+      "image": "Image",
+      "imagePreview": "Image preview",
+      "uploadImage": "Upload image",
+      "changeImage": "Change",
+      "removeImage": "Remove",
+      "imageHint": "JPG, PNG, WebP, GIF or AVIF. Max 5 MB.",
+      "imageType": "Choose a JPG, PNG, WebP, GIF or AVIF image.",
+      "imageSize": "The image must be 5 MB or smaller.",
+      "orderNo": "Order number",
+      "orderNoPlaceholder": "Auto (end of list)",
+      "orderNoHint": "Lower numbers appear first.",
+      "featured": "Featured",
+      "featuredHint": "Highlight on the storefront",
+      "cancel": "Cancel",
+      "create": "Create",
+      "save": "Save changes",
+      "saving": "Saving..."
+    },
+    "validation": {
+      "nameMin": "Name must be at least 2 characters",
+      "nameMax": "Name must be at most 100 characters",
+      "parentRequired": "Select a parent category",
+      "orderNoInvalid": "Enter a whole number of 0 or more"
+    },
+    "delete": {
+      "title": "Delete “{name}”?",
+      "description": "This permanently removes it and its image. This can't be undone.",
+      "blocked": "It still has {count, plural, one {# subcategory} other {# subcategories}}. Delete or move them first.",
+      "confirm": "Delete",
+      "deleting": "Deleting..."
+    },
+    "actions": {
+      "edit": "Edit {name}",
+      "delete": "Delete {name}",
+      "featured": "Featured: {name}"
+    },
+    "errors": {
+      "loadFailed": "Couldn't load the list",
+      "retry": "Try again",
+      "network": "Unable to reach the server. Check your connection and try again.",
+      "unexpected": "Something went wrong. Please try again."
+    }
+  },
+  "accessDenied": {
+    "title": "You don't have access",
+    "description": "Your role doesn't allow viewing this page. Ask an admin if you need access.",
+    "backHome": "Back to dashboard"
+  },
+  "users": {
+    "title": "Users",
+    "metaTitle": "Users | E-Dukan",
+    "listTitle": "All users",
+    "description": "Manage admins, managers and customers, and what they can access.",
+    "add": "Add user",
+    "searchPlaceholder": "Search name, email or phone...",
+    "you": "You",
+    "empty": "No users yet",
+    "emptyDescription": "Users appear here once they sign up or you add them.",
+    "noResults": "No matches found",
+    "noResultsHint": "Try a different search or filter.",
+    "filters": {
+      "role": "Filter by role",
+      "allRoles": "All",
+      "status": "Filter by status",
+      "allStatuses": "All statuses"
+    },
+    "tabs": {
+      "ADMIN": "Admins",
+      "MANAGER": "Managers",
+      "CUSTOMER": "Customers"
+    },
+    "roles": {
+      "SUPER_ADMIN": "Super admin",
+      "ADMIN": "Admin",
+      "MANAGER": "Manager",
+      "CUSTOMER": "Customer"
+    },
+    "statuses": {
+      "ACTIVE": "Active",
+      "INACTIVE": "Inactive",
+      "SUSPENDED": "Suspended",
+      "DELETED": "Deleted"
+    },
+    "columns": {
+      "user": "User",
+      "role": "Role",
+      "status": "Status",
+      "joined": "Joined",
+      "actions": "Actions"
+    },
+    "actions": {
+      "edit": "Edit {name}",
+      "delete": "Delete {name}"
+    },
+    "form": {
+      "createTitle": "Add user",
+      "createDescription": "Create an account and choose what the person can do.",
+      "editTitle": "Edit user",
+      "editDescription": "Update details, role or account status.",
+      "name": "Full name",
+      "namePlaceholder": "e.g. Jane Doe",
+      "email": "Email",
+      "emailPlaceholder": "name@example.com",
+      "phone": "Phone",
+      "password": "Password",
+      "passwordPlaceholder": "Set an initial password",
+      "passwordHint": "At least 8 characters with an uppercase letter, a lowercase letter, a number and a special character.",
+      "role": "Role",
+      "status": "Status",
+      "roleHint": "Admins manage everything including users. Managers run the shop catalog. Customers can only shop.",
+      "selfHint": "You can't change your own role or status.",
+      "cancel": "Cancel",
+      "create": "Create user",
+      "save": "Save changes",
+      "saving": "Saving..."
+    },
+    "validation": {
+      "nameMin": "Name must be at least 2 characters",
+      "nameMax": "Name must be at most 100 characters",
+      "emailInvalid": "Enter a valid email address",
+      "phoneInvalid": "Use international format, e.g. +1234567890",
+      "contactRequired": "Enter an email or a phone number",
+      "passwordMin": "Password must be at least 8 characters",
+      "passwordUppercase": "Password must contain at least one uppercase letter",
+      "passwordLowercase": "Password must contain at least one lowercase letter",
+      "passwordNumber": "Password must contain at least one number",
+      "passwordSpecial": "Password must contain at least one special character",
+      "roleRequired": "Select a role"
+    },
+    "delete": {
+      "title": "Delete {name}?",
+      "description": "The account is deactivated and signed out everywhere. It will no longer appear in this list.",
+      "confirm": "Delete user",
+      "deleting": "Deleting..."
+    },
+    "errors": {
+      "loadFailed": "Couldn't load users",
+      "retry": "Try again",
+      "network": "Unable to reach the server. Check your connection and try again.",
+      "unexpected": "Something went wrong. Please try again."
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "metaTitle": "Profile | E-Dukan",
+    "description": "Your account details, password and sessions.",
+    "verified": "Verified",
+    "unverified": "Not verified",
+    "fields": {
+      "name": "Full name",
+      "email": "Email address",
+      "phone": "Phone",
+      "memberSince": "Member since"
+    },
+    "personal": {
+      "title": "Personal information",
+      "edit": "Edit"
+    },
+    "avatar": {
+      "change": "Change profile photo",
+      "type": "Choose a JPG, PNG, WebP, GIF or AVIF image.",
+      "size": "The image must be 5 MB or smaller."
+    },
+    "edit": {
+      "title": "Edit profile",
+      "description": "Update how your name and email appear.",
+      "emailHint": "Changing your email sends a confirmation link to the new address.",
+      "phoneHint": "Ask an admin to change your phone number."
+    },
+    "emailChange": {
+      "pendingTitle": "Confirm your new email",
+      "pendingDescription": "We sent a link to {email}. Your email changes once you open it."
+    },
+    "security": {
+      "title": "Security",
+      "passwordTitle": "Password",
+      "passwordDescription": "Change the password you use to sign in.",
+      "passwordAction": "Change password",
+      "signOutAllTitle": "Sign out of all devices",
+      "signOutAllDescription": "End every active session, including this one.",
+      "signOutAllAction": "Sign out everywhere",
+      "signOutAllConfirmTitle": "Sign out of all devices?",
+      "signOutAllConfirmDescription": "You'll be signed out here and on every other device."
+    },
+    "password": {
+      "title": "Change password",
+      "description": "Use a strong password you don't use anywhere else.",
+      "current": "Current password",
+      "new": "New password",
+      "confirm": "Confirm new password",
+      "submit": "Change password",
+      "signOutNotice": "For your security, every session is signed out after the change.",
+      "successTitle": "Password changed",
+      "successDescription": "Sign in again with your new password.",
+      "signInAgain": "Sign in again"
+    },
+    "danger": {
+      "title": "Danger zone",
+      "deactivateTitle": "Deactivate account",
+      "deactivateDescription": "Disable your account and sign out everywhere. An admin can reactivate it.",
+      "deactivateAction": "Deactivate",
+      "confirmTitle": "Deactivate your account?",
+      "confirmDescription": "You'll be signed out and won't be able to sign in until an admin reactivates the account."
+    },
+    "actions": {
+      "cancel": "Cancel",
+      "save": "Save changes",
+      "saving": "Saving...",
+      "working": "Please wait..."
+    },
+    "validation": {
+      "nameMin": "Name must be at least 2 characters",
+      "nameMax": "Name must be at most 100 characters",
+      "emailInvalid": "Enter a valid email address",
+      "currentPasswordRequired": "Enter your current password",
+      "confirmPasswordRequired": "Confirm your new password",
+      "passwordsMismatch": "Passwords do not match",
+      "passwordSame": "The new password must be different from the current one"
+    },
+    "errors": {
+      "network": "Unable to reach the server. Check your connection and try again.",
+      "unexpected": "Something went wrong. Please try again."
+    }
+  },
+  "products": {
+    "title": "Products",
+    "metaTitle": "Products | E-Dukan",
+    "listTitle": "All products",
+    "description": "Manage what you sell: prices by weight or size, stock, photos and storefront badges.",
+    "add": "Add product",
+    "searchPlaceholder": "Search name or SKU...",
+    "empty": "No products yet",
+    "emptyDescription": "Add your first product, for example honey with 500gm and 1kg options.",
+    "noResults": "No matches found",
+    "noResultsHint": "Try a different search or filter.",
+    "uncategorized": "No category",
+    "variantCount": "{count, plural, one {# variant} other {# variants}}",
+    "save": "Save {percent}%",
+    "statuses": {
+      "ACTIVE": "Active",
+      "DRAFT": "Draft",
+      "ARCHIVED": "Archived"
+    },
+    "stock": {
+      "out": "Out of stock",
+      "low": "Low stock"
+    },
+    "flags": {
+      "bestSelling": "Best selling",
+      "newArrival": "New",
+      "featured": "Featured"
+    },
+    "columns": {
+      "product": "Product",
+      "category": "Category",
+      "price": "Price",
+      "stock": "Stock",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "actions": {
+      "edit": "Edit {name}",
+      "delete": "Delete {name}",
+      "cancel": "Cancel",
+      "save": "Save changes",
+      "saving": "Saving...",
+      "create": "Create product"
+    },
+    "filters": {
+      "all": "All",
+      "status": "Filter by status",
+      "category": "Filter by category",
+      "allCategories": "All categories",
+      "stockLabel": "Filter by stock",
+      "stock": {
+        "all": "Any stock",
+        "in": "In stock",
+        "low": "Low stock",
+        "out": "Out of stock"
+      }
+    },
+    "sort": {
+      "label": "Sort",
+      "newest": "Newest first",
+      "updated": "Recently updated",
+      "name": "Name (A–Z)",
+      "price_asc": "Price: low to high",
+      "price_desc": "Price: high to low",
+      "stock_asc": "Stock: lowest first"
+    },
+    "delete": {
+      "title": "Delete {name}?",
+      "description": "The product, its variants and photos are removed permanently. This can't be undone.",
+      "confirm": "Delete product",
+      "deleting": "Deleting..."
+    },
+    "errors": {
+      "loadFailed": "Couldn't load products",
+      "retry": "Try again",
+      "network": "Unable to reach the server. Check your connection and try again.",
+      "unexpected": "Something went wrong. Please try again."
+    },
+    "variants": {
+      "label": "Variant {number}",
+      "primary": "Shown on product cards",
+      "save": "Save {percent}%",
+      "remove": "Remove variant {number}",
+      "add": "Add variant",
+      "fields": {
+        "name": "Size / weight",
+        "sku": "SKU",
+        "price": "Price (৳)",
+        "compareAtPrice": "Compare-at (৳)",
+        "stock": "Stock"
+      },
+      "placeholders": {
+        "name": "500gm",
+        "sku": "GHEE-500",
+        "price": "950",
+        "compareAtPrice": "1000",
+        "stock": "0"
+      }
+    },
+    "images": {
+      "cover": "Cover",
+      "moveEarlier": "Move earlier",
+      "moveLater": "Move later",
+      "remove": "Remove image",
+      "add": "Add images",
+      "hint": "Up to {max} images. The first one is the cover. JPG, PNG, WebP, GIF or AVIF, max 5 MB each.",
+      "queuedHint": "They upload when you create the product.",
+      "type": "Choose JPG, PNG, WebP, GIF or AVIF images.",
+      "size": "Each image must be 5 MB or smaller.",
+      "limit": "A product can have at most {max} images."
+    },
+    "editor": {
+      "notFound": "Product not found",
+      "backToList": "Back to products",
+      "createTitle": "Add product",
+      "created": "Product created.",
+      "createdImagesFailed": "Product created, but the images couldn't be uploaded. Add them again below.",
+      "saved": "Changes saved.",
+      "general": "General",
+      "images": "Photos",
+      "variants": "Pricing & stock",
+      "variantsHint": "Add one variant per size or weight (e.g. 500gm, 1kg). Set a compare-at price to show a discount.",
+      "statusHint": "Only active products are visible in the store.",
+      "organization": "Organization",
+      "noCategory": "No category",
+      "tagsHint": "Separate tags with commas. Used for search.",
+      "badges": "Storefront badges",
+      "badgesHint": "Highlight this product in home page sections.",
+      "dangerZone": "Danger zone",
+      "unsaved": "You have unsaved changes"
+    },
+    "fields": {
+      "name": "Product name",
+      "shortDescription": "Short description",
+      "description": "Description",
+      "status": "Status",
+      "category": "Category",
+      "tags": "Tags",
+      "orderNo": "Order number",
+      "isBestSelling": "Best selling",
+      "isNewArrival": "New arrival",
+      "isFeatured": "Featured"
+    },
+    "placeholders": {
+      "name": "e.g. Sundarban Honey",
+      "shortDescription": "One or two lines shown near the price",
+      "description": "Details, ingredients, benefits, how to use...",
+      "tags": "honey, organic, sundarban",
+      "orderNo": "Auto (end of list)"
+    },
+    "validation": {
+      "nameMin": "Name must be at least 2 characters",
+      "nameMax": "Name must be at most 200 characters",
+      "shortDescriptionMax": "Keep it under 500 characters",
+      "descriptionMax": "Description is too long",
+      "orderNo": "Enter a whole number of 0 or more",
+      "variantsRequired": "Add at least one variant",
+      "variantName": "Enter a size or weight",
+      "variantNameMax": "At most 50 characters",
+      "skuMax": "At most 64 characters",
+      "price": "Enter an amount like 950 or 950.50",
+      "stock": "Enter a whole number of 0 or more",
+      "compareAtPrice": "Must be higher than the price",
+      "variantNameUnique": "Each variant needs a different name",
+      "skuUnique": "Each SKU must be unique"
+    }
+  },
+  "orders": {
+    "title": "Orders",
+    "metaTitle": "Orders | E-Dukan",
+    "listTitle": "All orders",
+    "description": "Orders placed on the storefront. Confirm, ship and deliver them here.",
+    "searchPlaceholder": "Order no., phone or name...",
+    "empty": "No orders yet",
+    "emptyDescription": "Orders from the website appear here automatically.",
+    "noResults": "No matching orders",
+    "noResultsHint": "Try a different search or filter.",
+    "stats": {
+      "today": "Orders today",
+      "month": "Revenue this month",
+      "orderCount": "{count, plural, one {# order} other {# orders}}",
+      "pending": "Waiting for confirmation",
+      "pendingHint": "Click to see pending orders"
+    },
+    "filters": {
+      "all": "All",
+      "status": "Filter by status",
+      "payment": "Filter by payment",
+      "allPayments": "All payments"
+    },
+    "statuses": {
+      "PENDING": "Pending",
+      "CONFIRMED": "Confirmed",
+      "PROCESSING": "Processing",
+      "SHIPPED": "Shipped",
+      "DELIVERED": "Delivered",
+      "CANCELLED": "Cancelled",
+      "RETURNED": "Returned"
+    },
+    "paymentStatuses": {
+      "UNPAID": "Unpaid",
+      "PAID": "Paid",
+      "REFUNDED": "Refunded"
+    },
+    "paymentMethods": {
+      "COD": "Cash on delivery",
+      "BKASH": "bKash",
+      "NAGAD": "Nagad"
+    },
+    "paymentActions": {
+      "UNPAID": "Mark as unpaid",
+      "PAID": "Mark as paid",
+      "REFUNDED": "Mark as refunded"
+    },
+    "columns": {
+      "order": "Order",
+      "customer": "Customer",
+      "items": "Items",
+      "total": "Total",
+      "payment": "Payment",
+      "status": "Status"
+    },
+    "transitions": {
+      "PENDING": "Move to pending",
+      "CONFIRMED": "Confirm order",
+      "PROCESSING": "Start packing",
+      "SHIPPED": "Mark as shipped",
+      "DELIVERED": "Mark as delivered",
+      "CANCELLED": "Cancel order",
+      "RETURNED": "Mark as returned"
+    },
+    "zones": {
+      "INSIDE_DHAKA": "Inside Dhaka",
+      "OUTSIDE_DHAKA": "Outside Dhaka"
+    },
+    "dialog": {
+      "cancelTitle": "Cancel this order?",
+      "returnTitle": "Mark this order as returned?",
+      "restockNotice": "All items go back into stock. The customer sees the reason when tracking the order.",
+      "reason": "Reason",
+      "reasonPlaceholder": "e.g. Customer asked to cancel"
+    },
+    "actions": {
+      "close": "Close",
+      "saving": "Saving..."
+    },
+    "detail": {
+      "notFound": "Order not found",
+      "back": "All orders",
+      "title": "Order",
+      "cancelReason": "Reason",
+      "items": "{count, plural, one {# item} other {# items}}",
+      "subtotal": "Subtotal",
+      "delivery": "Delivery",
+      "free": "Free",
+      "discount": "Discount",
+      "total": "Total",
+      "timeline": "Timeline",
+      "by": "by {name}",
+      "byCustomer": "Placed by the customer",
+      "customer": "Customer & delivery",
+      "name": "Name",
+      "phone": "Phone",
+      "email": "Email",
+      "address": "Address",
+      "zone": "Delivery area",
+      "note": "Customer note",
+      "payment": "Payment",
+      "codHint": "Cash-on-delivery orders are marked paid automatically when delivered."
+    },
+    "errors": {
+      "loadFailed": "Couldn't load orders",
+      "retry": "Try again",
+      "network": "Unable to reach the server. Check your connection and try again.",
+      "unexpected": "Something went wrong. Please try again."
     }
   }
 }
