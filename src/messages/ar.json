@@ -129,7 +129,10 @@
       "variants02": "المتغير 02",
       "variants03": "المتغير 03",
       "variants04": "المتغير 04",
-      "variants05": "المتغير 05"
+      "variants05": "المتغير 05",
+      "catalog": "الكتالوج",
+      "categories": "الفئات",
+      "subcategories": "الفئات الفرعية"
     },
     "widget": {
       "title": "لوحة التحكم رقم 1 بـ Tailwind CSS",
@@ -1176,6 +1179,104 @@
       "resending": "جارٍ الإرسال...",
       "sent": "تم إرسال رابط تحقق جديد إلى {email}.",
       "error": "تعذرت إعادة إرسال رسالة التحقق. يرجى المحاولة لاحقًا."
+    }
+  },
+  "catalog": {
+    "categories": {
+      "title": "الفئات",
+      "metaTitle": "الفئات | لوحة تحكم المتجر",
+      "listTitle": "جميع الفئات",
+      "description": "مجموعات رئيسية لتنظيم منتجاتك.",
+      "add": "إضافة فئة",
+      "searchPlaceholder": "ابحث في الفئات...",
+      "empty": "لا توجد فئات بعد",
+      "emptyDescription": "أنشئ أول فئة لبدء تنظيم المنتجات.",
+      "createTitle": "إضافة فئة",
+      "editTitle": "تعديل الفئة",
+      "formDescription": "تظهر الفئات الرئيسية في قائمة التنقل الرئيسية للمتجر."
+    },
+    "subcategories": {
+      "title": "الفئات الفرعية",
+      "metaTitle": "الفئات الفرعية | لوحة تحكم المتجر",
+      "listTitle": "جميع الفئات الفرعية",
+      "description": "مجموعات أدق تندرج ضمن فئة رئيسية.",
+      "add": "إضافة فئة فرعية",
+      "searchPlaceholder": "ابحث في الفئات الفرعية...",
+      "filterLabel": "التصفية حسب الفئة",
+      "allParents": "جميع الفئات",
+      "empty": "لا توجد فئات فرعية بعد",
+      "emptyDescription": "أضف فئة فرعية لتقسيم الفئة بشكل أدق.",
+      "createTitle": "إضافة فئة فرعية",
+      "editTitle": "تعديل الفئة الفرعية",
+      "formDescription": "تنتمي كل فئة فرعية إلى فئة رئيسية واحدة فقط.",
+      "noParentsTitle": "أنشئ فئة رئيسية قبل إضافة فئات فرعية.",
+      "noParentsAction": "الانتقال إلى الفئات"
+    },
+    "columns": {
+      "name": "الاسم",
+      "parent": "الفئة",
+      "subcategories": "الفئات الفرعية",
+      "orderNo": "الترتيب",
+      "featured": "مميزة",
+      "actions": "الإجراءات"
+    },
+    "subcategoryCount": "{count, plural, =0 {لا يوجد} one {فئة فرعية واحدة} two {فئتان فرعيتان} few {# فئات فرعية} many {# فئة فرعية} other {# فئة فرعية}}",
+    "noResults": "لا توجد نتائج مطابقة",
+    "noResultsHint": "جرّب بحثًا أو تصفية مختلفة.",
+    "form": {
+      "name": "الاسم",
+      "namePlaceholder": "مثال: إلكترونيات",
+      "subNamePlaceholder": "مثال: هواتف ذكية",
+      "parent": "الفئة الرئيسية",
+      "parentPlaceholder": "اختر فئة",
+      "image": "الصورة",
+      "imagePreview": "معاينة الصورة",
+      "uploadImage": "رفع صورة",
+      "changeImage": "تغيير",
+      "removeImage": "إزالة",
+      "imageHint": "JPG أو PNG أو WebP أو GIF أو AVIF. الحد الأقصى 5 ميغابايت.",
+      "imageType": "اختر صورة بصيغة JPG أو PNG أو WebP أو GIF أو AVIF.",
+      "imageSize": "يجب ألا يتجاوز حجم الصورة 5 ميغابايت.",
+      "orderNo": "رقم الترتيب",
+      "orderNoPlaceholder": "تلقائي (نهاية القائمة)",
+      "orderNoHint": "تظهر الأرقام الأصغر أولًا.",
+      "featured": "مميزة",
+      "featuredHint": "إبرازها في واجهة المتجر",
+      "cancel": "إلغاء",
+      "create": "إنشاء",
+      "save": "حفظ التغييرات",
+      "saving": "جارٍ الحفظ..."
+    },
+    "validation": {
+      "nameMin": "يجب أن يتكون الاسم من حرفين على الأقل",
+      "nameMax": "يجب ألا يتجاوز الاسم 100 حرف",
+      "parentRequired": "اختر الفئة الرئيسية",
+      "orderNoInvalid": "أدخل عددًا صحيحًا يساوي 0 أو أكثر"
+    },
+    "delete": {
+      "title": "حذف «{name}»؟",
+      "description": "سيؤدي ذلك إلى حذفها وحذف صورتها نهائيًا. لا يمكن التراجع عن هذا الإجراء.",
+      "blocked": "لا تزال تحتوي على {count, plural, one {فئة فرعية واحدة} two {فئتين فرعيتين} few {# فئات فرعية} many {# فئة فرعية} other {# فئة فرعية}}. احذفها أو انقلها أولًا.",
+      "confirm": "حذف",
+      "deleting": "جارٍ الحذف..."
+    },
+    "actions": {
+      "edit": "تعديل {name}",
+      "delete": "حذف {name}",
+      "featured": "مميزة: {name}"
+    },
+    "pagination": {
+      "label": "التنقل بين الصفحات",
+      "summary": "عرض {from}–{to} من {total}",
+      "previous": "الصفحة السابقة",
+      "next": "الصفحة التالية",
+      "page": "الصفحة {page}"
+    },
+    "errors": {
+      "loadFailed": "تعذر تحميل القائمة",
+      "retry": "حاول مرة أخرى",
+      "network": "تعذر الاتصال بالخادم. تحقق من اتصالك وحاول مرة أخرى.",
+      "unexpected": "حدث خطأ ما. يرجى المحاولة مرة أخرى."
     }
   }
 }

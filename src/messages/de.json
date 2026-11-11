@@ -129,7 +129,10 @@
       "variants02": "Varianten 02",
       "variants03": "Varianten 03",
       "variants04": "Varianten 04",
-      "variants05": "Varianten 05"
+      "variants05": "Varianten 05",
+      "catalog": "Katalog",
+      "categories": "Kategorien",
+      "subcategories": "Unterkategorien"
     },
     "widget": {
       "title": "#1 Tailwind CSS Dashboard",
@@ -1176,6 +1179,104 @@
       "resending": "Wird gesendet...",
       "sent": "Ein neuer Bestätigungslink wurde an {email} gesendet.",
       "error": "Die Bestätigungs-E-Mail konnte nicht erneut gesendet werden. Bitte versuche es später."
+    }
+  },
+  "catalog": {
+    "categories": {
+      "title": "Kategorien",
+      "metaTitle": "Kategorien | E-Commerce-Dashboard",
+      "listTitle": "Alle Kategorien",
+      "description": "Hauptgruppen, die deine Produkte ordnen.",
+      "add": "Kategorie hinzufügen",
+      "searchPlaceholder": "Kategorien durchsuchen...",
+      "empty": "Noch keine Kategorien",
+      "emptyDescription": "Erstelle deine erste Kategorie, um Produkte zu ordnen.",
+      "createTitle": "Kategorie hinzufügen",
+      "editTitle": "Kategorie bearbeiten",
+      "formDescription": "Hauptkategorien erscheinen in der Hauptnavigation des Shops."
+    },
+    "subcategories": {
+      "title": "Unterkategorien",
+      "metaTitle": "Unterkategorien | E-Commerce-Dashboard",
+      "listTitle": "Alle Unterkategorien",
+      "description": "Feinere Gruppen innerhalb einer Kategorie.",
+      "add": "Unterkategorie hinzufügen",
+      "searchPlaceholder": "Unterkategorien durchsuchen...",
+      "filterLabel": "Nach Kategorie filtern",
+      "allParents": "Alle Kategorien",
+      "empty": "Noch keine Unterkategorien",
+      "emptyDescription": "Füge eine Unterkategorie hinzu, um eine Kategorie weiter zu unterteilen.",
+      "createTitle": "Unterkategorie hinzufügen",
+      "editTitle": "Unterkategorie bearbeiten",
+      "formDescription": "Jede Unterkategorie gehört zu genau einer Hauptkategorie.",
+      "noParentsTitle": "Erstelle zuerst eine Kategorie, bevor du Unterkategorien hinzufügst.",
+      "noParentsAction": "Zu den Kategorien"
+    },
+    "columns": {
+      "name": "Name",
+      "parent": "Kategorie",
+      "subcategories": "Unterkategorien",
+      "orderNo": "Reihenfolge",
+      "featured": "Hervorgehoben",
+      "actions": "Aktionen"
+    },
+    "subcategoryCount": "{count, plural, =0 {Keine} one {# Unterkategorie} other {# Unterkategorien}}",
+    "noResults": "Keine Treffer gefunden",
+    "noResultsHint": "Versuche eine andere Suche oder einen anderen Filter.",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "z. B. Elektronik",
+      "subNamePlaceholder": "z. B. Smartphones",
+      "parent": "Übergeordnete Kategorie",
+      "parentPlaceholder": "Kategorie auswählen",
+      "image": "Bild",
+      "imagePreview": "Bildvorschau",
+      "uploadImage": "Bild hochladen",
+      "changeImage": "Ändern",
+      "removeImage": "Entfernen",
+      "imageHint": "JPG, PNG, WebP, GIF oder AVIF. Max. 5 MB.",
+      "imageType": "Wähle ein JPG-, PNG-, WebP-, GIF- oder AVIF-Bild.",
+      "imageSize": "Das Bild darf höchstens 5 MB groß sein.",
+      "orderNo": "Reihenfolgenummer",
+      "orderNoPlaceholder": "Automatisch (ans Ende)",
+      "orderNoHint": "Kleinere Zahlen erscheinen zuerst.",
+      "featured": "Hervorgehoben",
+      "featuredHint": "Im Shop hervorheben",
+      "cancel": "Abbrechen",
+      "create": "Erstellen",
+      "save": "Änderungen speichern",
+      "saving": "Wird gespeichert..."
+    },
+    "validation": {
+      "nameMin": "Der Name muss mindestens 2 Zeichen lang sein",
+      "nameMax": "Der Name darf höchstens 100 Zeichen lang sein",
+      "parentRequired": "Wähle eine übergeordnete Kategorie",
+      "orderNoInvalid": "Gib eine ganze Zahl ab 0 ein"
+    },
+    "delete": {
+      "title": "„{name}“ löschen?",
+      "description": "Dadurch wird sie samt Bild endgültig entfernt. Dies kann nicht rückgängig gemacht werden.",
+      "blocked": "Sie enthält noch {count, plural, one {# Unterkategorie} other {# Unterkategorien}}. Lösche oder verschiebe diese zuerst.",
+      "confirm": "Löschen",
+      "deleting": "Wird gelöscht..."
+    },
+    "actions": {
+      "edit": "{name} bearbeiten",
+      "delete": "{name} löschen",
+      "featured": "Hervorgehoben: {name}"
+    },
+    "pagination": {
+      "label": "Seitennavigation",
+      "summary": "{from}–{to} von {total}",
+      "previous": "Vorherige Seite",
+      "next": "Nächste Seite",
+      "page": "Seite {page}"
+    },
+    "errors": {
+      "loadFailed": "Die Liste konnte nicht geladen werden",
+      "retry": "Erneut versuchen",
+      "network": "Der Server ist nicht erreichbar. Prüfe deine Verbindung und versuche es erneut.",
+      "unexpected": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
     }
   }
 }

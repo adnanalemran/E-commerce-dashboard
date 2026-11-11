@@ -129,7 +129,10 @@
       "variants02": "Variantes 02",
       "variants03": "Variantes 03",
       "variants04": "Variantes 04",
-      "variants05": "Variantes 05"
+      "variants05": "Variantes 05",
+      "catalog": "Catálogo",
+      "categories": "Categorías",
+      "subcategories": "Subcategorías"
     },
     "widget": {
       "title": "Panel n.º 1 de Tailwind CSS",
@@ -1176,6 +1179,104 @@
       "resending": "Enviando...",
       "sent": "Se ha enviado un nuevo enlace de verificación a {email}.",
       "error": "No pudimos reenviar el correo de verificación. Inténtalo más tarde."
+    }
+  },
+  "catalog": {
+    "categories": {
+      "title": "Categorías",
+      "metaTitle": "Categorías | Panel de comercio electrónico",
+      "listTitle": "Todas las categorías",
+      "description": "Grupos principales que organizan tus productos.",
+      "add": "Añadir categoría",
+      "searchPlaceholder": "Buscar categorías...",
+      "empty": "Aún no hay categorías",
+      "emptyDescription": "Crea tu primera categoría para empezar a organizar productos.",
+      "createTitle": "Añadir categoría",
+      "editTitle": "Editar categoría",
+      "formDescription": "Las categorías principales aparecen en la navegación de la tienda."
+    },
+    "subcategories": {
+      "title": "Subcategorías",
+      "metaTitle": "Subcategorías | Panel de comercio electrónico",
+      "listTitle": "Todas las subcategorías",
+      "description": "Grupos más específicos dentro de una categoría.",
+      "add": "Añadir subcategoría",
+      "searchPlaceholder": "Buscar subcategorías...",
+      "filterLabel": "Filtrar por categoría",
+      "allParents": "Todas las categorías",
+      "empty": "Aún no hay subcategorías",
+      "emptyDescription": "Añade una subcategoría para dividir una categoría.",
+      "createTitle": "Añadir subcategoría",
+      "editTitle": "Editar subcategoría",
+      "formDescription": "Cada subcategoría pertenece a una sola categoría principal.",
+      "noParentsTitle": "Crea una categoría antes de añadir subcategorías.",
+      "noParentsAction": "Ir a categorías"
+    },
+    "columns": {
+      "name": "Nombre",
+      "parent": "Categoría",
+      "subcategories": "Subcategorías",
+      "orderNo": "Orden",
+      "featured": "Destacada",
+      "actions": "Acciones"
+    },
+    "subcategoryCount": "{count, plural, =0 {Ninguna} one {# subcategoría} other {# subcategorías}}",
+    "noResults": "No se encontraron coincidencias",
+    "noResultsHint": "Prueba con otra búsqueda o filtro.",
+    "form": {
+      "name": "Nombre",
+      "namePlaceholder": "p. ej. Electrónica",
+      "subNamePlaceholder": "p. ej. Smartphones",
+      "parent": "Categoría principal",
+      "parentPlaceholder": "Selecciona una categoría",
+      "image": "Imagen",
+      "imagePreview": "Vista previa de la imagen",
+      "uploadImage": "Subir imagen",
+      "changeImage": "Cambiar",
+      "removeImage": "Quitar",
+      "imageHint": "JPG, PNG, WebP, GIF o AVIF. Máx. 5 MB.",
+      "imageType": "Elige una imagen JPG, PNG, WebP, GIF o AVIF.",
+      "imageSize": "La imagen debe ocupar 5 MB o menos.",
+      "orderNo": "Número de orden",
+      "orderNoPlaceholder": "Automático (al final)",
+      "orderNoHint": "Los números más bajos aparecen primero.",
+      "featured": "Destacada",
+      "featuredHint": "Resaltar en la tienda",
+      "cancel": "Cancelar",
+      "create": "Crear",
+      "save": "Guardar cambios",
+      "saving": "Guardando..."
+    },
+    "validation": {
+      "nameMin": "El nombre debe tener al menos 2 caracteres",
+      "nameMax": "El nombre debe tener como máximo 100 caracteres",
+      "parentRequired": "Selecciona una categoría principal",
+      "orderNoInvalid": "Introduce un número entero igual o mayor que 0"
+    },
+    "delete": {
+      "title": "¿Eliminar «{name}»?",
+      "description": "Se eliminará de forma permanente junto con su imagen. No se puede deshacer.",
+      "blocked": "Todavía tiene {count, plural, one {# subcategoría} other {# subcategorías}}. Elimínalas o muévelas primero.",
+      "confirm": "Eliminar",
+      "deleting": "Eliminando..."
+    },
+    "actions": {
+      "edit": "Editar {name}",
+      "delete": "Eliminar {name}",
+      "featured": "Destacada: {name}"
+    },
+    "pagination": {
+      "label": "Paginación",
+      "summary": "Mostrando {from}–{to} de {total}",
+      "previous": "Página anterior",
+      "next": "Página siguiente",
+      "page": "Página {page}"
+    },
+    "errors": {
+      "loadFailed": "No se pudo cargar la lista",
+      "retry": "Reintentar",
+      "network": "No se puede conectar con el servidor. Comprueba tu conexión e inténtalo de nuevo.",
+      "unexpected": "Algo salió mal. Inténtalo de nuevo."
     }
   }
 }

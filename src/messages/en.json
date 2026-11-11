@@ -129,7 +129,10 @@
       "variants02": "Variants 02",
       "variants03": "Variants 03",
       "variants04": "Variants 04",
-      "variants05": "Variants 05"
+      "variants05": "Variants 05",
+      "catalog": "Catalog",
+      "categories": "Categories",
+      "subcategories": "Subcategories"
     },
     "widget": {
       "title": "#1 Tailwind CSS Dashboard",
@@ -1176,6 +1179,104 @@
       "resending": "Sending...",
       "sent": "A new verification link has been sent to {email}.",
       "error": "We couldn't resend the verification email. Please try again later."
+    }
+  },
+  "catalog": {
+    "categories": {
+      "title": "Categories",
+      "metaTitle": "Categories | E-commerce Dashboard",
+      "listTitle": "All categories",
+      "description": "Top-level groups that organize your products.",
+      "add": "Add category",
+      "searchPlaceholder": "Search categories...",
+      "empty": "No categories yet",
+      "emptyDescription": "Create your first category to start organizing products.",
+      "createTitle": "Add category",
+      "editTitle": "Edit category",
+      "formDescription": "Top-level categories appear in the main store navigation."
+    },
+    "subcategories": {
+      "title": "Subcategories",
+      "metaTitle": "Subcategories | E-commerce Dashboard",
+      "listTitle": "All subcategories",
+      "description": "Narrower groups that live inside a category.",
+      "add": "Add subcategory",
+      "searchPlaceholder": "Search subcategories...",
+      "filterLabel": "Filter by category",
+      "allParents": "All categories",
+      "empty": "No subcategories yet",
+      "emptyDescription": "Add a subcategory to break a category down further.",
+      "createTitle": "Add subcategory",
+      "editTitle": "Edit subcategory",
+      "formDescription": "Subcategories belong to exactly one top-level category.",
+      "noParentsTitle": "Create a category before adding subcategories.",
+      "noParentsAction": "Go to categories"
+    },
+    "columns": {
+      "name": "Name",
+      "parent": "Category",
+      "subcategories": "Subcategories",
+      "orderNo": "Order",
+      "featured": "Featured",
+      "actions": "Actions"
+    },
+    "subcategoryCount": "{count, plural, =0 {None} one {# subcategory} other {# subcategories}}",
+    "noResults": "No matches found",
+    "noResultsHint": "Try a different search or filter.",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "e.g. Electronics",
+      "subNamePlaceholder": "e.g. Smartphones",
+      "parent": "Parent category",
+      "parentPlaceholder": "Select a category",
+      "image": "Image",
+      "imagePreview": "Image preview",
+      "uploadImage": "Upload image",
+      "changeImage": "Change",
+      "removeImage": "Remove",
+      "imageHint": "JPG, PNG, WebP, GIF or AVIF. Max 5 MB.",
+      "imageType": "Choose a JPG, PNG, WebP, GIF or AVIF image.",
+      "imageSize": "The image must be 5 MB or smaller.",
+      "orderNo": "Order number",
+      "orderNoPlaceholder": "Auto (end of list)",
+      "orderNoHint": "Lower numbers appear first.",
+      "featured": "Featured",
+      "featuredHint": "Highlight on the storefront",
+      "cancel": "Cancel",
+      "create": "Create",
+      "save": "Save changes",
+      "saving": "Saving..."
+    },
+    "validation": {
+      "nameMin": "Name must be at least 2 characters",
+      "nameMax": "Name must be at most 100 characters",
+      "parentRequired": "Select a parent category",
+      "orderNoInvalid": "Enter a whole number of 0 or more"
+    },
+    "delete": {
+      "title": "Delete “{name}”?",
+      "description": "This permanently removes it and its image. This can't be undone.",
+      "blocked": "It still has {count, plural, one {# subcategory} other {# subcategories}}. Delete or move them first.",
+      "confirm": "Delete",
+      "deleting": "Deleting..."
+    },
+    "actions": {
+      "edit": "Edit {name}",
+      "delete": "Delete {name}",
+      "featured": "Featured: {name}"
+    },
+    "pagination": {
+      "label": "Pagination",
+      "summary": "Showing {from}–{to} of {total}",
+      "previous": "Previous page",
+      "next": "Next page",
+      "page": "Page {page}"
+    },
+    "errors": {
+      "loadFailed": "Couldn't load the list",
+      "retry": "Try again",
+      "network": "Unable to reach the server. Check your connection and try again.",
+      "unexpected": "Something went wrong. Please try again."
     }
   }
 }

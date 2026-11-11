@@ -1,7 +1,8 @@
-import { ApiError } from "@/api/client";
 import type { Translator } from "@/i18n";
-import type { FieldValues, Path, UseFormSetError } from "react-hook-form";
+import { getApiErrorMessage } from "@/utils/form-errors";
 import { z } from "zod";
+
+export { applyFieldErrors } from "@/utils/form-errors";
 
 export const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID ?? "";
 
@@ -10,33 +11,10 @@ export const isGoogleAuthEnabled = GOOGLE_CLIENT_ID !== "";
 
 /** Human-readable message for a failed auth request. `t` must be scoped to `auth`. */
 export function getAuthErrorMessage(error: unknown, t: Translator): string {
-  if (error instanceof ApiError) {
-    if (error.isNetworkError) return t("errors.network");
-    if (error.message) return error.message;
-  }
-  return t("errors.unexpected");
-}
-
-/**
- * Copies backend validation errors (`[{ field, message }]`) onto form fields.
- * Returns `true` when at least one error was mapped to a field.
- */
-export function applyFieldErrors<T extends FieldValues>(
-  error: unknown,
-  setError: UseFormSetError<T>,
-  fieldMap: Record<string, Path<T>>,
-): boolean {
-  if (!(error instanceof ApiError)) return false;
-
-  let applied = false;
-  for (const { field, message } of error.fieldErrors) {
-    const target = fieldMap[field];
-    if (target) {
-      setError(target, { type: "server", message }, { shouldFocus: !applied });
-      applied = true;
-    }
-  }
-  return applied;
+  return getApiErrorMessage(error, {
+    network: t("errors.network"),
+    unexpected: t("errors.unexpected"),
+  });
 }
 
 /** Same rules as the backend `registerSchema` / `resetPasswordSchema`. */

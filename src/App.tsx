@@ -1,6 +1,8 @@
 import AppLayout from "@/components/layout/app-layout";
 import { GuestRoute, ProtectedRoute } from "@/components/shared/route-guards";
 import CalendarPage from "@/pages/main/calendar";
+import CategoriesPage from "@/pages/main/catalog/categories";
+import SubcategoriesPage from "@/pages/main/catalog/subcategories";
 import EcommercePage from "@/pages/main/dashboard/ecommerce";
 import FormElementsPage from "@/pages/main/forms/form-elements";
 import { BlankPage, Error404Page } from "@/pages/main/pages";
@@ -32,6 +34,10 @@ export default function App() {
       <Route element={<ProtectedRoute />}>
         <Route element={<AppLayout />}>
           <Route index element={<EcommercePage />} />
+
+          {/* Catalog */}
+          <Route path="/categories" element={<CategoriesPage />} />
+          <Route path="/subcategories" element={<SubcategoriesPage />} />
 
           {/* Others Page */}
           <Route path="/profile" element={<ProfilePage />} />

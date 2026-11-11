@@ -7,6 +7,7 @@ import {
   PieChartIcon,
   PluginIcon,
   TableIcon,
+  TagIcon,
   UserCircleIcon,
 } from "@/icons";
 import type { NavItem } from "./types";
@@ -16,6 +17,14 @@ export const navItems: NavItem[] = [
     icon: <LayoutGridIcon className="size-6" />,
     key: "dashboard",
     subItems: [{ key: "ecommerceHome", path: "/" }],
+  },
+  {
+    icon: <TagIcon className="size-6" />,
+    key: "catalog",
+    subItems: [
+      { key: "categories", path: "/categories" },
+      { key: "subcategories", path: "/subcategories" },
+    ],
   },
   {
     icon: <CalendarIcon className="size-6" />,

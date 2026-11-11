@@ -86,6 +86,7 @@ channel?.addEventListener("message", (event) => {
 
 export interface RequestOptions {
   method?: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
+  /** JSON-serialisable value, or `FormData` for multipart uploads. */
   body?: unknown;
   /** Attach the access token and transparently refresh it on 401. Default `true`. */
   auth?: boolean;
@@ -96,8 +97,12 @@ async function send<T>(
   path: string,
   { method = "GET", body, auth = true, signal }: RequestOptions,
 ): Promise<T> {
+  const isFormData = body instanceof FormData;
   const headers: Record<string, string> = { Accept: "application/json" };
-  if (body !== undefined) headers["Content-Type"] = "application/json";
+  // FormData sets its own multipart boundary header.
+  if (body !== undefined && !isFormData) {
+    headers["Content-Type"] = "application/json";
+  }
   if (auth && accessToken) headers.Authorization = `Bearer ${accessToken}`;
 
   let response: Response;
@@ -105,7 +110,12 @@ async function send<T>(
     response = await fetch(`${API_BASE_URL}${path}`, {
       method,
       headers,
-      body: body === undefined ? undefined : JSON.stringify(body),
+      body:
+        body === undefined
+          ? undefined
+          : isFormData
+            ? body
+            : JSON.stringify(body),
       credentials: "include", // send/receive the refreshToken cookie
       signal,
     });
