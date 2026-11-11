@@ -141,11 +141,6 @@
       "categories": "Categories",
       "subcategories": "Subcategories",
       "users": "Users"
-    },
-    "widget": {
-      "title": "#1 Tailwind CSS Dashboard",
-      "description": "Leading Tailwind CSS Admin Template with 500+ UI Component and Pages.",
-      "purchasePlan": "Purchase Plan"
     }
   },
   "header": {
@@ -1121,7 +1116,7 @@
       "unavailable": "Google sign-in is unavailable right now."
     },
     "signIn": {
-      "metaTitle": "Sign In | E-commerce Dashboard",
+      "metaTitle": "Sign In | E-Dukan",
       "title": "Sign In",
       "description": "Enter your email or phone and password to sign in!",
       "keepLoggedIn": "Keep me logged in",
@@ -1132,7 +1127,7 @@
       "signUpLink": "Sign Up"
     },
     "signUp": {
-      "metaTitle": "Sign Up | E-commerce Dashboard",
+      "metaTitle": "Sign Up | E-Dukan",
       "title": "Sign Up",
       "description": "Enter your details to create an account!",
       "termsPrefix": "By creating an account you agree to the",
@@ -1145,7 +1140,7 @@
       "signInLink": "Sign In"
     },
     "forgotPassword": {
-      "metaTitle": "Forgot Password | E-commerce Dashboard",
+      "metaTitle": "Forgot Password | E-Dukan",
       "title": "Forgot your password?",
       "description": "Enter the email linked to your account and we'll send you a link to reset your password.",
       "submit": "Send reset link",
@@ -1155,7 +1150,7 @@
       "rememberPassword": "Remembered your password?"
     },
     "resetPassword": {
-      "metaTitle": "Reset Password | E-commerce Dashboard",
+      "metaTitle": "Reset Password | E-Dukan",
       "title": "Set a new password",
       "description": "Choose a strong password you haven't used before.",
       "submit": "Reset password",
@@ -1167,7 +1162,7 @@
       "requestNewLink": "Request a new reset link"
     },
     "verifyEmail": {
-      "metaTitle": "Verify Email | E-commerce Dashboard",
+      "metaTitle": "Verify Email | E-Dukan",
       "title": "Email verification",
       "verifying": "Verifying your email address...",
       "successTitle": "Email verified",
@@ -1187,12 +1182,13 @@
       "resending": "Sending...",
       "sent": "A new verification link has been sent to {email}.",
       "error": "We couldn't resend the verification email. Please try again later."
-    }
+    },
+    "brandTagline": "Run your store in one place: products, categories, customers and team."
   },
   "catalog": {
     "categories": {
       "title": "Categories",
-      "metaTitle": "Categories | E-commerce Dashboard",
+      "metaTitle": "Categories | E-Dukan",
       "listTitle": "All categories",
       "description": "Top-level groups that organize your products.",
       "add": "Add category",
@@ -1205,7 +1201,7 @@
     },
     "subcategories": {
       "title": "Subcategories",
-      "metaTitle": "Subcategories | E-commerce Dashboard",
+      "metaTitle": "Subcategories | E-Dukan",
       "listTitle": "All subcategories",
       "description": "Narrower groups that live inside a category.",
       "add": "Add subcategory",
@@ -1287,7 +1283,7 @@
   },
   "users": {
     "title": "Users",
-    "metaTitle": "Users | E-commerce Dashboard",
+    "metaTitle": "Users | E-Dukan",
     "listTitle": "All users",
     "description": "Manage admins, managers and customers, and what they can access.",
     "add": "Add user",
@@ -1381,7 +1377,7 @@
   },
   "profile": {
     "title": "Profile",
-    "metaTitle": "Profile | E-commerce Dashboard",
+    "metaTitle": "Profile | E-Dukan",
     "description": "Your account details, password and sessions.",
     "verified": "Verified",
     "unverified": "Not verified",
@@ -1459,6 +1455,173 @@
     "errors": {
       "network": "Unable to reach the server. Check your connection and try again.",
       "unexpected": "Something went wrong. Please try again."
+    }
+  },
+  "products": {
+    "title": "Products",
+    "metaTitle": "Products | E-Dukan",
+    "listTitle": "All products",
+    "description": "Manage what you sell: prices by weight or size, stock, photos and storefront badges.",
+    "add": "Add product",
+    "searchPlaceholder": "Search name or SKU...",
+    "empty": "No products yet",
+    "emptyDescription": "Add your first product, for example honey with 500gm and 1kg options.",
+    "noResults": "No matches found",
+    "noResultsHint": "Try a different search or filter.",
+    "uncategorized": "No category",
+    "variantCount": "{count, plural, one {# variant} other {# variants}}",
+    "save": "Save {percent}%",
+    "statuses": {
+      "ACTIVE": "Active",
+      "DRAFT": "Draft",
+      "ARCHIVED": "Archived"
+    },
+    "stock": {
+      "out": "Out of stock",
+      "low": "Low stock"
+    },
+    "flags": {
+      "bestSelling": "Best selling",
+      "newArrival": "New",
+      "featured": "Featured"
+    },
+    "columns": {
+      "product": "Product",
+      "category": "Category",
+      "price": "Price",
+      "stock": "Stock",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "actions": {
+      "edit": "Edit {name}",
+      "delete": "Delete {name}",
+      "cancel": "Cancel",
+      "save": "Save changes",
+      "saving": "Saving...",
+      "create": "Create product"
+    },
+    "filters": {
+      "all": "All",
+      "status": "Filter by status",
+      "category": "Filter by category",
+      "allCategories": "All categories",
+      "stockLabel": "Filter by stock",
+      "stock": {
+        "all": "Any stock",
+        "in": "In stock",
+        "low": "Low stock",
+        "out": "Out of stock"
+      }
+    },
+    "sort": {
+      "label": "Sort",
+      "newest": "Newest first",
+      "updated": "Recently updated",
+      "name": "Name (A–Z)",
+      "price_asc": "Price: low to high",
+      "price_desc": "Price: high to low",
+      "stock_asc": "Stock: lowest first"
+    },
+    "delete": {
+      "title": "Delete {name}?",
+      "description": "The product, its variants and photos are removed permanently. This can't be undone.",
+      "confirm": "Delete product",
+      "deleting": "Deleting..."
+    },
+    "errors": {
+      "loadFailed": "Couldn't load products",
+      "retry": "Try again",
+      "network": "Unable to reach the server. Check your connection and try again.",
+      "unexpected": "Something went wrong. Please try again."
+    },
+    "variants": {
+      "label": "Variant {number}",
+      "primary": "Shown on product cards",
+      "save": "Save {percent}%",
+      "remove": "Remove variant {number}",
+      "add": "Add variant",
+      "fields": {
+        "name": "Size / weight",
+        "sku": "SKU",
+        "price": "Price (৳)",
+        "compareAtPrice": "Compare-at (৳)",
+        "stock": "Stock"
+      },
+      "placeholders": {
+        "name": "500gm",
+        "sku": "GHEE-500",
+        "price": "950",
+        "compareAtPrice": "1000",
+        "stock": "0"
+      }
+    },
+    "images": {
+      "cover": "Cover",
+      "moveEarlier": "Move earlier",
+      "moveLater": "Move later",
+      "remove": "Remove image",
+      "add": "Add images",
+      "hint": "Up to {max} images. The first one is the cover. JPG, PNG, WebP, GIF or AVIF, max 5 MB each.",
+      "queuedHint": "They upload when you create the product.",
+      "type": "Choose JPG, PNG, WebP, GIF or AVIF images.",
+      "size": "Each image must be 5 MB or smaller.",
+      "limit": "A product can have at most {max} images."
+    },
+    "editor": {
+      "notFound": "Product not found",
+      "backToList": "Back to products",
+      "createTitle": "Add product",
+      "created": "Product created.",
+      "createdImagesFailed": "Product created, but the images couldn't be uploaded. Add them again below.",
+      "saved": "Changes saved.",
+      "general": "General",
+      "images": "Photos",
+      "variants": "Pricing & stock",
+      "variantsHint": "Add one variant per size or weight (e.g. 500gm, 1kg). Set a compare-at price to show a discount.",
+      "statusHint": "Only active products are visible in the store.",
+      "organization": "Organization",
+      "noCategory": "No category",
+      "tagsHint": "Separate tags with commas. Used for search.",
+      "badges": "Storefront badges",
+      "badgesHint": "Highlight this product in home page sections.",
+      "dangerZone": "Danger zone",
+      "unsaved": "You have unsaved changes"
+    },
+    "fields": {
+      "name": "Product name",
+      "shortDescription": "Short description",
+      "description": "Description",
+      "status": "Status",
+      "category": "Category",
+      "tags": "Tags",
+      "orderNo": "Order number",
+      "isBestSelling": "Best selling",
+      "isNewArrival": "New arrival",
+      "isFeatured": "Featured"
+    },
+    "placeholders": {
+      "name": "e.g. Sundarban Honey",
+      "shortDescription": "One or two lines shown near the price",
+      "description": "Details, ingredients, benefits, how to use...",
+      "tags": "honey, organic, sundarban",
+      "orderNo": "Auto (end of list)"
+    },
+    "validation": {
+      "nameMin": "Name must be at least 2 characters",
+      "nameMax": "Name must be at most 200 characters",
+      "shortDescriptionMax": "Keep it under 500 characters",
+      "descriptionMax": "Description is too long",
+      "orderNo": "Enter a whole number of 0 or more",
+      "variantsRequired": "Add at least one variant",
+      "variantName": "Enter a size or weight",
+      "variantNameMax": "At most 50 characters",
+      "skuMax": "At most 64 characters",
+      "price": "Enter an amount like 950 or 950.50",
+      "stock": "Enter a whole number of 0 or more",
+      "compareAtPrice": "Must be higher than the price",
+      "variantNameUnique": "Each variant needs a different name",
+      "skuUnique": "Each SKU must be unique"
     }
   }
 }

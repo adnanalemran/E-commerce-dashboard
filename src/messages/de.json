@@ -141,11 +141,6 @@
       "categories": "Kategorien",
       "subcategories": "Unterkategorien",
       "users": "Benutzer"
-    },
-    "widget": {
-      "title": "#1 Tailwind CSS Dashboard",
-      "description": "Führendes Tailwind CSS Admin-Template mit über 500 UI-Komponenten und Seiten.",
-      "purchasePlan": "Plan kaufen"
     }
   },
   "header": {
@@ -1121,7 +1116,7 @@
       "unavailable": "Die Anmeldung mit Google ist derzeit nicht verfügbar."
     },
     "signIn": {
-      "metaTitle": "Anmelden | E-Commerce-Dashboard",
+      "metaTitle": "Anmelden | E-Dukan",
       "title": "Anmelden",
       "description": "Gib deine E-Mail oder Telefonnummer und dein Passwort ein, um dich anzumelden!",
       "keepLoggedIn": "Angemeldet bleiben",
@@ -1132,7 +1127,7 @@
       "signUpLink": "Registrieren"
     },
     "signUp": {
-      "metaTitle": "Registrieren | E-Commerce-Dashboard",
+      "metaTitle": "Registrieren | E-Dukan",
       "title": "Registrieren",
       "description": "Gib deine Daten ein, um ein Konto zu erstellen!",
       "termsPrefix": "Mit der Erstellung eines Kontos akzeptierst du die",
@@ -1145,7 +1140,7 @@
       "signInLink": "Anmelden"
     },
     "forgotPassword": {
-      "metaTitle": "Passwort vergessen | E-Commerce-Dashboard",
+      "metaTitle": "Passwort vergessen | E-Dukan",
       "title": "Passwort vergessen?",
       "description": "Gib die E-Mail-Adresse deines Kontos ein und wir senden dir einen Link zum Zurücksetzen deines Passworts.",
       "submit": "Link senden",
@@ -1155,7 +1150,7 @@
       "rememberPassword": "Passwort wieder eingefallen?"
     },
     "resetPassword": {
-      "metaTitle": "Passwort zurücksetzen | E-Commerce-Dashboard",
+      "metaTitle": "Passwort zurücksetzen | E-Dukan",
       "title": "Neues Passwort festlegen",
       "description": "Wähle ein starkes Passwort, das du noch nicht verwendet hast.",
       "submit": "Passwort zurücksetzen",
@@ -1167,7 +1162,7 @@
       "requestNewLink": "Neuen Link anfordern"
     },
     "verifyEmail": {
-      "metaTitle": "E-Mail bestätigen | E-Commerce-Dashboard",
+      "metaTitle": "E-Mail bestätigen | E-Dukan",
       "title": "E-Mail-Bestätigung",
       "verifying": "Deine E-Mail-Adresse wird bestätigt...",
       "successTitle": "E-Mail bestätigt",
@@ -1187,12 +1182,13 @@
       "resending": "Wird gesendet...",
       "sent": "Ein neuer Bestätigungslink wurde an {email} gesendet.",
       "error": "Die Bestätigungs-E-Mail konnte nicht erneut gesendet werden. Bitte versuche es später."
-    }
+    },
+    "brandTagline": "Führe deinen Shop an einem Ort: Produkte, Kategorien, Kunden und Team."
   },
   "catalog": {
     "categories": {
       "title": "Kategorien",
-      "metaTitle": "Kategorien | E-Commerce-Dashboard",
+      "metaTitle": "Kategorien | E-Dukan",
       "listTitle": "Alle Kategorien",
       "description": "Hauptgruppen, die deine Produkte ordnen.",
       "add": "Kategorie hinzufügen",
@@ -1205,7 +1201,7 @@
     },
     "subcategories": {
       "title": "Unterkategorien",
-      "metaTitle": "Unterkategorien | E-Commerce-Dashboard",
+      "metaTitle": "Unterkategorien | E-Dukan",
       "listTitle": "Alle Unterkategorien",
       "description": "Feinere Gruppen innerhalb einer Kategorie.",
       "add": "Unterkategorie hinzufügen",
@@ -1287,7 +1283,7 @@
   },
   "users": {
     "title": "Benutzer",
-    "metaTitle": "Benutzer | E-Commerce-Dashboard",
+    "metaTitle": "Benutzer | E-Dukan",
     "listTitle": "Alle Benutzer",
     "description": "Verwalte Admins, Manager und Kunden sowie deren Zugriffsrechte.",
     "add": "Benutzer hinzufügen",
@@ -1381,7 +1377,7 @@
   },
   "profile": {
     "title": "Profil",
-    "metaTitle": "Profil | E-Commerce-Dashboard",
+    "metaTitle": "Profil | E-Dukan",
     "description": "Deine Kontodaten, dein Passwort und deine Sitzungen.",
     "verified": "Bestätigt",
     "unverified": "Nicht bestätigt",
@@ -1459,6 +1455,173 @@
     "errors": {
       "network": "Der Server ist nicht erreichbar. Prüfe deine Verbindung und versuche es erneut.",
       "unexpected": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
+    }
+  },
+  "products": {
+    "title": "Produkte",
+    "metaTitle": "Produkte | E-Dukan",
+    "listTitle": "Alle Produkte",
+    "description": "Verwalte dein Sortiment: Preise nach Gewicht oder Größe, Bestand, Fotos und Shop-Badges.",
+    "add": "Produkt hinzufügen",
+    "searchPlaceholder": "Name oder SKU suchen...",
+    "empty": "Noch keine Produkte",
+    "emptyDescription": "Füge dein erstes Produkt hinzu, z. B. Honig in 500 g und 1 kg.",
+    "noResults": "Keine Treffer gefunden",
+    "noResultsHint": "Versuche eine andere Suche oder einen anderen Filter.",
+    "uncategorized": "Keine Kategorie",
+    "variantCount": "{count, plural, one {# Variante} other {# Varianten}}",
+    "save": "Spare {percent} %",
+    "statuses": {
+      "ACTIVE": "Aktiv",
+      "DRAFT": "Entwurf",
+      "ARCHIVED": "Archiviert"
+    },
+    "stock": {
+      "out": "Ausverkauft",
+      "low": "Geringer Bestand"
+    },
+    "flags": {
+      "bestSelling": "Bestseller",
+      "newArrival": "Neu",
+      "featured": "Empfohlen"
+    },
+    "columns": {
+      "product": "Produkt",
+      "category": "Kategorie",
+      "price": "Preis",
+      "stock": "Bestand",
+      "status": "Status",
+      "actions": "Aktionen"
+    },
+    "actions": {
+      "edit": "{name} bearbeiten",
+      "delete": "{name} löschen",
+      "cancel": "Abbrechen",
+      "save": "Änderungen speichern",
+      "saving": "Wird gespeichert...",
+      "create": "Produkt erstellen"
+    },
+    "filters": {
+      "all": "Alle",
+      "status": "Nach Status filtern",
+      "category": "Nach Kategorie filtern",
+      "allCategories": "Alle Kategorien",
+      "stockLabel": "Nach Bestand filtern",
+      "stock": {
+        "all": "Beliebiger Bestand",
+        "in": "Auf Lager",
+        "low": "Geringer Bestand",
+        "out": "Ausverkauft"
+      }
+    },
+    "sort": {
+      "label": "Sortieren",
+      "newest": "Neueste zuerst",
+      "updated": "Zuletzt aktualisiert",
+      "name": "Name (A–Z)",
+      "price_asc": "Preis: aufsteigend",
+      "price_desc": "Preis: absteigend",
+      "stock_asc": "Bestand: niedrigster zuerst"
+    },
+    "delete": {
+      "title": "{name} löschen?",
+      "description": "Das Produkt, seine Varianten und Fotos werden endgültig entfernt. Dies kann nicht rückgängig gemacht werden.",
+      "confirm": "Produkt löschen",
+      "deleting": "Wird gelöscht..."
+    },
+    "errors": {
+      "loadFailed": "Produkte konnten nicht geladen werden",
+      "retry": "Erneut versuchen",
+      "network": "Der Server ist nicht erreichbar. Prüfe deine Verbindung und versuche es erneut.",
+      "unexpected": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
+    },
+    "variants": {
+      "label": "Variante {number}",
+      "primary": "Wird auf Produktkarten angezeigt",
+      "save": "Spare {percent} %",
+      "remove": "Variante {number} entfernen",
+      "add": "Variante hinzufügen",
+      "fields": {
+        "name": "Größe / Gewicht",
+        "sku": "SKU",
+        "price": "Preis (৳)",
+        "compareAtPrice": "Vergleichspreis (৳)",
+        "stock": "Bestand"
+      },
+      "placeholders": {
+        "name": "500 g",
+        "sku": "GHEE-500",
+        "price": "950",
+        "compareAtPrice": "1000",
+        "stock": "0"
+      }
+    },
+    "images": {
+      "cover": "Titelbild",
+      "moveEarlier": "Nach vorne",
+      "moveLater": "Nach hinten",
+      "remove": "Bild entfernen",
+      "add": "Bilder hinzufügen",
+      "hint": "Bis zu {max} Bilder. Das erste ist das Titelbild. JPG, PNG, WebP, GIF oder AVIF, je max. 5 MB.",
+      "queuedHint": "Sie werden beim Erstellen des Produkts hochgeladen.",
+      "type": "Wähle JPG-, PNG-, WebP-, GIF- oder AVIF-Bilder.",
+      "size": "Jedes Bild darf höchstens 5 MB groß sein.",
+      "limit": "Ein Produkt kann höchstens {max} Bilder haben."
+    },
+    "editor": {
+      "notFound": "Produkt nicht gefunden",
+      "backToList": "Zurück zu den Produkten",
+      "createTitle": "Produkt hinzufügen",
+      "created": "Produkt erstellt.",
+      "createdImagesFailed": "Produkt erstellt, aber die Bilder konnten nicht hochgeladen werden. Füge sie unten erneut hinzu.",
+      "saved": "Änderungen gespeichert.",
+      "general": "Allgemein",
+      "images": "Fotos",
+      "variants": "Preise & Bestand",
+      "variantsHint": "Lege pro Größe oder Gewicht eine Variante an (z. B. 500 g, 1 kg). Mit einem Vergleichspreis wird ein Rabatt angezeigt.",
+      "statusHint": "Nur aktive Produkte sind im Shop sichtbar.",
+      "organization": "Organisation",
+      "noCategory": "Keine Kategorie",
+      "tagsHint": "Tags mit Kommas trennen. Werden für die Suche verwendet.",
+      "badges": "Shop-Badges",
+      "badgesHint": "Hebe dieses Produkt in Bereichen der Startseite hervor.",
+      "dangerZone": "Gefahrenbereich",
+      "unsaved": "Du hast ungespeicherte Änderungen"
+    },
+    "fields": {
+      "name": "Produktname",
+      "shortDescription": "Kurzbeschreibung",
+      "description": "Beschreibung",
+      "status": "Status",
+      "category": "Kategorie",
+      "tags": "Tags",
+      "orderNo": "Reihenfolgenummer",
+      "isBestSelling": "Bestseller",
+      "isNewArrival": "Neuheit",
+      "isFeatured": "Empfohlen"
+    },
+    "placeholders": {
+      "name": "z. B. Sundarban-Honig",
+      "shortDescription": "Ein bis zwei Zeilen neben dem Preis",
+      "description": "Details, Zutaten, Vorteile, Anwendung...",
+      "tags": "honig, bio, sundarban",
+      "orderNo": "Automatisch (ans Ende)"
+    },
+    "validation": {
+      "nameMin": "Der Name muss mindestens 2 Zeichen lang sein",
+      "nameMax": "Der Name darf höchstens 200 Zeichen lang sein",
+      "shortDescriptionMax": "Bitte unter 500 Zeichen bleiben",
+      "descriptionMax": "Die Beschreibung ist zu lang",
+      "orderNo": "Gib eine ganze Zahl ab 0 ein",
+      "variantsRequired": "Füge mindestens eine Variante hinzu",
+      "variantName": "Gib eine Größe oder ein Gewicht ein",
+      "variantNameMax": "Höchstens 50 Zeichen",
+      "skuMax": "Höchstens 64 Zeichen",
+      "price": "Gib einen Betrag wie 950 oder 950.50 ein",
+      "stock": "Gib eine ganze Zahl ab 0 ein",
+      "compareAtPrice": "Muss höher als der Preis sein",
+      "variantNameUnique": "Jede Variante braucht einen eigenen Namen",
+      "skuUnique": "Jede SKU muss eindeutig sein"
     }
   }
 }

@@ -13,6 +13,7 @@ export const navItems: NavItem[] = [
     key: "catalog",
     roles: STAFF_ROLES,
     subItems: [
+      { key: "products", path: "/products" },
       { key: "categories", path: "/categories" },
       { key: "subcategories", path: "/subcategories" },
     ],

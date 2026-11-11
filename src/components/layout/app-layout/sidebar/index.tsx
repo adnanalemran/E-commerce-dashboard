@@ -48,8 +48,8 @@ const findMatchingSubmenu = (sections: MenuSection[], path: string) => {
         nav.subItems?.some(
           (subItem) =>
             subItem.path === path ||
-            (subItem.path === "/ai-settings" &&
-              path.startsWith("/ai-settings")),
+            (subItem.path === "/products" &&
+              path.startsWith("/products/")),
         )
       ) {
         return { type: section.type, index };

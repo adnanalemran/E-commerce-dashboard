@@ -141,11 +141,6 @@
       "categories": "Categorías",
       "subcategories": "Subcategorías",
       "users": "Usuarios"
-    },
-    "widget": {
-      "title": "Panel n.º 1 de Tailwind CSS",
-      "description": "Plantilla de administración líder de Tailwind CSS con más de 500 componentes y páginas de UI.",
-      "purchasePlan": "Comprar plan"
     }
   },
   "header": {
@@ -1121,7 +1116,7 @@
       "unavailable": "El inicio de sesión con Google no está disponible en este momento."
     },
     "signIn": {
-      "metaTitle": "Iniciar sesión | Panel de comercio electrónico",
+      "metaTitle": "Iniciar sesión | E-Dukan",
       "title": "Iniciar sesión",
       "description": "¡Introduce tu correo o teléfono y tu contraseña para iniciar sesión!",
       "keepLoggedIn": "Mantener la sesión iniciada",
@@ -1132,7 +1127,7 @@
       "signUpLink": "Regístrate"
     },
     "signUp": {
-      "metaTitle": "Registrarse | Panel de comercio electrónico",
+      "metaTitle": "Registrarse | E-Dukan",
       "title": "Registrarse",
       "description": "¡Introduce tus datos para crear una cuenta!",
       "termsPrefix": "Al crear una cuenta aceptas los",
@@ -1145,7 +1140,7 @@
       "signInLink": "Iniciar sesión"
     },
     "forgotPassword": {
-      "metaTitle": "Contraseña olvidada | Panel de comercio electrónico",
+      "metaTitle": "Contraseña olvidada | E-Dukan",
       "title": "¿Olvidaste tu contraseña?",
       "description": "Introduce el correo vinculado a tu cuenta y te enviaremos un enlace para restablecer tu contraseña.",
       "submit": "Enviar enlace",
@@ -1155,7 +1150,7 @@
       "rememberPassword": "¿Recordaste tu contraseña?"
     },
     "resetPassword": {
-      "metaTitle": "Restablecer contraseña | Panel de comercio electrónico",
+      "metaTitle": "Restablecer contraseña | E-Dukan",
       "title": "Establece una nueva contraseña",
       "description": "Elige una contraseña segura que no hayas usado antes.",
       "submit": "Restablecer contraseña",
@@ -1167,7 +1162,7 @@
       "requestNewLink": "Solicitar un enlace nuevo"
     },
     "verifyEmail": {
-      "metaTitle": "Verificar correo | Panel de comercio electrónico",
+      "metaTitle": "Verificar correo | E-Dukan",
       "title": "Verificación de correo",
       "verifying": "Verificando tu correo electrónico...",
       "successTitle": "Correo verificado",
@@ -1187,12 +1182,13 @@
       "resending": "Enviando...",
       "sent": "Se ha enviado un nuevo enlace de verificación a {email}.",
       "error": "No pudimos reenviar el correo de verificación. Inténtalo más tarde."
-    }
+    },
+    "brandTagline": "Gestiona tu tienda en un solo lugar: productos, categorías, clientes y equipo."
   },
   "catalog": {
     "categories": {
       "title": "Categorías",
-      "metaTitle": "Categorías | Panel de comercio electrónico",
+      "metaTitle": "Categorías | E-Dukan",
       "listTitle": "Todas las categorías",
       "description": "Grupos principales que organizan tus productos.",
       "add": "Añadir categoría",
@@ -1205,7 +1201,7 @@
     },
     "subcategories": {
       "title": "Subcategorías",
-      "metaTitle": "Subcategorías | Panel de comercio electrónico",
+      "metaTitle": "Subcategorías | E-Dukan",
       "listTitle": "Todas las subcategorías",
       "description": "Grupos más específicos dentro de una categoría.",
       "add": "Añadir subcategoría",
@@ -1287,7 +1283,7 @@
   },
   "users": {
     "title": "Usuarios",
-    "metaTitle": "Usuarios | Panel de comercio electrónico",
+    "metaTitle": "Usuarios | E-Dukan",
     "listTitle": "Todos los usuarios",
     "description": "Gestiona administradores, gerentes y clientes, y a qué pueden acceder.",
     "add": "Añadir usuario",
@@ -1381,7 +1377,7 @@
   },
   "profile": {
     "title": "Perfil",
-    "metaTitle": "Perfil | Panel de comercio electrónico",
+    "metaTitle": "Perfil | E-Dukan",
     "description": "Los datos de tu cuenta, tu contraseña y tus sesiones.",
     "verified": "Verificado",
     "unverified": "Sin verificar",
@@ -1459,6 +1455,173 @@
     "errors": {
       "network": "No se puede conectar con el servidor. Comprueba tu conexión e inténtalo de nuevo.",
       "unexpected": "Algo salió mal. Inténtalo de nuevo."
+    }
+  },
+  "products": {
+    "title": "Productos",
+    "metaTitle": "Productos | E-Dukan",
+    "listTitle": "Todos los productos",
+    "description": "Gestiona lo que vendes: precios por peso o tamaño, stock, fotos e insignias de la tienda.",
+    "add": "Añadir producto",
+    "searchPlaceholder": "Buscar nombre o SKU...",
+    "empty": "Aún no hay productos",
+    "emptyDescription": "Añade tu primer producto, por ejemplo miel en 500 g y 1 kg.",
+    "noResults": "No se encontraron coincidencias",
+    "noResultsHint": "Prueba con otra búsqueda o filtro.",
+    "uncategorized": "Sin categoría",
+    "variantCount": "{count, plural, one {# variante} other {# variantes}}",
+    "save": "Ahorra {percent}%",
+    "statuses": {
+      "ACTIVE": "Activo",
+      "DRAFT": "Borrador",
+      "ARCHIVED": "Archivado"
+    },
+    "stock": {
+      "out": "Agotado",
+      "low": "Stock bajo"
+    },
+    "flags": {
+      "bestSelling": "Más vendido",
+      "newArrival": "Nuevo",
+      "featured": "Destacado"
+    },
+    "columns": {
+      "product": "Producto",
+      "category": "Categoría",
+      "price": "Precio",
+      "stock": "Stock",
+      "status": "Estado",
+      "actions": "Acciones"
+    },
+    "actions": {
+      "edit": "Editar {name}",
+      "delete": "Eliminar {name}",
+      "cancel": "Cancelar",
+      "save": "Guardar cambios",
+      "saving": "Guardando...",
+      "create": "Crear producto"
+    },
+    "filters": {
+      "all": "Todos",
+      "status": "Filtrar por estado",
+      "category": "Filtrar por categoría",
+      "allCategories": "Todas las categorías",
+      "stockLabel": "Filtrar por stock",
+      "stock": {
+        "all": "Cualquier stock",
+        "in": "En stock",
+        "low": "Stock bajo",
+        "out": "Agotado"
+      }
+    },
+    "sort": {
+      "label": "Ordenar",
+      "newest": "Más recientes",
+      "updated": "Actualizados recientemente",
+      "name": "Nombre (A–Z)",
+      "price_asc": "Precio: menor a mayor",
+      "price_desc": "Precio: mayor a menor",
+      "stock_asc": "Stock: menor primero"
+    },
+    "delete": {
+      "title": "¿Eliminar {name}?",
+      "description": "El producto, sus variantes y sus fotos se eliminan de forma permanente. No se puede deshacer.",
+      "confirm": "Eliminar producto",
+      "deleting": "Eliminando..."
+    },
+    "errors": {
+      "loadFailed": "No se pudieron cargar los productos",
+      "retry": "Reintentar",
+      "network": "No se puede conectar con el servidor. Comprueba tu conexión e inténtalo de nuevo.",
+      "unexpected": "Algo salió mal. Inténtalo de nuevo."
+    },
+    "variants": {
+      "label": "Variante {number}",
+      "primary": "Se muestra en las tarjetas",
+      "save": "Ahorra {percent}%",
+      "remove": "Quitar variante {number}",
+      "add": "Añadir variante",
+      "fields": {
+        "name": "Tamaño / peso",
+        "sku": "SKU",
+        "price": "Precio (৳)",
+        "compareAtPrice": "Precio anterior (৳)",
+        "stock": "Stock"
+      },
+      "placeholders": {
+        "name": "500 g",
+        "sku": "GHEE-500",
+        "price": "950",
+        "compareAtPrice": "1000",
+        "stock": "0"
+      }
+    },
+    "images": {
+      "cover": "Portada",
+      "moveEarlier": "Mover antes",
+      "moveLater": "Mover después",
+      "remove": "Quitar imagen",
+      "add": "Añadir imágenes",
+      "hint": "Hasta {max} imágenes. La primera es la portada. JPG, PNG, WebP, GIF o AVIF, máx. 5 MB cada una.",
+      "queuedHint": "Se suben al crear el producto.",
+      "type": "Elige imágenes JPG, PNG, WebP, GIF o AVIF.",
+      "size": "Cada imagen debe ocupar 5 MB o menos.",
+      "limit": "Un producto puede tener como máximo {max} imágenes."
+    },
+    "editor": {
+      "notFound": "Producto no encontrado",
+      "backToList": "Volver a productos",
+      "createTitle": "Añadir producto",
+      "created": "Producto creado.",
+      "createdImagesFailed": "Producto creado, pero no se pudieron subir las imágenes. Vuelve a añadirlas abajo.",
+      "saved": "Cambios guardados.",
+      "general": "General",
+      "images": "Fotos",
+      "variants": "Precios y stock",
+      "variantsHint": "Añade una variante por tamaño o peso (p. ej. 500 g, 1 kg). Indica un precio anterior para mostrar un descuento.",
+      "statusHint": "Solo los productos activos se ven en la tienda.",
+      "organization": "Organización",
+      "noCategory": "Sin categoría",
+      "tagsHint": "Separa las etiquetas con comas. Se usan en la búsqueda.",
+      "badges": "Insignias de la tienda",
+      "badgesHint": "Destaca este producto en las secciones de la página de inicio.",
+      "dangerZone": "Zona de peligro",
+      "unsaved": "Tienes cambios sin guardar"
+    },
+    "fields": {
+      "name": "Nombre del producto",
+      "shortDescription": "Descripción corta",
+      "description": "Descripción",
+      "status": "Estado",
+      "category": "Categoría",
+      "tags": "Etiquetas",
+      "orderNo": "Número de orden",
+      "isBestSelling": "Más vendido",
+      "isNewArrival": "Novedad",
+      "isFeatured": "Destacado"
+    },
+    "placeholders": {
+      "name": "p. ej. Miel de Sundarban",
+      "shortDescription": "Una o dos líneas junto al precio",
+      "description": "Detalles, ingredientes, beneficios, modo de uso...",
+      "tags": "miel, orgánico, sundarban",
+      "orderNo": "Automático (al final)"
+    },
+    "validation": {
+      "nameMin": "El nombre debe tener al menos 2 caracteres",
+      "nameMax": "El nombre debe tener como máximo 200 caracteres",
+      "shortDescriptionMax": "Usa menos de 500 caracteres",
+      "descriptionMax": "La descripción es demasiado larga",
+      "orderNo": "Introduce un número entero igual o mayor que 0",
+      "variantsRequired": "Añade al menos una variante",
+      "variantName": "Introduce un tamaño o peso",
+      "variantNameMax": "Máximo 50 caracteres",
+      "skuMax": "Máximo 64 caracteres",
+      "price": "Introduce un importe como 950 o 950.50",
+      "stock": "Introduce un número entero igual o mayor que 0",
+      "compareAtPrice": "Debe ser mayor que el precio",
+      "variantNameUnique": "Cada variante necesita un nombre distinto",
+      "skuUnique": "Cada SKU debe ser único"
     }
   }
 }

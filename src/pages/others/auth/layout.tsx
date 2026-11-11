@@ -1,8 +1,11 @@
 import GridShape from "@/components/shared/grid-shape";
+import { useTranslations } from "@/i18n";
 import { Link, Outlet } from "react-router";
 import ThemeToggler from "./theme-toggler";
 
 export default function AuthLayout() {
+  const t = useTranslations("auth");
+
   return (
     <div className="relative z-1 bg-white p-6 sm:p-0 dark:bg-gray-900">
       <div className="relative flex h-screen w-full flex-col justify-center sm:p-0 lg:flex-row dark:bg-gray-900">
@@ -14,14 +17,14 @@ export default function AuthLayout() {
             <div className="flex max-w-xs flex-col items-center">
               <Link to="/" className="mb-4 block">
                 <img
-                  width={231}
+                  width={210}
                   height={48}
                   src="/images/logo/auth-logo.svg"
-                  alt="Logo"
+                  alt="E-Dukan"
                 />
               </Link>
               <p className="text-center text-gray-400 dark:text-white/60">
-                Free and Open-Source Tailwind CSS Admin Dashboard Template
+                {t("brandTagline")}
               </p>
             </div>
           </div>

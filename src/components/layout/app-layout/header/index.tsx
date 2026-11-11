@@ -62,14 +62,14 @@ export default function AppHeader() {
 
           <Link to="/" className="xl:hidden">
             <img
-              className="h-8 w-38.5 dark:hidden"
+              className="h-8 w-auto dark:hidden"
               src="/images/logo/logo.svg"
-              alt="Logo"
+              alt="E-Dukan"
             />
             <img
-              className="hidden h-8 w-38.5 dark:block"
+              className="hidden h-8 w-auto dark:block"
               src="/images/logo/logo-dark.svg"
-              alt="Logo"
+              alt="E-Dukan"
             />
           </Link>
 

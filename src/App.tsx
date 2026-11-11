@@ -6,6 +6,8 @@ import {
 } from "@/components/shared/route-guards";
 import CategoriesPage from "@/pages/main/catalog/categories";
 import SubcategoriesPage from "@/pages/main/catalog/subcategories";
+import ProductsPage from "@/pages/main/products";
+import ProductEditorPage from "@/pages/main/products/editor";
 import EcommercePage from "@/pages/main/dashboard/ecommerce";
 import { Error404Page } from "@/pages/main/pages";
 import ProfilePage from "@/pages/main/profile";
@@ -31,6 +33,9 @@ export default function App() {
 
           {/* Catalog (admins & managers) */}
           <Route element={<RoleRoute roles={STAFF_ROLES} />}>
+            <Route path="/products" element={<ProductsPage />} />
+            <Route path="/products/new" element={<ProductEditorPage />} />
+            <Route path="/products/:id/edit" element={<ProductEditorPage />} />
             <Route path="/categories" element={<CategoriesPage />} />
             <Route path="/subcategories" element={<SubcategoriesPage />} />
           </Route>

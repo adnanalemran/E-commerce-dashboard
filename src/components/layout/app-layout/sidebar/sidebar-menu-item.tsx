@@ -33,8 +33,8 @@ export default function SidebarMenuItem({
     nav.subItems?.some(
       (subItem) =>
         subItem.path === pathname ||
-        (subItem.path === "/ai-settings" &&
-          pathname.startsWith("/ai-settings")),
+        (subItem.path === "/products" &&
+          pathname.startsWith("/products/")),
     ),
   );
   const isDirectActive = Boolean(nav.path && nav.path === pathname);
@@ -93,8 +93,8 @@ export default function SidebarMenuItem({
                   subItem={subItem}
                   isActive={
                     subItem.path === pathname ||
-                    (subItem.path === "/ai-settings" &&
-                      pathname.startsWith("/ai-settings"))
+                    (subItem.path === "/products" &&
+                      pathname.startsWith("/products/"))
                   }
                 />
               ))}
