@@ -23,7 +23,7 @@ import { Link } from "react-router";
 import CategoryFormDialog from "./category-form-dialog";
 import CategoryTable from "./category-table";
 import DeleteCategoryDialog from "./delete-category-dialog";
-import TablePagination from "./table-pagination";
+import TablePagination from "@/components/shared/table-pagination";
 import { PAGE_SIZE, type CategoryLevel } from "./types";
 import { useCategoryList, useRootCategories } from "./use-categories";
 

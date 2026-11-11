@@ -17,16 +17,7 @@ export function getAuthErrorMessage(error: unknown, t: Translator): string {
   });
 }
 
-/** Same rules as the backend `registerSchema` / `resetPasswordSchema`. */
-export function createPasswordSchema(t: Translator) {
-  return z
-    .string()
-    .min(8, t("validation.passwordMin"))
-    .regex(/[A-Z]/, t("validation.passwordUppercase"))
-    .regex(/[a-z]/, t("validation.passwordLowercase"))
-    .regex(/[0-9]/, t("validation.passwordNumber"))
-    .regex(/[\W_]/, t("validation.passwordSpecial"));
-}
+export { createPasswordSchema } from "@/utils/password-schema";
 
 export function createEmailSchema(t: Translator) {
   return z

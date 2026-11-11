@@ -35,7 +35,7 @@ export default function TablePagination({
   pageSize,
   onPageChange,
 }: TablePaginationProps) {
-  const t = useTranslations("catalog.pagination");
+  const t = useTranslations("common.pagination");
   if (total === 0) return null;
 
   const from = (page - 1) * pageSize + 1;

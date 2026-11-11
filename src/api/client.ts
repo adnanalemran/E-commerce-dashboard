@@ -69,6 +69,11 @@ export function setSession(session: AuthSession) {
   notify(session.user);
 }
 
+/** Replaces the signed-in user's data (e.g. after a profile update) without touching tokens. */
+export function updateSessionUser(user: AuthUser) {
+  if (accessToken) notify(user);
+}
+
 export function clearSession({ broadcast = false } = {}) {
   accessToken = null;
   notify(null);

@@ -16,9 +16,7 @@ import { getLanguage, languages } from "@/i18n/languages";
 import type { Locale } from "@/i18n/routing";
 import {
   ChevronDownIcon,
-  GearIcon,
   GlobeIcon,
-  InfoCircleIcon,
   LogOutIcon,
   UserCircleIcon,
 } from "@/icons";
@@ -92,16 +90,6 @@ export default function UserDropdown() {
         <DropdownMenuItem render={<Link to="/profile" />}>
           <UserCircleIcon className="size-6" />
           {t("editProfile")}
-        </DropdownMenuItem>
-
-        <DropdownMenuItem render={<Link to="/profile" />}>
-          <GearIcon className="size-6" />
-          {t("accountSettings")}
-        </DropdownMenuItem>
-
-        <DropdownMenuItem render={<Link to="/profile" />}>
-          <InfoCircleIcon className="size-6" />
-          {t("support")}
         </DropdownMenuItem>
 
         <DropdownMenuSub>

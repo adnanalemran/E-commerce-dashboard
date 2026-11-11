@@ -9,7 +9,14 @@
     "filter": "Filter",
     "seeAll": "See all",
     "confirm": "Confirm",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "pagination": {
+      "label": "Pagination",
+      "summary": "Showing {from}–{to} of {total}",
+      "previous": "Previous page",
+      "next": "Next page",
+      "page": "Page {page}"
+    }
   },
   "sidebar": {
     "groups": {
@@ -132,7 +139,8 @@
       "variants05": "Variants 05",
       "catalog": "Catalog",
       "categories": "Categories",
-      "subcategories": "Subcategories"
+      "subcategories": "Subcategories",
+      "users": "Users"
     },
     "widget": {
       "title": "#1 Tailwind CSS Dashboard",
@@ -1265,16 +1273,190 @@
       "delete": "Delete {name}",
       "featured": "Featured: {name}"
     },
-    "pagination": {
-      "label": "Pagination",
-      "summary": "Showing {from}–{to} of {total}",
-      "previous": "Previous page",
-      "next": "Next page",
-      "page": "Page {page}"
-    },
     "errors": {
       "loadFailed": "Couldn't load the list",
       "retry": "Try again",
+      "network": "Unable to reach the server. Check your connection and try again.",
+      "unexpected": "Something went wrong. Please try again."
+    }
+  },
+  "accessDenied": {
+    "title": "You don't have access",
+    "description": "Your role doesn't allow viewing this page. Ask an admin if you need access.",
+    "backHome": "Back to dashboard"
+  },
+  "users": {
+    "title": "Users",
+    "metaTitle": "Users | E-commerce Dashboard",
+    "listTitle": "All users",
+    "description": "Manage admins, managers and customers, and what they can access.",
+    "add": "Add user",
+    "searchPlaceholder": "Search name, email or phone...",
+    "you": "You",
+    "empty": "No users yet",
+    "emptyDescription": "Users appear here once they sign up or you add them.",
+    "noResults": "No matches found",
+    "noResultsHint": "Try a different search or filter.",
+    "filters": {
+      "role": "Filter by role",
+      "allRoles": "All",
+      "status": "Filter by status",
+      "allStatuses": "All statuses"
+    },
+    "tabs": {
+      "ADMIN": "Admins",
+      "MANAGER": "Managers",
+      "CUSTOMER": "Customers"
+    },
+    "roles": {
+      "SUPER_ADMIN": "Super admin",
+      "ADMIN": "Admin",
+      "MANAGER": "Manager",
+      "CUSTOMER": "Customer"
+    },
+    "statuses": {
+      "ACTIVE": "Active",
+      "INACTIVE": "Inactive",
+      "SUSPENDED": "Suspended",
+      "DELETED": "Deleted"
+    },
+    "columns": {
+      "user": "User",
+      "role": "Role",
+      "status": "Status",
+      "joined": "Joined",
+      "actions": "Actions"
+    },
+    "actions": {
+      "edit": "Edit {name}",
+      "delete": "Delete {name}"
+    },
+    "form": {
+      "createTitle": "Add user",
+      "createDescription": "Create an account and choose what the person can do.",
+      "editTitle": "Edit user",
+      "editDescription": "Update details, role or account status.",
+      "name": "Full name",
+      "namePlaceholder": "e.g. Jane Doe",
+      "email": "Email",
+      "emailPlaceholder": "name@example.com",
+      "phone": "Phone",
+      "password": "Password",
+      "passwordPlaceholder": "Set an initial password",
+      "passwordHint": "At least 8 characters with an uppercase letter, a lowercase letter, a number and a special character.",
+      "role": "Role",
+      "status": "Status",
+      "roleHint": "Admins manage everything including users. Managers run the shop catalog. Customers can only shop.",
+      "selfHint": "You can't change your own role or status.",
+      "cancel": "Cancel",
+      "create": "Create user",
+      "save": "Save changes",
+      "saving": "Saving..."
+    },
+    "validation": {
+      "nameMin": "Name must be at least 2 characters",
+      "nameMax": "Name must be at most 100 characters",
+      "emailInvalid": "Enter a valid email address",
+      "phoneInvalid": "Use international format, e.g. +1234567890",
+      "contactRequired": "Enter an email or a phone number",
+      "passwordMin": "Password must be at least 8 characters",
+      "passwordUppercase": "Password must contain at least one uppercase letter",
+      "passwordLowercase": "Password must contain at least one lowercase letter",
+      "passwordNumber": "Password must contain at least one number",
+      "passwordSpecial": "Password must contain at least one special character",
+      "roleRequired": "Select a role"
+    },
+    "delete": {
+      "title": "Delete {name}?",
+      "description": "The account is deactivated and signed out everywhere. It will no longer appear in this list.",
+      "confirm": "Delete user",
+      "deleting": "Deleting..."
+    },
+    "errors": {
+      "loadFailed": "Couldn't load users",
+      "retry": "Try again",
+      "network": "Unable to reach the server. Check your connection and try again.",
+      "unexpected": "Something went wrong. Please try again."
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "metaTitle": "Profile | E-commerce Dashboard",
+    "description": "Your account details, password and sessions.",
+    "verified": "Verified",
+    "unverified": "Not verified",
+    "fields": {
+      "name": "Full name",
+      "email": "Email address",
+      "phone": "Phone",
+      "memberSince": "Member since"
+    },
+    "personal": {
+      "title": "Personal information",
+      "edit": "Edit"
+    },
+    "avatar": {
+      "change": "Change profile photo",
+      "type": "Choose a JPG, PNG, WebP, GIF or AVIF image.",
+      "size": "The image must be 5 MB or smaller."
+    },
+    "edit": {
+      "title": "Edit profile",
+      "description": "Update how your name and email appear.",
+      "emailHint": "Changing your email sends a confirmation link to the new address.",
+      "phoneHint": "Ask an admin to change your phone number."
+    },
+    "emailChange": {
+      "pendingTitle": "Confirm your new email",
+      "pendingDescription": "We sent a link to {email}. Your email changes once you open it."
+    },
+    "security": {
+      "title": "Security",
+      "passwordTitle": "Password",
+      "passwordDescription": "Change the password you use to sign in.",
+      "passwordAction": "Change password",
+      "signOutAllTitle": "Sign out of all devices",
+      "signOutAllDescription": "End every active session, including this one.",
+      "signOutAllAction": "Sign out everywhere",
+      "signOutAllConfirmTitle": "Sign out of all devices?",
+      "signOutAllConfirmDescription": "You'll be signed out here and on every other device."
+    },
+    "password": {
+      "title": "Change password",
+      "description": "Use a strong password you don't use anywhere else.",
+      "current": "Current password",
+      "new": "New password",
+      "confirm": "Confirm new password",
+      "submit": "Change password",
+      "signOutNotice": "For your security, every session is signed out after the change.",
+      "successTitle": "Password changed",
+      "successDescription": "Sign in again with your new password.",
+      "signInAgain": "Sign in again"
+    },
+    "danger": {
+      "title": "Danger zone",
+      "deactivateTitle": "Deactivate account",
+      "deactivateDescription": "Disable your account and sign out everywhere. An admin can reactivate it.",
+      "deactivateAction": "Deactivate",
+      "confirmTitle": "Deactivate your account?",
+      "confirmDescription": "You'll be signed out and won't be able to sign in until an admin reactivates the account."
+    },
+    "actions": {
+      "cancel": "Cancel",
+      "save": "Save changes",
+      "saving": "Saving...",
+      "working": "Please wait..."
+    },
+    "validation": {
+      "nameMin": "Name must be at least 2 characters",
+      "nameMax": "Name must be at most 100 characters",
+      "emailInvalid": "Enter a valid email address",
+      "currentPasswordRequired": "Enter your current password",
+      "confirmPasswordRequired": "Confirm your new password",
+      "passwordsMismatch": "Passwords do not match",
+      "passwordSame": "The new password must be different from the current one"
+    },
+    "errors": {
       "network": "Unable to reach the server. Check your connection and try again.",
       "unexpected": "Something went wrong. Please try again."
     }

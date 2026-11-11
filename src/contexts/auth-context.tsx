@@ -4,6 +4,7 @@ import {
   onSessionChange,
   refreshSession,
   setSession,
+  updateSessionUser,
 } from "@/api/client";
 import type { AuthUser } from "@/api/types";
 import {
@@ -24,6 +25,8 @@ type AuthContextType = {
   loginWithGoogle: (idToken: string, rememberMe?: boolean) => Promise<AuthUser>;
   /** Ends the current session (and every session when `allDevices` is set). */
   logout: (options?: { allDevices?: boolean }) => Promise<void>;
+  /** Replaces the cached user after a profile change. */
+  updateUser: (user: AuthUser) => void;
 };
 
 type AuthState = Pick<AuthContextType, "status" | "user">;
@@ -81,7 +84,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   return (
     <AuthContext.Provider
-      value={{ ...state, login, register, loginWithGoogle, logout }}
+      value={{
+        ...state,
+        login,
+        register,
+        loginWithGoogle,
+        logout,
+        updateUser: updateSessionUser,
+      }}
     >
       {children}
     </AuthContext.Provider>

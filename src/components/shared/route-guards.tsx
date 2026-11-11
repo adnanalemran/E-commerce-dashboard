@@ -1,5 +1,7 @@
+import { AccessDenied } from "@/components/shared/access-denied";
 import { Spinner } from "@/components/ui/spinner";
 import { useAuth } from "@/contexts";
+import { hasAnyRole } from "@/utils/roles";
 import { Navigate, Outlet, useLocation } from "react-router";
 
 interface RedirectState {
@@ -28,6 +30,17 @@ export function ProtectedRoute() {
     return <Navigate to="/signin" replace state={state} />;
   }
 
+  return <Outlet />;
+}
+
+/**
+ * Renders child routes only when the signed-in user has one of `roles`;
+ * otherwise shows an access-denied message inside the current layout.
+ * Use inside `ProtectedRoute`.
+ */
+export function RoleRoute({ roles }: { roles: readonly string[] }) {
+  const { user } = useAuth();
+  if (!hasAnyRole(user?.roles, roles)) return <AccessDenied />;
   return <Outlet />;
 }
 

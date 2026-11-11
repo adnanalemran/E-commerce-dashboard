@@ -1,29 +1,42 @@
+import { profileApi } from "@/api/profile";
 import { PageBreadcrumb } from "@/components/shared/page-breadcrumb";
 import { PageMeta } from "@/components/shared/page-meta";
-import AddressSection from "./address";
-import DangerZone from "./danger";
-import PersonalInformationSection from "./personal-information";
-import SecuritySection from "./security";
+import { useAuth } from "@/contexts";
+import { useTranslations } from "@/i18n";
+import { useEffect, useEffectEvent } from "react";
+import DangerZone from "./danger-zone";
+import PersonalInformation from "./personal-information";
+import SecuritySection from "./security-section";
 
 export default function ProfilePage() {
+  const t = useTranslations("profile");
+  const { user, updateUser } = useAuth();
+
+  const onFetched = useEffectEvent(updateUser);
+
+  // Refresh from the server so the page never shows stale session data.
+  useEffect(() => {
+    const controller = new AbortController();
+    profileApi
+      .get(controller.signal)
+      .then(onFetched)
+      .catch(() => {
+        // Keep showing the session copy; API errors surface on actions.
+      });
+    return () => controller.abort();
+  }, []);
+
+  if (!user) return null;
+
   return (
-    <div>
-      <PageMeta
-        title="React.js Profile Dashboard | TailAdmin - React.js Admin Dashboard Template"
-        description="This is React.js Profile Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template"
-      />
-      <PageBreadcrumb pageTitle="Profile" />
-      <div className="rounded-2xl border border-gray-200 bg-white p-5 lg:p-6 dark:border-gray-800 dark:bg-white/3">
-        <h3 className="mb-5 text-lg font-semibold text-gray-800 lg:mb-7 dark:text-white/90">
-          Profile
-        </h3>
-        <div className="space-y-6">
-          <PersonalInformationSection />
-          <AddressSection />
-          <SecuritySection />
-          <DangerZone />
-        </div>
+    <>
+      <PageMeta title={t("metaTitle")} description={t("description")} />
+      <PageBreadcrumb pageTitle={t("title")} />
+      <div className="space-y-6">
+        <PersonalInformation user={user} />
+        <SecuritySection />
+        <DangerZone />
       </div>
-    </div>
+    </>
   );
 }

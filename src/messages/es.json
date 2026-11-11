@@ -9,7 +9,14 @@
     "filter": "Filtrar",
     "seeAll": "Ver todo",
     "confirm": "Confirmar",
-    "cancel": "Cancelar"
+    "cancel": "Cancelar",
+    "pagination": {
+      "label": "Paginación",
+      "summary": "Mostrando {from}–{to} de {total}",
+      "previous": "Página anterior",
+      "next": "Página siguiente",
+      "page": "Página {page}"
+    }
   },
   "sidebar": {
     "groups": {
@@ -132,7 +139,8 @@
       "variants05": "Variantes 05",
       "catalog": "Catálogo",
       "categories": "Categorías",
-      "subcategories": "Subcategorías"
+      "subcategories": "Subcategorías",
+      "users": "Usuarios"
     },
     "widget": {
       "title": "Panel n.º 1 de Tailwind CSS",
@@ -1265,16 +1273,190 @@
       "delete": "Eliminar {name}",
       "featured": "Destacada: {name}"
     },
-    "pagination": {
-      "label": "Paginación",
-      "summary": "Mostrando {from}–{to} de {total}",
-      "previous": "Página anterior",
-      "next": "Página siguiente",
-      "page": "Página {page}"
-    },
     "errors": {
       "loadFailed": "No se pudo cargar la lista",
       "retry": "Reintentar",
+      "network": "No se puede conectar con el servidor. Comprueba tu conexión e inténtalo de nuevo.",
+      "unexpected": "Algo salió mal. Inténtalo de nuevo."
+    }
+  },
+  "accessDenied": {
+    "title": "No tienes acceso",
+    "description": "Tu rol no permite ver esta página. Pide acceso a un administrador si lo necesitas.",
+    "backHome": "Volver al panel"
+  },
+  "users": {
+    "title": "Usuarios",
+    "metaTitle": "Usuarios | Panel de comercio electrónico",
+    "listTitle": "Todos los usuarios",
+    "description": "Gestiona administradores, gerentes y clientes, y a qué pueden acceder.",
+    "add": "Añadir usuario",
+    "searchPlaceholder": "Buscar nombre, correo o teléfono...",
+    "you": "Tú",
+    "empty": "Aún no hay usuarios",
+    "emptyDescription": "Los usuarios aparecen aquí cuando se registran o los añades.",
+    "noResults": "No se encontraron coincidencias",
+    "noResultsHint": "Prueba con otra búsqueda o filtro.",
+    "filters": {
+      "role": "Filtrar por rol",
+      "allRoles": "Todos",
+      "status": "Filtrar por estado",
+      "allStatuses": "Todos los estados"
+    },
+    "tabs": {
+      "ADMIN": "Administradores",
+      "MANAGER": "Gerentes",
+      "CUSTOMER": "Clientes"
+    },
+    "roles": {
+      "SUPER_ADMIN": "Superadministrador",
+      "ADMIN": "Administrador",
+      "MANAGER": "Gerente",
+      "CUSTOMER": "Cliente"
+    },
+    "statuses": {
+      "ACTIVE": "Activo",
+      "INACTIVE": "Inactivo",
+      "SUSPENDED": "Suspendido",
+      "DELETED": "Eliminado"
+    },
+    "columns": {
+      "user": "Usuario",
+      "role": "Rol",
+      "status": "Estado",
+      "joined": "Alta",
+      "actions": "Acciones"
+    },
+    "actions": {
+      "edit": "Editar {name}",
+      "delete": "Eliminar {name}"
+    },
+    "form": {
+      "createTitle": "Añadir usuario",
+      "createDescription": "Crea una cuenta y elige qué puede hacer esta persona.",
+      "editTitle": "Editar usuario",
+      "editDescription": "Actualiza los datos, el rol o el estado de la cuenta.",
+      "name": "Nombre completo",
+      "namePlaceholder": "p. ej. Ana García",
+      "email": "Correo electrónico",
+      "emailPlaceholder": "nombre@ejemplo.com",
+      "phone": "Teléfono",
+      "password": "Contraseña",
+      "passwordPlaceholder": "Establece una contraseña inicial",
+      "passwordHint": "Al menos 8 caracteres con una mayúscula, una minúscula, un número y un carácter especial.",
+      "role": "Rol",
+      "status": "Estado",
+      "roleHint": "Los administradores gestionan todo, incluidos los usuarios. Los gerentes llevan el catálogo. Los clientes solo compran.",
+      "selfHint": "No puedes cambiar tu propio rol ni estado.",
+      "cancel": "Cancelar",
+      "create": "Crear usuario",
+      "save": "Guardar cambios",
+      "saving": "Guardando..."
+    },
+    "validation": {
+      "nameMin": "El nombre debe tener al menos 2 caracteres",
+      "nameMax": "El nombre debe tener como máximo 100 caracteres",
+      "emailInvalid": "Introduce un correo electrónico válido",
+      "phoneInvalid": "Usa el formato internacional, p. ej. +1234567890",
+      "contactRequired": "Introduce un correo o un número de teléfono",
+      "passwordMin": "La contraseña debe tener al menos 8 caracteres",
+      "passwordUppercase": "La contraseña debe contener al menos una letra mayúscula",
+      "passwordLowercase": "La contraseña debe contener al menos una letra minúscula",
+      "passwordNumber": "La contraseña debe contener al menos un número",
+      "passwordSpecial": "La contraseña debe contener al menos un carácter especial",
+      "roleRequired": "Selecciona un rol"
+    },
+    "delete": {
+      "title": "¿Eliminar a {name}?",
+      "description": "La cuenta se desactiva y se cierra su sesión en todas partes. Ya no aparecerá en esta lista.",
+      "confirm": "Eliminar usuario",
+      "deleting": "Eliminando..."
+    },
+    "errors": {
+      "loadFailed": "No se pudieron cargar los usuarios",
+      "retry": "Reintentar",
+      "network": "No se puede conectar con el servidor. Comprueba tu conexión e inténtalo de nuevo.",
+      "unexpected": "Algo salió mal. Inténtalo de nuevo."
+    }
+  },
+  "profile": {
+    "title": "Perfil",
+    "metaTitle": "Perfil | Panel de comercio electrónico",
+    "description": "Los datos de tu cuenta, tu contraseña y tus sesiones.",
+    "verified": "Verificado",
+    "unverified": "Sin verificar",
+    "fields": {
+      "name": "Nombre completo",
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "memberSince": "Miembro desde"
+    },
+    "personal": {
+      "title": "Información personal",
+      "edit": "Editar"
+    },
+    "avatar": {
+      "change": "Cambiar foto de perfil",
+      "type": "Elige una imagen JPG, PNG, WebP, GIF o AVIF.",
+      "size": "La imagen debe ocupar 5 MB o menos."
+    },
+    "edit": {
+      "title": "Editar perfil",
+      "description": "Actualiza cómo aparecen tu nombre y tu correo.",
+      "emailHint": "Al cambiar tu correo se envía un enlace de confirmación a la nueva dirección.",
+      "phoneHint": "Pide a un administrador que cambie tu número de teléfono."
+    },
+    "emailChange": {
+      "pendingTitle": "Confirma tu nuevo correo",
+      "pendingDescription": "Enviamos un enlace a {email}. Tu correo cambiará cuando lo abras."
+    },
+    "security": {
+      "title": "Seguridad",
+      "passwordTitle": "Contraseña",
+      "passwordDescription": "Cambia la contraseña con la que inicias sesión.",
+      "passwordAction": "Cambiar contraseña",
+      "signOutAllTitle": "Cerrar sesión en todos los dispositivos",
+      "signOutAllDescription": "Finaliza todas las sesiones activas, incluida esta.",
+      "signOutAllAction": "Cerrar sesión en todas partes",
+      "signOutAllConfirmTitle": "¿Cerrar sesión en todos los dispositivos?",
+      "signOutAllConfirmDescription": "Se cerrará tu sesión aquí y en todos los demás dispositivos."
+    },
+    "password": {
+      "title": "Cambiar contraseña",
+      "description": "Usa una contraseña segura que no uses en ningún otro sitio.",
+      "current": "Contraseña actual",
+      "new": "Nueva contraseña",
+      "confirm": "Confirmar nueva contraseña",
+      "submit": "Cambiar contraseña",
+      "signOutNotice": "Por seguridad, todas las sesiones se cierran tras el cambio.",
+      "successTitle": "Contraseña cambiada",
+      "successDescription": "Vuelve a iniciar sesión con tu nueva contraseña.",
+      "signInAgain": "Iniciar sesión de nuevo"
+    },
+    "danger": {
+      "title": "Zona de peligro",
+      "deactivateTitle": "Desactivar cuenta",
+      "deactivateDescription": "Desactiva tu cuenta y cierra sesión en todas partes. Un administrador puede reactivarla.",
+      "deactivateAction": "Desactivar",
+      "confirmTitle": "¿Desactivar tu cuenta?",
+      "confirmDescription": "Se cerrará tu sesión y no podrás entrar hasta que un administrador reactive la cuenta."
+    },
+    "actions": {
+      "cancel": "Cancelar",
+      "save": "Guardar cambios",
+      "saving": "Guardando...",
+      "working": "Espera..."
+    },
+    "validation": {
+      "nameMin": "El nombre debe tener al menos 2 caracteres",
+      "nameMax": "El nombre debe tener como máximo 100 caracteres",
+      "emailInvalid": "Introduce un correo electrónico válido",
+      "currentPasswordRequired": "Introduce tu contraseña actual",
+      "confirmPasswordRequired": "Confirma tu nueva contraseña",
+      "passwordsMismatch": "Las contraseñas no coinciden",
+      "passwordSame": "La nueva contraseña debe ser distinta de la actual"
+    },
+    "errors": {
       "network": "No se puede conectar con el servidor. Comprueba tu conexión e inténtalo de nuevo.",
       "unexpected": "Algo salió mal. Inténtalo de nuevo."
     }
