@@ -1059,5 +1059,123 @@
       },
       "noEmployees": "No se encontraron empleados que coincidan con los criterios seleccionados."
     }
+  },
+  "auth": {
+    "or": "O",
+    "backToDashboard": "Volver al panel",
+    "backToSignIn": "Volver a iniciar sesión",
+    "goToSignIn": "Ir a iniciar sesión",
+    "fields": {
+      "identifier": "Correo o teléfono",
+      "identifierPlaceholder": "info@gmail.com o +1234567890",
+      "email": "Correo electrónico",
+      "emailPlaceholder": "Introduce tu correo electrónico",
+      "password": "Contraseña",
+      "passwordPlaceholder": "Introduce tu contraseña",
+      "passwordHint": "Al menos 8 caracteres con una mayúscula, una minúscula, un número y un carácter especial.",
+      "newPassword": "Nueva contraseña",
+      "newPasswordPlaceholder": "Introduce una nueva contraseña",
+      "confirmPassword": "Confirmar contraseña",
+      "confirmPasswordPlaceholder": "Vuelve a introducir tu contraseña",
+      "firstName": "Nombre",
+      "firstNamePlaceholder": "Introduce tu nombre",
+      "lastName": "Apellido",
+      "lastNamePlaceholder": "Introduce tu apellido",
+      "showPassword": "Mostrar contraseña",
+      "hidePassword": "Ocultar contraseña"
+    },
+    "validation": {
+      "identifierRequired": "El correo o el número de teléfono es obligatorio",
+      "identifierInvalid": "Introduce un correo válido o un teléfono en formato internacional (p. ej. +1234567890)",
+      "emailRequired": "El correo electrónico es obligatorio",
+      "emailInvalid": "Introduce un correo electrónico válido",
+      "passwordRequired": "La contraseña es obligatoria",
+      "passwordMin": "La contraseña debe tener al menos 8 caracteres",
+      "passwordUppercase": "La contraseña debe contener al menos una letra mayúscula",
+      "passwordLowercase": "La contraseña debe contener al menos una letra minúscula",
+      "passwordNumber": "La contraseña debe contener al menos un número",
+      "passwordSpecial": "La contraseña debe contener al menos un carácter especial",
+      "confirmPasswordRequired": "Confirma tu contraseña",
+      "passwordsMismatch": "Las contraseñas no coinciden",
+      "firstNameRequired": "El nombre es obligatorio",
+      "lastNameRequired": "El apellido es obligatorio",
+      "nameMin": "El nombre debe tener al menos 2 caracteres",
+      "termsRequired": "Debes aceptar los Términos y Condiciones"
+    },
+    "errors": {
+      "network": "No se puede conectar con el servidor. Comprueba tu conexión e inténtalo de nuevo.",
+      "unexpected": "Algo salió mal. Inténtalo de nuevo."
+    },
+    "google": {
+      "unavailable": "El inicio de sesión con Google no está disponible en este momento."
+    },
+    "signIn": {
+      "metaTitle": "Iniciar sesión | Panel de comercio electrónico",
+      "title": "Iniciar sesión",
+      "description": "¡Introduce tu correo o teléfono y tu contraseña para iniciar sesión!",
+      "keepLoggedIn": "Mantener la sesión iniciada",
+      "forgotPassword": "¿Olvidaste tu contraseña?",
+      "submit": "Iniciar sesión",
+      "submitting": "Iniciando sesión...",
+      "noAccount": "¿No tienes una cuenta?",
+      "signUpLink": "Regístrate"
+    },
+    "signUp": {
+      "metaTitle": "Registrarse | Panel de comercio electrónico",
+      "title": "Registrarse",
+      "description": "¡Introduce tus datos para crear una cuenta!",
+      "termsPrefix": "Al crear una cuenta aceptas los",
+      "terms": "Términos y Condiciones,",
+      "and": "y nuestra",
+      "privacy": "Política de privacidad",
+      "submit": "Registrarse",
+      "submitting": "Creando cuenta...",
+      "haveAccount": "¿Ya tienes una cuenta?",
+      "signInLink": "Iniciar sesión"
+    },
+    "forgotPassword": {
+      "metaTitle": "Contraseña olvidada | Panel de comercio electrónico",
+      "title": "¿Olvidaste tu contraseña?",
+      "description": "Introduce el correo vinculado a tu cuenta y te enviaremos un enlace para restablecer tu contraseña.",
+      "submit": "Enviar enlace",
+      "submitting": "Enviando...",
+      "successTitle": "Revisa tu bandeja de entrada",
+      "successDescription": "Si existe una cuenta para {email}, recibirás un enlace para restablecer la contraseña. El enlace caduca en 15 minutos.",
+      "rememberPassword": "¿Recordaste tu contraseña?"
+    },
+    "resetPassword": {
+      "metaTitle": "Restablecer contraseña | Panel de comercio electrónico",
+      "title": "Establece una nueva contraseña",
+      "description": "Elige una contraseña segura que no hayas usado antes.",
+      "submit": "Restablecer contraseña",
+      "submitting": "Restableciendo...",
+      "successTitle": "Contraseña actualizada",
+      "successDescription": "Tu contraseña se ha restablecido y se han cerrado todas las sesiones. Inicia sesión con tu nueva contraseña.",
+      "missingTokenTitle": "Enlace no válido",
+      "missingTokenDescription": "Este enlace para restablecer la contraseña falta o está incompleto. Solicita uno nuevo para continuar.",
+      "requestNewLink": "Solicitar un enlace nuevo"
+    },
+    "verifyEmail": {
+      "metaTitle": "Verificar correo | Panel de comercio electrónico",
+      "title": "Verificación de correo",
+      "verifying": "Verificando tu correo electrónico...",
+      "successTitle": "Correo verificado",
+      "successDescription": "¡Gracias! Tu correo electrónico ha sido verificado.",
+      "continue": "Continuar al panel",
+      "errorTitle": "No pudimos verificar tu correo",
+      "missingToken": "Este enlace de verificación falta o está incompleto.",
+      "resendDescription": "Los enlaces de verificación caducan a las 24 horas. Introduce tu correo para recibir uno nuevo.",
+      "resendSubmit": "Reenviar correo de verificación",
+      "resendSubmitting": "Enviando...",
+      "resendSuccess": "Si la dirección pertenece a una cuenta sin verificar, se ha enviado un nuevo correo de verificación."
+    },
+    "emailBanner": {
+      "title": "Verifica tu correo electrónico",
+      "description": "Enviamos un enlace de verificación a {email}. Revisa tu bandeja de entrada para confirmar tu cuenta.",
+      "resend": "Reenviar correo",
+      "resending": "Enviando...",
+      "sent": "Se ha enviado un nuevo enlace de verificación a {email}.",
+      "error": "No pudimos reenviar el correo de verificación. Inténtalo más tarde."
+    }
   }
 }

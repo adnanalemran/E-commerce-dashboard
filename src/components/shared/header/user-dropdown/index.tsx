@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge";
+import { useAuth } from "@/contexts";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,7 +22,7 @@ import {
   LogOutIcon,
   UserCircleIcon,
 } from "@/icons";
-import { cn } from "@/utils";
+import { cn, getInitials } from "@/utils";
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 
@@ -32,6 +33,16 @@ export default function UserDropdown() {
   const changeLocale = useChangeLocale();
   const { pathname } = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const { user, logout } = useAuth();
+
+  const displayName = user?.name ?? "";
+  const firstName = displayName.split(" ")[0];
+  const contact = user?.email ?? user?.phone ?? "";
+
+  const handleSignOut = async () => {
+    await logout();
+    void navigate("/signin", { replace: true });
+  };
 
   const currentLang = getLanguage(locale);
   const CurrentFlagIcon = currentLang.FlagIcon;
@@ -44,11 +55,19 @@ export default function UserDropdown() {
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger className="dropdown-toggle flex items-center text-gray-700 dark:text-gray-400">
-        <span className="me-3 h-11 w-11 overflow-hidden rounded-lg">
-          <img src="/images/user/owner.png" alt="User" className="size-11" />
+        <span className="me-3 flex size-11 items-center justify-center overflow-hidden rounded-lg bg-brand-50 text-sm font-semibold text-brand-600 dark:bg-brand-500/15 dark:text-brand-400">
+          {user?.avatar ? (
+            <img
+              src={user.avatar}
+              alt={displayName}
+              className="size-11 object-cover"
+            />
+          ) : (
+            getInitials(displayName)
+          )}
         </span>
 
-        <span className="me-1 block text-sm font-medium">Musharof</span>
+        <span className="me-1 block text-sm font-medium">{firstName}</span>
 
         <ChevronDownIcon
           className={cn(
@@ -60,11 +79,11 @@ export default function UserDropdown() {
 
       <DropdownMenuContent align="end" sideOffset={12} className="w-65 p-3">
         <div className="px-3 py-2">
-          <span className="block text-sm font-medium text-gray-700 dark:text-gray-400">
-            Musharof Chowdhury
+          <span className="block truncate text-sm font-medium text-gray-700 dark:text-gray-400">
+            {displayName}
           </span>
-          <span className="mt-0.5 block text-xs text-gray-500 dark:text-gray-400">
-            randomuser@pimjo.com
+          <span className="mt-0.5 block truncate text-xs text-gray-500 dark:text-gray-400">
+            {contact}
           </span>
         </div>
 
@@ -147,7 +166,7 @@ export default function UserDropdown() {
 
         <DropdownMenuSeparator />
 
-        <DropdownMenuItem variant="destructive" render={<Link to="/signin" />}>
+        <DropdownMenuItem variant="destructive" onClick={handleSignOut}>
           <LogOutIcon />
           {t("signOut")}
         </DropdownMenuItem>

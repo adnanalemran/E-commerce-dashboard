@@ -2,29 +2,29 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupButton,
-  InputGroupInput,
-} from "@/components/ui/input-group";
-import { EyeCloseIcon, EyeIcon } from "@/icons";
+import { useAuth } from "@/contexts";
+import { useTranslations } from "@/i18n";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { signUpSchema, type SignUpFormData } from "./schema";
+import FormAlert from "../form-alert";
+import PasswordInput from "../password-input";
+import { applyFieldErrors, getAuthErrorMessage } from "../utils";
+import { createSignUpSchema, type SignUpFormData } from "./schema";
 
 export default function SignUpFormFields() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const t = useTranslations("auth");
+  const { register: registerAccount } = useAuth();
+  const [formError, setFormError] = useState<string | null>(null);
 
   const {
     register,
     handleSubmit,
     control,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<SignUpFormData>({
-    resolver: zodResolver(signUpSchema),
+    resolver: zodResolver(createSignUpSchema(t)),
     defaultValues: {
       fname: "",
       lname: "",
@@ -36,8 +36,25 @@ export default function SignUpFormFields() {
     mode: "onTouched",
   });
 
-  const handleFormSubmit = async (_data: SignUpFormData) => {
-    // handle submit action
+  const handleFormSubmit = async (data: SignUpFormData) => {
+    setFormError(null);
+    try {
+      await registerAccount({
+        name: `${data.fname} ${data.lname}`.trim(),
+        email: data.email,
+        password: data.password,
+        confirmPassword: data.confirmPassword,
+      });
+      // GuestRoute redirects to the dashboard once the session is set.
+    } catch (error) {
+      const mapped = applyFieldErrors(error, setError, {
+        name: "fname",
+        email: "email",
+        password: "password",
+        confirmPassword: "confirmPassword",
+      });
+      if (!mapped) setFormError(getAuthErrorMessage(error, t));
+    }
   };
 
   return (
@@ -46,15 +63,18 @@ export default function SignUpFormFields() {
       className="space-y-5"
       noValidate
     >
+      {formError && <FormAlert title={formError} />}
+
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <Field data-invalid={Boolean(errors.fname)}>
           <FieldLabel className="mb-1.5 block">
-            First Name <span className="text-red-500">*</span>
+            {t("fields.firstName")} <span className="text-red-500">*</span>
           </FieldLabel>
           <Input
             {...register("fname")}
             type="text"
-            placeholder="Enter your first name"
+            autoComplete="given-name"
+            placeholder={t("fields.firstNamePlaceholder")}
             aria-invalid={errors.fname ? "true" : undefined}
           />
           <FieldError errors={[errors.fname]} />
@@ -62,12 +82,13 @@ export default function SignUpFormFields() {
 
         <Field data-invalid={Boolean(errors.lname)}>
           <FieldLabel className="mb-1.5 block">
-            Last Name <span className="text-red-500">*</span>
+            {t("fields.lastName")} <span className="text-red-500">*</span>
           </FieldLabel>
           <Input
             {...register("lname")}
             type="text"
-            placeholder="Enter your last name"
+            autoComplete="family-name"
+            placeholder={t("fields.lastNamePlaceholder")}
             aria-invalid={errors.lname ? "true" : undefined}
           />
           <FieldError errors={[errors.lname]} />
@@ -76,12 +97,13 @@ export default function SignUpFormFields() {
 
       <Field data-invalid={Boolean(errors.email)}>
         <FieldLabel className="mb-1.5 block">
-          Email <span className="text-red-500">*</span>
+          {t("fields.email")} <span className="text-red-500">*</span>
         </FieldLabel>
         <Input
           {...register("email")}
           type="email"
-          placeholder="Enter your email"
+          autoComplete="email"
+          placeholder={t("fields.emailPlaceholder")}
           aria-invalid={errors.email ? "true" : undefined}
         />
         <FieldError errors={[errors.email]} />
@@ -89,63 +111,32 @@ export default function SignUpFormFields() {
 
       <Field data-invalid={Boolean(errors.password)}>
         <FieldLabel className="mb-1.5 block">
-          Password <span className="text-red-500">*</span>
+          {t("fields.password")} <span className="text-red-500">*</span>
         </FieldLabel>
-        <InputGroup>
-          <InputGroupInput
-            {...register("password")}
-            type={showPassword ? "text" : "password"}
-            placeholder="Enter your password"
-            aria-invalid={errors.password ? "true" : undefined}
-          />
-          <InputGroupAddon align="inline-end">
-            <InputGroupButton
-              size="icon-xs"
-              onClick={() => setShowPassword((prev) => !prev)}
-              aria-label={showPassword ? "Hide password" : "Show password"}
-              className="text-gray-500 dark:text-gray-400"
-            >
-              {showPassword ? (
-                <EyeIcon className="fill-current" />
-              ) : (
-                <EyeCloseIcon className="fill-current" />
-              )}
-            </InputGroupButton>
-          </InputGroupAddon>
-        </InputGroup>
+        <PasswordInput
+          {...register("password")}
+          autoComplete="new-password"
+          placeholder={t("fields.passwordPlaceholder")}
+          aria-invalid={errors.password ? "true" : undefined}
+        />
         <FieldError errors={[errors.password]} />
+        {!errors.password && (
+          <p className="text-xs text-gray-500 dark:text-gray-400">
+            {t("fields.passwordHint")}
+          </p>
+        )}
       </Field>
 
       <Field data-invalid={Boolean(errors.confirmPassword)}>
         <FieldLabel className="mb-1.5 block">
-          Confirm Password <span className="text-red-500">*</span>
+          {t("fields.confirmPassword")} <span className="text-red-500">*</span>
         </FieldLabel>
-        <InputGroup>
-          <InputGroupInput
-            {...register("confirmPassword")}
-            type={showConfirmPassword ? "text" : "password"}
-            placeholder="Re-enter your password"
-            aria-invalid={errors.confirmPassword ? "true" : undefined}
-          />
-          <InputGroupAddon align="inline-end">
-            <InputGroupButton
-              size="icon-xs"
-              onClick={() => setShowConfirmPassword((prev) => !prev)}
-              aria-label={
-                showConfirmPassword
-                  ? "Hide confirm password"
-                  : "Show confirm password"
-              }
-              className="text-gray-500 dark:text-gray-400"
-            >
-              {showConfirmPassword ? (
-                <EyeIcon className="fill-current" />
-              ) : (
-                <EyeCloseIcon className="fill-current" />
-              )}
-            </InputGroupButton>
-          </InputGroupAddon>
-        </InputGroup>
+        <PasswordInput
+          {...register("confirmPassword")}
+          autoComplete="new-password"
+          placeholder={t("fields.confirmPasswordPlaceholder")}
+          aria-invalid={errors.confirmPassword ? "true" : undefined}
+        />
         <FieldError errors={[errors.confirmPassword]} />
       </Field>
 
@@ -172,13 +163,13 @@ export default function SignUpFormFields() {
             htmlFor="terms"
             className="inline-block cursor-pointer text-sm font-normal text-gray-500 dark:text-gray-400"
           >
-            By creating an account means you agree to the{" "}
+            {t("signUp.termsPrefix")}{" "}
             <span className="text-gray-800 dark:text-white/90">
-              Terms and Conditions,
+              {t("signUp.terms")}
             </span>{" "}
-            and our{" "}
+            {t("signUp.and")}{" "}
             <span className="text-gray-800 dark:text-white">
-              Privacy Policy
+              {t("signUp.privacy")}
             </span>
           </FieldLabel>
           <FieldError errors={[errors.terms]} />
@@ -192,7 +183,7 @@ export default function SignUpFormFields() {
           type="submit"
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Signing Up..." : "Sign Up"}
+          {isSubmitting ? t("signUp.submitting") : t("signUp.submit")}
         </Button>
       </div>
     </form>

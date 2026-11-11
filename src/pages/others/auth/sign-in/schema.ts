@@ -1,13 +1,24 @@
+import type { Translator } from "@/i18n";
 import { z } from "zod";
 
-export const signInSchema = z.object({
-  email: z
-    .string()
-    .trim()
-    .min(1, "Email is required")
-    .email("Please enter a valid email address"),
-  password: z.string().min(1, "Password is required"),
-  keepLoggedIn: z.boolean().optional(),
-});
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+/** E.164, same as the backend `phoneRegex`. */
+const phoneRegex = /^\+[1-9]\d{1,14}$/;
 
-export type SignInFormData = z.infer<typeof signInSchema>;
+export function createSignInSchema(t: Translator) {
+  return z.object({
+    identifier: z
+      .string()
+      .trim()
+      .min(1, t("validation.identifierRequired"))
+      .refine(
+        (value) =>
+          value.includes("@") ? emailRegex.test(value) : phoneRegex.test(value),
+        t("validation.identifierInvalid"),
+      ),
+    password: z.string().min(1, t("validation.passwordRequired")),
+    keepLoggedIn: z.boolean().optional(),
+  });
+}
+
+export type SignInFormData = z.infer<ReturnType<typeof createSignInSchema>>;

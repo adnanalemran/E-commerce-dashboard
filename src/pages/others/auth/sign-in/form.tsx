@@ -2,39 +2,54 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupButton,
-  InputGroupInput,
-} from "@/components/ui/input-group";
-import { Link } from "react-router";
-import { EyeCloseIcon, EyeIcon } from "@/icons";
+import { useAuth } from "@/contexts";
+import { useTranslations } from "@/i18n";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { signInSchema, type SignInFormData } from "./schema";
+import { Link } from "react-router";
+import FormAlert from "../form-alert";
+import PasswordInput from "../password-input";
+import { applyFieldErrors, getAuthErrorMessage } from "../utils";
+import { createSignInSchema, type SignInFormData } from "./schema";
 
 export default function SignInFormFields() {
-  const [showPassword, setShowPassword] = useState(false);
+  const t = useTranslations("auth");
+  const { login } = useAuth();
+  const [formError, setFormError] = useState<string | null>(null);
 
   const {
     register,
     handleSubmit,
     control,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<SignInFormData>({
-    resolver: zodResolver(signInSchema),
+    resolver: zodResolver(createSignInSchema(t)),
     defaultValues: {
-      email: "",
+      identifier: "",
       password: "",
       keepLoggedIn: false,
     },
     mode: "onTouched",
   });
 
-  const handleFormSubmit = async (_data: SignInFormData) => {
-    // handle submit action
+  const handleFormSubmit = async (data: SignInFormData) => {
+    setFormError(null);
+    try {
+      await login({
+        identifier: data.identifier,
+        password: data.password,
+        rememberMe: data.keepLoggedIn ?? false,
+      });
+      // GuestRoute redirects to the requested page once the session is set.
+    } catch (error) {
+      const mapped = applyFieldErrors(error, setError, {
+        identifier: "identifier",
+        password: "password",
+      });
+      if (!mapped) setFormError(getAuthErrorMessage(error, t));
+    }
   };
 
   return (
@@ -43,49 +58,37 @@ export default function SignInFormFields() {
       className="space-y-5"
       noValidate
     >
-      <Field data-invalid={Boolean(errors.email)}>
+      {formError && <FormAlert title={formError} />}
+
+      <Field data-invalid={Boolean(errors.identifier)}>
         <FieldLabel className="mb-1.5 block">
-          Email <span className="text-red-500">*</span>
+          {t("fields.identifier")} <span className="text-red-500">*</span>
         </FieldLabel>
         <Input
-          {...register("email")}
-          type="email"
-          placeholder="info@gmail.com"
-          aria-invalid={errors.email ? "true" : undefined}
+          {...register("identifier")}
+          type="text"
+          inputMode="email"
+          autoComplete="username"
+          placeholder={t("fields.identifierPlaceholder")}
+          aria-invalid={errors.identifier ? "true" : undefined}
         />
-        <FieldError errors={[errors.email]} />
+        <FieldError errors={[errors.identifier]} />
       </Field>
 
       <Field data-invalid={Boolean(errors.password)}>
         <FieldLabel className="mb-1.5 block">
-          Password <span className="text-red-500">*</span>
+          {t("fields.password")} <span className="text-red-500">*</span>
         </FieldLabel>
-        <InputGroup>
-          <InputGroupInput
-            {...register("password")}
-            type={showPassword ? "text" : "password"}
-            placeholder="Enter your password"
-            aria-invalid={errors.password ? "true" : undefined}
-          />
-          <InputGroupAddon align="inline-end">
-            <InputGroupButton
-              size="icon-xs"
-              onClick={() => setShowPassword((prev) => !prev)}
-              aria-label={showPassword ? "Hide password" : "Show password"}
-              className="text-gray-500 dark:text-gray-400"
-            >
-              {showPassword ? (
-                <EyeIcon className="fill-current" />
-              ) : (
-                <EyeCloseIcon className="fill-current" />
-              )}
-            </InputGroupButton>
-          </InputGroupAddon>
-        </InputGroup>
+        <PasswordInput
+          {...register("password")}
+          autoComplete="current-password"
+          placeholder={t("fields.passwordPlaceholder")}
+          aria-invalid={errors.password ? "true" : undefined}
+        />
         <FieldError errors={[errors.password]} />
       </Field>
 
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-3">
         <Field orientation="horizontal" className="w-auto items-center gap-3">
           <Controller
             control={control}
@@ -102,14 +105,14 @@ export default function SignInFormFields() {
             htmlFor="keep-logged-in"
             className="text-theme-sm block cursor-pointer font-normal text-gray-700 dark:text-gray-400"
           >
-            Keep me logged in
+            {t("signIn.keepLoggedIn")}
           </FieldLabel>
         </Field>
         <Link
-          to="/reset-password"
+          to="/forgot-password"
           className="text-sm text-brand-500 hover:text-brand-600 dark:text-brand-400"
         >
-          Forgot password?
+          {t("signIn.forgotPassword")}
         </Link>
       </div>
 
@@ -120,7 +123,7 @@ export default function SignInFormFields() {
           type="submit"
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Signing In..." : "Sign In"}
+          {isSubmitting ? t("signIn.submitting") : t("signIn.submit")}
         </Button>
       </div>
     </form>

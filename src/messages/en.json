@@ -1059,5 +1059,123 @@
       },
       "noEmployees": "No employees found matching the selected criteria."
     }
+  },
+  "auth": {
+    "or": "Or",
+    "backToDashboard": "Back to dashboard",
+    "backToSignIn": "Back to sign in",
+    "goToSignIn": "Go to sign in",
+    "fields": {
+      "identifier": "Email or phone",
+      "identifierPlaceholder": "info@gmail.com or +1234567890",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "passwordHint": "At least 8 characters with an uppercase letter, a lowercase letter, a number and a special character.",
+      "newPassword": "New password",
+      "newPasswordPlaceholder": "Enter a new password",
+      "confirmPassword": "Confirm password",
+      "confirmPasswordPlaceholder": "Re-enter your password",
+      "firstName": "First name",
+      "firstNamePlaceholder": "Enter your first name",
+      "lastName": "Last name",
+      "lastNamePlaceholder": "Enter your last name",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password"
+    },
+    "validation": {
+      "identifierRequired": "Email or phone number is required",
+      "identifierInvalid": "Enter a valid email or a phone number in international format (e.g. +1234567890)",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email address",
+      "passwordRequired": "Password is required",
+      "passwordMin": "Password must be at least 8 characters",
+      "passwordUppercase": "Password must contain at least one uppercase letter",
+      "passwordLowercase": "Password must contain at least one lowercase letter",
+      "passwordNumber": "Password must contain at least one number",
+      "passwordSpecial": "Password must contain at least one special character",
+      "confirmPasswordRequired": "Please confirm your password",
+      "passwordsMismatch": "Passwords do not match",
+      "firstNameRequired": "First name is required",
+      "lastNameRequired": "Last name is required",
+      "nameMin": "Name must be at least 2 characters",
+      "termsRequired": "You must agree to the Terms and Conditions"
+    },
+    "errors": {
+      "network": "Unable to reach the server. Check your connection and try again.",
+      "unexpected": "Something went wrong. Please try again."
+    },
+    "google": {
+      "unavailable": "Google sign-in is unavailable right now."
+    },
+    "signIn": {
+      "metaTitle": "Sign In | E-commerce Dashboard",
+      "title": "Sign In",
+      "description": "Enter your email or phone and password to sign in!",
+      "keepLoggedIn": "Keep me logged in",
+      "forgotPassword": "Forgot password?",
+      "submit": "Sign In",
+      "submitting": "Signing in...",
+      "noAccount": "Don't have an account?",
+      "signUpLink": "Sign Up"
+    },
+    "signUp": {
+      "metaTitle": "Sign Up | E-commerce Dashboard",
+      "title": "Sign Up",
+      "description": "Enter your details to create an account!",
+      "termsPrefix": "By creating an account you agree to the",
+      "terms": "Terms and Conditions,",
+      "and": "and our",
+      "privacy": "Privacy Policy",
+      "submit": "Sign Up",
+      "submitting": "Creating account...",
+      "haveAccount": "Already have an account?",
+      "signInLink": "Sign In"
+    },
+    "forgotPassword": {
+      "metaTitle": "Forgot Password | E-commerce Dashboard",
+      "title": "Forgot your password?",
+      "description": "Enter the email linked to your account and we'll send you a link to reset your password.",
+      "submit": "Send reset link",
+      "submitting": "Sending...",
+      "successTitle": "Check your inbox",
+      "successDescription": "If an account exists for {email}, a password reset link is on its way. The link expires in 15 minutes.",
+      "rememberPassword": "Remembered your password?"
+    },
+    "resetPassword": {
+      "metaTitle": "Reset Password | E-commerce Dashboard",
+      "title": "Set a new password",
+      "description": "Choose a strong password you haven't used before.",
+      "submit": "Reset password",
+      "submitting": "Resetting...",
+      "successTitle": "Password updated",
+      "successDescription": "Your password has been reset and all sessions were signed out. Sign in with your new password.",
+      "missingTokenTitle": "Invalid reset link",
+      "missingTokenDescription": "This password reset link is missing or incomplete. Request a new one to continue.",
+      "requestNewLink": "Request a new reset link"
+    },
+    "verifyEmail": {
+      "metaTitle": "Verify Email | E-commerce Dashboard",
+      "title": "Email verification",
+      "verifying": "Verifying your email address...",
+      "successTitle": "Email verified",
+      "successDescription": "Thanks! Your email address has been verified.",
+      "continue": "Continue to dashboard",
+      "errorTitle": "We couldn't verify your email",
+      "missingToken": "This verification link is missing or incomplete.",
+      "resendDescription": "Verification links expire after 24 hours. Enter your email to get a new one.",
+      "resendSubmit": "Resend verification email",
+      "resendSubmitting": "Sending...",
+      "resendSuccess": "If the address belongs to an unverified account, a new verification email has been sent."
+    },
+    "emailBanner": {
+      "title": "Verify your email address",
+      "description": "We sent a verification link to {email}. Check your inbox to confirm your account.",
+      "resend": "Resend email",
+      "resending": "Sending...",
+      "sent": "A new verification link has been sent to {email}.",
+      "error": "We couldn't resend the verification email. Please try again later."
+    }
   }
 }

@@ -13,6 +13,11 @@ export default defineConfig({
     tailwindcss(),
     babel({ presets: [reactCompilerPreset()] }),
   ],
+  server: {
+    // Must match the backend CORS_ORIGIN (also used for the links in auth emails).
+    port: 3005,
+    strictPort: true,
+  },
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "./src"),

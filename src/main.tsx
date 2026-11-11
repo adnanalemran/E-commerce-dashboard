@@ -1,5 +1,5 @@
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { ThemeProvider } from "@/contexts";
+import { AuthProvider, ThemeProvider } from "@/contexts";
 import { I18nProvider } from "@/i18n";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
@@ -14,9 +14,11 @@ createRoot(document.getElementById("root")!).render(
       <ThemeProvider>
         <HelmetProvider>
           <I18nProvider>
-            <TooltipProvider>
-              <App />
-            </TooltipProvider>
+            <AuthProvider>
+              <TooltipProvider>
+                <App />
+              </TooltipProvider>
+            </AuthProvider>
           </I18nProvider>
         </HelmetProvider>
       </ThemeProvider>
