@@ -141,19 +141,21 @@
       "categories": "Categorías",
       "subcategories": "Subcategorías",
       "users": "Usuarios",
-      "orders": "Pedidos"
+      "orders": "Pedidos",
+      "coupons": "Cupones",
+      "settings": "Ajustes"
     }
   },
   "header": {
     "searchPlaceholder": "Buscar o escribir un comando...",
     "toggleSidebar": "Alternar barra lateral",
     "notifications": {
-      "title": "Notificaciones",
-      "requestsPermission": "solicita permiso para cambiar",
-      "project": "Proyecto",
-      "minAgo": "hace {count} min",
-      "hrAgo": "hace {count} h",
-      "viewAll": "Ver todas las notificaciones"
+      "title": "Pedidos pendientes",
+      "toggle": "{count, plural, =0 {Sin pedidos pendientes} one {# pedido pendiente} other {# pedidos pendientes}}",
+      "close": "Cerrar",
+      "empty": "No hay pedidos esperando. Todo al día.",
+      "newOrder": "{number} de {name}",
+      "viewAll": "Ver todos los pendientes"
     }
   },
   "userDropdown": {
@@ -164,76 +166,49 @@
     "signOut": "Cerrar sesión"
   },
   "ecommerce": {
-    "title": "Panel de comercio electrónico",
-    "metrics": {
+    "metaTitle": "Panel | E-Dukan",
+    "title": "Resumen de la tienda",
+    "description": "Ventas de hoy, pedidos que te esperan y stock por reponer.",
+    "welcome": "Hola, {name}. Usa el menú para gestionar tu perfil.",
+    "errors": {
+      "network": "No se puede conectar con el servidor. Revisa tu conexión.",
+      "unexpected": "No se pudieron cargar las cifras de la tienda.",
+      "retry": "Reintentar"
+    },
+    "kpis": {
+      "todayRevenue": "Ingresos de hoy",
+      "monthRevenue": "Ingresos del mes",
+      "orders": "{count, plural, one {# pedido} other {# pedidos}}",
+      "pending": "Pedidos pendientes",
+      "pendingHint": "Esperando confirmación",
       "customers": "Clientes",
-      "orders": "Pedidos"
+      "customersHint": "Números de teléfono únicos que pidieron"
     },
-    "months": {
-      "jan": "Jan",
-      "feb": "Feb",
-      "mar": "Mar",
-      "apr": "Apr",
-      "may": "May",
-      "jun": "Jun",
-      "jul": "Jul",
-      "aug": "Aug",
-      "sep": "Sep",
-      "oct": "Oct",
-      "nov": "Nov",
-      "dec": "Dec"
-    },
-    "monthlySales": {
-      "title": "Ventas mensuales",
-      "series": "Ventas"
-    },
-    "monthlyTarget": {
-      "title": "Objetivo mensual",
-      "subtitle": "Objetivo que has fijado para cada mes",
-      "earned": "Hoy has ganado {amount}, más que el mes pasado. ¡Sigue así!",
-      "target": "Objetivo",
+    "sales": {
+      "title": "Ventas, últimos 30 días",
+      "subtitle": "Sin pedidos cancelados ni devueltos",
       "revenue": "Ingresos",
-      "today": "Hoy"
+      "orders": "Pedidos",
+      "orderCount": "{count, plural, one {# pedido} other {# pedidos}}"
     },
-    "statistics": {
-      "title": "Estadísticas",
-      "subtitle": "Objetivo que has fijado para cada mes",
-      "overview": "Resumen",
-      "sales": "Ventas",
-      "revenue": "Ingresos",
-      "monthly": "Mensual",
-      "quarterly": "Trimestral",
-      "annually": "Anual",
-      "selectDateRange": "Seleccionar rango de fechas"
+    "topProducts": {
+      "title": "Más vendidos",
+      "subtitle": "Unidades vendidas en los últimos 30 días",
+      "empty": "Aún no hay ventas en los últimos 30 días.",
+      "sold": "{count} vendidos"
+    },
+    "lowStock": {
+      "title": "Stock bajo",
+      "subtitle": "Variantes activas con {threshold} o menos",
+      "empty": "Todo tiene buen stock.",
+      "outOfStock": "Agotado",
+      "left": "Quedan {count}"
     },
     "recentOrders": {
       "title": "Pedidos recientes",
-      "products": "Productos",
-      "category": "Categoría",
-      "price": "Precio",
-      "status": "Estado",
-      "variants": "{count, plural, one {# variante} other {# variantes}}",
-      "categories": {
-        "laptop": "Portátil",
-        "watch": "Reloj",
-        "smartphone": "Smartphone",
-        "electronics": "Electrónica",
-        "accessories": "Accesorios"
-      },
-      "statuses": {
-        "delivered": "Entregado",
-        "pending": "Pendiente",
-        "canceled": "Cancelado"
-      }
-    },
-    "demographic": {
-      "title": "Demografía de clientes",
-      "subtitle": "Número de clientes por país",
-      "customers": "{count} clientes",
-      "usa": "USA",
-      "france": "France",
-      "yemen": "Yemen",
-      "uk": "UK"
+      "subtitle": "Los últimos pedidos de la web",
+      "viewAll": "Ver todos",
+      "empty": "Aún no hay pedidos."
     }
   },
   "analytics": {
@@ -1691,7 +1666,8 @@
     },
     "zones": {
       "INSIDE_DHAKA": "Dentro de Dhaka",
-      "OUTSIDE_DHAKA": "Fuera de Dhaka"
+      "OUTSIDE_DHAKA": "Fuera de Dhaka",
+      "DHAKA_SUBURB": "Afueras de Dhaka"
     },
     "dialog": {
       "cancelTitle": "¿Cancelar este pedido?",
@@ -1726,13 +1702,171 @@
       "zone": "Zona de entrega",
       "note": "Nota del cliente",
       "payment": "Pago",
-      "codHint": "Los pedidos contra reembolso se marcan como pagados al entregarse."
+      "codHint": "Los pedidos contra reembolso se marcan como pagados al entregarse.",
+      "location": "Zona",
+      "discountCode": "Descuento ({code})",
+      "trxId": "TrxID {id}",
+      "attempt": {
+        "INITIATED": "Iniciado",
+        "COMPLETED": "Pagado",
+        "FAILED": "Fallido",
+        "CANCELLED": "Cancelado"
+      }
     },
     "errors": {
       "loadFailed": "No se pudieron cargar los pedidos",
       "retry": "Reintentar",
       "network": "No se puede conectar con el servidor. Comprueba tu conexión e inténtalo de nuevo.",
       "unexpected": "Algo salió mal. Inténtalo de nuevo."
+    }
+  },
+  "coupons": {
+    "metaTitle": "Cupones | E-Dukan",
+    "title": "Cupones",
+    "listTitle": "Códigos de descuento",
+    "description": "Códigos que los clientes introducen al pagar. El servidor valida y aplica el descuento.",
+    "searchPlaceholder": "Buscar código...",
+    "create": "Nuevo cupón",
+    "edit": "Editar {code}",
+    "empty": "Aún no hay cupones",
+    "emptyHint": "Crea un código para una promoción, un primer pedido o envío gratis.",
+    "noResults": "No hay cupones que coincidan",
+    "noResultsHint": "Prueba otro código.",
+    "valuePercent": "{value}% de descuento",
+    "valueFixed": "{amount} de descuento",
+    "upTo": "hasta {amount}",
+    "minOrder": "Pedido mín. {amount}",
+    "perPhone": "{count, plural, one {# uso por cliente} other {# usos por cliente}}",
+    "always": "Sin fecha de fin",
+    "columns": {
+      "code": "Código",
+      "discount": "Descuento",
+      "conditions": "Condiciones",
+      "used": "Usado",
+      "validity": "Vigencia",
+      "status": "Estado",
+      "actions": "Acciones"
+    },
+    "types": {
+      "PERCENT": "Porcentaje",
+      "FIXED": "Importe fijo",
+      "FREE_DELIVERY": "Envío gratis"
+    },
+    "states": {
+      "active": "Activo",
+      "scheduled": "Programado",
+      "expired": "Caducado",
+      "usedUp": "Agotado",
+      "inactive": "Desactivado"
+    },
+    "form": {
+      "createTitle": "Nuevo cupón",
+      "editTitle": "Editar cupón",
+      "description": "Deja un límite vacío para no limitar.",
+      "code": "Código",
+      "codeLocked": "Ya se usó en pedidos; el código no puede cambiar.",
+      "type": "Tipo",
+      "descriptionLabel": "Nota para clientes",
+      "descriptionPlaceholder": "p. ej. 10% en tu primer pedido",
+      "descriptionHint": "Se muestra al aplicar el código.",
+      "percent": "Porcentaje",
+      "amount": "Importe (৳)",
+      "maxDiscount": "Descuento máximo (৳)",
+      "minSubtotal": "Pedido mínimo (৳)",
+      "noLimit": "Sin límite",
+      "noMinimum": "Sin mínimo",
+      "startsAt": "Empieza",
+      "endsAt": "Termina",
+      "usageLimit": "Usos totales",
+      "perPhoneLimit": "Usos por cliente (teléfono)",
+      "unlimited": "Ilimitado",
+      "active": "Activo",
+      "activeHint": "Desactívalo para pausarlo sin borrarlo.",
+      "cancel": "Cancelar",
+      "save": "Guardar cambios",
+      "create": "Crear cupón",
+      "saving": "Guardando..."
+    },
+    "validation": {
+      "code": "Usa 3-40 letras, números, - o _",
+      "descriptionMax": "Máximo 200 caracteres",
+      "percent": "Introduce un porcentaje de 1 a 100",
+      "amount": "Introduce un importe en taka",
+      "wholeNumber": "Introduce un número entero de 1 o más",
+      "endAfterStart": "El fin debe ser posterior al inicio"
+    },
+    "delete": {
+      "label": "Eliminar {code}",
+      "title": "¿Eliminar {code}?",
+      "description": "Los clientes ya no podrán usar este código.",
+      "usedDescription": "Los pedidos que lo usaron conservan su descuento. Considera desactivarlo.",
+      "confirm": "Eliminar",
+      "deleting": "Eliminando..."
+    },
+    "errors": {
+      "network": "No se puede conectar con el servidor. Revisa tu conexión.",
+      "unexpected": "Algo salió mal. Inténtalo de nuevo.",
+      "retry": "Reintentar"
+    }
+  },
+  "settings": {
+    "metaTitle": "Ajustes | E-Dukan",
+    "title": "Ajustes de la tienda",
+    "description": "Contacto, anuncios y precios de envío que muestra la web.",
+    "contact": {
+      "title": "Contacto",
+      "description": "Se muestra en cabecera, pie, contacto y fichas de producto. Deja un campo vacío para ocultarlo.",
+      "hotline": "Línea directa",
+      "hotlineHint": "Se muestra en la cabecera y en las fichas.",
+      "phone": "Teléfono",
+      "whatsapp": "Número de WhatsApp",
+      "messenger": "Enlace de Messenger",
+      "email": "Correo",
+      "hours": "Horario",
+      "hoursPlaceholder": "Sáb-Jue, 9-22 h",
+      "address": "Dirección"
+    },
+    "socials": {
+      "title": "Redes sociales",
+      "description": "Enlaces del pie. Vacío para ocultar."
+    },
+    "announcements": {
+      "title": "Barra de anuncios",
+      "description": "Mensajes que rotan sobre la cabecera.",
+      "label": "Mensajes",
+      "placeholder": "Pago contra reembolso en todo Bangladés",
+      "hint": "Un mensaje por línea, hasta 8. Promete solo lo que la tienda ofrece."
+    },
+    "delivery": {
+      "title": "Precios de envío",
+      "description": "El pago los usa al instante. La web se actualiza en una hora.",
+      "zones": {
+        "INSIDE_DHAKA": "Ciudad de Dhaka",
+        "DHAKA_SUBURB": "Afueras de Dhaka",
+        "OUTSIDE_DHAKA": "Fuera de Dhaka"
+      },
+      "charge": "Coste (৳)",
+      "days": "Plazo (días)",
+      "freeFrom": "Envío gratis en Dhaka desde (৳)",
+      "freeFromHint": "0 desactiva el envío gratis."
+    },
+    "validation": {
+      "url": "Debe empezar por http:// o https://",
+      "phone": "Introduce un teléfono válido",
+      "email": "Introduce un correo válido",
+      "amount": "Introduce un importe entero en taka",
+      "days": "Introduce p. ej. 1-2",
+      "announcementsCount": "Máximo 8 mensajes",
+      "announcementLength": "Cada mensaje admite 160 caracteres"
+    },
+    "unsaved": "Cambios sin guardar",
+    "saved": "Guardado",
+    "discard": "Descartar",
+    "save": "Guardar ajustes",
+    "saving": "Guardando...",
+    "errors": {
+      "network": "No se puede conectar con el servidor. Revisa tu conexión.",
+      "unexpected": "No se pudieron cargar o guardar los ajustes."
     }
   }
 }

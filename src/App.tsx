@@ -6,6 +6,8 @@ import {
 } from "@/components/shared/route-guards";
 import CategoriesPage from "@/pages/main/catalog/categories";
 import SubcategoriesPage from "@/pages/main/catalog/subcategories";
+import CouponsPage from "@/pages/main/coupons";
+import SettingsPage from "@/pages/main/settings";
 import OrdersPage from "@/pages/main/orders";
 import OrderDetailPage from "@/pages/main/orders/detail";
 import ProductsPage from "@/pages/main/products";
@@ -42,11 +44,13 @@ export default function App() {
             <Route path="/products/:id/edit" element={<ProductEditorPage />} />
             <Route path="/categories" element={<CategoriesPage />} />
             <Route path="/subcategories" element={<SubcategoriesPage />} />
+            <Route path="/coupons" element={<CouponsPage />} />
           </Route>
 
           {/* User management (admins) */}
           <Route element={<RoleRoute roles={ADMIN_ROLES} />}>
             <Route path="/users" element={<UsersPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
           </Route>
 
           {/* Account */}

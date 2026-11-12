@@ -4,6 +4,7 @@ import type { AdminListProductsParams } from "./products";
 import type { ListCategoriesParams } from "./categories";
 import type { ListUsersParams } from "./users";
 import type { ListOrdersParams } from "./orders";
+import type { ListCouponsParams } from "./coupons";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -28,6 +29,7 @@ export const queryClient = new QueryClient({
  */
 export const queryKeys = {
   profile: ["profile"] as const,
+  settings: ["settings"] as const,
   categories: {
     all: ["categories"] as const,
     list: (params: ListCategoriesParams) => ["categories", "list", params] as const,
@@ -44,6 +46,10 @@ export const queryKeys = {
     list: (params: ListOrdersParams) => ["orders", "list", params] as const,
     detail: (id: string) => ["orders", "detail", id] as const,
     stats: ["orders", "stats"] as const,
+  },
+  coupons: {
+    all: ["coupons"] as const,
+    list: (params: ListCouponsParams) => ["coupons", "list", params] as const,
   },
   users: {
     all: ["users"] as const,

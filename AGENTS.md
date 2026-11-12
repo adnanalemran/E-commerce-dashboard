@@ -51,7 +51,7 @@ Path alias: `@/*` → `src/*`. Import router APIs from `react-router` (never `re
 
 | Path | Page | Access |
 | --- | --- | --- |
-| `/` | Dashboard home (template sample charts) | signed in |
+| `/` | Store overview: KPIs, 30-day sales, best sellers, low stock, recent orders (`/admin/orders/stats`) | signed in (data for `STAFF_ROLES`) |
 | `/orders`, `/orders/:id` | Order list (stats, status tabs) and detail (status workflow, payment, timeline) | `STAFF_ROLES` (SUPER_ADMIN, ADMIN, MANAGER) |
 | `/products`, `/products/new`, `/products/:id/edit` | Product list and editor | `STAFF_ROLES` |
 | `/categories`, `/subcategories` | Catalog | `STAFF_ROLES` |
@@ -121,7 +121,6 @@ React Hook Form + `zodResolver` + a colocated `schema.ts` exporting `createXSche
 - Locales `en` (fallback), `ar` (RTL), `es`, `de`. **Every user-facing string goes into all four `src/messages/*.json` files**, with the same keys. ICU syntax for interpolation and plurals (`{count, plural, one {…} other {…}}`).
 - `const t = useTranslations("namespace")` from `@/i18n`; `getTranslations` outside components.
 - Page titles end with ` | E-Dukan`.
-- The dashboard home (`pages/main/dashboard/ecommerce`) still has template sample data and hard-coded text; don't copy that pattern.
 
 ## Styling
 

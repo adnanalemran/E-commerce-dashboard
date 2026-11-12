@@ -1,8 +1,10 @@
 import {
   BoxIcon,
   CartIcon,
+  GearIcon,
   LayoutGridIcon,
   TagIcon,
+  TicketIcon,
   UserCircleIcon,
   UsersIcon,
 } from "@/icons";
@@ -37,9 +39,21 @@ export const navItems: NavItem[] = [
     ],
   },
   {
+    icon: <TicketIcon className="size-6" />,
+    key: "coupons",
+    path: "/coupons",
+    roles: STAFF_ROLES,
+  },
+  {
     icon: <UsersIcon className="size-6" />,
     key: "users",
     path: "/users",
+    roles: ADMIN_ROLES,
+  },
+  {
+    icon: <GearIcon className="size-6" />,
+    key: "settings",
+    path: "/settings",
     roles: ADMIN_ROLES,
   },
   {

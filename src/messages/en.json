@@ -141,19 +141,21 @@
       "categories": "Categories",
       "subcategories": "Subcategories",
       "users": "Users",
-      "orders": "Orders"
+      "orders": "Orders",
+      "coupons": "Coupons",
+      "settings": "Settings"
     }
   },
   "header": {
     "searchPlaceholder": "Search or type command...",
     "toggleSidebar": "Toggle Sidebar",
     "notifications": {
-      "title": "Notification",
-      "requestsPermission": "requests permission to change",
-      "project": "Project",
-      "minAgo": "{count} min ago",
-      "hrAgo": "{count} hr ago",
-      "viewAll": "View All Notifications"
+      "title": "Pending orders",
+      "toggle": "{count, plural, =0 {No pending orders} one {# pending order} other {# pending orders}}",
+      "close": "Close",
+      "empty": "No orders are waiting. You're all caught up.",
+      "newOrder": "{number} from {name}",
+      "viewAll": "View all pending orders"
     }
   },
   "userDropdown": {
@@ -164,76 +166,49 @@
     "signOut": "Sign out"
   },
   "ecommerce": {
-    "title": "E-commerce Dashboard",
-    "metrics": {
+    "metaTitle": "Dashboard | E-Dukan",
+    "title": "Store overview",
+    "description": "Today's sales, orders waiting for you and stock to restock.",
+    "welcome": "Welcome, {name}. Use the menu to manage your profile.",
+    "errors": {
+      "network": "Can't reach the server. Check your connection.",
+      "unexpected": "Couldn't load store numbers.",
+      "retry": "Try again"
+    },
+    "kpis": {
+      "todayRevenue": "Revenue today",
+      "monthRevenue": "Revenue this month",
+      "orders": "{count, plural, one {# order} other {# orders}}",
+      "pending": "Pending orders",
+      "pendingHint": "Waiting for confirmation",
       "customers": "Customers",
-      "orders": "Orders"
+      "customersHint": "Unique phone numbers that ordered"
     },
-    "months": {
-      "jan": "Jan",
-      "feb": "Feb",
-      "mar": "Mar",
-      "apr": "Apr",
-      "may": "May",
-      "jun": "Jun",
-      "jul": "Jul",
-      "aug": "Aug",
-      "sep": "Sep",
-      "oct": "Oct",
-      "nov": "Nov",
-      "dec": "Dec"
-    },
-    "monthlySales": {
-      "title": "Monthly Sales",
-      "series": "Sales"
-    },
-    "monthlyTarget": {
-      "title": "Monthly Target",
-      "subtitle": "Target you’ve set for each month",
-      "earned": "You earn {amount} today, it's higher than last month. Keep up your good work!",
-      "target": "Target",
+    "sales": {
+      "title": "Sales, last 30 days",
+      "subtitle": "Excludes cancelled and returned orders",
       "revenue": "Revenue",
-      "today": "Today"
+      "orders": "Orders",
+      "orderCount": "{count, plural, one {# order} other {# orders}}"
     },
-    "statistics": {
-      "title": "Statistics",
-      "subtitle": "Target you've set for each month",
-      "overview": "Overview",
-      "sales": "Sales",
-      "revenue": "Revenue",
-      "monthly": "Monthly",
-      "quarterly": "Quarterly",
-      "annually": "Annually",
-      "selectDateRange": "Select date range"
+    "topProducts": {
+      "title": "Best sellers",
+      "subtitle": "Units sold in the last 30 days",
+      "empty": "No sales in the last 30 days yet.",
+      "sold": "{count} sold"
+    },
+    "lowStock": {
+      "title": "Low stock",
+      "subtitle": "Active variants with {threshold} or fewer left",
+      "empty": "Everything is well stocked.",
+      "outOfStock": "Out of stock",
+      "left": "{count} left"
     },
     "recentOrders": {
-      "title": "Recent Orders",
-      "products": "Products",
-      "category": "Category",
-      "price": "Price",
-      "status": "Status",
-      "variants": "{count, plural, one {# Variant} other {# Variants}}",
-      "categories": {
-        "laptop": "Laptop",
-        "watch": "Watch",
-        "smartphone": "SmartPhone",
-        "electronics": "Electronics",
-        "accessories": "Accessories"
-      },
-      "statuses": {
-        "delivered": "Delivered",
-        "pending": "Pending",
-        "canceled": "Canceled"
-      }
-    },
-    "demographic": {
-      "title": "Customers Demographic",
-      "subtitle": "Number of customer based on country",
-      "customers": "{count} Customers",
-      "usa": "USA",
-      "france": "France",
-      "yemen": "Yemen",
-      "uk": "United Kingdom"
+      "title": "Recent orders",
+      "subtitle": "The latest orders from the website",
+      "viewAll": "View all",
+      "empty": "No orders yet."
     }
   },
   "analytics": {
@@ -1691,7 +1666,8 @@
     },
     "zones": {
       "INSIDE_DHAKA": "Inside Dhaka",
-      "OUTSIDE_DHAKA": "Outside Dhaka"
+      "OUTSIDE_DHAKA": "Outside Dhaka",
+      "DHAKA_SUBURB": "Dhaka suburbs"
     },
     "dialog": {
       "cancelTitle": "Cancel this order?",
@@ -1726,13 +1702,171 @@
       "zone": "Delivery area",
       "note": "Customer note",
       "payment": "Payment",
-      "codHint": "Cash-on-delivery orders are marked paid automatically when delivered."
+      "codHint": "Cash-on-delivery orders are marked paid automatically when delivered.",
+      "location": "Area",
+      "discountCode": "Discount ({code})",
+      "trxId": "TrxID {id}",
+      "attempt": {
+        "INITIATED": "Started",
+        "COMPLETED": "Paid",
+        "FAILED": "Failed",
+        "CANCELLED": "Cancelled"
+      }
     },
     "errors": {
       "loadFailed": "Couldn't load orders",
       "retry": "Try again",
       "network": "Unable to reach the server. Check your connection and try again.",
       "unexpected": "Something went wrong. Please try again."
+    }
+  },
+  "coupons": {
+    "metaTitle": "Coupons | E-Dukan",
+    "title": "Coupons",
+    "listTitle": "Discount codes",
+    "description": "Codes customers enter at checkout. Discounts are checked and applied by the server.",
+    "searchPlaceholder": "Search code...",
+    "create": "New coupon",
+    "edit": "Edit {code}",
+    "empty": "No coupons yet",
+    "emptyHint": "Create a code for a promotion, a first order or free delivery.",
+    "noResults": "No matching coupons",
+    "noResultsHint": "Try a different code.",
+    "valuePercent": "{value}% off",
+    "valueFixed": "{amount} off",
+    "upTo": "up to {amount}",
+    "minOrder": "Min. order {amount}",
+    "perPhone": "{count, plural, one {# use per customer} other {# uses per customer}}",
+    "always": "No end date",
+    "columns": {
+      "code": "Code",
+      "discount": "Discount",
+      "conditions": "Conditions",
+      "used": "Used",
+      "validity": "Valid",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "types": {
+      "PERCENT": "Percent off",
+      "FIXED": "Fixed amount off",
+      "FREE_DELIVERY": "Free delivery"
+    },
+    "states": {
+      "active": "Active",
+      "scheduled": "Scheduled",
+      "expired": "Expired",
+      "usedUp": "Used up",
+      "inactive": "Off"
+    },
+    "form": {
+      "createTitle": "New coupon",
+      "editTitle": "Edit coupon",
+      "description": "Leave a limit empty for no limit.",
+      "code": "Code",
+      "codeLocked": "Already used on orders, so the code can't change.",
+      "type": "Type",
+      "descriptionLabel": "Note for customers",
+      "descriptionPlaceholder": "e.g. 10% off your first order",
+      "descriptionHint": "Shown at checkout when the code is applied.",
+      "percent": "Percent off",
+      "amount": "Amount off (৳)",
+      "maxDiscount": "Maximum discount (৳)",
+      "minSubtotal": "Minimum order (৳)",
+      "noLimit": "No limit",
+      "noMinimum": "No minimum",
+      "startsAt": "Starts",
+      "endsAt": "Ends",
+      "usageLimit": "Total uses",
+      "perPhoneLimit": "Uses per customer (phone)",
+      "unlimited": "Unlimited",
+      "active": "Active",
+      "activeHint": "Turn off to pause the code without deleting it.",
+      "cancel": "Cancel",
+      "save": "Save changes",
+      "create": "Create coupon",
+      "saving": "Saving..."
+    },
+    "validation": {
+      "code": "Use 3-40 letters, numbers, - or _",
+      "descriptionMax": "At most 200 characters",
+      "percent": "Enter a percent from 1 to 100",
+      "amount": "Enter an amount in taka",
+      "wholeNumber": "Enter a whole number of 1 or more",
+      "endAfterStart": "End must be after the start"
+    },
+    "delete": {
+      "label": "Delete {code}",
+      "title": "Delete {code}?",
+      "description": "Customers will no longer be able to use this code.",
+      "usedDescription": "Orders that used this code keep their discount. Consider switching it off instead.",
+      "confirm": "Delete",
+      "deleting": "Deleting..."
+    },
+    "errors": {
+      "network": "Can't reach the server. Check your connection.",
+      "unexpected": "Something went wrong. Please try again.",
+      "retry": "Try again"
+    }
+  },
+  "settings": {
+    "metaTitle": "Settings | E-Dukan",
+    "title": "Store settings",
+    "description": "Contact details, announcements and delivery prices shown on the website.",
+    "contact": {
+      "title": "Contact",
+      "description": "Shown in the header, footer, contact page and product pages. Leave a field empty to hide it.",
+      "hotline": "Hotline",
+      "hotlineHint": "Shown in the header and on product pages.",
+      "phone": "Phone",
+      "whatsapp": "WhatsApp number",
+      "messenger": "Messenger link",
+      "email": "Email",
+      "hours": "Opening hours",
+      "hoursPlaceholder": "Sat-Thu, 9am-10pm",
+      "address": "Address"
+    },
+    "socials": {
+      "title": "Social media",
+      "description": "Links in the footer. Leave empty to hide."
+    },
+    "announcements": {
+      "title": "Announcement bar",
+      "description": "Messages that rotate in the bar above the header.",
+      "label": "Messages",
+      "placeholder": "Cash on delivery all over Bangladesh",
+      "hint": "One message per line, up to 8. Only promise what the store really offers."
+    },
+    "delivery": {
+      "title": "Delivery prices",
+      "description": "Used by checkout straight away. The website updates within an hour.",
+      "zones": {
+        "INSIDE_DHAKA": "Dhaka city",
+        "DHAKA_SUBURB": "Dhaka suburbs",
+        "OUTSIDE_DHAKA": "Outside Dhaka"
+      },
+      "charge": "Charge (৳)",
+      "days": "Delivery time (days)",
+      "freeFrom": "Free delivery in Dhaka city from (৳)",
+      "freeFromHint": "0 turns free delivery off."
+    },
+    "validation": {
+      "url": "Must start with http:// or https://",
+      "phone": "Enter a valid phone number",
+      "email": "Enter a valid email address",
+      "amount": "Enter a whole amount in taka",
+      "days": "Enter e.g. 1-2",
+      "announcementsCount": "At most 8 messages",
+      "announcementLength": "Each message can be at most 160 characters"
+    },
+    "unsaved": "Unsaved changes",
+    "saved": "Saved",
+    "discard": "Discard",
+    "save": "Save settings",
+    "saving": "Saving...",
+    "errors": {
+      "network": "Cannot reach the server. Check your connection.",
+      "unexpected": "Could not load or save settings."
     }
   }
 }

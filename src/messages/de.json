@@ -141,19 +141,21 @@
       "categories": "Kategorien",
       "subcategories": "Unterkategorien",
       "users": "Benutzer",
-      "orders": "Bestellungen"
+      "orders": "Bestellungen",
+      "coupons": "Gutscheine",
+      "settings": "Einstellungen"
     }
   },
   "header": {
     "searchPlaceholder": "Suchen oder Befehl eingeben...",
     "toggleSidebar": "Seitenleiste umschalten",
     "notifications": {
-      "title": "Benachrichtigungen",
-      "requestsPermission": "bittet um Erlaubnis zur Änderung von",
-      "project": "Projekt",
-      "minAgo": "vor {count} Min.",
-      "hrAgo": "vor {count} Std.",
-      "viewAll": "Alle Benachrichtigungen anzeigen"
+      "title": "Offene Bestellungen",
+      "toggle": "{count, plural, =0 {Keine offenen Bestellungen} one {# offene Bestellung} other {# offene Bestellungen}}",
+      "close": "Schließen",
+      "empty": "Keine Bestellungen warten. Alles erledigt.",
+      "newOrder": "{number} von {name}",
+      "viewAll": "Alle offenen Bestellungen"
     }
   },
   "userDropdown": {
@@ -164,76 +166,49 @@
     "signOut": "Abmelden"
   },
   "ecommerce": {
-    "title": "E-Commerce-Dashboard",
-    "metrics": {
+    "metaTitle": "Dashboard | E-Dukan",
+    "title": "Shop-Übersicht",
+    "description": "Heutige Umsätze, wartende Bestellungen und Bestand zum Nachfüllen.",
+    "welcome": "Willkommen, {name}. Verwalte dein Profil über das Menü.",
+    "errors": {
+      "network": "Server nicht erreichbar. Prüfe deine Verbindung.",
+      "unexpected": "Shop-Zahlen konnten nicht geladen werden.",
+      "retry": "Erneut versuchen"
+    },
+    "kpis": {
+      "todayRevenue": "Umsatz heute",
+      "monthRevenue": "Umsatz diesen Monat",
+      "orders": "{count, plural, one {# Bestellung} other {# Bestellungen}}",
+      "pending": "Offene Bestellungen",
+      "pendingHint": "Warten auf Bestätigung",
       "customers": "Kunden",
-      "orders": "Bestellungen"
+      "customersHint": "Eindeutige Telefonnummern mit Bestellung"
     },
-    "months": {
-      "jan": "Jan",
-      "feb": "Feb",
-      "mar": "Mar",
-      "apr": "Apr",
-      "may": "May",
-      "jun": "Jun",
-      "jul": "Jul",
-      "aug": "Aug",
-      "sep": "Sep",
-      "oct": "Oct",
-      "nov": "Nov",
-      "dec": "Dec"
-    },
-    "monthlySales": {
-      "title": "Monatliche Verkäufe",
-      "series": "Verkäufe"
-    },
-    "monthlyTarget": {
-      "title": "Monatsziel",
-      "subtitle": "Das Ziel, das Sie für jeden Monat festgelegt haben",
-      "earned": "Sie haben heute {amount} verdient, das ist mehr als im letzten Monat. Weiter so!",
-      "target": "Ziel",
+    "sales": {
+      "title": "Umsatz, letzte 30 Tage",
+      "subtitle": "Ohne stornierte und retournierte Bestellungen",
       "revenue": "Umsatz",
-      "today": "Heute"
+      "orders": "Bestellungen",
+      "orderCount": "{count, plural, one {# Bestellung} other {# Bestellungen}}"
     },
-    "statistics": {
-      "title": "Statistiken",
-      "subtitle": "Das Ziel, das Sie für jeden Monat festgelegt haben",
-      "overview": "Übersicht",
-      "sales": "Verkäufe",
-      "revenue": "Umsatz",
-      "monthly": "Monatlich",
-      "quarterly": "Vierteljährlich",
-      "annually": "Jährlich",
-      "selectDateRange": "Zeitraum auswählen"
+    "topProducts": {
+      "title": "Bestseller",
+      "subtitle": "Verkaufte Einheiten der letzten 30 Tage",
+      "empty": "Noch keine Verkäufe in den letzten 30 Tagen.",
+      "sold": "{count} verkauft"
+    },
+    "lowStock": {
+      "title": "Niedriger Bestand",
+      "subtitle": "Aktive Varianten mit {threshold} oder weniger",
+      "empty": "Alles ist gut auf Lager.",
+      "outOfStock": "Ausverkauft",
+      "left": "Noch {count}"
     },
     "recentOrders": {
-      "title": "Letzte Bestellungen",
-      "products": "Produkte",
-      "category": "Kategorie",
-      "price": "Preis",
-      "status": "Status",
-      "variants": "{count, plural, one {# Variante} other {# Varianten}}",
-      "categories": {
-        "laptop": "Laptop",
-        "watch": "Uhr",
-        "smartphone": "Smartphone",
-        "electronics": "Elektronik",
-        "accessories": "Zubehör"
-      },
-      "statuses": {
-        "delivered": "Geliefert",
-        "pending": "Ausstehend",
-        "canceled": "Storniert"
-      }
-    },
-    "demographic": {
-      "title": "Kundendemografie",
-      "subtitle": "Anzahl der Kunden nach Land",
-      "customers": "{count} Kunden",
-      "usa": "USA",
-      "france": "France",
-      "yemen": "Yemen",
-      "uk": "UK"
+      "title": "Neueste Bestellungen",
+      "subtitle": "Die letzten Bestellungen aus dem Shop",
+      "viewAll": "Alle ansehen",
+      "empty": "Noch keine Bestellungen."
     }
   },
   "analytics": {
@@ -1691,7 +1666,8 @@
     },
     "zones": {
       "INSIDE_DHAKA": "Innerhalb Dhakas",
-      "OUTSIDE_DHAKA": "Außerhalb Dhakas"
+      "OUTSIDE_DHAKA": "Außerhalb Dhakas",
+      "DHAKA_SUBURB": "Dhaka-Vororte"
     },
     "dialog": {
       "cancelTitle": "Diese Bestellung stornieren?",
@@ -1726,13 +1702,171 @@
       "zone": "Liefergebiet",
       "note": "Kundennotiz",
       "payment": "Zahlung",
-      "codHint": "Nachnahme-Bestellungen werden bei Zustellung automatisch als bezahlt markiert."
+      "codHint": "Nachnahme-Bestellungen werden bei Zustellung automatisch als bezahlt markiert.",
+      "location": "Gebiet",
+      "discountCode": "Rabatt ({code})",
+      "trxId": "TrxID {id}",
+      "attempt": {
+        "INITIATED": "Gestartet",
+        "COMPLETED": "Bezahlt",
+        "FAILED": "Fehlgeschlagen",
+        "CANCELLED": "Abgebrochen"
+      }
     },
     "errors": {
       "loadFailed": "Bestellungen konnten nicht geladen werden",
       "retry": "Erneut versuchen",
       "network": "Der Server ist nicht erreichbar. Prüfe deine Verbindung und versuche es erneut.",
       "unexpected": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
+    }
+  },
+  "coupons": {
+    "metaTitle": "Gutscheine | E-Dukan",
+    "title": "Gutscheine",
+    "listTitle": "Rabattcodes",
+    "description": "Codes, die Kunden an der Kasse eingeben. Der Server prüft und verrechnet den Rabatt.",
+    "searchPlaceholder": "Code suchen...",
+    "create": "Neuer Gutschein",
+    "edit": "{code} bearbeiten",
+    "empty": "Noch keine Gutscheine",
+    "emptyHint": "Lege einen Code für eine Aktion, die erste Bestellung oder Gratisversand an.",
+    "noResults": "Keine passenden Gutscheine",
+    "noResultsHint": "Versuche einen anderen Code.",
+    "valuePercent": "{value}% Rabatt",
+    "valueFixed": "{amount} Rabatt",
+    "upTo": "bis {amount}",
+    "minOrder": "Mindestbestellung {amount}",
+    "perPhone": "{count, plural, one {# Nutzung pro Kunde} other {# Nutzungen pro Kunde}}",
+    "always": "Kein Enddatum",
+    "columns": {
+      "code": "Code",
+      "discount": "Rabatt",
+      "conditions": "Bedingungen",
+      "used": "Genutzt",
+      "validity": "Gültig",
+      "status": "Status",
+      "actions": "Aktionen"
+    },
+    "types": {
+      "PERCENT": "Prozent",
+      "FIXED": "Fester Betrag",
+      "FREE_DELIVERY": "Gratisversand"
+    },
+    "states": {
+      "active": "Aktiv",
+      "scheduled": "Geplant",
+      "expired": "Abgelaufen",
+      "usedUp": "Aufgebraucht",
+      "inactive": "Aus"
+    },
+    "form": {
+      "createTitle": "Neuer Gutschein",
+      "editTitle": "Gutschein bearbeiten",
+      "description": "Leere Grenzen bedeuten unbegrenzt.",
+      "code": "Code",
+      "codeLocked": "Bereits in Bestellungen genutzt, der Code kann sich nicht ändern.",
+      "type": "Typ",
+      "descriptionLabel": "Hinweis für Kunden",
+      "descriptionPlaceholder": "z. B. 10% auf die erste Bestellung",
+      "descriptionHint": "Wird an der Kasse angezeigt, wenn der Code gilt.",
+      "percent": "Prozent",
+      "amount": "Betrag (৳)",
+      "maxDiscount": "Maximaler Rabatt (৳)",
+      "minSubtotal": "Mindestbestellung (৳)",
+      "noLimit": "Unbegrenzt",
+      "noMinimum": "Kein Minimum",
+      "startsAt": "Beginn",
+      "endsAt": "Ende",
+      "usageLimit": "Nutzungen gesamt",
+      "perPhoneLimit": "Nutzungen pro Kunde (Telefon)",
+      "unlimited": "Unbegrenzt",
+      "active": "Aktiv",
+      "activeHint": "Ausschalten pausiert den Code, ohne ihn zu löschen.",
+      "cancel": "Abbrechen",
+      "save": "Änderungen speichern",
+      "create": "Gutschein anlegen",
+      "saving": "Speichern..."
+    },
+    "validation": {
+      "code": "3-40 Buchstaben, Ziffern, - oder _",
+      "descriptionMax": "Höchstens 200 Zeichen",
+      "percent": "Prozent von 1 bis 100 eingeben",
+      "amount": "Betrag in Taka eingeben",
+      "wholeNumber": "Ganze Zahl ab 1 eingeben",
+      "endAfterStart": "Ende muss nach dem Beginn liegen"
+    },
+    "delete": {
+      "label": "{code} löschen",
+      "title": "{code} löschen?",
+      "description": "Kunden können diesen Code danach nicht mehr nutzen.",
+      "usedDescription": "Bestellungen mit diesem Code behalten ihren Rabatt. Ausschalten ist oft besser.",
+      "confirm": "Löschen",
+      "deleting": "Löschen..."
+    },
+    "errors": {
+      "network": "Server nicht erreichbar. Prüfe deine Verbindung.",
+      "unexpected": "Etwas ist schiefgelaufen. Bitte erneut versuchen.",
+      "retry": "Erneut versuchen"
+    }
+  },
+  "settings": {
+    "metaTitle": "Einstellungen | E-Dukan",
+    "title": "Shop-Einstellungen",
+    "description": "Kontaktdaten, Ankündigungen und Versandpreise auf der Website.",
+    "contact": {
+      "title": "Kontakt",
+      "description": "Erscheint in Kopfzeile, Fußzeile, Kontaktseite und Produktseiten. Leeres Feld = ausgeblendet.",
+      "hotline": "Hotline",
+      "hotlineHint": "Erscheint in der Kopfzeile und auf Produktseiten.",
+      "phone": "Telefon",
+      "whatsapp": "WhatsApp-Nummer",
+      "messenger": "Messenger-Link",
+      "email": "E-Mail",
+      "hours": "Öffnungszeiten",
+      "hoursPlaceholder": "Sa-Do, 9-22 Uhr",
+      "address": "Adresse"
+    },
+    "socials": {
+      "title": "Soziale Medien",
+      "description": "Links in der Fußzeile. Leer = ausgeblendet."
+    },
+    "announcements": {
+      "title": "Ankündigungsleiste",
+      "description": "Nachrichten, die über der Kopfzeile wechseln.",
+      "label": "Nachrichten",
+      "placeholder": "Nachnahme in ganz Bangladesch",
+      "hint": "Eine Nachricht pro Zeile, bis zu 8. Nur versprechen, was der Shop wirklich bietet."
+    },
+    "delivery": {
+      "title": "Versandpreise",
+      "description": "Die Kasse nutzt sie sofort. Die Website aktualisiert sich innerhalb einer Stunde.",
+      "zones": {
+        "INSIDE_DHAKA": "Dhaka Stadt",
+        "DHAKA_SUBURB": "Dhaka-Vororte",
+        "OUTSIDE_DHAKA": "Außerhalb Dhakas"
+      },
+      "charge": "Gebühr (৳)",
+      "days": "Lieferzeit (Tage)",
+      "freeFrom": "Gratisversand in Dhaka ab (৳)",
+      "freeFromHint": "0 schaltet Gratisversand aus."
+    },
+    "validation": {
+      "url": "Muss mit http:// oder https:// beginnen",
+      "phone": "Gültige Telefonnummer eingeben",
+      "email": "Gültige E-Mail eingeben",
+      "amount": "Ganzen Betrag in Taka eingeben",
+      "days": "z. B. 1-2 eingeben",
+      "announcementsCount": "Höchstens 8 Nachrichten",
+      "announcementLength": "Jede Nachricht höchstens 160 Zeichen"
+    },
+    "unsaved": "Ungespeicherte Änderungen",
+    "saved": "Gespeichert",
+    "discard": "Verwerfen",
+    "save": "Einstellungen speichern",
+    "saving": "Speichern...",
+    "errors": {
+      "network": "Server nicht erreichbar. Prüfe deine Verbindung.",
+      "unexpected": "Einstellungen konnten nicht geladen oder gespeichert werden."
     }
   }
 }

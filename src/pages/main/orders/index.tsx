@@ -31,7 +31,7 @@ import { cn } from "@/utils";
 import { formatTaka } from "@/utils/currency";
 import { getApiErrorMessage } from "@/utils/form-errors";
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useSearchParams } from "react-router";
 import { OrderStatusBadge, PaymentBadge } from "./order-badges";
 import { useOrderList, useOrderStats } from "./use-orders";
 
@@ -49,7 +49,11 @@ export default function OrdersPage() {
   const money = (n: number) => formatTaka(n, locale);
   const dateTime = new Intl.DateTimeFormat(locale, { dateStyle: "medium", timeStyle: "short" });
 
-  const [status, setStatus] = useState<OrderStatus | typeof ALL>(ALL);
+  const [searchParams] = useSearchParams();
+  const [status, setStatus] = useState<OrderStatus | typeof ALL>(() => {
+    const fromUrl = searchParams.get("status");
+    return ORDER_STATUSES.find((s) => s === fromUrl) ?? ALL;
+  });
   const [payment, setPayment] = useState<PaymentStatus | typeof ALL>(ALL);
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebouncedValue(search.trim(), 300);
