@@ -29,6 +29,8 @@ export interface OrderItem {
   compareAtPrice: number | null;
   quantity: number;
   lineTotal: number;
+  /** Free gift added by a gift rule. */
+  isGift: boolean;
 }
 
 export interface OrderEvent {
@@ -66,6 +68,9 @@ export interface Order {
   area: string | null;
   deliveryZone: DeliveryZone;
   couponCode: string | null;
+  courier: string | null;
+  consignmentId: string | null;
+  trackingCode: string | null;
   note: string | null;
   cancelReason: string | null;
   subtotal: number;

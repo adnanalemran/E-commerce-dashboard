@@ -14,6 +14,8 @@ export interface StoreSettings {
   };
   socials: { facebook: string; instagram: string; youtube: string; tiktok: string };
   announcements: string[];
+  /** Marketing tag IDs (empty = off). */
+  tracking: { facebookPixelId: string; gtmId: string; ga4Id: string };
   delivery: {
     charges: Record<DeliveryZone, number>;
     /** 0 turns free delivery off. */

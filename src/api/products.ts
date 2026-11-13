@@ -30,6 +30,10 @@ export interface Product {
   description: string | null;
   status: ProductStatus;
   categoryId: string | null;
+  brandId: string | null;
+  brand: { id: string; name: string; slug: string; logo: string | null } | null;
+  onSale: boolean;
+  rating: { average: number; count: number };
   category: {
     id: string;
     name: string;
@@ -89,6 +93,7 @@ export interface ProductInput {
   description: string | null;
   status: ProductStatus;
   categoryId: string | null;
+  brandId: string | null;
   isFeatured: boolean;
   isBestSelling: boolean;
   isNewArrival: boolean;

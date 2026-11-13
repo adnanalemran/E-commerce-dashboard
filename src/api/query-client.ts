@@ -30,6 +30,18 @@ export const queryClient = new QueryClient({
 export const queryKeys = {
   profile: ["profile"] as const,
   settings: ["settings"] as const,
+  brands: ["brands"] as const,
+  banners: ["banners"] as const,
+  pages: ["pages"] as const,
+  giftRules: ["giftRules"] as const,
+  courierStatus: ["courierStatus"] as const,
+  reviews: {
+    all: ["reviews"] as const,
+    list: (params: object) => ["reviews", "list", params] as const,
+  },
+  reports: {
+    sales: (from: string, to: string) => ["reports", "sales", from, to] as const,
+  },
   categories: {
     all: ["categories"] as const,
     list: (params: ListCategoriesParams) => ["categories", "list", params] as const,

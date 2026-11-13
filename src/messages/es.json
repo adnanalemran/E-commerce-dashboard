@@ -143,7 +143,13 @@
       "users": "Usuarios",
       "orders": "Pedidos",
       "coupons": "Cupones",
-      "settings": "Ajustes"
+      "settings": "Ajustes",
+      "content": "Contenido",
+      "brands": "Marcas",
+      "banners": "Banners",
+      "reviews": "Reseñas",
+      "gifts": "Regalos",
+      "reports": "Informes"
     }
   },
   "header": {
@@ -1562,7 +1568,8 @@
       "badges": "Insignias de la tienda",
       "badgesHint": "Destaca este producto en las secciones de la página de inicio.",
       "dangerZone": "Zona de peligro",
-      "unsaved": "Tienes cambios sin guardar"
+      "unsaved": "Tienes cambios sin guardar",
+      "noBrand": "Sin marca"
     },
     "fields": {
       "name": "Nombre del producto",
@@ -1574,7 +1581,8 @@
       "orderNo": "Número de orden",
       "isBestSelling": "Más vendido",
       "isNewArrival": "Novedad",
-      "isFeatured": "Destacado"
+      "isFeatured": "Destacado",
+      "brand": "Marca"
     },
     "placeholders": {
       "name": "p. ej. Miel de Sundarban",
@@ -1711,13 +1719,50 @@
         "COMPLETED": "Pagado",
         "FAILED": "Fallido",
         "CANCELLED": "Cancelado"
-      }
+      },
+      "gift": "Regalo"
     },
     "errors": {
       "loadFailed": "No se pudieron cargar los pedidos",
       "retry": "Reintentar",
       "network": "No se puede conectar con el servidor. Comprueba tu conexión e inténtalo de nuevo.",
       "unexpected": "Algo salió mal. Inténtalo de nuevo."
+    },
+    "courier": {
+      "title": "Mensajería",
+      "bookedWith": "Reservado con {courier}",
+      "consignment": "Envío",
+      "tracking": "Seguimiento",
+      "checkStatus": "Ver estado de entrega",
+      "currentStatus": "Estado: {status}",
+      "notConfigured": "La reserva de mensajería está desactivada. Añade las claves de Steadfast en el servidor.",
+      "book": "Reservar envío Steadfast",
+      "booking": "Reservando...",
+      "bookHint": "Se cobra el total del pedido salvo que ya esté pagado.",
+      "confirmFirst": "Confirma primero el pedido.",
+      "network": "No se puede conectar con el servidor.",
+      "unexpected": "No se pudo contactar con la mensajería."
+    },
+    "invoice": {
+      "print": "Imprimir factura",
+      "title": "Factura",
+      "notFound": "Pedido no encontrado",
+      "back": "Volver al pedido",
+      "subtitle": "Comida segura y orgánica",
+      "shipTo": "Enviar a",
+      "payment": "Pago",
+      "item": "Artículo",
+      "price": "Precio",
+      "qty": "Cant.",
+      "amount": "Importe",
+      "gift": "regalo",
+      "subtotal": "Subtotal",
+      "delivery": "Envío",
+      "discount": "Descuento",
+      "total": "Total pagado",
+      "toCollect": "A cobrar",
+      "note": "Nota",
+      "thanks": "Gracias por comprar en E-Dukan."
     }
   },
   "coupons": {
@@ -1857,7 +1902,10 @@
       "amount": "Introduce un importe entero en taka",
       "days": "Introduce p. ej. 1-2",
       "announcementsCount": "Máximo 8 mensajes",
-      "announcementLength": "Cada mensaje admite 160 caracteres"
+      "announcementLength": "Cada mensaje admite 160 caracteres",
+      "pixel": "El ID del píxel tiene 8-20 dígitos",
+      "gtm": "Formato GTM-XXXXXXX",
+      "ga4": "Formato G-XXXXXXXXXX"
     },
     "unsaved": "Cambios sin guardar",
     "saved": "Guardado",
@@ -1867,6 +1915,253 @@
     "errors": {
       "network": "No se puede conectar con el servidor. Revisa tu conexión.",
       "unexpected": "No se pudieron cargar o guardar los ajustes."
+    },
+    "tracking": {
+      "title": "Seguimiento y analítica",
+      "description": "Pega solo los IDs. La web carga los scripts oficiales.",
+      "pixel": "ID de Facebook Pixel",
+      "gtm": "ID de Google Tag Manager",
+      "ga4": "ID de Google Analytics 4"
+    }
+  },
+  "crud": {
+    "network": "No se puede conectar con el servidor. Revisa tu conexión.",
+    "unexpected": "Algo salió mal. Inténtalo de nuevo.",
+    "retry": "Reintentar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "deleting": "Eliminando...",
+    "saving": "Guardando..."
+  },
+  "brands": {
+    "metaTitle": "Marcas | E-Dukan",
+    "title": "Marcas",
+    "listTitle": "Marcas",
+    "description": "Cada marca tiene su página en la web y aparece en la fila Nuestras marcas.",
+    "create": "Nueva marca",
+    "empty": "Aún no hay marcas",
+    "emptyHint": "Añade una marca y elígela en el editor de productos.",
+    "featured": "Destacada",
+    "productCount": "{count, plural, one {# producto} other {# productos}}",
+    "edit": "Editar {name}",
+    "delete": "Eliminar {name}",
+    "editTitle": "Editar marca",
+    "createTitle": "Nueva marca",
+    "deleteTitle": "¿Eliminar {name}?",
+    "deleteDescription": "Sus productos se quedan, sin marca.",
+    "validation": {
+      "nameMin": "Al menos 2 caracteres",
+      "orderNo": "Introduce un número entero"
+    },
+    "form": {
+      "name": "Nombre",
+      "logo": "Logo",
+      "description": "Descripción",
+      "orderNo": "Orden",
+      "featured": "Destacada",
+      "featuredHint": "Se muestra primero en la portada",
+      "save": "Guardar cambios",
+      "create": "Crear marca"
+    },
+    "errors": {
+      "network": "No se puede conectar con el servidor. Revisa tu conexión.",
+      "unexpected": "Algo salió mal. Inténtalo de nuevo."
+    }
+  },
+  "banners": {
+    "metaTitle": "Banners | E-Dukan",
+    "title": "Banners",
+    "listTitle": "Banners de portada",
+    "description": "Diapositivas, banners laterales y promocionales de la portada.",
+    "create": "Nuevo banner",
+    "empty": "Aún no hay banners",
+    "emptyHint": "Hasta que añadas uno, la web muestra sus diapositivas integradas.",
+    "placements": {
+      "HERO": "Carrusel principal",
+      "SIDE": "Banners laterales",
+      "PROMO": "Mosaicos promocionales"
+    },
+    "active": "Publicado",
+    "hidden": "Oculto",
+    "noLink": "Sin enlace",
+    "edit": "Editar {title}",
+    "delete": "Eliminar {title}",
+    "editTitle": "Editar banner",
+    "createTitle": "Nuevo banner",
+    "formHint": "Anuncia solo ofertas que la tienda realmente tiene.",
+    "deleteTitle": "¿Eliminar {title}?",
+    "deleteDescription": "Desaparece de la web al instante.",
+    "validation": {
+      "titleMin": "Al menos 2 caracteres",
+      "href": "Usa una ruta como /shop o una URL completa",
+      "orderNo": "Introduce un número entero",
+      "endAfterStart": "El fin debe ser posterior al inicio"
+    },
+    "form": {
+      "title": "Título",
+      "subtitle": "Subtítulo",
+      "image": "Imagen",
+      "imageHint": "Principal: 1600×700 px. Lateral y promo: 800×500 px.",
+      "ctaLabel": "Texto del botón",
+      "ctaPlaceholder": "Comprar ahora",
+      "href": "Enlace",
+      "placement": "Ubicación",
+      "orderNo": "Orden",
+      "startsAt": "Mostrar desde",
+      "endsAt": "Mostrar hasta",
+      "active": "Publicado en la web",
+      "save": "Guardar cambios",
+      "create": "Crear banner"
+    },
+    "errors": {
+      "network": "No se puede conectar con el servidor. Revisa tu conexión.",
+      "unexpected": "Algo salió mal. Inténtalo de nuevo."
+    }
+  },
+  "contentPages": {
+    "metaTitle": "Páginas | E-Dukan",
+    "title": "Páginas",
+    "listTitle": "Páginas de contenido",
+    "description": "Preguntas frecuentes, envíos, cómo pedir... Las publicadas se enlazan en el pie de la web.",
+    "create": "Nueva página",
+    "empty": "Aún no hay páginas",
+    "emptyHint": "Escribe las preguntas frecuentes o la política de envíos.",
+    "published": "Publicada",
+    "draft": "Borrador",
+    "edit": "Editar {title}",
+    "delete": "Eliminar {title}",
+    "editTitle": "Editar página",
+    "createTitle": "Nueva página",
+    "deleteTitle": "¿Eliminar {title}?",
+    "deleteDescription": "Los enlaces a ella dejarán de funcionar.",
+    "validation": {
+      "titleMin": "Al menos 2 caracteres",
+      "slug": "Minúsculas, números y guiones",
+      "content": "Escribe el contenido",
+      "orderNo": "Introduce un número entero"
+    },
+    "form": {
+      "title": "Título",
+      "slug": "Dirección",
+      "slugHint": "Déjalo vacío para crearla a partir del título.",
+      "content": "Contenido",
+      "contentPlaceholder": "## Título\nUn párrafo.\n- Un elemento",
+      "contentHint": "Markdown simple: ## títulos, - listas, **negrita**, [enlaces](https://...).",
+      "isPublished": "Publicada",
+      "showInFooter": "Enlace en el pie",
+      "orderNo": "Orden",
+      "save": "Guardar cambios",
+      "create": "Crear página"
+    },
+    "errors": {
+      "network": "No se puede conectar con el servidor. Revisa tu conexión.",
+      "unexpected": "Algo salió mal. Inténtalo de nuevo."
+    }
+  },
+  "reviews": {
+    "metaTitle": "Reseñas | E-Dukan",
+    "title": "Reseñas",
+    "listTitle": "Reseñas de productos",
+    "description": "Las reseñas solo aparecen en la web cuando las apruebas.",
+    "filter": "Filtrar por estado",
+    "statuses": {
+      "PENDING": "Pendientes",
+      "APPROVED": "Aprobadas",
+      "REJECTED": "Rechazadas"
+    },
+    "empty": {
+      "PENDING": "No hay reseñas pendientes",
+      "APPROVED": "Aún no hay reseñas aprobadas",
+      "REJECTED": "No hay reseñas rechazadas"
+    },
+    "stars": "{count} de 5 estrellas",
+    "verified": "Compra verificada",
+    "approve": "Aprobar",
+    "reject": "Rechazar",
+    "delete": "Eliminar reseña",
+    "deleteTitle": "¿Eliminar esta reseña?",
+    "deleteDescription": "No se puede deshacer.",
+    "errors": {
+      "network": "No se puede conectar con el servidor. Revisa tu conexión.",
+      "unexpected": "Algo salió mal. Inténtalo de nuevo."
+    }
+  },
+  "gifts": {
+    "metaTitle": "Regalos | E-Dukan",
+    "title": "Regalos",
+    "listTitle": "Regalo con la compra",
+    "description": "Los pedidos que superan un importe reciben un artículo gratis a ৳0 mientras haya stock.",
+    "create": "Nueva regla",
+    "empty": "No hay reglas de regalo",
+    "emptyHint": "Por ejemplo: sobre de miel gratis en pedidos de más de ৳2.000.",
+    "active": "Activa",
+    "off": "Inactiva",
+    "outOfStock": "Regalo agotado",
+    "rule": "Pedidos desde {amount} reciben {gift}",
+    "edit": "Editar {name}",
+    "delete": "Eliminar {name}",
+    "editTitle": "Editar regla",
+    "createTitle": "Nueva regla",
+    "formHint": "Si aplican varias, gana la de mínimo más alto.",
+    "deleteTitle": "¿Eliminar {name}?",
+    "deleteDescription": "Los pedidos ya hechos conservan su regalo.",
+    "stock": "{count} en stock",
+    "validation": {
+      "name": "Al menos 2 caracteres",
+      "amount": "Introduce un importe en taka",
+      "variant": "Elige el regalo",
+      "endAfterStart": "El fin debe ser posterior al inicio"
+    },
+    "form": {
+      "name": "Nombre",
+      "namePlaceholder": "Sobre gratis desde ৳2000",
+      "minSubtotal": "Pedido mínimo (৳)",
+      "gift": "Regalo",
+      "searchProduct": "Buscar productos por nombre...",
+      "startsAt": "Empieza",
+      "endsAt": "Termina",
+      "active": "Activa",
+      "save": "Guardar cambios",
+      "create": "Crear regla"
+    },
+    "errors": {
+      "network": "No se puede conectar con el servidor. Revisa tu conexión.",
+      "unexpected": "Algo salió mal. Inténtalo de nuevo."
+    }
+  },
+  "reports": {
+    "metaTitle": "Informes | E-Dukan",
+    "title": "Informe de ventas",
+    "description": "Ventas por día, producto, método de pago y distrito.",
+    "from": "Desde",
+    "to": "Hasta",
+    "apply": "Mostrar",
+    "export": "Exportar CSV",
+    "totals": {
+      "revenue": "Ingresos",
+      "orders": "{count, plural, one {# pedido} other {# pedidos}}",
+      "average": "Pedido medio",
+      "paid": "Cobrado",
+      "discounts": "Descuentos {amount}",
+      "cancelled": "Cancelados o devueltos",
+      "delivery": "Envíos {amount}"
+    },
+    "daily": "Ingresos por día",
+    "revenue": "Ingresos",
+    "topProducts": "Productos top",
+    "byPayment": "Por método de pago",
+    "byDistrict": "Por distrito",
+    "units": "{count} uds.",
+    "ordersShort": "{count, plural, one {# pedido} other {# pedidos}}",
+    "methods": {
+      "COD": "Contra reembolso",
+      "BKASH": "bKash",
+      "NAGAD": "Nagad"
+    },
+    "empty": "Sin ventas en este periodo.",
+    "errors": {
+      "network": "No se puede conectar con el servidor. Revisa tu conexión.",
+      "unexpected": "Algo salió mal. Inténtalo de nuevo."
     }
   }
 }

@@ -1,7 +1,9 @@
 import {
   BoxIcon,
+  BarChartIcon,
   CartIcon,
   GearIcon,
+  PageIcon,
   LayoutGridIcon,
   TagIcon,
   TicketIcon,
@@ -40,8 +42,28 @@ export const navItems: NavItem[] = [
   },
   {
     icon: <TicketIcon className="size-6" />,
-    key: "coupons",
-    path: "/coupons",
+    key: "marketing",
+    roles: STAFF_ROLES,
+    subItems: [
+      { key: "coupons", path: "/coupons" },
+      { key: "gifts", path: "/gifts" },
+      { key: "banners", path: "/banners" },
+    ],
+  },
+  {
+    icon: <PageIcon className="size-6" />,
+    key: "content",
+    roles: STAFF_ROLES,
+    subItems: [
+      { key: "brands", path: "/brands" },
+      { key: "reviews", path: "/reviews" },
+      { key: "pages", path: "/pages" },
+    ],
+  },
+  {
+    icon: <BarChartIcon className="size-6" />,
+    key: "reports",
+    path: "/reports",
     roles: STAFF_ROLES,
   },
   {

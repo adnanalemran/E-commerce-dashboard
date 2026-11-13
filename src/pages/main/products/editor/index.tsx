@@ -1,3 +1,6 @@
+import { brandsApi } from "@/api/content";
+import { queryKeys } from "@/api/query-client";
+import { useQuery } from "@tanstack/react-query";
 import { productsApi, type Product } from "@/api/products";
 import { PageBreadcrumb } from "@/components/shared/page-breadcrumb";
 import { PageMeta } from "@/components/shared/page-meta";
@@ -81,6 +84,7 @@ function ProductForm({ product: initialProduct }: { product: Product | null }) {
   const navigate = useNavigate();
   const location = useLocation();
   const categories = useCategoryOptions();
+  const brands = useQuery({ queryKey: queryKeys.brands, queryFn: ({ signal }) => brandsApi.list(signal) });
 
   const [product, setProductState] = useState(initialProduct);
   const productCache = useProductCache();
@@ -145,6 +149,7 @@ function ProductForm({ product: initialProduct }: { product: Product | null }) {
         description: "description",
         status: "status",
         categoryId: "categoryId",
+        brandId: "brandId",
         tags: "tags",
         orderNo: "orderNo",
       };
@@ -168,6 +173,10 @@ function ProductForm({ product: initialProduct }: { product: Product | null }) {
     value,
     label: t(`statuses.${value}`),
   }));
+  const brandItems = [
+    { value: NO_CATEGORY, label: t("editor.noBrand") },
+    ...(brands.data ?? []).map((b) => ({ value: b.id, label: b.name })),
+  ];
   const categoryItems = [
     { value: NO_CATEGORY, label: t("editor.noCategory") },
     ...categories.options,
@@ -305,6 +314,29 @@ function ProductForm({ product: initialProduct }: { product: Product | null }) {
                   )}
                 />
                 <FieldError errors={[errors.categoryId]} />
+              </Field>
+
+              <Field data-invalid={Boolean(errors.brandId)} className="gap-1.5">
+                <FieldLabel>{t("fields.brand")}</FieldLabel>
+                <Controller
+                  control={control}
+                  name="brandId"
+                  render={({ field }) => (
+                    <Select items={brandItems} value={field.value} onValueChange={(v) => v && field.onChange(v)} disabled={brands.isLoading}>
+                      <SelectTrigger aria-invalid={errors.brandId ? "true" : undefined}>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {brandItems.map((item) => (
+                          <SelectItem key={item.value} value={item.value}>
+                            {item.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
+                <FieldError errors={[errors.brandId]} />
               </Field>
 
               <Field data-invalid={Boolean(errors.tags)} className="gap-1.5">

@@ -143,7 +143,13 @@
       "users": "Users",
       "orders": "Orders",
       "coupons": "Coupons",
-      "settings": "Settings"
+      "settings": "Settings",
+      "content": "Content",
+      "brands": "Brands",
+      "banners": "Banners",
+      "reviews": "Reviews",
+      "gifts": "Free gifts",
+      "reports": "Reports"
     }
   },
   "header": {
@@ -1562,7 +1568,8 @@
       "badges": "Storefront badges",
       "badgesHint": "Highlight this product in home page sections.",
       "dangerZone": "Danger zone",
-      "unsaved": "You have unsaved changes"
+      "unsaved": "You have unsaved changes",
+      "noBrand": "No brand"
     },
     "fields": {
       "name": "Product name",
@@ -1574,7 +1581,8 @@
       "orderNo": "Order number",
       "isBestSelling": "Best selling",
       "isNewArrival": "New arrival",
-      "isFeatured": "Featured"
+      "isFeatured": "Featured",
+      "brand": "Brand"
     },
     "placeholders": {
       "name": "e.g. Sundarban Honey",
@@ -1711,13 +1719,50 @@
         "COMPLETED": "Paid",
         "FAILED": "Failed",
         "CANCELLED": "Cancelled"
-      }
+      },
+      "gift": "Free gift"
     },
     "errors": {
       "loadFailed": "Couldn't load orders",
       "retry": "Try again",
       "network": "Unable to reach the server. Check your connection and try again.",
       "unexpected": "Something went wrong. Please try again."
+    },
+    "courier": {
+      "title": "Courier",
+      "bookedWith": "Booked with {courier}",
+      "consignment": "Consignment",
+      "tracking": "Tracking",
+      "checkStatus": "Check delivery status",
+      "currentStatus": "Courier status: {status}",
+      "notConfigured": "Courier booking is off. Add Steadfast API keys on the server to book parcels from here.",
+      "book": "Book Steadfast parcel",
+      "booking": "Booking...",
+      "bookHint": "Cash to collect is the order total unless it is already paid.",
+      "confirmFirst": "Confirm the order first.",
+      "network": "Cannot reach the server.",
+      "unexpected": "Could not reach the courier."
+    },
+    "invoice": {
+      "print": "Print invoice",
+      "title": "Invoice",
+      "notFound": "Order not found",
+      "back": "Back to order",
+      "subtitle": "Safe & organic food",
+      "shipTo": "Ship to",
+      "payment": "Payment",
+      "item": "Item",
+      "price": "Price",
+      "qty": "Qty",
+      "amount": "Amount",
+      "gift": "free gift",
+      "subtotal": "Subtotal",
+      "delivery": "Delivery",
+      "discount": "Discount",
+      "total": "Total paid",
+      "toCollect": "To collect",
+      "note": "Note",
+      "thanks": "Thank you for shopping with E-Dukan."
     }
   },
   "coupons": {
@@ -1857,7 +1902,10 @@
       "amount": "Enter a whole amount in taka",
       "days": "Enter e.g. 1-2",
       "announcementsCount": "At most 8 messages",
-      "announcementLength": "Each message can be at most 160 characters"
+      "announcementLength": "Each message can be at most 160 characters",
+      "pixel": "Pixel ID is 8-20 digits",
+      "gtm": "Looks like GTM-XXXXXXX",
+      "ga4": "Looks like G-XXXXXXXXXX"
     },
     "unsaved": "Unsaved changes",
     "saved": "Saved",
@@ -1867,6 +1915,253 @@
     "errors": {
       "network": "Cannot reach the server. Check your connection.",
       "unexpected": "Could not load or save settings."
+    },
+    "tracking": {
+      "title": "Tracking and analytics",
+      "description": "Paste only the IDs. The website loads the official scripts for you.",
+      "pixel": "Facebook Pixel ID",
+      "gtm": "Google Tag Manager ID",
+      "ga4": "Google Analytics 4 ID"
+    }
+  },
+  "crud": {
+    "network": "Cannot reach the server. Check your connection.",
+    "unexpected": "Something went wrong. Please try again.",
+    "retry": "Try again",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "deleting": "Deleting...",
+    "saving": "Saving..."
+  },
+  "brands": {
+    "metaTitle": "Brands | E-Dukan",
+    "title": "Brands",
+    "listTitle": "Brands",
+    "description": "Brands get their own page on the website and appear in the Our Brands row.",
+    "create": "New brand",
+    "empty": "No brands yet",
+    "emptyHint": "Add a brand, then pick it in the product editor.",
+    "featured": "Featured",
+    "productCount": "{count, plural, one {# product} other {# products}}",
+    "edit": "Edit {name}",
+    "delete": "Delete {name}",
+    "editTitle": "Edit brand",
+    "createTitle": "New brand",
+    "deleteTitle": "Delete {name}?",
+    "deleteDescription": "Its products stay, without a brand.",
+    "validation": {
+      "nameMin": "At least 2 characters",
+      "orderNo": "Enter a whole number"
+    },
+    "form": {
+      "name": "Name",
+      "logo": "Logo",
+      "description": "Description",
+      "orderNo": "Order",
+      "featured": "Featured",
+      "featuredHint": "Shown first on the home page",
+      "save": "Save changes",
+      "create": "Create brand"
+    },
+    "errors": {
+      "network": "Cannot reach the server. Check your connection.",
+      "unexpected": "Something went wrong. Please try again."
+    }
+  },
+  "banners": {
+    "metaTitle": "Banners | E-Dukan",
+    "title": "Banners",
+    "listTitle": "Home page banners",
+    "description": "Hero slides, side banners and promo tiles on the website home page.",
+    "create": "New banner",
+    "empty": "No banners yet",
+    "emptyHint": "Until you add one, the website shows its built-in slides.",
+    "placements": {
+      "HERO": "Hero slider",
+      "SIDE": "Side banners",
+      "PROMO": "Promo tiles"
+    },
+    "active": "Live",
+    "hidden": "Hidden",
+    "noLink": "No link",
+    "edit": "Edit {title}",
+    "delete": "Delete {title}",
+    "editTitle": "Edit banner",
+    "createTitle": "New banner",
+    "formHint": "Only advertise offers the store really runs.",
+    "deleteTitle": "Delete {title}?",
+    "deleteDescription": "It disappears from the website straight away.",
+    "validation": {
+      "titleMin": "At least 2 characters",
+      "href": "Use a site path like /shop or a full URL",
+      "orderNo": "Enter a whole number",
+      "endAfterStart": "End must be after the start"
+    },
+    "form": {
+      "title": "Title",
+      "subtitle": "Subtitle",
+      "image": "Image",
+      "imageHint": "Hero: 1600×700 px. Side and promo: 800×500 px.",
+      "ctaLabel": "Button text",
+      "ctaPlaceholder": "Shop now",
+      "href": "Link",
+      "placement": "Placement",
+      "orderNo": "Order",
+      "startsAt": "Show from",
+      "endsAt": "Show until",
+      "active": "Live on the website",
+      "save": "Save changes",
+      "create": "Create banner"
+    },
+    "errors": {
+      "network": "Cannot reach the server. Check your connection.",
+      "unexpected": "Something went wrong. Please try again."
+    }
+  },
+  "contentPages": {
+    "metaTitle": "Pages | E-Dukan",
+    "title": "Pages",
+    "listTitle": "Content pages",
+    "description": "FAQ, shipping, how to order... Published pages are linked in the website footer.",
+    "create": "New page",
+    "empty": "No pages yet",
+    "emptyHint": "Write the FAQ or shipping policy customers ask about.",
+    "published": "Published",
+    "draft": "Draft",
+    "edit": "Edit {title}",
+    "delete": "Delete {title}",
+    "editTitle": "Edit page",
+    "createTitle": "New page",
+    "deleteTitle": "Delete {title}?",
+    "deleteDescription": "Links to it on the website will stop working.",
+    "validation": {
+      "titleMin": "At least 2 characters",
+      "slug": "Lowercase letters, numbers and dashes",
+      "content": "Write the page content",
+      "orderNo": "Enter a whole number"
+    },
+    "form": {
+      "title": "Title",
+      "slug": "Address",
+      "slugHint": "Leave empty to make one from the title.",
+      "content": "Content",
+      "contentPlaceholder": "## Heading\nA paragraph.\n- A list item",
+      "contentHint": "Simple Markdown: ## headings, - lists, **bold**, [links](https://...).",
+      "isPublished": "Published",
+      "showInFooter": "Footer link",
+      "orderNo": "Order",
+      "save": "Save changes",
+      "create": "Create page"
+    },
+    "errors": {
+      "network": "Cannot reach the server. Check your connection.",
+      "unexpected": "Something went wrong. Please try again."
+    }
+  },
+  "reviews": {
+    "metaTitle": "Reviews | E-Dukan",
+    "title": "Reviews",
+    "listTitle": "Product reviews",
+    "description": "Reviews show on the website only after you approve them.",
+    "filter": "Filter by status",
+    "statuses": {
+      "PENDING": "Waiting",
+      "APPROVED": "Approved",
+      "REJECTED": "Rejected"
+    },
+    "empty": {
+      "PENDING": "No reviews waiting",
+      "APPROVED": "No approved reviews yet",
+      "REJECTED": "No rejected reviews"
+    },
+    "stars": "{count} of 5 stars",
+    "verified": "Verified purchase",
+    "approve": "Approve",
+    "reject": "Reject",
+    "delete": "Delete review",
+    "deleteTitle": "Delete this review?",
+    "deleteDescription": "This cannot be undone.",
+    "errors": {
+      "network": "Cannot reach the server. Check your connection.",
+      "unexpected": "Something went wrong. Please try again."
+    }
+  },
+  "gifts": {
+    "metaTitle": "Free gifts | E-Dukan",
+    "title": "Free gifts",
+    "listTitle": "Gift with purchase",
+    "description": "Orders above an amount get a free item added at ৳0, while it is in stock.",
+    "create": "New gift rule",
+    "empty": "No gift rules",
+    "emptyHint": "For example: free honey sachet on orders over ৳2,000.",
+    "active": "On",
+    "off": "Off",
+    "outOfStock": "Gift out of stock",
+    "rule": "Orders from {amount} get {gift}",
+    "edit": "Edit {name}",
+    "delete": "Delete {name}",
+    "editTitle": "Edit gift rule",
+    "createTitle": "New gift rule",
+    "formHint": "When several rules apply, the one with the highest minimum wins.",
+    "deleteTitle": "Delete {name}?",
+    "deleteDescription": "Orders already placed keep their gift.",
+    "stock": "{count} in stock",
+    "validation": {
+      "name": "At least 2 characters",
+      "amount": "Enter an amount in taka",
+      "variant": "Choose the gift",
+      "endAfterStart": "End must be after the start"
+    },
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Free sachet over ৳2000",
+      "minSubtotal": "Minimum order (৳)",
+      "gift": "Gift",
+      "searchProduct": "Search products by name...",
+      "startsAt": "Starts",
+      "endsAt": "Ends",
+      "active": "Active",
+      "save": "Save changes",
+      "create": "Create rule"
+    },
+    "errors": {
+      "network": "Cannot reach the server. Check your connection.",
+      "unexpected": "Something went wrong. Please try again."
+    }
+  },
+  "reports": {
+    "metaTitle": "Reports | E-Dukan",
+    "title": "Sales report",
+    "description": "Sales by day, product, payment method and district.",
+    "from": "From",
+    "to": "To",
+    "apply": "Show",
+    "export": "Export CSV",
+    "totals": {
+      "revenue": "Revenue",
+      "orders": "{count, plural, one {# order} other {# orders}}",
+      "average": "Average order",
+      "paid": "Paid so far",
+      "discounts": "Discounts {amount}",
+      "cancelled": "Cancelled or returned",
+      "delivery": "Delivery charges {amount}"
+    },
+    "daily": "Revenue by day",
+    "revenue": "Revenue",
+    "topProducts": "Top products",
+    "byPayment": "By payment method",
+    "byDistrict": "By district",
+    "units": "{count} units",
+    "ordersShort": "{count, plural, one {# order} other {# orders}}",
+    "methods": {
+      "COD": "Cash on delivery",
+      "BKASH": "bKash",
+      "NAGAD": "Nagad"
+    },
+    "empty": "No sales in this period.",
+    "errors": {
+      "network": "Cannot reach the server. Check your connection.",
+      "unexpected": "Something went wrong. Please try again."
     }
   }
 }

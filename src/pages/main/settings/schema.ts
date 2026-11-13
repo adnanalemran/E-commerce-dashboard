@@ -35,6 +35,11 @@ export function createSettingsSchema(t: Translator) {
       hours: z.string().trim().max(100),
     }),
     socials: z.object({ facebook: url, instagram: url, youtube: url, tiktok: url }),
+    tracking: z.object({
+      facebookPixelId: z.string().trim().refine((v) => v === "" || /^\d{8,20}$/.test(v), t("validation.pixel")),
+      gtmId: z.string().trim().toUpperCase().refine((v) => v === "" || /^GTM-[A-Z0-9]{4,12}$/.test(v), t("validation.gtm")),
+      ga4Id: z.string().trim().toUpperCase().refine((v) => v === "" || /^G-[A-Z0-9]{4,15}$/.test(v), t("validation.ga4")),
+    }),
     /** One announcement per line. */
     announcements: z
       .string()
@@ -55,6 +60,7 @@ export function toFormValues(s: StoreSettings): SettingsFormValues {
   return {
     contact: { ...s.contact },
     socials: { ...s.socials },
+    tracking: { ...s.tracking },
     announcements: s.announcements.join("\n"),
     delivery: {
       charges,
@@ -69,6 +75,7 @@ export function toSettings(v: SettingsFormValues): StoreSettings {
   return {
     contact: { ...v.contact, email: v.contact.email.toLowerCase() },
     socials: { ...v.socials },
+    tracking: { ...v.tracking },
     announcements: v.announcements
       .split("\n")
       .map((l) => l.trim())

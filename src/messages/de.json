@@ -143,7 +143,13 @@
       "users": "Benutzer",
       "orders": "Bestellungen",
       "coupons": "Gutscheine",
-      "settings": "Einstellungen"
+      "settings": "Einstellungen",
+      "content": "Inhalte",
+      "brands": "Marken",
+      "banners": "Banner",
+      "reviews": "Bewertungen",
+      "gifts": "Gratisgeschenke",
+      "reports": "Berichte"
     }
   },
   "header": {
@@ -1562,7 +1568,8 @@
       "badges": "Shop-Badges",
       "badgesHint": "Hebe dieses Produkt in Bereichen der Startseite hervor.",
       "dangerZone": "Gefahrenbereich",
-      "unsaved": "Du hast ungespeicherte Änderungen"
+      "unsaved": "Du hast ungespeicherte Änderungen",
+      "noBrand": "Keine Marke"
     },
     "fields": {
       "name": "Produktname",
@@ -1574,7 +1581,8 @@
       "orderNo": "Reihenfolgenummer",
       "isBestSelling": "Bestseller",
       "isNewArrival": "Neuheit",
-      "isFeatured": "Empfohlen"
+      "isFeatured": "Empfohlen",
+      "brand": "Marke"
     },
     "placeholders": {
       "name": "z. B. Sundarban-Honig",
@@ -1711,13 +1719,50 @@
         "COMPLETED": "Bezahlt",
         "FAILED": "Fehlgeschlagen",
         "CANCELLED": "Abgebrochen"
-      }
+      },
+      "gift": "Gratisgeschenk"
     },
     "errors": {
       "loadFailed": "Bestellungen konnten nicht geladen werden",
       "retry": "Erneut versuchen",
       "network": "Der Server ist nicht erreichbar. Prüfe deine Verbindung und versuche es erneut.",
       "unexpected": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
+    },
+    "courier": {
+      "title": "Kurier",
+      "bookedWith": "Gebucht bei {courier}",
+      "consignment": "Sendung",
+      "tracking": "Sendungsverfolgung",
+      "checkStatus": "Lieferstatus prüfen",
+      "currentStatus": "Kurierstatus: {status}",
+      "notConfigured": "Kurierbuchung ist aus. Hinterlege die Steadfast-Schlüssel auf dem Server.",
+      "book": "Steadfast-Paket buchen",
+      "booking": "Buchen...",
+      "bookHint": "Kassiert wird die Bestellsumme, sofern nicht bezahlt.",
+      "confirmFirst": "Bestätige zuerst die Bestellung.",
+      "network": "Server nicht erreichbar.",
+      "unexpected": "Kurier nicht erreichbar."
+    },
+    "invoice": {
+      "print": "Rechnung drucken",
+      "title": "Rechnung",
+      "notFound": "Bestellung nicht gefunden",
+      "back": "Zurück zur Bestellung",
+      "subtitle": "Sichere Bio-Lebensmittel",
+      "shipTo": "Lieferung an",
+      "payment": "Zahlung",
+      "item": "Artikel",
+      "price": "Preis",
+      "qty": "Menge",
+      "amount": "Betrag",
+      "gift": "Gratisgeschenk",
+      "subtotal": "Zwischensumme",
+      "delivery": "Versand",
+      "discount": "Rabatt",
+      "total": "Bezahlt",
+      "toCollect": "Zu kassieren",
+      "note": "Notiz",
+      "thanks": "Danke für deinen Einkauf bei E-Dukan."
     }
   },
   "coupons": {
@@ -1857,7 +1902,10 @@
       "amount": "Ganzen Betrag in Taka eingeben",
       "days": "z. B. 1-2 eingeben",
       "announcementsCount": "Höchstens 8 Nachrichten",
-      "announcementLength": "Jede Nachricht höchstens 160 Zeichen"
+      "announcementLength": "Jede Nachricht höchstens 160 Zeichen",
+      "pixel": "Pixel-ID hat 8-20 Ziffern",
+      "gtm": "Format GTM-XXXXXXX",
+      "ga4": "Format G-XXXXXXXXXX"
     },
     "unsaved": "Ungespeicherte Änderungen",
     "saved": "Gespeichert",
@@ -1867,6 +1915,253 @@
     "errors": {
       "network": "Server nicht erreichbar. Prüfe deine Verbindung.",
       "unexpected": "Einstellungen konnten nicht geladen oder gespeichert werden."
+    },
+    "tracking": {
+      "title": "Tracking und Analyse",
+      "description": "Nur die IDs einfügen. Die Website lädt die offiziellen Skripte selbst.",
+      "pixel": "Facebook-Pixel-ID",
+      "gtm": "Google-Tag-Manager-ID",
+      "ga4": "Google-Analytics-4-ID"
+    }
+  },
+  "crud": {
+    "network": "Server nicht erreichbar. Prüfe deine Verbindung.",
+    "unexpected": "Etwas ist schiefgelaufen. Bitte erneut versuchen.",
+    "retry": "Erneut versuchen",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "deleting": "Löschen...",
+    "saving": "Speichern..."
+  },
+  "brands": {
+    "metaTitle": "Marken | E-Dukan",
+    "title": "Marken",
+    "listTitle": "Marken",
+    "description": "Jede Marke hat eine eigene Seite und erscheint in der Reihe Unsere Marken.",
+    "create": "Neue Marke",
+    "empty": "Noch keine Marken",
+    "emptyHint": "Lege eine Marke an und wähle sie im Produkteditor.",
+    "featured": "Hervorgehoben",
+    "productCount": "{count, plural, one {# Produkt} other {# Produkte}}",
+    "edit": "{name} bearbeiten",
+    "delete": "{name} löschen",
+    "editTitle": "Marke bearbeiten",
+    "createTitle": "Neue Marke",
+    "deleteTitle": "{name} löschen?",
+    "deleteDescription": "Ihre Produkte bleiben, ohne Marke.",
+    "validation": {
+      "nameMin": "Mindestens 2 Zeichen",
+      "orderNo": "Ganze Zahl eingeben"
+    },
+    "form": {
+      "name": "Name",
+      "logo": "Logo",
+      "description": "Beschreibung",
+      "orderNo": "Reihenfolge",
+      "featured": "Hervorgehoben",
+      "featuredHint": "Zuerst auf der Startseite",
+      "save": "Änderungen speichern",
+      "create": "Marke anlegen"
+    },
+    "errors": {
+      "network": "Server nicht erreichbar. Prüfe deine Verbindung.",
+      "unexpected": "Etwas ist schiefgelaufen. Bitte erneut versuchen."
+    }
+  },
+  "banners": {
+    "metaTitle": "Banner | E-Dukan",
+    "title": "Banner",
+    "listTitle": "Startseiten-Banner",
+    "description": "Hero-Slides, Seitenbanner und Aktionskacheln der Startseite.",
+    "create": "Neues Banner",
+    "empty": "Noch keine Banner",
+    "emptyHint": "Bis du eines anlegst, zeigt die Website ihre eingebauten Slides.",
+    "placements": {
+      "HERO": "Hero-Slider",
+      "SIDE": "Seitenbanner",
+      "PROMO": "Aktionskacheln"
+    },
+    "active": "Live",
+    "hidden": "Ausgeblendet",
+    "noLink": "Kein Link",
+    "edit": "{title} bearbeiten",
+    "delete": "{title} löschen",
+    "editTitle": "Banner bearbeiten",
+    "createTitle": "Neues Banner",
+    "formHint": "Nur Angebote bewerben, die es wirklich gibt.",
+    "deleteTitle": "{title} löschen?",
+    "deleteDescription": "Verschwindet sofort von der Website.",
+    "validation": {
+      "titleMin": "Mindestens 2 Zeichen",
+      "href": "Pfad wie /shop oder vollständige URL",
+      "orderNo": "Ganze Zahl eingeben",
+      "endAfterStart": "Ende muss nach dem Beginn liegen"
+    },
+    "form": {
+      "title": "Titel",
+      "subtitle": "Untertitel",
+      "image": "Bild",
+      "imageHint": "Hero: 1600×700 px. Seite und Aktion: 800×500 px.",
+      "ctaLabel": "Button-Text",
+      "ctaPlaceholder": "Jetzt kaufen",
+      "href": "Link",
+      "placement": "Platzierung",
+      "orderNo": "Reihenfolge",
+      "startsAt": "Anzeigen ab",
+      "endsAt": "Anzeigen bis",
+      "active": "Live auf der Website",
+      "save": "Änderungen speichern",
+      "create": "Banner anlegen"
+    },
+    "errors": {
+      "network": "Server nicht erreichbar. Prüfe deine Verbindung.",
+      "unexpected": "Etwas ist schiefgelaufen. Bitte erneut versuchen."
+    }
+  },
+  "contentPages": {
+    "metaTitle": "Seiten | E-Dukan",
+    "title": "Seiten",
+    "listTitle": "Inhaltsseiten",
+    "description": "FAQ, Versand, Bestellanleitung... Veröffentlichte Seiten stehen in der Fußzeile.",
+    "create": "Neue Seite",
+    "empty": "Noch keine Seiten",
+    "emptyHint": "Schreibe die FAQ oder die Versandbedingungen.",
+    "published": "Veröffentlicht",
+    "draft": "Entwurf",
+    "edit": "{title} bearbeiten",
+    "delete": "{title} löschen",
+    "editTitle": "Seite bearbeiten",
+    "createTitle": "Neue Seite",
+    "deleteTitle": "{title} löschen?",
+    "deleteDescription": "Links dorthin funktionieren dann nicht mehr.",
+    "validation": {
+      "titleMin": "Mindestens 2 Zeichen",
+      "slug": "Kleinbuchstaben, Ziffern und Bindestriche",
+      "content": "Inhalt eingeben",
+      "orderNo": "Ganze Zahl eingeben"
+    },
+    "form": {
+      "title": "Titel",
+      "slug": "Adresse",
+      "slugHint": "Leer lassen, um sie aus dem Titel zu bilden.",
+      "content": "Inhalt",
+      "contentPlaceholder": "## Überschrift\nEin Absatz.\n- Ein Listenpunkt",
+      "contentHint": "Einfaches Markdown: ## Überschriften, - Listen, **fett**, [Links](https://...).",
+      "isPublished": "Veröffentlicht",
+      "showInFooter": "Link in der Fußzeile",
+      "orderNo": "Reihenfolge",
+      "save": "Änderungen speichern",
+      "create": "Seite anlegen"
+    },
+    "errors": {
+      "network": "Server nicht erreichbar. Prüfe deine Verbindung.",
+      "unexpected": "Etwas ist schiefgelaufen. Bitte erneut versuchen."
+    }
+  },
+  "reviews": {
+    "metaTitle": "Bewertungen | E-Dukan",
+    "title": "Bewertungen",
+    "listTitle": "Produktbewertungen",
+    "description": "Bewertungen erscheinen erst nach deiner Freigabe.",
+    "filter": "Nach Status filtern",
+    "statuses": {
+      "PENDING": "Wartend",
+      "APPROVED": "Freigegeben",
+      "REJECTED": "Abgelehnt"
+    },
+    "empty": {
+      "PENDING": "Keine wartenden Bewertungen",
+      "APPROVED": "Noch keine freigegebenen Bewertungen",
+      "REJECTED": "Keine abgelehnten Bewertungen"
+    },
+    "stars": "{count} von 5 Sternen",
+    "verified": "Verifizierter Kauf",
+    "approve": "Freigeben",
+    "reject": "Ablehnen",
+    "delete": "Bewertung löschen",
+    "deleteTitle": "Diese Bewertung löschen?",
+    "deleteDescription": "Das kann nicht rückgängig gemacht werden.",
+    "errors": {
+      "network": "Server nicht erreichbar. Prüfe deine Verbindung.",
+      "unexpected": "Etwas ist schiefgelaufen. Bitte erneut versuchen."
+    }
+  },
+  "gifts": {
+    "metaTitle": "Gratisgeschenke | E-Dukan",
+    "title": "Gratisgeschenke",
+    "listTitle": "Geschenk zum Einkauf",
+    "description": "Bestellungen ab einem Betrag erhalten einen Artikel gratis (৳0), solange vorrätig.",
+    "create": "Neue Regel",
+    "empty": "Keine Geschenkregeln",
+    "emptyHint": "Zum Beispiel: Honigtütchen gratis ab ৳2.000.",
+    "active": "An",
+    "off": "Aus",
+    "outOfStock": "Geschenk ausverkauft",
+    "rule": "Bestellungen ab {amount} erhalten {gift}",
+    "edit": "{name} bearbeiten",
+    "delete": "{name} löschen",
+    "editTitle": "Regel bearbeiten",
+    "createTitle": "Neue Regel",
+    "formHint": "Gelten mehrere Regeln, gewinnt die mit dem höchsten Minimum.",
+    "deleteTitle": "{name} löschen?",
+    "deleteDescription": "Bestehende Bestellungen behalten ihr Geschenk.",
+    "stock": "{count} auf Lager",
+    "validation": {
+      "name": "Mindestens 2 Zeichen",
+      "amount": "Betrag in Taka eingeben",
+      "variant": "Geschenk wählen",
+      "endAfterStart": "Ende muss nach dem Beginn liegen"
+    },
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Gratis-Tütchen ab ৳2000",
+      "minSubtotal": "Mindestbestellung (৳)",
+      "gift": "Geschenk",
+      "searchProduct": "Produkte nach Namen suchen...",
+      "startsAt": "Beginn",
+      "endsAt": "Ende",
+      "active": "Aktiv",
+      "save": "Änderungen speichern",
+      "create": "Regel anlegen"
+    },
+    "errors": {
+      "network": "Server nicht erreichbar. Prüfe deine Verbindung.",
+      "unexpected": "Etwas ist schiefgelaufen. Bitte erneut versuchen."
+    }
+  },
+  "reports": {
+    "metaTitle": "Berichte | E-Dukan",
+    "title": "Umsatzbericht",
+    "description": "Umsatz nach Tag, Produkt, Zahlungsart und Bezirk.",
+    "from": "Von",
+    "to": "Bis",
+    "apply": "Anzeigen",
+    "export": "CSV exportieren",
+    "totals": {
+      "revenue": "Umsatz",
+      "orders": "{count, plural, one {# Bestellung} other {# Bestellungen}}",
+      "average": "Ø Bestellung",
+      "paid": "Bereits bezahlt",
+      "discounts": "Rabatte {amount}",
+      "cancelled": "Storniert oder retourniert",
+      "delivery": "Versand {amount}"
+    },
+    "daily": "Umsatz pro Tag",
+    "revenue": "Umsatz",
+    "topProducts": "Top-Produkte",
+    "byPayment": "Nach Zahlungsart",
+    "byDistrict": "Nach Bezirk",
+    "units": "{count} Stück",
+    "ordersShort": "{count, plural, one {# Bestellung} other {# Bestellungen}}",
+    "methods": {
+      "COD": "Nachnahme",
+      "BKASH": "bKash",
+      "NAGAD": "Nagad"
+    },
+    "empty": "Keine Verkäufe in diesem Zeitraum.",
+    "errors": {
+      "network": "Server nicht erreichbar. Prüfe deine Verbindung.",
+      "unexpected": "Etwas ist schiefgelaufen. Bitte erneut versuchen."
     }
   }
 }

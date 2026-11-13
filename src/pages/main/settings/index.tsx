@@ -118,6 +118,14 @@ function SettingsForm({ settings }: { settings: StoreSettings }) {
         </div>
       </Section>
 
+      <Section title={t("tracking.title")} description={t("tracking.description")}>
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
+          {field("tracking.facebookPixelId", t("tracking.pixel"), { placeholder: "123456789012345", inputMode: "numeric" })}
+          {field("tracking.gtmId", t("tracking.gtm"), { placeholder: "GTM-XXXXXXX" })}
+          {field("tracking.ga4Id", t("tracking.ga4"), { placeholder: "G-XXXXXXXXXX" })}
+        </div>
+      </Section>
+
       <Section title={t("announcements.title")} description={t("announcements.description")}>
         <Field data-invalid={Boolean(errors.announcements)} className="gap-1.5">
           <FieldLabel>{t("announcements.label")}</FieldLabel>
@@ -141,7 +149,7 @@ function SettingsForm({ settings }: { settings: StoreSettings }) {
         </div>
       </Section>
 
-      <div className="fixed inset-x-0 bottom-0 z-40 material border-t border-separator px-4 py-3 xl:ps-[var(--sidebar-width,18.125rem)]">
+      <div className="fixed inset-x-0 bottom-0 z-40 material border-t border-separator px-4 py-3 xl:ps-(--sidebar-width,18.125rem)">
         <div className="mx-auto flex max-w-(--breakpoint-2xl) items-center justify-end gap-3 md:px-2">
           <span className="me-auto text-sm text-label-secondary" role="status">
             {isDirty ? t("unsaved") : saved ? t("saved") : ""}

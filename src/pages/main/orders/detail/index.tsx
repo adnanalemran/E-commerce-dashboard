@@ -14,6 +14,7 @@ import { Link, useParams } from "react-router";
 import { OrderStatusBadge, PaymentBadge } from "../order-badges";
 import { useOrder, useOrderMutations } from "../use-orders";
 import StatusDialog from "./status-dialog";
+import CourierPanel from "./courier-panel";
 
 /** Exits from the normal flow need a reason and restock items. */
 const EXIT_STATUSES: OrderStatus[] = ["CANCELLED", "RETURNED"];
@@ -102,6 +103,9 @@ function OrderDetail({ orderId }: { orderId: string }) {
           <span className="text-sm text-label-secondary">{dateTime.format(new Date(order.createdAt))}</span>
         </div>
         <div className="flex flex-wrap gap-2">
+          <Button variant="outline" render={<Link to={`/orders/${order.id}/invoice`} target="_blank" />} nativeButton={false}>
+            {t("invoice.print")}
+          </Button>
           {forward.map((status, i) => (
             <Button key={status} variant={i === 0 ? "default" : "outline"} disabled={busy} onClick={() => void changeStatus(status)}>
               {t(`transitions.${status}`)}
@@ -157,6 +161,7 @@ function OrderDetail({ orderId }: { orderId: string }) {
                       <p className="font-medium text-label">{item.productName}</p>
                     )}
                     <p className="text-xs text-label-secondary">
+                      {item.isGift && <span className="me-1 font-semibold text-success">{t("detail.gift")} ·</span>}
                       {item.variantName}
                       {item.sku ? ` · ${item.sku}` : ""}
                     </p>
@@ -226,6 +231,10 @@ function OrderDetail({ orderId }: { orderId: string }) {
               <Info label={t("detail.zone")}>{t(`zones.${order.deliveryZone}`)}</Info>
               {order.note && <Info label={t("detail.note")}>{order.note}</Info>}
             </dl>
+          </Panel>
+
+          <Panel title={t("courier.title")}>
+            <CourierPanel order={order} />
           </Panel>
 
           <Panel title={t("detail.payment")}>
