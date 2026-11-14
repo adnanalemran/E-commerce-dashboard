@@ -4,10 +4,9 @@ import type {
   AuthSession,
   AuthUser,
 } from "./types";
+import { API_BASE_URL } from "@/config/api";
 
-export const API_BASE_URL = (
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api/v1"
-).replace(/\/+$/, "");
+export { API_BASE_URL };
 
 export class ApiError extends Error {
   /** HTTP status; `0` means the server could not be reached. */

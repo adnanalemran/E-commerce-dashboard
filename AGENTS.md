@@ -15,7 +15,7 @@ Read **`DESIGN.md`** before any UI work. It defines the macOS-inspired design sy
 
 There is no frontend test suite. **Run `npm run build` and `npm run lint` after every change.** Lint must not add new warnings in files you touch.
 
-Environment (`.env`, git-ignored; see `.env.example`): `VITE_API_BASE_URL` (default `http://localhost:5000/api/v1`), `VITE_GOOGLE_CLIENT_ID` (Google button hidden when empty). Vite reloads `.env` automatically.
+Environment (`.env`, git-ignored; see `.env.example`): `VITE_IS_PROD` (`true` = deployed API, otherwise `http://localhost:5000`; URLs live in `src/config/api.ts`), `VITE_GOOGLE_CLIENT_ID` (Google button hidden when empty). Vite reloads `.env` automatically.
 
 ## Where things live
 
