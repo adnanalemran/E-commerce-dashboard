@@ -100,6 +100,8 @@ All server data goes through **TanStack Query**. Don't fetch in `useEffect` or k
 ### Auth rules (do not break)
 
 - The access token lives **in memory only** (`api/client.ts`). The refresh token is an httpOnly cookie, so never store tokens in `localStorage`.
+- `localStorage` key `edukan.dashboard.user` holds a **token-free** snapshot of the signed-in user. It is only used when the API is unreachable on page load: the app stays signed in as that user and retries the refresh every 10 s (and on `online`); a rejected cookie signs out and clears it. Roles in it only drive UI; the backend enforces them.
+- Refresh keeps the sign-in's session length: "Remember me" stays 30 days, otherwise 7 (sliding with each refresh).
 - Refreshes must never run in parallel: the backend rotates refresh tokens and treats reuse as theft (revokes every session). Always go through `refreshSession()`; it de-duplicates in-tab and across tabs (Web Locks).
 - After changing the signed-in user (profile, avatar), call `updateUser(user)` from `useAuth()`.
 - Roles: `@/utils/roles`. Use `hasAnyRole(user.roles, ADMIN_ROLES)`, not string comparisons scattered in components.
