@@ -60,7 +60,7 @@ export default function ReportsPage() {
 
   const options: ApexOptions = {
     chart: { fontFamily: "inherit", toolbar: { show: false }, zoom: { enabled: false } },
-    colors: ["#007AFF"],
+    colors: ["#22A06B"],
     plotOptions: { bar: { columnWidth: "60%", borderRadius: 3 } },
     dataLabels: { enabled: false },
     xaxis: {

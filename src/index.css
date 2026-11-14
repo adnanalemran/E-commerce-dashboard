@@ -50,18 +50,19 @@ layer(base);
   --color-white: #ffffff;
   --color-black: #1d1d1f;
 
-  /* Accent — macOS system blue (500 = #007AFF light accent, 400 ≈ dark-mode accent). */
-  --color-brand-50: #ebf5ff;
-  --color-brand-100: #d6eaff;
-  --color-brand-200: #add5ff;
-  --color-brand-300: #7abdff;
-  --color-brand-400: #3d9bff;
-  --color-brand-500: #007aff;
-  --color-brand-600: #0066d6;
-  --color-brand-700: #0052ad;
-  --color-brand-800: #003f85;
-  --color-brand-900: #002d5e;
-  --color-brand-950: #001a38;
+  /* Accent — "Modern Green". 500 = Primary #14532D (light accent),
+     400 = Secondary #22A06B (dark-mode accent), 50 = Accent tint #E8F5E9. */
+  --color-brand-50: #e8f5e9;
+  --color-brand-100: #cdebd5;
+  --color-brand-200: #a3dbbb;
+  --color-brand-300: #63c294;
+  --color-brand-400: #22a06b;
+  --color-brand-500: #14532d;
+  --color-brand-600: #0f4224;
+  --color-brand-700: #0c351d;
+  --color-brand-800: #092816;
+  --color-brand-900: #061c0f;
+  --color-brand-950: #031008;
 
   /* Neutral greys modelled on macOS system greys.
      Text contrast on white: 500 = 5.0:1, 600 = 7.6:1, 800 = 14:1 (WCAG AA ≥ 4.5). */
@@ -89,7 +90,7 @@ layer(base);
     0 0 0 0.5px rgb(0 0 0 / 0.08), 0 10px 30px -8px rgb(0 0 0 / 0.2),
     0 30px 60px -20px rgb(0 0 0 / 0.25);
   --shadow-datepicker: -5px 0 0 #262d3c, 5px 0 0 #262d3c;
-  --shadow-focus-ring: 0 0 0 4px rgb(0 122 255 / 0.25);
+  --shadow-focus-ring: 0 0 0 4px rgb(34 160 107 / 0.3);
   --shadow-slider-navigation:
     0px 1px 2px 0px rgb(0 0 0 / 0.1), 0px 1px 3px 0px rgb(0 0 0 / 0.1);
   --shadow-tooltip:
@@ -135,19 +136,19 @@ layer(base);
    Prefer these in new code: they switch automatically in dark mode.
    ========================================================================== */
 :root {
-  --ds-canvas: #f5f5f7; /* app background */
+  --ds-canvas: #f7faf7; /* app background */
   --ds-surface: #ffffff; /* cards, tables */
   --ds-surface-raised: #ffffff; /* popovers, dialogs */
-  --ds-material: rgb(250 250 252 / 0.72); /* translucent chrome (sidebar, toolbar) */
+  --ds-material: rgb(247 250 247 / 0.72); /* translucent chrome (sidebar, toolbar) */
   --ds-material-thick: rgb(255 255 255 / 0.86);
   --ds-separator: rgb(0 0 0 / 0.08);
-  --ds-label: #1d1d1f;
+  --ds-label: #1f2937;
   --ds-label-secondary: #6e6e73;
   --ds-label-tertiary: #8e8e93;
   --ds-fill: rgb(120 120 128 / 0.12); /* hover / control fill */
   --ds-fill-strong: rgb(120 120 128 / 0.2);
-  --ds-accent: #007aff;
-  --ds-accent-soft: rgb(0 122 255 / 0.1);
+  --ds-accent: #14532d;
+  --ds-accent-soft: #e8f5e9;
   --ds-success: #248a3d;
   --ds-warning: #c93400;
   --ds-danger: #d70015;
@@ -166,8 +167,8 @@ layer(base);
   --ds-label-tertiary: #7c7c80;
   --ds-fill: rgb(120 120 128 / 0.24);
   --ds-fill-strong: rgb(120 120 128 / 0.36);
-  --ds-accent: #0a84ff;
-  --ds-accent-soft: rgb(10 132 255 / 0.18);
+  --ds-accent: #22a06b;
+  --ds-accent-soft: rgb(34 160 107 / 0.18);
   --ds-success: #30d158;
   --ds-warning: #ff9f0a;
   --ds-danger: #ff453a;
@@ -701,14 +702,14 @@ span.flatpickr-weekday,
 .flatpickr-day.selected.nextMonthDay,
 .flatpickr-day.startRange.nextMonthDay,
 .flatpickr-day.endRange.nextMonthDay {
-  background: #007aff;
+  background: #14532d;
   @apply border-brand-500! bg-brand-500! hover:border-brand-500! hover:bg-brand-500!;
 }
 
 .flatpickr-day.selected.startRange + .endRange:not(:nth-child(7n + 1)),
 .flatpickr-day.startRange.startRange + .endRange:not(:nth-child(7n + 1)),
 .flatpickr-day.endRange.startRange + .endRange:not(:nth-child(7n + 1)) {
-  box-shadow: -10px 0 0 #007aff;
+  box-shadow: -10px 0 0 #14532d;
 }
 
 [dir="rtl"]
@@ -720,7 +721,7 @@ span.flatpickr-weekday,
 [dir="rtl"]
   .flatpickr-day.endRange.startRange
   + .endRange:not(:nth-child(7n + 1)) {
-  box-shadow: 10px 0 0 #007aff;
+  box-shadow: 10px 0 0 #14532d;
 }
 
 .flatpickr-months .flatpickr-prev-month svg,
@@ -872,10 +873,10 @@ pre[class*="language-"].line-numbers {
   fill: #9cb9ff !important;
 }
 #mapTwo .jvectormap-region[data-code="US"] {
-  fill: #007aff !important;
+  fill: #14532d !important;
 }
 #mapTwo .jvectormap-marker.jvectormap-element {
-  fill: #007aff !important;
+  fill: #14532d !important;
   stroke: #ffffff !important;
   stroke-width: 1.5 !important;
   fill-opacity: 1 !important;
@@ -884,7 +885,7 @@ pre[class*="language-"].line-numbers {
 #mapTwo .jvectormap-marker.jvectormap-element:first-of-type {
   stroke: #ffffff !important;
   stroke-width: 2 !important;
-  filter: drop-shadow(0 0 3px rgba(0, 122, 255, 0.4))
+  filter: drop-shadow(0 0 3px rgba(34, 160, 107, 0.4))
     drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
 }
 
@@ -904,7 +905,7 @@ pre[class*="language-"].line-numbers {
 }
 #mapCustomerPinPoint .jvm-region[data-code="US-CA"],
 #mapCustomerPinPoint .jvectormap-region[data-code="US-CA"] {
-  fill: #007aff !important;
+  fill: #14532d !important;
 }
 #mapCustomerPinPoint .jvm-region[data-code="US-NY"],
 #mapCustomerPinPoint .jvm-region[data-code="US-FL"],
@@ -940,7 +941,7 @@ pre[class*="language-"].line-numbers {
 }
 #mapCustomerPinPoint .jvm-region.jvm-element:hover,
 #mapCustomerPinPoint .jvectormap-region.jvectormap-element:hover {
-  fill: #007aff !important;
+  fill: #14532d !important;
 }
 .dark #mapCustomerPinPoint .jvm-region.jvm-element,
 .dark #mapCustomerPinPoint .jvectormap-region.jvm-element,
@@ -952,7 +953,7 @@ pre[class*="language-"].line-numbers {
 /* Customer map markers: solid filled circles with white ring */
 #mapCustomerPinPoint .jvm-marker.jvm-element,
 #mapCustomerPinPoint .jvectormap-marker.jvectormap-element {
-  fill: #007aff !important;
+  fill: #14532d !important;
   stroke: white !important;
   stroke-width: 2 !important;
   fill-opacity: 1 !important;

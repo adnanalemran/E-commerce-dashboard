@@ -1,6 +1,6 @@
 # E-Dukan Design System
 
-A macOS-inspired visual language for the E-Dukan dashboard: calm neutral surfaces, translucent "glass" chrome, a single system-blue accent, and the platform's own system font. This file is the source of truth for humans and AI agents.
+A macOS-inspired visual language for the E-Dukan dashboard: calm neutral surfaces, translucent "glass" chrome, a single green accent ("Modern Green" brand palette), and the platform's own system font. This file is the source of truth for humans and AI agents.
 
 | Where | What |
 | --- | --- |
@@ -11,7 +11,7 @@ A macOS-inspired visual language for the E-Dukan dashboard: calm neutral surface
 ## 1. Principles
 
 1. **Content first, chrome recedes.** App chrome (sidebar, toolbar, sticky bars) uses translucent `material`; content sits on opaque `surface-card` panels.
-2. **One accent.** System blue (`accent`, `brand-*`) marks primary actions, selection and links, and nothing else. Status is shown with success/warning/danger, never with the accent.
+2. **One accent.** Brand green (`accent`, `brand-*`) marks primary actions, selection and links, and nothing else. Status is shown with success/warning/danger, never with the accent.
 3. **Hairlines over heavy borders.** Separate with `border-separator` (8% black / 9% white) and soft shadows, not dark lines.
 4. **Both appearances, always.** Every surface and text colour must work in light and dark. Semantic tokens do this for you, so prefer them over raw `gray-*` + `dark:` pairs.
 5. **Accessible by default.** Body text ≥ 4.5:1 contrast, visible focus rings, `prefers-reduced-transparency` respected, RTL via logical properties.
@@ -24,21 +24,21 @@ Defined as CSS variables that switch under `.dark`, exposed to Tailwind via `@th
 
 | Token | Light | Dark | Use for |
 | --- | --- | --- | --- |
-| `canvas` | `#F5F5F7` | `#161618` | App background (body) |
+| `canvas` | `#F7FAF7` | `#161618` | App background (body) |
 | `surface` | `#FFFFFF` | `#1E1E20` | Cards, tables, form sections |
 | `surface-raised` | `#FFFFFF` | `#2A2A2D` | Dialogs, popovers |
 | `separator` | `rgb(0 0 0 / 8%)` | `rgb(255 255 255 / 9%)` | Borders, dividers, rings |
-| `label` | `#1D1D1F` | `#F5F5F7` | Primary text, headings |
+| `label` | `#1F2937` | `#F5F5F7` | Primary text, headings |
 | `label-secondary` | `#6E6E73` | `#A1A1A6` | Descriptions, metadata, table secondary text |
 | `label-tertiary` | `#8E8E93` | `#7C7C80` | Placeholders, disabled text, captions |
 | `fill` / `fill-strong` | grey 12% / 20% | grey 24% / 36% | Hover backgrounds, chips, code |
-| `accent` | `#007AFF` | `#0A84FF` | Primary action, links, selection |
-| `accent-soft` | blue 10% | blue 18% | Active nav item, selected row |
+| `accent` | `#14532D` | `#22A06B` | Primary action, links, selection |
+| `accent-soft` | `#E8F5E9` | green 18% | Active nav item, selected row |
 | `success` / `warning` / `danger` | `#248A3D` / `#C93400` / `#D70015` | `#30D158` / `#FF9F0A` / `#FF453A` | Status text and icons |
 
 ### Scales (existing code, charts, badges)
 
-- `brand-50 … brand-950`: system blue. `brand-500` = `#007AFF`, `brand-400` ≈ the dark-mode accent.
+- `brand-50 … brand-950`: brand green. `brand-500` = Primary `#14532D` (light accent), `brand-400` = Secondary `#22A06B` (dark-mode accent, charts), `brand-50` = Accent tint `#E8F5E9`. Don't use `#22A06B` for text or white-on-fill on light surfaces (3.3:1, below AA).
 - `gray-25 … gray-950`: neutral macOS greys. Contrast on white: `gray-500` 5.0:1, `gray-600` 7.6:1, `gray-800` 14:1. **Do not use `gray-400` for text** except placeholders.
 - Status palettes (`green-*`, `red-*`, `amber-*`, `sky-*`) are Tailwind defaults and are used by `Badge` and `Alert`.
 
@@ -120,7 +120,7 @@ Layout rules:
 | --- | --- |
 | `bg-surface text-label border-separator` | `bg-white dark:bg-gray-900 text-gray-800 dark:text-white/90` in new code |
 | `text-label-secondary` for descriptions | `text-gray-400` for readable text (fails contrast) |
-| `accent` for the one primary action | Blue for status or decoration |
+| `accent` for the one primary action | Green accent for status or decoration |
 | Logical spacing: `ms-*`, `pe-*`, `inset-s-*`, `text-start` | `ml-*`, `pr-*`, `left-*`, `text-left` (breaks Arabic RTL) |
 | Add every new string to all four `src/messages/*.json` | Hard-coded English in JSX |
 | `material` only for chrome | Glass behind paragraphs or tables |
