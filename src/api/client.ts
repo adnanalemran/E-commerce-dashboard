@@ -39,7 +39,9 @@ export class ApiError extends Error {
 
 // ---------------------------------------------------------------------------
 // Session state (access token is kept in memory only; the refresh token is an
-// httpOnly cookie managed by the backend).
+// httpOnly cookie managed by the backend). A token-free snapshot of the signed-in
+// user is kept in localStorage so a reload while the API is unreachable stays
+// signed in (see AuthProvider) instead of bouncing to the sign-in page.
 // ---------------------------------------------------------------------------
 
 type SessionListener = (user: AuthUser | null) => void;
@@ -51,6 +53,34 @@ const channel =
   typeof BroadcastChannel === "undefined"
     ? null
     : new BroadcastChannel("auth-session");
+
+const USER_STORAGE_KEY = "edukan.dashboard.user";
+
+/** Never holds tokens: only the profile shown in the UI (name, email, roles…). */
+function storeUser(user: AuthUser | null) {
+  try {
+    if (user) localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
+    else localStorage.removeItem(USER_STORAGE_KEY);
+  } catch {
+    // Storage blocked (private mode, quota): the session still works for this page.
+  }
+}
+
+/** The last signed-in user saved in this browser, if any. */
+export function getStoredUser(): AuthUser | null {
+  try {
+    const raw = localStorage.getItem(USER_STORAGE_KEY);
+    const user = raw ? (JSON.parse(raw) as AuthUser) : null;
+    return user && typeof user.id === "string" && Array.isArray(user.roles) ? user : null;
+  } catch {
+    return null;
+  }
+}
+
+/** True once a refresh or sign-in has produced an access token in this tab. */
+export function hasAccessToken() {
+  return accessToken !== null;
+}
 
 function notify(user: AuthUser | null) {
   listeners.forEach((listener) => listener(user));
@@ -65,16 +95,20 @@ export function onSessionChange(listener: SessionListener) {
 
 export function setSession(session: AuthSession) {
   accessToken = session.accessToken;
+  storeUser(session.user);
   notify(session.user);
 }
 
 /** Replaces the signed-in user's data (e.g. after a profile update) without touching tokens. */
 export function updateSessionUser(user: AuthUser) {
-  if (accessToken) notify(user);
+  if (!accessToken) return;
+  storeUser(user);
+  notify(user);
 }
 
 export function clearSession({ broadcast = false } = {}) {
   accessToken = null;
+  storeUser(null);
   notify(null);
   if (broadcast) channel?.postMessage("logout");
 }

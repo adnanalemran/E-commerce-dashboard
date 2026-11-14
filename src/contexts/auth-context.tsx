@@ -2,7 +2,10 @@ import { authApi, type LoginInput, type RegisterInput } from "@/api/auth";
 import { profileApi } from "@/api/profile";
 import { queryClient } from "@/api/query-client";
 import {
+  ApiError,
   clearSession,
+  getStoredUser,
+  hasAccessToken,
   onSessionChange,
   refreshSession,
   setSession,
@@ -53,14 +56,36 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     });
 
     // Restore the session from the httpOnly refresh cookie on first load.
-    refreshSession().catch(() => clearSession());
+    refreshSession().catch((error: unknown) => {
+      // API unreachable: the cookie may still be valid, so stay signed in as the
+      // user saved in this browser and reconnect below. Anything else signs out.
+      const stored = error instanceof ApiError && error.isNetworkError ? getStoredUser() : null;
+      if (stored) setState({ status: "authenticated", user: stored });
+      else clearSession();
+    });
 
     return unsubscribe;
   }, []);
 
+  // Signed in from the saved user but without a token yet (server was down):
+  // retry the refresh every 10 s and when the browser comes back online.
+  // Success fills in the token; a rejected cookie signs out (API client).
+  const isAuthenticated = state.status === "authenticated";
+  useEffect(() => {
+    if (!isAuthenticated || hasAccessToken()) return;
+    const reconnect = () => {
+      if (!hasAccessToken()) refreshSession().catch(() => {});
+    };
+    const timer = window.setInterval(reconnect, 10_000);
+    window.addEventListener("online", reconnect);
+    return () => {
+      window.clearInterval(timer);
+      window.removeEventListener("online", reconnect);
+    };
+  }, [isAuthenticated, state.user]);
+
   // Re-read the account when the tab regains focus so role or status changes
   // made by an admin apply without a full reload (at most once a minute).
-  const isAuthenticated = state.status === "authenticated";
   useEffect(() => {
     if (!isAuthenticated) return;
     let lastSync = Date.now();
