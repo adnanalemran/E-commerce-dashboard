@@ -1,5 +1,6 @@
+import { ApiError } from "@/api/client";
 import { queryKeys } from "@/api/query-client";
-import { settingsApi, type StoreSettings } from "@/api/settings";
+import { cacheApi, settingsApi, type StoreSettings } from "@/api/settings";
 import { PageBreadcrumb } from "@/components/shared/page-breadcrumb";
 import { PageMeta } from "@/components/shared/page-meta";
 import { Alert, AlertTitle } from "@/components/ui/alert";
@@ -9,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Textarea } from "@/components/ui/textarea";
 import { useTranslations } from "@/i18n";
-import { OctagonAlertIcon } from "@/icons";
+import { DatabaseIcon, OctagonAlertIcon } from "@/icons";
 import { getApiErrorMessage } from "@/utils/form-errors";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -42,6 +43,7 @@ export default function SettingsPage() {
         // Keyed so a refetch after saving starts the form from the saved values.
         <SettingsForm key={query.dataUpdatedAt} settings={query.data} />
       )}
+      <CacheCard />
     </>
   );
 }
@@ -88,7 +90,7 @@ function SettingsForm({ settings }: { settings: StoreSettings }) {
         save.mutate(values);
       })}
       noValidate
-      className="space-y-6 pb-24"
+      className="space-y-6"
     >
       {save.error && (
         <Alert variant="destructive">
@@ -172,6 +174,83 @@ function Section({ title, description, children }: { title: string; description:
       <h3 className="text-base font-semibold text-label">{title}</h3>
       <p className="mb-5 text-sm text-label-secondary">{description}</p>
       {children}
+    </section>
+  );
+}
+
+/**
+ * Why the cache status could not be shown. Only a 503 from the API means Redis itself is down;
+ * a network error or any other status (e.g. an older API without the endpoint) is not a Redis problem.
+ */
+function cacheErrorText(error: Error, t: (key: string) => string): string {
+  if (error instanceof ApiError && error.status === 503) return t("cache.unavailable");
+  if (error instanceof ApiError && error.isNetworkError) return t("errors.network");
+  return t("cache.loadFailed");
+}
+
+/** Shows the Redis API cache and clears it (logins, codes and rate limits are kept). */
+function CacheCard() {
+  const t = useTranslations("settings");
+  const queryClient = useQueryClient();
+  const status = useQuery({ queryKey: queryKeys.cacheStatus, queryFn: ({ signal }) => cacheApi.status(signal), retry: false });
+  const clear = useMutation({
+    mutationFn: cacheApi.clear,
+    onSettled: () => queryClient.invalidateQueries({ queryKey: queryKeys.cacheStatus }),
+  });
+  const errors = { network: t("errors.network"), unexpected: t("errors.unexpected") };
+
+  return (
+    <section className="surface-card mt-6 mb-24 p-5 sm:p-6" aria-labelledby="cache-title">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <div className="flex gap-3">
+          <span className="grid size-10 shrink-0 place-items-center rounded-full bg-accent-soft text-accent">
+            <DatabaseIcon className="size-5" aria-hidden="true" />
+          </span>
+          <div>
+            <h3 id="cache-title" className="text-base font-semibold text-label">
+              {t("cache.title")}
+            </h3>
+            <p className="text-sm text-label-secondary">{t("cache.description")}</p>
+            <div className="mt-2 text-sm font-medium text-label" role="status">
+              {status.isPending ? (
+                <Skeleton className="h-5 w-40" />
+              ) : status.error ? (
+                cacheErrorText(status.error, t)
+              ) : !status.data.enabled ? (
+                t("cache.disabled")
+              ) : (
+                <>
+                  {t("cache.entries", { count: status.data.entries })}
+                  {status.data.usedMemory && <span className="text-label-secondary"> · {t("cache.memory", { used: status.data.usedMemory })}</span>}
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+        <Button
+          type="button"
+          variant="outline"
+          className="shrink-0"
+          disabled={clear.isPending || Boolean(status.error)}
+          onClick={() => clear.mutate()}
+        >
+          {clear.isPending ? t("cache.clearing") : t("cache.clear")}
+        </Button>
+      </div>
+
+      {clear.error ? (
+        <Alert variant="destructive" className="mt-4">
+          <OctagonAlertIcon className="size-5" />
+          <AlertTitle>{getApiErrorMessage(clear.error, errors)}</AlertTitle>
+        </Alert>
+      ) : (
+        clear.data && (
+          <p className="mt-4 text-sm font-medium text-success" role="status">
+            {t("cache.cleared", { count: clear.data.removed })}
+          </p>
+        )
+      )}
+      <p className="mt-3 text-xs text-label-secondary">{t("cache.note")}</p>
     </section>
   );
 }

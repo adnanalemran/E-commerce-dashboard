@@ -30,6 +30,7 @@ export const queryClient = new QueryClient({
 export const queryKeys = {
   profile: ["profile"] as const,
   settings: ["settings"] as const,
+  cacheStatus: ["cacheStatus"] as const,
   brands: ["brands"] as const,
   banners: ["banners"] as const,
   pages: ["pages"] as const,

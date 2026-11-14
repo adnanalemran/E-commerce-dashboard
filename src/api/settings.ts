@@ -24,6 +24,29 @@ export interface StoreSettings {
   };
 }
 
+/** Mirrors `CacheService.stats()` in the backend. */
+export interface CacheStatus {
+  enabled: boolean;
+  /** All Redis keys (cache plus logins, codes, rate limits). */
+  keys: number;
+  /** Cached API responses. */
+  entries: number;
+  usedMemory: string | null;
+  maxMemory: string | null;
+  evictionPolicy: string | null;
+}
+
+export interface CacheClearResult {
+  removed: number;
+  tags: string[];
+}
+
+/** Redis API cache (`/admin/cache`, admins only). Clearing keeps logins, codes and rate limits. */
+export const cacheApi = {
+  status: (signal?: AbortSignal) => apiRequest<CacheStatus>("/admin/cache", { signal }),
+  clear: () => apiRequest<CacheClearResult>("/admin/cache/clear", { method: "POST" }),
+};
+
 /** Store settings (`/admin/settings`, admins only). */
 export const settingsApi = {
   get: (signal?: AbortSignal) => apiRequest<StoreSettings>("/admin/settings", { signal }),
