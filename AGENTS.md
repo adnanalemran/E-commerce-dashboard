@@ -2,7 +2,7 @@
 
 Admin dashboard for the E-Dukan store (single shop). React 19 · Vite 8 · TypeScript ~6 · Tailwind CSS v4 · React Router 8 · TanStack Query v5 · Base UI · react-i18next · React Hook Form + Zod. Talks to the REST API in `../e-commerce-backend` (see that folder's `AGENTS.md`).
 
-Read **`DESIGN.md`** before any UI work. It defines the macOS-inspired design system (tokens, components, page recipes, do/don't).
+Read **`DESIGN.md`** before any UI work. It defines the design system, aligned with the storefront (tokens, components, page recipes, do/don't).
 
 ## Commands
 
@@ -31,7 +31,7 @@ src/
 │   └── types.ts            # AuthUser, AuthSession, ApiEnvelope
 ├── contexts/               # AuthProvider/useAuth, ThemeProvider/useTheme
 ├── components/
-│   ├── layout/app-layout/  # Shell: floating glass sidebar (sidebar/data.tsx = nav), header, Outlet
+│   ├── layout/app-layout/  # Shell: floating sidebar (sidebar/data.tsx = nav), header, Outlet
 │   ├── shared/             # route-guards, page-meta, page-breadcrumb, table-pagination, access-denied, header widgets
 │   └── ui/                 # Base UI primitives (button, input, select, dialog, badge, alert…), no barrel
 ├── pages/
@@ -135,7 +135,7 @@ See `DESIGN.md`. In short:
 ## Icons and assets
 
 - Shared icons: kebab-case `.tsx` taking `IconProps`, exported from `src/icons/index.tsx`. Don't inline SVG in pages.
-- Brand assets: `public/images/logo/{logo,logo-dark,logo-icon,auth-logo}.svg`, `public/favicon.svg`.
+- Brand: `<Logo>` / `<LogoMark>` from `@/components/shared/logo` (same mark and wordmark as the storefront), `public/favicon.svg`. The old `public/images/logo/*.svg` files are no longer used.
 
 ## Boundaries
 

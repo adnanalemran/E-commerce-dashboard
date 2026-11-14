@@ -3,7 +3,7 @@ import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import { cva, type VariantProps } from "class-variance-authority";
 
 const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:outline-hidden active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none aria-invalid:border-red-500 aria-invalid:ring-3 aria-invalid:ring-red-500/20 dark:aria-invalid:border-red-500/50 dark:aria-invalid:ring-red-500/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-5",
+  "group/button inline-flex shrink-0 items-center justify-center rounded-full border border-transparent bg-clip-padding text-sm font-semibold whitespace-nowrap transition-all outline-none select-none focus-visible:outline-hidden active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none aria-invalid:border-red-500 aria-invalid:ring-3 aria-invalid:ring-red-500/20 dark:aria-invalid:border-red-500/50 dark:aria-invalid:ring-red-500/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-5",
   {
     variants: {
       variant: {
@@ -19,14 +19,14 @@ const buttonVariants = cva(
       },
       size: {
         default:
-          "h-10 gap-2 rounded-[10px] px-4 py-2.5 [&:has(>svg:first-child)]:ps-3 [&:has(>svg:last-child)]:pe-3",
-        xs: "h-8 gap-1.5 rounded-lg px-3 py-1.5 in-data-[slot=button-group]:rounded-lg [&:has(>svg:first-child)]:ps-2.5 [&:has(>svg:last-child)]:pe-2.5",
-        sm: "h-9 gap-1.5 rounded-lg px-4 py-2 in-data-[slot=button-group]:rounded-lg [&:has(>svg:first-child)]:ps-3 [&:has(>svg:last-child)]:pe-3",
-        lg: "h-11 gap-2 rounded-[10px] px-5 py-3 [&:has(>svg:first-child)]:ps-4 [&:has(>svg:last-child)]:pe-4",
-        icon: "size-10 rounded-[10px]",
-        "icon-xs": "size-8 rounded-lg in-data-[slot=button-group]:rounded-lg",
-        "icon-sm": "size-9 rounded-lg in-data-[slot=button-group]:rounded-lg",
-        "icon-lg": "size-11 rounded-[10px]",
+          "h-10 gap-2 rounded-full px-4 py-2.5 [&:has(>svg:first-child)]:ps-3 [&:has(>svg:last-child)]:pe-3",
+        xs: "h-8 gap-1.5 rounded-full px-3 py-1.5 in-data-[slot=button-group]:rounded-lg [&:has(>svg:first-child)]:ps-2.5 [&:has(>svg:last-child)]:pe-2.5",
+        sm: "h-9 gap-1.5 rounded-full px-4 py-2 in-data-[slot=button-group]:rounded-lg [&:has(>svg:first-child)]:ps-3 [&:has(>svg:last-child)]:pe-3",
+        lg: "h-11 gap-2 rounded-full px-5 py-3 [&:has(>svg:first-child)]:ps-4 [&:has(>svg:last-child)]:pe-4",
+        icon: "size-10 rounded-full",
+        "icon-xs": "size-8 rounded-full in-data-[slot=button-group]:rounded-lg",
+        "icon-sm": "size-9 rounded-full in-data-[slot=button-group]:rounded-lg",
+        "icon-lg": "size-11 rounded-full",
       },
     },
     defaultVariants: {

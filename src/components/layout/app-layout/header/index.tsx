@@ -1,4 +1,5 @@
 import NotificationDropdown from "@/components/shared/header/notification-dropdown";
+import { Logo } from "@/components/shared/logo";
 import ThemeToggleButton from "@/components/shared/header/theme-toggler";
 import UserDropdown from "@/components/shared/header/user-dropdown";
 import { Badge } from "@/components/ui/badge";
@@ -42,7 +43,7 @@ export default function AppHeader() {
   }, []);
 
   return (
-    <header className="material sticky top-0 z-50 flex w-full shrink-0 border-separator xl:border-b">
+    <header className="material sticky top-0 z-50 flex w-full shrink-0 border-separator shadow-sm xl:border-b">
       <div className="flex grow flex-col items-center justify-between xl:flex-row xl:px-6">
         {/* Left side content */}
         <div className="flex w-full items-center justify-between gap-2 border-b border-separator px-3 py-3 sm:gap-4 xl:justify-normal xl:border-b-0 xl:px-0 xl:py-3">
@@ -60,17 +61,8 @@ export default function AppHeader() {
             )}
           </Button>
 
-          <Link to="/" className="xl:hidden">
-            <img
-              className="h-8 w-auto dark:hidden"
-              src="/images/logo/logo.svg"
-              alt="E-Dukan"
-            />
-            <img
-              className="hidden h-8 w-auto dark:block"
-              src="/images/logo/logo-dark.svg"
-              alt="E-Dukan"
-            />
+          <Link to="/" className="xl:hidden" aria-label="E-Dukan">
+            <Logo markClassName="size-9" />
           </Link>
 
           <Button

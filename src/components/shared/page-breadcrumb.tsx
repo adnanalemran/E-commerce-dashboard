@@ -14,7 +14,7 @@ interface BreadcrumbProps {
 export function PageBreadcrumb({ pageTitle }: BreadcrumbProps) {
   return (
     <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-      <h2 className="text-title-lg font-semibold text-gray-800 dark:text-white/90">
+      <h2 className="text-title-lg font-bold text-label">
         {pageTitle}
       </h2>
 

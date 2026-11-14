@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap")
+@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@400;600;800&display=swap")
 layer(base);
 
 @import "tailwindcss";
@@ -9,10 +9,10 @@ layer(base);
 
 @theme {
   --font-*: initial;
-  /* System UI stack: San Francisco on Apple devices, Inter elsewhere. */
+  /* Same stack as the storefront: Hind Siliguri (Latin + Bengali), Poppins,
+     then the system font (covers Arabic). */
   --font-sans:
-    -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", Inter,
-    "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+    "Hind Siliguri", Poppins, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
   /* Legacy alias: older components use `font-outfit`. */
   --font-outfit: var(--font-sans);
@@ -63,6 +63,8 @@ layer(base);
   --color-brand-800: #092816;
   --color-brand-900: #061c0f;
   --color-brand-950: #031008;
+  /* Text-safe secondary green (5:1 on white), same as the storefront's `leaf`. */
+  --color-leaf: #1b7f55;
 
   /* Neutral greys modelled on macOS system greys.
      Text contrast on white: 500 = 5.0:1, 600 = 7.6:1, 800 = 14:1 (WCAG AA ≥ 4.5). */
@@ -139,8 +141,8 @@ layer(base);
   --ds-canvas: #f7faf7; /* app background */
   --ds-surface: #ffffff; /* cards, tables */
   --ds-surface-raised: #ffffff; /* popovers, dialogs */
-  --ds-material: rgb(247 250 247 / 0.72); /* translucent chrome (sidebar, toolbar) */
-  --ds-material-thick: rgb(255 255 255 / 0.86);
+  --ds-material: #ffffff; /* chrome (sidebar, header): solid white like the storefront header */
+  --ds-material-thick: #ffffff;
   --ds-separator: rgb(0 0 0 / 0.08);
   --ds-label: #1f2937;
   --ds-label-secondary: #6e6e73;
@@ -159,8 +161,8 @@ layer(base);
   --ds-canvas: #161618;
   --ds-surface: #1e1e20;
   --ds-surface-raised: #2a2a2d;
-  --ds-material: rgb(30 30 32 / 0.7);
-  --ds-material-thick: rgb(36 36 38 / 0.86);
+  --ds-material: #1e1e20;
+  --ds-material-thick: #242426;
   --ds-separator: rgb(255 255 255 / 0.09);
   --ds-label: #f5f5f7;
   --ds-label-secondary: #a1a1a6;
@@ -192,17 +194,14 @@ layer(base);
   --color-danger: var(--ds-danger);
 }
 
-/* Translucent "glass" chrome — sidebar, toolbars, sticky bars. */
+/* Solid app chrome — sidebar, header, sticky bars (matches the storefront header). */
 @utility material {
   background-color: var(--ds-material);
-  -webkit-backdrop-filter: blur(28px) saturate(180%);
-  backdrop-filter: blur(28px) saturate(180%);
 }
 
+/* Solid menus — dropdowns, select lists, mobile sidebar sheet. */
 @utility material-thick {
   background-color: var(--ds-material-thick);
-  -webkit-backdrop-filter: blur(32px) saturate(180%);
-  backdrop-filter: blur(32px) saturate(180%);
 }
 
 /* Standard content container: cards, table panels, form sections. */
@@ -211,15 +210,6 @@ layer(base);
   border: 1px solid var(--ds-separator);
   background-color: var(--ds-surface);
   box-shadow: var(--shadow-card);
-}
-
-@media (prefers-reduced-transparency: reduce) {
-  .material,
-  .material-thick {
-    background-color: var(--ds-surface);
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
-  }
 }
 
 /*
@@ -252,7 +242,7 @@ layer(base);
 }
 
 @utility menu-item {
-  @apply relative flex w-full items-center gap-3 rounded-[9px] px-2.5 py-1.5 text-sm font-medium transition-colors duration-150;
+  @apply relative flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-semibold transition-colors duration-150;
 }
 
 @utility menu-item-active {

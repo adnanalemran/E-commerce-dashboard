@@ -1,6 +1,6 @@
 # E-Dukan Design System
 
-A macOS-inspired visual language for the E-Dukan dashboard: calm neutral surfaces, translucent "glass" chrome, a single green accent ("Modern Green" brand palette), and the platform's own system font. This file is the source of truth for humans and AI agents.
+The E-Dukan dashboard's visual language, aligned with the customer storefront (`../E-commerce-website`): calm surfaces on a soft green-white canvas, solid white chrome, a single green accent ("Modern Green" brand palette), pill-shaped buttons, the storefront's Hind Siliguri font and its house-and-basket logo (`components/shared/logo.tsx`). This file is the source of truth for humans and AI agents.
 
 | Where | What |
 | --- | --- |
@@ -10,7 +10,7 @@ A macOS-inspired visual language for the E-Dukan dashboard: calm neutral surface
 
 ## 1. Principles
 
-1. **Content first, chrome recedes.** App chrome (sidebar, toolbar, sticky bars) uses translucent `material`; content sits on opaque `surface-card` panels.
+1. **Content first, chrome recedes.** App chrome (sidebar, header, sticky bars) uses solid `material` with a soft shadow, like the storefront header; content sits on `surface-card` panels.
 2. **One accent.** Brand green (`accent`, `brand-*`) marks primary actions, selection and links, and nothing else. Status is shown with success/warning/danger, never with the accent.
 3. **Hairlines over heavy borders.** Separate with `border-separator` (8% black / 9% white) and soft shadows, not dark lines.
 4. **Both appearances, always.** Every surface and text colour must work in light and dark. Semantic tokens do this for you, so prefer them over raw `gray-*` + `dark:` pairs.
@@ -44,11 +44,11 @@ Defined as CSS variables that switch under `.dark`, exposed to Tailwind via `@th
 
 ### Typography
 
-System stack: `-apple-system, BlinkMacSystemFont, "SF Pro Text", Inter, "Segoe UI Variable", system-ui`. That gives San Francisco on Apple devices and Inter (loaded from Google Fonts) elsewhere. `font-outfit` is a legacy alias of `font-sans`.
+Same stack as the storefront: `"Hind Siliguri", Poppins, system-ui, "Segoe UI"` (Hind Siliguri and Poppins load from Google Fonts). Arabic falls back to the system font. `font-outfit` is a legacy alias of `font-sans`. Headings and nav items are bolder than body text, as on the storefront.
 
 | Role | Classes |
 | --- | --- |
-| Page title (breadcrumb) | `text-title-lg font-semibold text-label` |
+| Page title (breadcrumb) | `text-title-lg font-bold text-label` |
 | Section heading | `text-lg font-semibold text-label` |
 | Card heading | `text-base font-semibold text-label` |
 | Body / table | `text-sm text-label` |
@@ -61,7 +61,8 @@ System stack: `-apple-system, BlinkMacSystemFont, "SF Pro Text", Inter, "Segoe U
 
 | Token | Value | Use |
 | --- | --- | --- |
-| `--radius-control` | 10px | Buttons, inputs, selects (`rounded-[10px]`, `rounded-lg`) |
+| `--radius-control` | 10px | Inputs, selects (`rounded-[10px]`, `rounded-lg`) |
+| pill | `rounded-full` | Buttons (built into `<Button>`), status chips — same as storefront buttons |
 | `--radius-card` | 16px | `surface-card`, floating sidebar |
 | `--radius-window` | 22px | Dialogs |
 | `shadow-card` | hairline + 3px | Cards (built into `surface-card`) |
@@ -69,14 +70,14 @@ System stack: `-apple-system, BlinkMacSystemFont, "SF Pro Text", Inter, "Segoe U
 | `shadow-window` | deep, diffuse | Dialogs, menus, selects, popovers |
 | `--ease-mac` | `cubic-bezier(0.32, 0.72, 0, 1)` | Open/close transitions (`ease-(--ease-mac)`) |
 
-### Materials (glass)
+### Materials (chrome)
 
 | Utility | Use |
 | --- | --- |
 | `material` | Sidebar panel, sticky toolbar/header, sticky bottom action bars |
 | `material-thick` | Dropdown menus, select lists, mobile sidebar sheet |
 
-Both fall back to opaque `surface` when the user prefers reduced transparency. **Never put body content directly on glass**; content goes on `surface-card`.
+Both are solid (white in light mode). Body content still goes on `surface-card`, not directly on chrome.
 
 ## 3. Components
 
@@ -123,7 +124,7 @@ Layout rules:
 | `accent` for the one primary action | Green accent for status or decoration |
 | Logical spacing: `ms-*`, `pe-*`, `inset-s-*`, `text-start` | `ml-*`, `pr-*`, `left-*`, `text-left` (breaks Arabic RTL) |
 | Add every new string to all four `src/messages/*.json` | Hard-coded English in JSX |
-| `material` only for chrome | Glass behind paragraphs or tables |
+| `material` only for chrome | `material` behind paragraphs or tables |
 
 ## 6. Accessibility checklist
 
