@@ -9,11 +9,8 @@ const phoneRegex = /^\+[1-9]\d{1,14}$/;
 export function createUserFormSchema(t: Translator, isCreate: boolean) {
   const password = z
     .string()
-    .min(8, t("validation.passwordMin"))
-    .regex(/[A-Z]/, t("validation.passwordUppercase"))
-    .regex(/[a-z]/, t("validation.passwordLowercase"))
-    .regex(/[0-9]/, t("validation.passwordNumber"))
-    .regex(/[\W_]/, t("validation.passwordSpecial"));
+    .refine((v) => !/\s/.test(v), "Password must not contain spaces")
+    .refine((v) => /^\d{6}$/.test(v), t("validation.passwordMin"));
 
   return z
     .object({
