@@ -14,6 +14,7 @@ import { Link, useParams } from "react-router";
 import { OrderStatusBadge, PaymentBadge } from "../order-badges";
 import { useOrder, useOrderMutations } from "../use-orders";
 import StatusDialog from "./status-dialog";
+import CourierPanel from "./courier-panel";
 
 /** Exits from the normal flow need a reason and restock items. */
 const EXIT_STATUSES: OrderStatus[] = ["CANCELLED", "RETURNED"];
@@ -102,6 +103,9 @@ function OrderDetail({ orderId }: { orderId: string }) {
           <span className="text-sm text-label-secondary">{dateTime.format(new Date(order.createdAt))}</span>
         </div>
         <div className="flex flex-wrap gap-2">
+          <Button variant="outline" render={<Link to={`/orders/${order.id}/invoice`} target="_blank" />} nativeButton={false}>
+            {t("invoice.print")}
+          </Button>
           {forward.map((status, i) => (
             <Button key={status} variant={i === 0 ? "default" : "outline"} disabled={busy} onClick={() => void changeStatus(status)}>
               {t(`transitions.${status}`)}
@@ -157,6 +161,7 @@ function OrderDetail({ orderId }: { orderId: string }) {
                       <p className="font-medium text-label">{item.productName}</p>
                     )}
                     <p className="text-xs text-label-secondary">
+                      {item.isGift && <span className="me-1 font-semibold text-success">{t("detail.gift")} ·</span>}
                       {item.variantName}
                       {item.sku ? ` · ${item.sku}` : ""}
                     </p>
@@ -171,7 +176,12 @@ function OrderDetail({ orderId }: { orderId: string }) {
             <dl className="mt-4 space-y-1.5 border-t border-separator pt-4 text-sm">
               <Row label={t("detail.subtotal")} value={money(order.subtotal)} />
               <Row label={t("detail.delivery")} value={order.deliveryCharge ? money(order.deliveryCharge) : t("detail.free")} />
-              {order.discount > 0 && <Row label={t("detail.discount")} value={`− ${money(order.discount)}`} />}
+              {order.discount > 0 && (
+                <Row
+                  label={order.couponCode ? t("detail.discountCode", { code: order.couponCode }) : t("detail.discount")}
+                  value={`− ${money(order.discount)}`}
+                />
+              )}
               <div className="flex justify-between pt-1.5 text-base font-semibold text-label">
                 <dt>{t("detail.total")}</dt>
                 <dd className="tabular-nums">{money(order.total)}</dd>
@@ -213,9 +223,18 @@ function OrderDetail({ orderId }: { orderId: string }) {
               <Info label={t("detail.address")}>
                 <span className="whitespace-pre-line">{order.address}</span>
               </Info>
+              {order.district && (
+                <Info label={t("detail.location")}>
+                  {order.area ? `${order.area}, ${order.district}` : order.district}
+                </Info>
+              )}
               <Info label={t("detail.zone")}>{t(`zones.${order.deliveryZone}`)}</Info>
               {order.note && <Info label={t("detail.note")}>{order.note}</Info>}
             </dl>
+          </Panel>
+
+          <Panel title={t("courier.title")}>
+            <CourierPanel order={order} />
           </Panel>
 
           <Panel title={t("detail.payment")}>
@@ -229,6 +248,24 @@ function OrderDetail({ orderId }: { orderId: string }) {
             </div>
             {order.paymentMethod === "COD" && order.paymentStatus === "UNPAID" && (
               <p className="mt-3 text-xs text-label-secondary">{t("detail.codHint")}</p>
+            )}
+            {order.payments && order.payments.length > 0 && (
+              <ul className="mt-4 divide-y divide-separator border-t border-separator">
+                {order.payments.map((p) => (
+                  <li key={p.id} className="py-2.5 text-sm">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="font-medium text-label">bKash · {money(p.amount)}</span>
+                      <span className={cn("text-xs font-medium", p.status === "COMPLETED" ? "text-success" : p.status === "INITIATED" ? "text-label-secondary" : "text-danger")}>
+                        {t(`detail.attempt.${p.status}`)}
+                      </span>
+                    </div>
+                    <p className="text-xs text-label-secondary">
+                      {dateTime.format(new Date(p.createdAt))}
+                      {p.trxId && <> · {t("detail.trxId", { id: p.trxId })}</>}
+                    </p>
+                  </li>
+                ))}
+              </ul>
             )}
           </Panel>
         </div>

@@ -141,19 +141,27 @@
       "categories": "الفئات",
       "subcategories": "الفئات الفرعية",
       "users": "المستخدمون",
-      "orders": "الطلبات"
+      "orders": "الطلبات",
+      "coupons": "القسائم",
+      "settings": "الإعدادات",
+      "content": "المحتوى",
+      "brands": "العلامات التجارية",
+      "banners": "اللافتات",
+      "reviews": "المراجعات",
+      "gifts": "الهدايا المجانية",
+      "reports": "التقارير"
     }
   },
   "header": {
     "searchPlaceholder": "ابحث أو اكتب أمرًا...",
     "toggleSidebar": "تبديل الشريط الجانبي",
     "notifications": {
-      "title": "الإشعارات",
-      "requestsPermission": "يطلب الإذن لتغيير",
-      "project": "المشروع",
-      "minAgo": "منذ {count} دقيقة",
-      "hrAgo": "منذ {count} ساعة",
-      "viewAll": "عرض جميع الإشعارات"
+      "title": "طلبات معلقة",
+      "toggle": "{count, plural, =0 {لا طلبات معلقة} other {# طلبات معلقة}}",
+      "close": "إغلاق",
+      "empty": "لا توجد طلبات بانتظارك.",
+      "newOrder": "{number} من {name}",
+      "viewAll": "عرض كل الطلبات المعلقة"
     }
   },
   "userDropdown": {
@@ -164,76 +172,49 @@
     "signOut": "تسجيل الخروج"
   },
   "ecommerce": {
-    "title": "لوحة تحكم التجارة الإلكترونية",
-    "metrics": {
+    "metaTitle": "لوحة التحكم | E-Dukan",
+    "title": "نظرة عامة على المتجر",
+    "description": "مبيعات اليوم والطلبات التي تنتظرك والمخزون الذي يحتاج إلى تزويد.",
+    "welcome": "مرحبًا، {name}. استخدم القائمة لإدارة ملفك الشخصي.",
+    "errors": {
+      "network": "تعذر الوصول إلى الخادم. تحقق من اتصالك.",
+      "unexpected": "تعذر تحميل أرقام المتجر.",
+      "retry": "إعادة المحاولة"
+    },
+    "kpis": {
+      "todayRevenue": "إيرادات اليوم",
+      "monthRevenue": "إيرادات هذا الشهر",
+      "orders": "{count, plural, zero {لا طلبات} one {طلب واحد} two {طلبان} few {# طلبات} many {# طلبًا} other {# طلب}}",
+      "pending": "طلبات معلقة",
+      "pendingHint": "بانتظار التأكيد",
       "customers": "العملاء",
-      "orders": "الطلبات"
+      "customersHint": "أرقام هواتف فريدة قامت بالطلب"
     },
-    "months": {
-      "jan": "Jan",
-      "feb": "Feb",
-      "mar": "Mar",
-      "apr": "Apr",
-      "may": "May",
-      "jun": "Jun",
-      "jul": "Jul",
-      "aug": "Aug",
-      "sep": "Sep",
-      "oct": "Oct",
-      "nov": "Nov",
-      "dec": "Dec"
-    },
-    "monthlySales": {
-      "title": "المبيعات الشهرية",
-      "series": "المبيعات"
-    },
-    "monthlyTarget": {
-      "title": "الهدف الشهري",
-      "subtitle": "الهدف الذي حددته لكل شهر",
-      "earned": "لقد ربحت {amount} اليوم، وهو أعلى من الشهر الماضي. واصل عملك الرائع!",
-      "target": "الهدف",
+    "sales": {
+      "title": "المبيعات، آخر 30 يومًا",
+      "subtitle": "باستثناء الطلبات الملغاة والمرتجعة",
       "revenue": "الإيرادات",
-      "today": "اليوم"
+      "orders": "الطلبات",
+      "orderCount": "{count, plural, zero {لا طلبات} one {طلب واحد} two {طلبان} few {# طلبات} many {# طلبًا} other {# طلب}}"
     },
-    "statistics": {
-      "title": "الإحصائيات",
-      "subtitle": "الهدف الذي حددته لكل شهر",
-      "overview": "نظرة عامة",
-      "sales": "المبيعات",
-      "revenue": "الإيرادات",
-      "monthly": "شهري",
-      "quarterly": "ربع سنوي",
-      "annually": "سنوي",
-      "selectDateRange": "اختر نطاق التاريخ"
+    "topProducts": {
+      "title": "الأكثر مبيعًا",
+      "subtitle": "الوحدات المباعة في آخر 30 يومًا",
+      "empty": "لا توجد مبيعات في آخر 30 يومًا بعد.",
+      "sold": "بيع {count}"
+    },
+    "lowStock": {
+      "title": "مخزون منخفض",
+      "subtitle": "متغيرات نشطة متبقٍ منها {threshold} أو أقل",
+      "empty": "المخزون جيد لكل المنتجات.",
+      "outOfStock": "نفد المخزون",
+      "left": "متبقٍ {count}"
     },
     "recentOrders": {
-      "title": "الطلبات الأخيرة",
-      "products": "المنتجات",
-      "category": "الفئة",
-      "price": "السعر",
-      "status": "الحالة",
-      "variants": "{count, plural, one {متغير واحد} two {متغيران} few {# متغيرات} many {# متغيرًا} other {# متغير}}",
-      "categories": {
-        "laptop": "حاسوب محمول",
-        "watch": "ساعة",
-        "smartphone": "هاتف ذكي",
-        "electronics": "إلكترونيات",
-        "accessories": "إكسسوارات"
-      },
-      "statuses": {
-        "delivered": "تم التوصيل",
-        "pending": "قيد الانتظار",
-        "canceled": "ملغي"
-      }
-    },
-    "demographic": {
-      "title": "التوزيع الديموغرافي للعملاء",
-      "subtitle": "عدد العملاء حسب الدولة",
-      "customers": "{count} عميل",
-      "usa": "USA",
-      "france": "France",
-      "yemen": "Yemen",
-      "uk": "UK"
+      "title": "أحدث الطلبات",
+      "subtitle": "آخر الطلبات من الموقع",
+      "viewAll": "عرض الكل",
+      "empty": "لا توجد طلبات بعد."
     }
   },
   "analytics": {
@@ -1587,7 +1568,8 @@
       "badges": "شارات المتجر",
       "badgesHint": "أبرز هذا المنتج في أقسام الصفحة الرئيسية.",
       "dangerZone": "منطقة الخطر",
-      "unsaved": "لديك تغييرات غير محفوظة"
+      "unsaved": "لديك تغييرات غير محفوظة",
+      "noBrand": "بدون علامة"
     },
     "fields": {
       "name": "اسم المنتج",
@@ -1599,7 +1581,8 @@
       "orderNo": "رقم الترتيب",
       "isBestSelling": "الأكثر مبيعًا",
       "isNewArrival": "وصل حديثًا",
-      "isFeatured": "مميز"
+      "isFeatured": "مميز",
+      "brand": "العلامة التجارية"
     },
     "placeholders": {
       "name": "مثال: عسل السندربان",
@@ -1691,7 +1674,8 @@
     },
     "zones": {
       "INSIDE_DHAKA": "داخل دكا",
-      "OUTSIDE_DHAKA": "خارج دكا"
+      "OUTSIDE_DHAKA": "خارج دكا",
+      "DHAKA_SUBURB": "ضواحي دكا"
     },
     "dialog": {
       "cancelTitle": "إلغاء هذا الطلب؟",
@@ -1726,13 +1710,458 @@
       "zone": "منطقة التوصيل",
       "note": "ملاحظة العميل",
       "payment": "الدفع",
-      "codHint": "تُعيَّن طلبات الدفع عند الاستلام كمدفوعة تلقائيًا عند التسليم."
+      "codHint": "تُعيَّن طلبات الدفع عند الاستلام كمدفوعة تلقائيًا عند التسليم.",
+      "location": "المنطقة",
+      "discountCode": "خصم ({code})",
+      "trxId": "رقم العملية {id}",
+      "attempt": {
+        "INITIATED": "بدأت",
+        "COMPLETED": "مدفوعة",
+        "FAILED": "فشلت",
+        "CANCELLED": "أُلغيت"
+      },
+      "gift": "هدية مجانية"
     },
     "errors": {
       "loadFailed": "تعذر تحميل الطلبات",
       "retry": "حاول مرة أخرى",
       "network": "تعذر الاتصال بالخادم. تحقق من اتصالك وحاول مرة أخرى.",
       "unexpected": "حدث خطأ ما. يرجى المحاولة مرة أخرى."
+    },
+    "courier": {
+      "title": "شركة الشحن",
+      "bookedWith": "محجوز مع {courier}",
+      "consignment": "رقم الشحنة",
+      "tracking": "التتبع",
+      "checkStatus": "تحقق من حالة التوصيل",
+      "currentStatus": "حالة الشحن: {status}",
+      "notConfigured": "حجز الشحن متوقف. أضف مفاتيح Steadfast على الخادم لحجز الطرود من هنا.",
+      "book": "حجز طرد Steadfast",
+      "booking": "جارٍ الحجز...",
+      "bookHint": "المبلغ المحصّل هو إجمالي الطلب ما لم يكن مدفوعًا.",
+      "confirmFirst": "أكّد الطلب أولًا.",
+      "network": "تعذر الوصول إلى الخادم.",
+      "unexpected": "تعذر الوصول إلى شركة الشحن."
+    },
+    "invoice": {
+      "print": "طباعة الفاتورة",
+      "title": "فاتورة",
+      "notFound": "الطلب غير موجود",
+      "back": "العودة إلى الطلب",
+      "subtitle": "غذاء آمن وعضوي",
+      "shipTo": "الشحن إلى",
+      "payment": "الدفع",
+      "item": "الصنف",
+      "price": "السعر",
+      "qty": "الكمية",
+      "amount": "المبلغ",
+      "gift": "هدية مجانية",
+      "subtotal": "المجموع الفرعي",
+      "delivery": "التوصيل",
+      "discount": "الخصم",
+      "total": "الإجمالي المدفوع",
+      "toCollect": "المبلغ المطلوب تحصيله",
+      "note": "ملاحظة",
+      "thanks": "شكرًا لتسوقك من E-Dukan."
+    }
+  },
+  "coupons": {
+    "metaTitle": "القسائم | E-Dukan",
+    "title": "القسائم",
+    "listTitle": "رموز الخصم",
+    "description": "رموز يدخلها العملاء عند الدفع. يتحقق الخادم من الخصم ويطبّقه.",
+    "searchPlaceholder": "ابحث عن رمز...",
+    "create": "قسيمة جديدة",
+    "edit": "تعديل {code}",
+    "empty": "لا توجد قسائم بعد",
+    "emptyHint": "أنشئ رمزًا لعرض ترويجي أو أول طلب أو توصيل مجاني.",
+    "noResults": "لا توجد قسائم مطابقة",
+    "noResultsHint": "جرّب رمزًا آخر.",
+    "valuePercent": "خصم {value}%",
+    "valueFixed": "خصم {amount}",
+    "upTo": "حتى {amount}",
+    "minOrder": "الحد الأدنى للطلب {amount}",
+    "perPhone": "{count, plural, zero {لا استخدام} one {استخدام واحد لكل عميل} two {استخدامان لكل عميل} few {# استخدامات لكل عميل} many {# استخدامًا لكل عميل} other {# استخدام لكل عميل}}",
+    "always": "بلا تاريخ انتهاء",
+    "columns": {
+      "code": "الرمز",
+      "discount": "الخصم",
+      "conditions": "الشروط",
+      "used": "المستخدم",
+      "validity": "الصلاحية",
+      "status": "الحالة",
+      "actions": "إجراءات"
+    },
+    "types": {
+      "PERCENT": "نسبة مئوية",
+      "FIXED": "مبلغ ثابت",
+      "FREE_DELIVERY": "توصيل مجاني"
+    },
+    "states": {
+      "active": "نشطة",
+      "scheduled": "مجدولة",
+      "expired": "منتهية",
+      "usedUp": "مستنفدة",
+      "inactive": "متوقفة"
+    },
+    "form": {
+      "createTitle": "قسيمة جديدة",
+      "editTitle": "تعديل القسيمة",
+      "description": "اترك الحد فارغًا لعدم وجود حد.",
+      "code": "الرمز",
+      "codeLocked": "استُخدم في طلبات، لذا لا يمكن تغيير الرمز.",
+      "type": "النوع",
+      "descriptionLabel": "ملاحظة للعملاء",
+      "descriptionPlaceholder": "مثال: خصم 10% على أول طلب",
+      "descriptionHint": "تظهر عند الدفع بعد تطبيق الرمز.",
+      "percent": "نسبة الخصم",
+      "amount": "مبلغ الخصم (৳)",
+      "maxDiscount": "أقصى خصم (৳)",
+      "minSubtotal": "الحد الأدنى للطلب (৳)",
+      "noLimit": "بلا حد",
+      "noMinimum": "بلا حد أدنى",
+      "startsAt": "يبدأ",
+      "endsAt": "ينتهي",
+      "usageLimit": "إجمالي الاستخدامات",
+      "perPhoneLimit": "الاستخدامات لكل عميل (الهاتف)",
+      "unlimited": "غير محدود",
+      "active": "نشطة",
+      "activeHint": "أوقفها مؤقتًا دون حذفها.",
+      "cancel": "إلغاء",
+      "save": "حفظ التغييرات",
+      "create": "إنشاء القسيمة",
+      "saving": "جارٍ الحفظ..."
+    },
+    "validation": {
+      "code": "استخدم 3-40 حرفًا أو رقمًا أو - أو _",
+      "descriptionMax": "200 حرف كحد أقصى",
+      "percent": "أدخل نسبة من 1 إلى 100",
+      "amount": "أدخل مبلغًا بالتاكا",
+      "wholeNumber": "أدخل عددًا صحيحًا 1 أو أكثر",
+      "endAfterStart": "يجب أن يكون الانتهاء بعد البداية"
+    },
+    "delete": {
+      "label": "حذف {code}",
+      "title": "حذف {code}؟",
+      "description": "لن يتمكن العملاء من استخدام هذا الرمز بعد الآن.",
+      "usedDescription": "الطلبات التي استخدمت هذا الرمز تحتفظ بخصمها. يمكنك إيقافه بدلًا من حذفه.",
+      "confirm": "حذف",
+      "deleting": "جارٍ الحذف..."
+    },
+    "errors": {
+      "network": "تعذر الوصول إلى الخادم. تحقق من اتصالك.",
+      "unexpected": "حدث خطأ ما. حاول مرة أخرى.",
+      "retry": "إعادة المحاولة"
+    }
+  },
+  "settings": {
+    "metaTitle": "الإعدادات | E-Dukan",
+    "title": "إعدادات المتجر",
+    "description": "بيانات التواصل والإعلانات وأسعار التوصيل المعروضة على الموقع.",
+    "contact": {
+      "title": "التواصل",
+      "description": "تظهر في الرأس والتذييل وصفحة التواصل وصفحات المنتجات. اترك الحقل فارغًا لإخفائه.",
+      "hotline": "الخط الساخن",
+      "hotlineHint": "يظهر في الرأس وصفحات المنتجات.",
+      "phone": "الهاتف",
+      "whatsapp": "رقم واتساب",
+      "messenger": "رابط ماسنجر",
+      "email": "البريد الإلكتروني",
+      "hours": "ساعات العمل",
+      "hoursPlaceholder": "السبت-الخميس، 9ص-10م",
+      "address": "العنوان"
+    },
+    "socials": {
+      "title": "وسائل التواصل الاجتماعي",
+      "description": "روابط في التذييل. اتركها فارغة لإخفائها."
+    },
+    "announcements": {
+      "title": "شريط الإعلانات",
+      "description": "رسائل تتبدل في الشريط أعلى الرأس.",
+      "label": "الرسائل",
+      "placeholder": "الدفع عند الاستلام في كل بنغلاديش",
+      "hint": "رسالة في كل سطر، حتى 8. لا تَعِد إلا بما يقدمه المتجر فعلًا."
+    },
+    "delivery": {
+      "title": "أسعار التوصيل",
+      "description": "تُستخدم في الدفع فورًا. يتحدث الموقع خلال ساعة.",
+      "zones": {
+        "INSIDE_DHAKA": "مدينة دكا",
+        "DHAKA_SUBURB": "ضواحي دكا",
+        "OUTSIDE_DHAKA": "خارج دكا"
+      },
+      "charge": "الرسوم (৳)",
+      "days": "مدة التوصيل (أيام)",
+      "freeFrom": "توصيل مجاني في مدينة دكا ابتداءً من (৳)",
+      "freeFromHint": "0 يوقف التوصيل المجاني."
+    },
+    "validation": {
+      "url": "يجب أن يبدأ بـ http:// أو https://",
+      "phone": "أدخل رقم هاتف صالحًا",
+      "email": "أدخل بريدًا إلكترونيًا صالحًا",
+      "amount": "أدخل مبلغًا صحيحًا بالتاكا",
+      "days": "أدخل مثلًا 1-2",
+      "announcementsCount": "8 رسائل كحد أقصى",
+      "announcementLength": "كل رسالة 160 حرفًا كحد أقصى",
+      "pixel": "معرّف البكسل من 8 إلى 20 رقمًا",
+      "gtm": "بالشكل GTM-XXXXXXX",
+      "ga4": "بالشكل G-XXXXXXXXXX"
+    },
+    "unsaved": "تغييرات غير محفوظة",
+    "saved": "تم الحفظ",
+    "discard": "تجاهل",
+    "save": "حفظ الإعدادات",
+    "saving": "جارٍ الحفظ...",
+    "errors": {
+      "network": "تعذر الوصول إلى الخادم. تحقق من اتصالك.",
+      "unexpected": "تعذر تحميل الإعدادات أو حفظها."
+    },
+    "tracking": {
+      "title": "التتبع والتحليلات",
+      "description": "الصق المعرّفات فقط. يحمّل الموقع البرامج الرسمية بنفسه.",
+      "pixel": "معرّف Facebook Pixel",
+      "gtm": "معرّف Google Tag Manager",
+      "ga4": "معرّف Google Analytics 4"
+    }
+  },
+  "crud": {
+    "network": "تعذر الوصول إلى الخادم. تحقق من اتصالك.",
+    "unexpected": "حدث خطأ ما. حاول مرة أخرى.",
+    "retry": "إعادة المحاولة",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "deleting": "جارٍ الحذف...",
+    "saving": "جارٍ الحفظ..."
+  },
+  "brands": {
+    "metaTitle": "العلامات التجارية | E-Dukan",
+    "title": "العلامات التجارية",
+    "listTitle": "العلامات التجارية",
+    "description": "لكل علامة صفحتها على الموقع وتظهر في صف علاماتنا التجارية.",
+    "create": "علامة جديدة",
+    "empty": "لا توجد علامات بعد",
+    "emptyHint": "أضف علامة ثم اخترها في محرر المنتج.",
+    "featured": "مميزة",
+    "productCount": "{count, plural, zero {لا منتجات} one {منتج واحد} two {منتجان} few {# منتجات} many {# منتجًا} other {# منتج}}",
+    "edit": "تعديل {name}",
+    "delete": "حذف {name}",
+    "editTitle": "تعديل العلامة",
+    "createTitle": "علامة جديدة",
+    "deleteTitle": "حذف {name}؟",
+    "deleteDescription": "تبقى منتجاتها بدون علامة.",
+    "validation": {
+      "nameMin": "حرفان على الأقل",
+      "orderNo": "أدخل عددًا صحيحًا"
+    },
+    "form": {
+      "name": "الاسم",
+      "logo": "الشعار",
+      "description": "الوصف",
+      "orderNo": "الترتيب",
+      "featured": "مميزة",
+      "featuredHint": "تظهر أولًا في الصفحة الرئيسية",
+      "save": "حفظ التغييرات",
+      "create": "إنشاء العلامة"
+    },
+    "errors": {
+      "network": "تعذر الوصول إلى الخادم. تحقق من اتصالك.",
+      "unexpected": "حدث خطأ ما. حاول مرة أخرى."
+    }
+  },
+  "banners": {
+    "metaTitle": "اللافتات | E-Dukan",
+    "title": "اللافتات",
+    "listTitle": "لافتات الصفحة الرئيسية",
+    "description": "شرائح العرض واللافتات الجانبية والترويجية في الصفحة الرئيسية.",
+    "create": "لافتة جديدة",
+    "empty": "لا توجد لافتات بعد",
+    "emptyHint": "حتى تضيف واحدة، يعرض الموقع الشرائح المدمجة.",
+    "placements": {
+      "HERO": "شرائح العرض",
+      "SIDE": "لافتات جانبية",
+      "PROMO": "مربعات ترويجية"
+    },
+    "active": "منشورة",
+    "hidden": "مخفية",
+    "noLink": "بلا رابط",
+    "edit": "تعديل {title}",
+    "delete": "حذف {title}",
+    "editTitle": "تعديل اللافتة",
+    "createTitle": "لافتة جديدة",
+    "formHint": "أعلن فقط عن العروض التي يقدمها المتجر فعلًا.",
+    "deleteTitle": "حذف {title}؟",
+    "deleteDescription": "تختفي من الموقع فورًا.",
+    "validation": {
+      "titleMin": "حرفان على الأقل",
+      "href": "استخدم مسارًا مثل /shop أو رابطًا كاملًا",
+      "orderNo": "أدخل عددًا صحيحًا",
+      "endAfterStart": "يجب أن يكون الانتهاء بعد البداية"
+    },
+    "form": {
+      "title": "العنوان",
+      "subtitle": "العنوان الفرعي",
+      "image": "الصورة",
+      "imageHint": "الشرائح: 1600×700 بكسل. الجانبية والترويجية: 800×500 بكسل.",
+      "ctaLabel": "نص الزر",
+      "ctaPlaceholder": "تسوق الآن",
+      "href": "الرابط",
+      "placement": "الموضع",
+      "orderNo": "الترتيب",
+      "startsAt": "العرض من",
+      "endsAt": "العرض حتى",
+      "active": "منشورة على الموقع",
+      "save": "حفظ التغييرات",
+      "create": "إنشاء اللافتة"
+    },
+    "errors": {
+      "network": "تعذر الوصول إلى الخادم. تحقق من اتصالك.",
+      "unexpected": "حدث خطأ ما. حاول مرة أخرى."
+    }
+  },
+  "contentPages": {
+    "metaTitle": "الصفحات | E-Dukan",
+    "title": "الصفحات",
+    "listTitle": "صفحات المحتوى",
+    "description": "الأسئلة الشائعة، الشحن، طريقة الطلب... الصفحات المنشورة تظهر في تذييل الموقع.",
+    "create": "صفحة جديدة",
+    "empty": "لا توجد صفحات بعد",
+    "emptyHint": "اكتب الأسئلة الشائعة أو سياسة الشحن.",
+    "published": "منشورة",
+    "draft": "مسودة",
+    "edit": "تعديل {title}",
+    "delete": "حذف {title}",
+    "editTitle": "تعديل الصفحة",
+    "createTitle": "صفحة جديدة",
+    "deleteTitle": "حذف {title}؟",
+    "deleteDescription": "ستتوقف الروابط إليها على الموقع.",
+    "validation": {
+      "titleMin": "حرفان على الأقل",
+      "slug": "أحرف صغيرة وأرقام وشرطات",
+      "content": "اكتب محتوى الصفحة",
+      "orderNo": "أدخل عددًا صحيحًا"
+    },
+    "form": {
+      "title": "العنوان",
+      "slug": "العنوان في الرابط",
+      "slugHint": "اتركه فارغًا لإنشائه من العنوان.",
+      "content": "المحتوى",
+      "contentPlaceholder": "## عنوان\nفقرة.\n- عنصر قائمة",
+      "contentHint": "Markdown بسيط: ## عناوين، - قوائم، **عريض**، [روابط](https://...).",
+      "isPublished": "منشورة",
+      "showInFooter": "رابط في التذييل",
+      "orderNo": "الترتيب",
+      "save": "حفظ التغييرات",
+      "create": "إنشاء الصفحة"
+    },
+    "errors": {
+      "network": "تعذر الوصول إلى الخادم. تحقق من اتصالك.",
+      "unexpected": "حدث خطأ ما. حاول مرة أخرى."
+    }
+  },
+  "reviews": {
+    "metaTitle": "المراجعات | E-Dukan",
+    "title": "المراجعات",
+    "listTitle": "مراجعات المنتجات",
+    "description": "لا تظهر المراجعات على الموقع إلا بعد موافقتك.",
+    "filter": "تصفية حسب الحالة",
+    "statuses": {
+      "PENDING": "بانتظار المراجعة",
+      "APPROVED": "مقبولة",
+      "REJECTED": "مرفوضة"
+    },
+    "empty": {
+      "PENDING": "لا مراجعات بانتظارك",
+      "APPROVED": "لا مراجعات مقبولة بعد",
+      "REJECTED": "لا مراجعات مرفوضة"
+    },
+    "stars": "{count} من 5 نجوم",
+    "verified": "شراء موثّق",
+    "approve": "قبول",
+    "reject": "رفض",
+    "delete": "حذف المراجعة",
+    "deleteTitle": "حذف هذه المراجعة؟",
+    "deleteDescription": "لا يمكن التراجع عن ذلك.",
+    "errors": {
+      "network": "تعذر الوصول إلى الخادم. تحقق من اتصالك.",
+      "unexpected": "حدث خطأ ما. حاول مرة أخرى."
+    }
+  },
+  "gifts": {
+    "metaTitle": "الهدايا المجانية | E-Dukan",
+    "title": "الهدايا المجانية",
+    "listTitle": "هدية مع الشراء",
+    "description": "الطلبات فوق مبلغ معين تحصل على منتج مجاني بسعر ٠ ما دام متوفرًا.",
+    "create": "قاعدة هدية جديدة",
+    "empty": "لا توجد قواعد هدايا",
+    "emptyHint": "مثال: عبوة عسل مجانية للطلبات فوق ٢٠٠٠ ৳.",
+    "active": "مفعلة",
+    "off": "متوقفة",
+    "outOfStock": "الهدية نفدت",
+    "rule": "الطلبات من {amount} تحصل على {gift}",
+    "edit": "تعديل {name}",
+    "delete": "حذف {name}",
+    "editTitle": "تعديل قاعدة الهدية",
+    "createTitle": "قاعدة هدية جديدة",
+    "formHint": "عند انطباق عدة قواعد، تُطبّق صاحبة الحد الأدنى الأعلى.",
+    "deleteTitle": "حذف {name}؟",
+    "deleteDescription": "الطلبات السابقة تحتفظ بهديتها.",
+    "stock": "{count} في المخزون",
+    "validation": {
+      "name": "حرفان على الأقل",
+      "amount": "أدخل مبلغًا بالتاكا",
+      "variant": "اختر الهدية",
+      "endAfterStart": "يجب أن يكون الانتهاء بعد البداية"
+    },
+    "form": {
+      "name": "الاسم",
+      "namePlaceholder": "عبوة مجانية فوق ٢٠٠٠ ৳",
+      "minSubtotal": "الحد الأدنى للطلب (৳)",
+      "gift": "الهدية",
+      "searchProduct": "ابحث عن منتج بالاسم...",
+      "startsAt": "تبدأ",
+      "endsAt": "تنتهي",
+      "active": "مفعلة",
+      "save": "حفظ التغييرات",
+      "create": "إنشاء القاعدة"
+    },
+    "errors": {
+      "network": "تعذر الوصول إلى الخادم. تحقق من اتصالك.",
+      "unexpected": "حدث خطأ ما. حاول مرة أخرى."
+    }
+  },
+  "reports": {
+    "metaTitle": "التقارير | E-Dukan",
+    "title": "تقرير المبيعات",
+    "description": "المبيعات حسب اليوم والمنتج وطريقة الدفع والمنطقة.",
+    "from": "من",
+    "to": "إلى",
+    "apply": "عرض",
+    "export": "تصدير CSV",
+    "totals": {
+      "revenue": "الإيرادات",
+      "orders": "{count, plural, zero {لا طلبات} one {طلب واحد} two {طلبان} few {# طلبات} many {# طلبًا} other {# طلب}}",
+      "average": "متوسط الطلب",
+      "paid": "المدفوع حتى الآن",
+      "discounts": "الخصومات {amount}",
+      "cancelled": "ملغاة أو مرتجعة",
+      "delivery": "رسوم التوصيل {amount}"
+    },
+    "daily": "الإيرادات حسب اليوم",
+    "revenue": "الإيرادات",
+    "topProducts": "أفضل المنتجات",
+    "byPayment": "حسب طريقة الدفع",
+    "byDistrict": "حسب المنطقة",
+    "units": "{count} وحدة",
+    "ordersShort": "{count, plural, zero {لا طلبات} one {طلب واحد} two {طلبان} few {# طلبات} many {# طلبًا} other {# طلب}}",
+    "methods": {
+      "COD": "الدفع عند الاستلام",
+      "BKASH": "bKash",
+      "NAGAD": "Nagad"
+    },
+    "empty": "لا مبيعات في هذه الفترة.",
+    "errors": {
+      "network": "تعذر الوصول إلى الخادم. تحقق من اتصالك.",
+      "unexpected": "حدث خطأ ما. حاول مرة أخرى."
     }
   }
 }

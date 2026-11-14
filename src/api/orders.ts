@@ -14,7 +14,7 @@ export const ORDER_STATUSES = [
 export type OrderStatus = (typeof ORDER_STATUSES)[number];
 export type PaymentStatus = "UNPAID" | "PAID" | "REFUNDED";
 export type PaymentMethod = "COD" | "BKASH" | "NAGAD";
-export type DeliveryZone = "INSIDE_DHAKA" | "OUTSIDE_DHAKA";
+export type DeliveryZone = "INSIDE_DHAKA" | "DHAKA_SUBURB" | "OUTSIDE_DHAKA";
 
 export interface OrderItem {
   id: string;
@@ -29,6 +29,8 @@ export interface OrderItem {
   compareAtPrice: number | null;
   quantity: number;
   lineTotal: number;
+  /** Free gift added by a gift rule. */
+  isGift: boolean;
 }
 
 export interface OrderEvent {
@@ -37,6 +39,17 @@ export interface OrderEvent {
   note: string | null;
   actorId: string | null;
   actorName?: string | null;
+  createdAt: string;
+}
+
+export interface PaymentAttempt {
+  id: string;
+  provider: "BKASH";
+  paymentId: string;
+  trxId: string | null;
+  amount: number;
+  status: "INITIATED" | "COMPLETED" | "FAILED" | "CANCELLED";
+  payer: string | null;
   createdAt: string;
 }
 
@@ -51,7 +64,13 @@ export interface Order {
   phone: string;
   email: string | null;
   address: string;
+  district: string | null;
+  area: string | null;
   deliveryZone: DeliveryZone;
+  couponCode: string | null;
+  courier: string | null;
+  consignmentId: string | null;
+  trackingCode: string | null;
   note: string | null;
   cancelReason: string | null;
   subtotal: number;
@@ -61,6 +80,8 @@ export interface Order {
   itemCount: number;
   items: OrderItem[];
   events: OrderEvent[];
+  /** Online payment attempts (detail endpoint only). */
+  payments?: PaymentAttempt[];
   /** Statuses this order may move to next. */
   allowedTransitions: OrderStatus[];
   createdAt: string;
@@ -71,7 +92,16 @@ export interface OrderStats {
   today: { orders: number; revenue: number };
   month: { orders: number; revenue: number };
   pending: number;
+  /** Distinct phone numbers that have ever ordered. */
+  customers: number;
   last30Days: { date: string; orders: number; revenue: number }[];
+  /** Best sellers by quantity over the last 30 days. */
+  topProducts: { slug: string; name: string; quantity: number; revenue: number }[];
+  lowStock: {
+    threshold: number;
+    count: number;
+    items: { variantId: string; productId: string; productName: string; variantName: string; stock: number }[];
+  };
 }
 
 export interface ListOrdersParams {

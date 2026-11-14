@@ -1,8 +1,8 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-  /** Backend API root, e.g. `http://localhost:5000/api/v1`. */
-  readonly VITE_API_BASE_URL?: string;
+  /** "true" → deployed backend, otherwise the local one (see `src/config/api.ts`). */
+  readonly VITE_IS_PROD?: string;
   /** Google OAuth Web client ID. Google sign-in is hidden when unset. */
   readonly VITE_GOOGLE_CLIENT_ID?: string;
 }

@@ -8,7 +8,7 @@ Built with React 19, Vite, TypeScript, Tailwind CSS v4, React Router, TanStack Q
 
 ```bash
 npm install
-cp .env.example .env   # set VITE_API_BASE_URL (default http://localhost:5000/api/v1)
+cp .env.example .env   # VITE_IS_PROD=true uses the deployed API, otherwise localhost:5000
 npm run dev            # http://localhost:3005
 ```
 

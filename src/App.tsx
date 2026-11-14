@@ -6,6 +6,15 @@ import {
 } from "@/components/shared/route-guards";
 import CategoriesPage from "@/pages/main/catalog/categories";
 import SubcategoriesPage from "@/pages/main/catalog/subcategories";
+import CouponsPage from "@/pages/main/coupons";
+import SettingsPage from "@/pages/main/settings";
+import BrandsPage from "@/pages/main/brands";
+import BannersPage from "@/pages/main/banners";
+import ContentPagesPage from "@/pages/main/content-pages";
+import ReviewsPage from "@/pages/main/reviews";
+import GiftsPage from "@/pages/main/gifts";
+import ReportsPage from "@/pages/main/reports";
+import OrderInvoicePage from "@/pages/main/orders/invoice";
 import OrdersPage from "@/pages/main/orders";
 import OrderDetailPage from "@/pages/main/orders/detail";
 import ProductsPage from "@/pages/main/products";
@@ -30,6 +39,9 @@ export default function App() {
     <Routes>
       {/* Dashboard Layout (signed-in users only) */}
       <Route element={<ProtectedRoute />}>
+        <Route element={<RoleRoute roles={STAFF_ROLES} />}>
+          <Route path="/orders/:id/invoice" element={<OrderInvoicePage />} />
+        </Route>
         <Route element={<AppLayout />}>
           <Route index element={<EcommercePage />} />
 
@@ -42,11 +54,19 @@ export default function App() {
             <Route path="/products/:id/edit" element={<ProductEditorPage />} />
             <Route path="/categories" element={<CategoriesPage />} />
             <Route path="/subcategories" element={<SubcategoriesPage />} />
+            <Route path="/coupons" element={<CouponsPage />} />
+            <Route path="/brands" element={<BrandsPage />} />
+            <Route path="/banners" element={<BannersPage />} />
+            <Route path="/pages" element={<ContentPagesPage />} />
+            <Route path="/reviews" element={<ReviewsPage />} />
+            <Route path="/gifts" element={<GiftsPage />} />
+            <Route path="/reports" element={<ReportsPage />} />
           </Route>
 
           {/* User management (admins) */}
           <Route element={<RoleRoute roles={ADMIN_ROLES} />}>
             <Route path="/users" element={<UsersPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
           </Route>
 
           {/* Account */}
