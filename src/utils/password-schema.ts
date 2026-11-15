@@ -2,11 +2,15 @@ import type { Translator } from "@/i18n";
 import { z } from "zod";
 
 /**
- * 6-digit password with no spaces, matching backend.
+ * New-password rule, same as the backend `passwordSchema`: at least 6 characters
+ * (letters, numbers and symbols allowed), no spaces.
+ * Used for sign-up, reset password, change password and admin-created users.
+ * `t` must be scoped to a namespace with `validation.passwordMin` / `validation.passwordNoSpaces`
+ * (`auth` or `users`).
  */
 export function createPasswordSchema(t: Translator) {
   return z
     .string()
-    .refine((v) => !/\s/.test(v), t("validation.passwordSpecial") || "Password must not contain spaces")
-    .refine((v) => /^\d{6}$/.test(v), t("validation.passwordMin") || "Password must be exactly 6 digits");
+    .refine((v) => !/\s/.test(v), t("validation.passwordNoSpaces"))
+    .refine((v) => v.length >= 6, t("validation.passwordMin"));
 }

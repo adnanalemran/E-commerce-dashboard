@@ -1,4 +1,5 @@
 import type { Translator } from "@/i18n";
+import { createPasswordSchema } from "@/utils/password-schema";
 import { z } from "zod";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -7,10 +8,7 @@ const phoneRegex = /^\+[1-9]\d{1,14}$/;
 
 /** `t` must be scoped to the `users` namespace. */
 export function createUserFormSchema(t: Translator, isCreate: boolean) {
-  const password = z
-    .string()
-    .refine((v) => !/\s/.test(v), "Password must not contain spaces")
-    .refine((v) => /^\d{6}$/.test(v), t("validation.passwordMin"));
+  const password = createPasswordSchema(t);
 
   return z
     .object({
