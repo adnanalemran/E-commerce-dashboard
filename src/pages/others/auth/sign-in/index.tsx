@@ -15,23 +15,24 @@ export default function SignIn() {
       <AuthHeader
         title={t("signIn.title")}
         description={t("signIn.description")}
+        badge="Admin Portal"
       />
 
       {isGoogleAuthEnabled && (
-        <>
+        <div className="mb-4">
           <GoogleSignInButton text="signin_with" />
           <AuthDivider label={t("or")} />
-        </>
+        </div>
       )}
 
       <SignInFormFields />
 
-      <div className="mt-5">
-        <p className="text-center text-sm font-normal text-gray-700 sm:text-start dark:text-gray-400">
+      <div className="mt-6 border-t border-gray-100 pt-4 text-center dark:border-gray-800/80">
+        <p className="text-xs text-gray-500 dark:text-gray-400">
           {t("signIn.noAccount")}{" "}
           <Link
             to="/signup"
-            className="text-brand-500 hover:text-brand-600 dark:text-brand-400"
+            className="font-medium text-brand-600 hover:text-brand-700 hover:underline dark:text-brand-400 dark:hover:text-brand-300"
           >
             {t("signIn.signUpLink")}
           </Link>

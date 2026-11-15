@@ -10,28 +10,27 @@ export interface AuthShellProps {
   className?: string;
 }
 
-/** Left-hand column of `AuthLayout`: optional back link plus vertically centred content. */
 export default function AuthShell({ children, back, className }: AuthShellProps) {
   return (
-    <div
-      className={cn(
-        "no-scrollbar flex w-full flex-1 flex-col overflow-y-auto lg:w-1/2",
-        className,
-      )}
-    >
-      <div className="mx-auto mb-5 w-full max-w-md sm:pt-10">
-        {back && (
+    <div className="w-full max-w-[440px]">
+      {back && (
+        <div className="mb-4">
           <Link
             to={back.to}
-            className="inline-flex items-center text-sm text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+            className="inline-flex items-center gap-1 text-sm font-medium text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
           >
-            <ChevronLeftIcon className="rtl:rotate-180" />
-            {back.label}
+            <ChevronLeftIcon className="size-4 rtl:rotate-180" />
+            <span>{back.label}</span>
           </Link>
-        )}
-      </div>
+        </div>
+      )}
 
-      <div className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center pb-10">
+      <div
+        className={cn(
+          "relative overflow-hidden rounded-3xl border border-gray-200/80 bg-white/95 p-6 shadow-xl shadow-gray-200/50 backdrop-blur-xl sm:p-8 dark:border-gray-800/80 dark:bg-gray-900/90 dark:shadow-2xl dark:shadow-black/50",
+          className,
+        )}
+      >
         {children}
       </div>
     </div>
