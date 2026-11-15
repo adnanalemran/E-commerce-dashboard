@@ -21,7 +21,7 @@ export default function SalesChart({ days }: { days?: OrderStats["last30Days"] }
 
   const options: ApexOptions = {
     chart: { fontFamily: "inherit", toolbar: { show: false }, zoom: { enabled: false } },
-    colors: ["#22A06B", dark ? "#FF9F0A" : "#C93400"],
+    colors: [dark ? "#38bdf8" : "#0f1623", dark ? "#FF9F0A" : "#C93400"],
     plotOptions: { bar: { columnWidth: "55%", borderRadius: 4 } },
     stroke: { width: [0, 2], curve: "smooth" },
     dataLabels: { enabled: false },
