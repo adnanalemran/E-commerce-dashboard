@@ -104,9 +104,10 @@ export default function CategoryManager({ level }: { level: CategoryLevel }) {
   const handleDeleted = () => {
     setDeleteTarget(null);
     setActionError(null);
-    // Step back when the last row of a page was removed.
+    // Step back when the last row of a page was removed. Always refetch: products
+    // in the deleted categories now have no category.
     if (items.length === 1 && page > 1) setPage(page - 1);
-    else reload();
+    reload();
   };
 
   const handleToggleFeatured = async (category: Category, isFeatured: boolean) => {

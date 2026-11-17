@@ -1239,9 +1239,11 @@
     "delete": {
       "title": "Delete “{name}”?",
       "description": "This permanently removes it and its image. This can't be undone.",
-      "blocked": "It still has {count, plural, one {# subcategory} other {# subcategories}}. Delete or move them first.",
       "confirm": "Delete",
-      "deleting": "Deleting..."
+      "deleting": "Deleting...",
+      "impactTitle": "This also affects:",
+      "cascade": "{count, plural, one {# subcategory is} other {# subcategories are}} deleted with it.",
+      "products": "{count, plural, one {# product stays} other {# products stay}} in the store without a category. Assign a new one in Products."
     },
     "actions": {
       "edit": "Edit {name}",

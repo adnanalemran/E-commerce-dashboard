@@ -15,6 +15,14 @@ export interface Category {
   updatedAt: string;
 }
 
+/** What deleting a category does (`GET /admin/categories/:id/deletion-impact`). */
+export interface CategoryDeletionImpact {
+  /** Subcategories (any depth) deleted with it. */
+  subcategories: number;
+  /** Products kept in the store but left without a category. */
+  products: number;
+}
+
 export interface CategoryTreeNode extends Category {
   subcategories: Category[];
 }
@@ -102,6 +110,10 @@ export const categoriesApi = {
       body: toFormData(input),
     }),
 
+  deletionImpact: (id: string, signal?: AbortSignal) =>
+    apiRequest<CategoryDeletionImpact>(`/admin/categories/${id}/deletion-impact`, { signal }),
+
+  /** Deletes the category and its subcategories; their products stay, without a category. */
   remove: (id: string) =>
-    apiRequest<null>(`/admin/categories/${id}`, { method: "DELETE" }),
+    apiRequest<CategoryDeletionImpact>(`/admin/categories/${id}`, { method: "DELETE" }),
 };

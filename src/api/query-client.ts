@@ -50,6 +50,7 @@ export const queryKeys = {
     list: (params: ListCategoriesParams) => ["categories", "list", params] as const,
     roots: ["categories", "roots"] as const,
     tree: ["categories", "tree"] as const,
+    deletionImpact: (id: string) => ["categories", "deletion-impact", id] as const,
   },
   products: {
     all: ["products"] as const,
