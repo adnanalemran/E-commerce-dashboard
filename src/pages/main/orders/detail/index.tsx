@@ -5,7 +5,7 @@ import { Alert, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { useLocale, useTranslations } from "@/i18n";
-import { ArrowLeftIcon, OctagonAlertIcon, TagIcon } from "@/icons";
+import { ArrowLeftIcon, OctagonAlertIcon, PencilIcon, TagIcon } from "@/icons";
 import { cn } from "@/utils";
 import { formatTaka } from "@/utils/currency";
 import { getApiErrorMessage } from "@/utils/form-errors";
@@ -15,9 +15,14 @@ import { OrderStatusBadge, PaymentBadge } from "../order-badges";
 import { useOrder, useOrderMutations } from "../use-orders";
 import StatusDialog from "./status-dialog";
 import CourierPanel from "./courier-panel";
+import CustomerDialog from "./customer-dialog";
+import ItemsDialog from "./items-dialog";
 
 /** Exits from the normal flow need a reason and restock items. */
 const EXIT_STATUSES: OrderStatus[] = ["CANCELLED", "RETURNED"];
+
+/** Mirrors `ITEM_EDIT_STATUSES` in the backend (items change only before shipping). */
+const ITEM_EDIT_STATUSES: OrderStatus[] = ["PENDING", "CONFIRMED", "PROCESSING"];
 
 export default function OrderDetailPage() {
   const t = useTranslations("orders");
@@ -59,6 +64,8 @@ function OrderDetail({ orderId }: { orderId: string }) {
   const { setStatus, setPaymentStatus } = useOrderMutations(orderId);
   const [dialogStatus, setDialogStatus] = useState<OrderStatus | null>(null);
   const [actionError, setActionError] = useState<string | null>(null);
+  const [editingItems, setEditingItems] = useState(false);
+  const [editingCustomer, setEditingCustomer] = useState(false);
 
   if (!order) return null;
 
@@ -85,6 +92,14 @@ function OrderDetail({ orderId }: { orderId: string }) {
       setActionError(getApiErrorMessage(error, errorMessages));
     }
   };
+
+  // Why an order still being prepared can't have its items changed.
+  const itemsLockedReason =
+    order.itemsEditable || !ITEM_EDIT_STATUSES.includes(order.status)
+      ? null
+      : order.consignmentId
+        ? t("editItems.lockedCourier")
+        : t("editItems.lockedPaid");
 
   const otherPaymentStatuses = (["UNPAID", "PAID", "REFUNDED"] as const).filter((s) => s !== order.paymentStatus);
 
@@ -145,7 +160,18 @@ function OrderDetail({ orderId }: { orderId: string }) {
 
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
         <div className="space-y-6 xl:col-span-2">
-          <Panel title={t("detail.items", { count: order.itemCount })}>
+          <Panel
+            title={t("detail.items", { count: order.itemCount })}
+            action={
+              order.itemsEditable && (
+                <Button size="sm" variant="outline" disabled={busy} onClick={() => setEditingItems(true)}>
+                  <PencilIcon className="size-4" aria-hidden="true" />
+                  {t("editItems.button")}
+                </Button>
+              )
+            }
+          >
+            {itemsLockedReason && <p className="-mt-2 mb-4 text-xs text-label-secondary">{itemsLockedReason}</p>}
             <ul className="divide-y divide-separator">
               {order.items.map((item) => (
                 <li key={item.id} className="flex items-center gap-4 py-3 first:pt-0 last:pb-0">
@@ -211,7 +237,17 @@ function OrderDetail({ orderId }: { orderId: string }) {
         </div>
 
         <div className="space-y-6">
-          <Panel title={t("detail.customer")}>
+          <Panel
+            title={t("detail.customer")}
+            action={
+              order.customerEditable && (
+                <Button size="sm" variant="outline" disabled={busy} onClick={() => setEditingCustomer(true)}>
+                  <PencilIcon className="size-4" aria-hidden="true" />
+                  {t("editCustomer.button")}
+                </Button>
+              )
+            }
+          >
             <dl className="space-y-3 text-sm">
               <Info label={t("detail.name")}>{order.customerName}</Info>
               <Info label={t("detail.phone")}>
@@ -271,6 +307,9 @@ function OrderDetail({ orderId }: { orderId: string }) {
         </div>
       </div>
 
+      <ItemsDialog order={order} open={editingItems} onOpenChange={setEditingItems} />
+      <CustomerDialog order={order} open={editingCustomer} onOpenChange={setEditingCustomer} />
+
       <StatusDialog
         status={dialogStatus}
         onOpenChange={(open) => {
@@ -283,10 +322,13 @@ function OrderDetail({ orderId }: { orderId: string }) {
   );
 }
 
-function Panel({ title, children }: { title: string; children: ReactNode }) {
+function Panel({ title, action, children }: { title: string; action?: ReactNode; children: ReactNode }) {
   return (
     <section className="surface-card p-5 sm:p-6">
-      <h3 className="mb-4 text-base font-semibold text-label">{title}</h3>
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <h3 className="text-base font-semibold text-label">{title}</h3>
+        {action}
+      </div>
       {children}
     </section>
   );

@@ -118,7 +118,8 @@ export default function ContentPagesPage() {
         title={t("deleteTitle", { title: deleting?.title ?? "" })}
         description={t("deleteDescription")}
         onConfirm={async () => {
-          await pagesApi.remove(deleting!.id);
+          if (!deleting) return;
+          await pagesApi.remove(deleting.id);
           refresh();
         }}
       />

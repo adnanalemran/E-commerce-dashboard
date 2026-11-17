@@ -151,7 +151,8 @@ export default function BannersPage() {
         title={t("deleteTitle", { title: deleting?.title ?? "" })}
         description={t("deleteDescription")}
         onConfirm={async () => {
-          await bannersApi.remove(deleting!.id);
+          if (!deleting) return;
+          await bannersApi.remove(deleting.id);
           refresh();
         }}
       />

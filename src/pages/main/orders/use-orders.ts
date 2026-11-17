@@ -2,9 +2,12 @@ import {
   ordersApi,
   type ListOrdersParams,
   type Order,
+  type OrderCustomerInput,
+  type OrderItemInput,
   type OrderStatus,
   type PaymentStatus,
 } from "@/api/orders";
+import { productsApi, type AdminListProductsParams } from "@/api/products";
 import { queryKeys } from "@/api/query-client";
 import {
   keepPreviousData,
@@ -48,7 +51,41 @@ export function useOrder(id: string | undefined) {
 }
 
 /**
- * Status and payment changes. On success the fresh order is cached, and lists,
+ * Server-priced preview of an item edit (totals, delivery, coupon, stock problems).
+ * Off while `items` is empty; the last result stays visible while the next loads.
+ */
+export function useOrderItemsPreview(id: string, items: OrderItemInput[]) {
+  return useQuery({
+    queryKey: queryKeys.orders.itemsPreview(id, items),
+    queryFn: ({ signal }) => ordersApi.previewItems(id, items, signal),
+    enabled: items.length > 0,
+    placeholderData: keepPreviousData,
+    staleTime: 0,
+  });
+}
+
+/** Districts and Dhaka areas for the delivery form; they never change while the app runs. */
+export function useLocations() {
+  return useQuery({
+    queryKey: queryKeys.locations,
+    queryFn: ({ signal }) => ordersApi.locations(signal),
+    staleTime: Infinity,
+  });
+}
+
+/** Active products matching `search` (at least 2 characters), for adding to an order. */
+export function useProductSearch(search: string) {
+  const params: AdminListProductsParams = { search, status: "ACTIVE", limit: 6 };
+  return useQuery({
+    queryKey: queryKeys.products.list(params),
+    queryFn: ({ signal }) => productsApi.list(params, signal),
+    enabled: search.length >= 2,
+    placeholderData: keepPreviousData,
+  });
+}
+
+/**
+ * Status, payment and item changes. On success the fresh order is cached, and lists,
  * stats and product stock (cancel/return restocks) are refetched.
  */
 export function useOrderMutations(id: string) {
@@ -72,5 +109,16 @@ export function useOrderMutations(id: string) {
     onSuccess,
   });
 
-  return { setStatus, setPaymentStatus };
+  const updateItems = useMutation({
+    mutationFn: ({ items, note }: { items: OrderItemInput[]; note?: string }) =>
+      ordersApi.updateItems(id, items, note),
+    onSuccess,
+  });
+
+  const updateCustomer = useMutation({
+    mutationFn: (input: OrderCustomerInput) => ordersApi.updateCustomer(id, input),
+    onSuccess,
+  });
+
+  return { setStatus, setPaymentStatus, updateItems, updateCustomer };
 }

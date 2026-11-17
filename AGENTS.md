@@ -52,7 +52,7 @@ Path alias: `@/*` → `src/*`. Import router APIs from `react-router` (never `re
 | Path | Page | Access |
 | --- | --- | --- |
 | `/` | Store overview: KPIs, 30-day sales, best sellers, low stock, recent orders (`/admin/orders/stats`) | signed in (data for `STAFF_ROLES`) |
-| `/orders`, `/orders/:id` | Order list (stats, status tabs) and detail (status workflow, payment, timeline) | `STAFF_ROLES` (SUPER_ADMIN, ADMIN, MANAGER) |
+| `/orders`, `/orders/:id` | Order list (stats, status tabs) and detail (status workflow, item and customer/delivery edits, payment, timeline) | `STAFF_ROLES` (SUPER_ADMIN, ADMIN, MANAGER) |
 | `/products`, `/products/new`, `/products/:id/edit` | Product list and editor | `STAFF_ROLES` |
 | `/categories`, `/subcategories` | Catalog | `STAFF_ROLES` |
 | `/users` | User and role management | `ADMIN_ROLES` (SUPER_ADMIN, ADMIN) |

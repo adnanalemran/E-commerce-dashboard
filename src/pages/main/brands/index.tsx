@@ -127,7 +127,8 @@ export default function BrandsPage() {
         title={t("deleteTitle", { name: deleting?.name ?? "" })}
         description={t("deleteDescription")}
         onConfirm={async () => {
-          await brandsApi.remove(deleting!.id);
+          if (!deleting) return;
+          await brandsApi.remove(deleting.id);
           refresh();
         }}
       />

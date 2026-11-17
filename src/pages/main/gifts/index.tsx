@@ -116,7 +116,9 @@ export default function GiftsPage() {
         onOpenChange={(open) => !open && setDeleting(null)}
         title={t("deleteTitle", { name: deleting?.name ?? "" })}
         description={t("deleteDescription")}
-        onConfirm={async () => setRules(await giftsApi.remove(deleting!.id))}
+        onConfirm={async () => {
+          if (deleting) setRules(await giftsApi.remove(deleting.id));
+        }}
       />
     </>
   );

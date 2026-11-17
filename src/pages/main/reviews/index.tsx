@@ -148,7 +148,8 @@ export default function ReviewsPage() {
         title={t("deleteTitle")}
         description={t("deleteDescription")}
         onConfirm={async () => {
-          await reviewsApi.remove(deleting!.id);
+          if (!deleting) return;
+          await reviewsApi.remove(deleting.id);
           refresh();
         }}
       />
