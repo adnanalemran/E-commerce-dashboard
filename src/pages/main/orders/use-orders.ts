@@ -3,6 +3,7 @@ import {
   type ListOrdersParams,
   type Order,
   type OrderCustomerInput,
+  type OrderGiftAction,
   type OrderItemInput,
   type OrderStatus,
   type PaymentStatus,
@@ -54,10 +55,10 @@ export function useOrder(id: string | undefined) {
  * Server-priced preview of an item edit (totals, delivery, coupon, stock problems).
  * Off while `items` is empty; the last result stays visible while the next loads.
  */
-export function useOrderItemsPreview(id: string, items: OrderItemInput[]) {
+export function useOrderItemsPreview(id: string, items: OrderItemInput[], gift: OrderGiftAction) {
   return useQuery({
-    queryKey: queryKeys.orders.itemsPreview(id, items),
-    queryFn: ({ signal }) => ordersApi.previewItems(id, items, signal),
+    queryKey: queryKeys.orders.itemsPreview(id, items, gift),
+    queryFn: ({ signal }) => ordersApi.previewItems(id, items, gift, signal),
     enabled: items.length > 0,
     placeholderData: keepPreviousData,
     staleTime: 0,
@@ -110,8 +111,8 @@ export function useOrderMutations(id: string) {
   });
 
   const updateItems = useMutation({
-    mutationFn: ({ items, note }: { items: OrderItemInput[]; note?: string }) =>
-      ordersApi.updateItems(id, items, note),
+    mutationFn: ({ items, gift, note }: { items: OrderItemInput[]; gift: OrderGiftAction; note?: string }) =>
+      ordersApi.updateItems(id, items, gift, note),
     onSuccess,
   });
 

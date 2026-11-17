@@ -143,10 +143,19 @@ export interface EditedOrderLine {
   available: number | null;
 }
 
+/** What an item edit does to the order's free gift. */
+export type OrderGiftAction = "keep" | "remove" | "add";
+
 /** Result of `POST /admin/orders/:id/items/preview` (nothing is saved). */
 export interface OrderItemsPreview {
   items: EditedOrderLine[];
   problems: OrderItemProblem[];
+  gift: {
+    /** The order's gift; `qualifies` = a live rule still gives it at the new subtotal. */
+    current: { productName: string; variantName: string; image: string | null; quantity: number; qualifies: boolean } | null;
+    /** The gift the new subtotal earns (only when the order has none). */
+    eligible: { productName: string; variantName: string; image: string | null } | null;
+  };
   changed: boolean;
   itemCount: number;
   subtotal: number;
@@ -213,18 +222,18 @@ export const ordersApi = {
     }),
 
   /** New totals and stock problems for an item edit, without saving. */
-  previewItems: (id: string, items: OrderItemInput[], signal?: AbortSignal) =>
+  previewItems: (id: string, items: OrderItemInput[], gift: OrderGiftAction, signal?: AbortSignal) =>
     apiRequest<OrderItemsPreview>(`/admin/orders/${id}/items/preview`, {
       method: "POST",
-      body: { items },
+      body: { items, gift },
       signal,
     }),
 
   /** Replaces the order's paid lines (quantities, added and removed products). */
-  updateItems: (id: string, items: OrderItemInput[], note?: string) =>
+  updateItems: (id: string, items: OrderItemInput[], gift: OrderGiftAction, note?: string) =>
     apiRequest<Order>(`/admin/orders/${id}/items`, {
       method: "PUT",
-      body: { items, ...(note ? { note } : {}) },
+      body: { items, gift, ...(note ? { note } : {}) },
     }),
 
   /** Correct the customer's contact and delivery details; delivery is repriced if the zone changes. */

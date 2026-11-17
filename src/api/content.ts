@@ -156,16 +156,24 @@ export const reviewsApi = {
 // Gift rules
 // ---------------------------------------------------------------------------
 
+/** Where a rule stands now; only LIVE rules give gifts (mirrors `GiftRuleState`). */
+export type GiftRuleState = "LIVE" | "SCHEDULED" | "EXPIRED" | "OFF" | "OUT_OF_STOCK" | "MISSING";
+
+/** Mirrors `GiftService.list` in the backend. */
 export interface GiftRule {
   id: string;
   name: string;
   giftVariantId: string;
-  product: { id: string; name: string; image: string | null };
+  product: { id: string; name: string; status: "DRAFT" | "ACTIVE" | "ARCHIVED"; image: string | null };
+  /** Null when the gift variant was deleted. */
   variant: { id: string; name: string; stock: number } | null;
   minSubtotal: number;
   isActive: boolean;
   startsAt: string | null;
   endsAt: string | null;
+  state: GiftRuleState;
+  /** Gift units on orders that weren't cancelled or returned. */
+  givenCount: number;
 }
 
 export interface GiftRuleInput {

@@ -1731,7 +1731,6 @@
       "decrease": "Decrease quantity",
       "increase": "Increase quantity",
       "remove": "Remove {name}",
-      "giftLocked": "Free gift, kept as is",
       "deletedLocked": "Product deleted, kept as is",
       "empty": "An order needs at least one item. Add a product below.",
       "note": "Note for the timeline (optional)",
@@ -1744,6 +1743,14 @@
         "UNAVAILABLE": "This product is not active, so it can't be added.",
         "OUT_OF_STOCK": "Out of stock.",
         "INSUFFICIENT_STOCK": "Only {available} available for this order."
+      },
+      "gift": {
+        "title": "Free gift",
+        "qualifies": "Still qualifies at the new subtotal.",
+        "noLongerQualifies": "No live gift offer covers this order at the new subtotal (minimum not met or the offer ended).",
+        "remove": "Remove the free gift (it goes back into stock)",
+        "eligible": "This order now qualifies for a free {gift}.",
+        "add": "Add the free gift to the order"
       }
     },
     "editCustomer": {
@@ -2189,7 +2196,18 @@
     "errors": {
       "network": "Cannot reach the server. Check your connection.",
       "unexpected": "Something went wrong. Please try again."
-    }
+    },
+    "states": {
+      "LIVE": "Live",
+      "SCHEDULED": "Scheduled",
+      "EXPIRED": "Expired",
+      "OFF": "Off",
+      "OUT_OF_STOCK": "Gift out of stock",
+      "MISSING": "Gift size deleted"
+    },
+    "given": "{count, plural, =0 {Not given yet} one {Given # time} other {Given # times}}",
+    "notOnSale": "Gift-only item (not on sale)",
+    "missingHint": "The gift's product size was deleted. Edit the rule and choose another gift."
   },
   "reports": {
     "metaTitle": "Reports | E-Dukan",

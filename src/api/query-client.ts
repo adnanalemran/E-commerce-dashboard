@@ -3,7 +3,7 @@ import { ApiError } from "./client";
 import type { AdminListProductsParams } from "./products";
 import type { ListCategoriesParams } from "./categories";
 import type { ListUsersParams } from "./users";
-import type { ListOrdersParams, OrderItemInput } from "./orders";
+import type { ListOrdersParams, OrderGiftAction, OrderItemInput } from "./orders";
 import type { ListCouponsParams } from "./coupons";
 
 export const queryClient = new QueryClient({
@@ -60,7 +60,8 @@ export const queryKeys = {
     all: ["orders"] as const,
     list: (params: ListOrdersParams) => ["orders", "list", params] as const,
     detail: (id: string) => ["orders", "detail", id] as const,
-    itemsPreview: (id: string, items: OrderItemInput[]) => ["orders", "items-preview", id, items] as const,
+    itemsPreview: (id: string, items: OrderItemInput[], gift: OrderGiftAction) =>
+      ["orders", "items-preview", id, items, gift] as const,
     stats: ["orders", "stats"] as const,
   },
   coupons: {

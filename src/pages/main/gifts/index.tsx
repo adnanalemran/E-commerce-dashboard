@@ -1,4 +1,4 @@
-import { giftsApi, type GiftRule, type GiftRuleInput } from "@/api/content";
+import { giftsApi, type GiftRule, type GiftRuleInput, type GiftRuleState } from "@/api/content";
 import { productsApi } from "@/api/products";
 import { queryKeys } from "@/api/query-client";
 import { ConfirmDeleteDialog, FormActions, FormDialog, ListCard, ListState } from "@/components/shared/crud";
@@ -18,6 +18,15 @@ import { formatTaka } from "@/utils/currency";
 import { getApiErrorMessage } from "@/utils/form-errors";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState, type FormEvent } from "react";
+
+const STATE_COLOR: Record<GiftRuleState, "success" | "primary" | "gray" | "warning" | "error"> = {
+  LIVE: "success",
+  SCHEDULED: "primary",
+  EXPIRED: "gray",
+  OFF: "gray",
+  OUT_OF_STOCK: "warning",
+  MISSING: "error",
+};
 
 export default function GiftsPage() {
   const t = useTranslations("gifts");
@@ -66,14 +75,9 @@ export default function GiftsPage() {
                 <span className="min-w-0 flex-1">
                   <span className="flex flex-wrap items-center gap-2">
                     <span className="truncate font-medium text-label">{r.name}</span>
-                    <Badge variant="light" color={r.isActive ? "success" : "gray"} size="sm">
-                      {r.isActive ? t("active") : t("off")}
+                    <Badge variant="light" color={STATE_COLOR[r.state]} size="sm">
+                      {t(`states.${r.state}`)}
                     </Badge>
-                    {r.variant && r.variant.stock === 0 && (
-                      <Badge variant="light" color="error" size="sm">
-                        {t("outOfStock")}
-                      </Badge>
-                    )}
                   </span>
                   <span className="block text-xs text-label-secondary">
                     {t("rule", {
@@ -81,6 +85,12 @@ export default function GiftsPage() {
                       gift: `${r.product.name}${r.variant ? ` (${r.variant.name})` : ""}`,
                     })}
                   </span>
+                  <span className="block text-xs text-label-secondary">
+                    {t("given", { count: r.givenCount })}
+                    {r.variant && ` · ${t("stock", { count: r.variant.stock })}`}
+                    {r.product.status !== "ACTIVE" && ` · ${t("notOnSale")}`}
+                  </span>
+                  {r.state === "MISSING" && <span className="mt-0.5 block text-xs text-danger">{t("missingHint")}</span>}
                 </span>
                 <Button
                   variant="ghost"

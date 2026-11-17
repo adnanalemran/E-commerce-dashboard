@@ -1,7 +1,8 @@
-import type { Order, OrderItemInput, OrderItemProblem } from "@/api/orders";
+import type { Order, OrderGiftAction, OrderItemInput, OrderItemProblem } from "@/api/orders";
 import type { Product, ProductVariant } from "@/api/products";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Dialog,
   DialogClose,
@@ -18,7 +19,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { Textarea } from "@/components/ui/textarea";
 import { useDebouncedValue } from "@/hooks/use-debounced-value";
 import { useLocale, useTranslations } from "@/i18n";
-import { MinusIcon, PlusIcon, SearchIcon, TagIcon, TrashBinIcon } from "@/icons";
+import { BoxIcon, MinusIcon, PlusIcon, SearchIcon, TagIcon, TrashBinIcon } from "@/icons";
 import { cn } from "@/utils";
 import { formatTaka } from "@/utils/currency";
 import { getApiErrorMessage } from "@/utils/form-errors";
@@ -71,7 +72,7 @@ function ItemsEditor({ order, onDone }: { order: Order; onDone: () => void }) {
       ),
     [order.items],
   );
-  const fixed = order.items.filter((item) => item.isGift || !item.variantId);
+  const fixed = order.items.filter((item) => !item.isGift && !item.variantId);
 
   const [lines, setLines] = useState<DraftLine[]>(() =>
     [...original.values()].map((item) => ({
@@ -84,6 +85,7 @@ function ItemsEditor({ order, onDone }: { order: Order; onDone: () => void }) {
     })),
   );
   const [note, setNote] = useState("");
+  const [giftAction, setGiftAction] = useState<OrderGiftAction>("keep");
   const [error, setError] = useState<string | null>(null);
 
   const items = useMemo<OrderItemInput[]>(
@@ -91,7 +93,7 @@ function ItemsEditor({ order, onDone }: { order: Order; onDone: () => void }) {
     [lines],
   );
   const debouncedItems = useDebouncedValue(items, 400);
-  const preview = useOrderItemsPreview(order.id, debouncedItems);
+  const preview = useOrderItemsPreview(order.id, debouncedItems, giftAction);
   // The preview matches what is on screen (not an older list still loading or debouncing).
   const previewCurrent = debouncedItems === items && Boolean(preview.data) && !preview.isPlaceholderData;
   const previewLines = new Map(preview.data?.items.map((line) => [line.variantId, line]));
@@ -99,7 +101,16 @@ function ItemsEditor({ order, onDone }: { order: Order; onDone: () => void }) {
     previewCurrent ? preview.data!.problems.map((p) => [p.variantId, p]) : [],
   );
 
+  // The gift choice only counts while it still applies (e.g. "add" needs an eligible gift).
+  const giftInfo = preview.data?.gift;
+  const giftChoice: OrderGiftAction =
+    previewCurrent &&
+    ((giftAction === "add" && !giftInfo?.eligible) || (giftAction === "remove" && !giftInfo?.current))
+      ? "keep"
+      : giftAction;
+
   const changed =
+    giftChoice !== "keep" ||
     lines.length !== original.size ||
     lines.some((line) => original.get(line.variantId)?.quantity !== line.quantity);
 
@@ -142,7 +153,7 @@ function ItemsEditor({ order, onDone }: { order: Order; onDone: () => void }) {
   const save = async () => {
     setError(null);
     try {
-      await updateItems.mutateAsync({ items, note: note.trim() || undefined });
+      await updateItems.mutateAsync({ items, gift: giftChoice, note: note.trim() || undefined });
       onDone();
     } catch (err) {
       setError(getApiErrorMessage(err, { network: t("errors.network"), unexpected: t("errors.unexpected") }));
@@ -255,12 +266,52 @@ function ItemsEditor({ order, onDone }: { order: Order; onDone: () => void }) {
               <span className="min-w-0 truncate text-label">
                 {item.productName} – {item.variantName} × {item.quantity}
               </span>
-              <span className="shrink-0 text-xs text-label-secondary">
-                {item.isGift ? t("editItems.giftLocked") : t("editItems.deletedLocked")}
-              </span>
+              <span className="shrink-0 text-xs text-label-secondary">{t("editItems.deletedLocked")}</span>
             </li>
           ))}
         </ul>
+      )}
+
+      {giftInfo?.current && (
+        <div className="flex items-start gap-3 rounded-xl border border-separator px-4 py-3">
+          <Thumb image={giftInfo.current.image} small />
+          <div className="min-w-0 flex-1 text-sm">
+            <p className="flex items-center gap-1.5 font-medium text-label">
+              <BoxIcon className="size-4 text-success" aria-hidden="true" />
+              {t("editItems.gift.title")}: {giftInfo.current.productName} – {giftInfo.current.variantName}
+            </p>
+            <p className={cn("mt-0.5 text-xs", giftInfo.current.qualifies ? "text-label-secondary" : "text-warning")}>
+              {giftInfo.current.qualifies ? t("editItems.gift.qualifies") : t("editItems.gift.noLongerQualifies")}
+            </p>
+            <label className="mt-2 flex items-center gap-2 text-sm text-label">
+              <Checkbox
+                checked={giftAction === "remove"}
+                onCheckedChange={(checked) => setGiftAction(checked ? "remove" : "keep")}
+              />
+              {t("editItems.gift.remove")}
+            </label>
+          </div>
+        </div>
+      )}
+      {giftInfo?.eligible && (
+        <div className="flex items-start gap-3 rounded-xl border border-dashed border-separator px-4 py-3">
+          <Thumb image={giftInfo.eligible.image} small />
+          <div className="min-w-0 flex-1 text-sm">
+            <p className="flex items-center gap-1.5 font-medium text-label">
+              <BoxIcon className="size-4 text-success" aria-hidden="true" />
+              {t("editItems.gift.eligible", {
+                gift: `${giftInfo.eligible.productName} – ${giftInfo.eligible.variantName}`,
+              })}
+            </p>
+            <label className="mt-2 flex items-center gap-2 text-sm text-label">
+              <Checkbox
+                checked={giftAction === "add"}
+                onCheckedChange={(checked) => setGiftAction(checked ? "add" : "keep")}
+              />
+              {t("editItems.gift.add")}
+            </label>
+          </div>
+        </div>
       )}
 
       <ProductPicker onPick={add} />
