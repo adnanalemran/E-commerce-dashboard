@@ -15,23 +15,24 @@ export default function SignUp() {
       <AuthHeader
         title={t("signUp.title")}
         description={t("signUp.description")}
+        badge="Create Account"
       />
 
       {isGoogleAuthEnabled && (
-        <>
+        <div className="mb-4">
           <GoogleSignInButton text="signup_with" />
           <AuthDivider label={t("or")} />
-        </>
+        </div>
       )}
 
       <SignUpFormFields />
 
-      <div className="mt-5">
-        <p className="text-center text-sm font-normal text-gray-700 sm:text-start dark:text-gray-400">
+      <div className="mt-6 border-t border-gray-100 pt-4 text-center dark:border-gray-800/80">
+        <p className="text-xs text-gray-500 dark:text-gray-400">
           {t("signUp.haveAccount")}{" "}
           <Link
             to="/signin"
-            className="text-brand-500 hover:text-brand-600 dark:text-brand-400"
+            className="font-medium text-brand-600 hover:text-brand-700 hover:underline dark:text-brand-400 dark:hover:text-brand-300"
           >
             {t("signUp.signInLink")}
           </Link>

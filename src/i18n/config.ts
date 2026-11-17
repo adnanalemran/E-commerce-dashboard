@@ -1,31 +1,25 @@
 import i18n from "i18next";
-import LanguageDetector from "i18next-browser-languagedetector";
 import ICU from "i18next-icu";
-import resourcesToBackend from "i18next-resources-to-backend";
 import { initReactI18next } from "react-i18next";
 
-import { isLocale, isRtl, routing } from "./routing";
+import en from "../messages/en.json";
+import { routing } from "./routing";
 
-const syncDocument = (lng: string) => {
-  const locale = isLocale(lng) ? lng : routing.defaultLocale;
-  document.documentElement.lang = locale;
-  document.documentElement.dir = isRtl(locale) ? "rtl" : "ltr";
-};
-
-i18n.on("languageChanged", syncDocument);
+document.documentElement.lang = routing.defaultLocale;
+document.documentElement.dir = "ltr";
 
 i18n
   .use(ICU)
-  .use(LanguageDetector)
-  .use(
-    // Vite code-splits one chunk per locale JSON.
-    resourcesToBackend((lng: string) => import(`../messages/${lng}.json`)),
-  )
   .use(initReactI18next)
   .init({
-    supportedLngs: [...routing.locales],
+    lng: routing.defaultLocale,
     fallbackLng: routing.defaultLocale,
-    load: "languageOnly", // "en-US" -> "en"
+    supportedLngs: [...routing.locales],
+    resources: {
+      en: {
+        translation: en,
+      },
+    },
     ns: ["translation"],
     defaultNS: "translation",
     keySeparator: ".",
@@ -33,12 +27,7 @@ i18n
     returnNull: false,
     returnObjects: false,
     interpolation: { escapeValue: false }, // React already escapes
-    detection: {
-      order: ["localStorage", "navigator"],
-      lookupLocalStorage: "locale",
-      caches: ["localStorage"],
-    },
-    react: { useSuspense: true },
+    react: { useSuspense: false },
   });
 
 export default i18n;
